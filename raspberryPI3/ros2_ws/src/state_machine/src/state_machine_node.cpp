@@ -68,7 +68,7 @@ class state_machine : public rclcpp::Node {
     //rclcpp::TimerBase::SharedPtr timer_;
 
 
-    std::string state_names[5] = {"idle", "Manual", "Autonomous", "Tracking", "Security"};
+    std::string state_names[6] = {"idle", "Manual", "Autonomous", "Tracking", "Security", "Emergency"};
     std::string obstacle_detect[2] = {"No obstacle", "Obstacle on the way"};
     int previous_state = -1; 
     int current_state = 0; 
@@ -86,16 +86,17 @@ class state_machine : public rclcpp::Node {
       //emergency btn is inversed in case of a shutdown 
       if (!emergency_btn)
       {
-        current_state = -1; 
+        current_state = 5;
       }
 
       // not emergency 
       else 
       {
         //emergency stop -> idle
-        if (current_state == -1 && joy_mode == 0)
+        if (current_state == 5 && joy_mode == 0)
         {
           current_state = 0; 
+          RCLCPP_INFO(this->get_logger(),("emergency->manual"));
         }
 
         //idle -> ?
@@ -105,11 +106,13 @@ class state_machine : public rclcpp::Node {
           if (joy_mode == 1)
           {
             current_state = 1;
+            RCLCPP_INFO(this->get_logger(),("idle->manual"));
           }
           // -> autonomous 
           else if (joy_mode == 2)
           {
             current_state = 2;
+            RCLCPP_INFO(this->get_logger(),("idle->auto"));
           }
         }
 
@@ -120,12 +123,14 @@ class state_machine : public rclcpp::Node {
           if (joy_mode == 0)
           {
             current_state = 0;
+            RCLCPP_INFO(this->get_logger(),("manual->idle"));
           }
 
           // -> security
           else if ((dir_av && obstacle_av) || (dir_ar && obstacle_ar))
           {
             current_state = 4;
+            RCLCPP_INFO(this->get_logger(),("manual->security"));
           }
         }
 
@@ -136,20 +141,20 @@ class state_machine : public rclcpp::Node {
           if (joy_mode == 0)
           {
             current_state = 0;
+            RCLCPP_INFO(this->get_logger(),("autonomous->idle"));
           }
         }
 
 
         //security -> manual 
-        else if (current_state == 4 && ((!obstacle_av && !obstacle_ar) || (dir_ar && obstacle_av && !obstacle_ar) || (dir_av && obstacle_ar && !obstacle_av)))
+        else if (current_state == 4 && ((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar) || (dir_av && !obstacle_av)))
         {
           current_state = 1; 
+          RCLCPP_INFO(this->get_logger(),("sec->man"));
         }
         else {
-          RCLCPP_INFO(this->get_logger(),("yolo"));
-          current_state=previous_state;
+          current_state=current_state;
         }
-
       }
           //-------------------------------STATE CHANGE------------------------------------------------
       if (previous_state != current_state)
@@ -159,9 +164,9 @@ class state_machine : public rclcpp::Node {
         stateMsg.state_name = state_names[current_state];
         stateMsg.obstacle_detect = obstacle_detect[obstacle];
         publisher_state_->publish(stateMsg);
-        previous_state = current_state;
         RCLCPP_INFO(this->get_logger(),("From : "  + state_names[previous_state] + "Switching to another state : " + state_names[current_state]).data());
         RCLCPP_INFO(this->get_logger(), ("change because obstacle ? " + obstacle_detect[obstacle]).data());
+        previous_state = current_state;
         
 
         // Save file
@@ -179,7 +184,8 @@ class state_machine : public rclcpp::Node {
       {
         emergency_btn = 0;
       }
-      else
+
+      else if (joy_mode != 3 && emergency_btn == 0)
       {
         emergency_btn = 1; 
       }
@@ -210,16 +216,16 @@ class state_machine : public rclcpp::Node {
         obstacle_av = 1;
         obstacle = 1;
       }
+      else {
+        obstacle_av = 0 ;
+      }
       if (obstacle_msg.us_rear_detect)
       {
         obstacle_ar = 1;
         obstacle = 1;
       }
-      if (!obstacle_msg.us_rear_detect && !obstacle_msg.us_front_detect)
-      {
-        obstacle_av = 0; 
+      else {
         obstacle_ar = 0;
-        obstacle = 0;
       }
     }
 
