@@ -30,7 +30,7 @@ class state_machine : public rclcpp::Node {
       subscription_obstacles_ = this->create_subscription<interfaces::msg::Obstacles>(
         "obstacles", 10, std::bind(&state_machine::obstacleCallback, this, _1));
 
-      //timer_ = this->create_wall_timer(1ms, std::bind(&state_machine::stateChanger, this));
+      timer_ = this->create_wall_timer(1ms, std::bind(&state_machine::stateChanger, this));
 
       //file_stream_.open("output.txt", std::ios::out);  // open .txt
 
@@ -47,6 +47,8 @@ class state_machine : public rclcpp::Node {
     //Subscriber
     rclcpp::Subscription<interfaces::msg::JoystickOrder>::SharedPtr subscription_joystick_order_;
     rclcpp::Subscription<interfaces::msg::Obstacles>::SharedPtr subscription_obstacles_;
+    //Timer
+    rclcpp::TimerBase::SharedPtr timer_;
   
 
 
@@ -56,7 +58,7 @@ class state_machine : public rclcpp::Node {
     int obstacle_av = 0; 
     int obstacle_ar = 0; 
     int unavoidable = 0;
-    int emergency_btn = 0;
+    int emergency_btn = 1;
 
     int start = 0; 
 
@@ -139,10 +141,13 @@ class state_machine : public rclcpp::Node {
 
 
         //security -> manual 
-        else if (current_state == 4 && !(dir_ar && obstacle_ar) && !(dir_av && obstacle_av) && 
-                ((!obstacle_av && !obstacle_ar) || (dir_ar && obstacle_av) || (dir_av && obstacle_ar)))
+        else if (current_state == 4 && ((!obstacle_av && !obstacle_ar) || (dir_ar && obstacle_av && !obstacle_ar) || (dir_av && obstacle_ar && !obstacle_av)))
         {
           current_state = 1; 
+        }
+        else {
+          RCLCPP_INFO(this->get_logger(),("yolo"));
+          current_state=previous_state;
         }
 
       }
@@ -170,8 +175,7 @@ class state_machine : public rclcpp::Node {
     {
       
       joy_mode = joyOrder.mode;
-      start = joyOrder.start;
-      if (joy_mode == 3 && start == 0) 
+      if (joy_mode == 3) 
       {
         emergency_btn = 0;
       }
@@ -191,12 +195,11 @@ class state_machine : public rclcpp::Node {
         dir_av = 0;
         dir_ar = 1;
       }
-      else 
+      else
       {
         dir_av = 0; 
         dir_ar = 0;
       }
-      stateChanger();
     }
 
     void obstacleCallback(const interfaces::msg::Obstacles &obstacle_msg)
@@ -218,7 +221,6 @@ class state_machine : public rclcpp::Node {
         obstacle_ar = 0;
         obstacle = 0;
       }
-      stateChanger();
     }
 
 

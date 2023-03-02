@@ -1,0 +1,17 @@
+/home/pi/ros2_ws/src/install/state_machine/lib/state_machine/state_machine_node
+/home/pi/ros2_ws/src/install/state_machine/share/ament_index/resource_index/package_run_dependencies/state_machine
+/home/pi/ros2_ws/src/install/state_machine/share/ament_index/resource_index/parent_prefix_path/state_machine
+/home/pi/ros2_ws/src/install/state_machine/share/state_machine/environment/ament_prefix_path.sh
+/home/pi/ros2_ws/src/install/state_machine/share/state_machine/environment/ament_prefix_path.dsv
+/home/pi/ros2_ws/src/install/state_machine/share/state_machine/environment/path.sh
+/home/pi/ros2_ws/src/install/state_machine/share/state_machine/environment/path.dsv
+/home/pi/ros2_ws/src/install/state_machine/share/state_machine/local_setup.bash
+/home/pi/ros2_ws/src/install/state_machine/share/state_machine/local_setup.sh
+/home/pi/ros2_ws/src/install/state_machine/share/state_machine/local_setup.zsh
+/home/pi/ros2_ws/src/install/state_machine/share/state_machine/local_setup.dsv
+/home/pi/ros2_ws/src/install/state_machine/share/state_machine/package.dsv
+/home/pi/ros2_ws/src/install/state_machine/share/ament_index/resource_index/packages/state_machine
+/home/pi/ros2_ws/src/install/state_machine/share/state_machine/cmake/ament_cmake_export_include_directories-extras.cmake
+/home/pi/ros2_ws/src/install/state_machine/share/state_machine/cmake/state_machineConfig.cmake
+/home/pi/ros2_ws/src/install/state_machine/share/state_machine/cmake/state_machineConfig-version.cmake
+/home/pi/ros2_ws/src/install/state_machine/share/state_machine/package.xml

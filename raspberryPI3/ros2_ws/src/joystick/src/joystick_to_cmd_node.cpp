@@ -107,12 +107,12 @@ private:
 
         if (buttonA || buttonY || buttonStart || buttonDpadBottom || buttonB ){
 
-            if (buttonY) {
+            if (buttonY && mode==0) {
                 mode = 1;
                 start=true;
             }
 
-            else if (buttonA) {
+            else if (buttonA && mode==0) {
                 mode = 2;
                 start=true;
             }
