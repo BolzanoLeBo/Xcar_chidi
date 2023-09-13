@@ -47,3 +47,4 @@ raspberryPI3/static2/site/webserver.py
 
 ai_processing/*.pt
 ai_processing/*.jpg
+ai_processing/__pycache__/*
