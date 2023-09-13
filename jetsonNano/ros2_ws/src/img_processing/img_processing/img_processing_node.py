@@ -94,11 +94,11 @@ class ImgProcessingNode(Node):
 			depth=1
 		)
 		self.subscriber_ = self.create_subscription(Image, 'image_raw', self.image_callback,qos_profile = qos_profile)
-		self.user_lost_publisher_ = self.create_publisher(UserLost,'user_distance', 10)
+		self.user_lost_publisher_ = self.create_publisher(UserLost,'user_lost', 10)
 		self.state_subscriber_ = self.create_subscription(State, 'state', self.state_callback, 10)
 		self.tracking_pos_angle_publisher_ = self.create_publisher(TrackingPosAngle,'tracking_pos_angle', 10)
 		self.cv_image = []
-		self.timer = self.create_timer(0.5, self.img_ai) #1 seconds
+		self.timer = self.create_timer(0.25, self.img_ai) 
 		self.rectangle = []
 		self.image_processed = False
 		self.websocket_init = False
@@ -150,7 +150,7 @@ class ImgProcessingNode(Node):
 			asyncio.run(self.send_message())
 			tracking = TrackingPosAngle()
 			while not self.image_processed : 
-				time.sleep(0.0001)
+				pass
 			
 			[x1,y1,x2,y2] = self.rectangle
 			if self.rectangle != [0,0,0,0] : 
