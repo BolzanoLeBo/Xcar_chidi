@@ -2,7 +2,6 @@ import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image, CameraInfo
 from rclpy.qos import QoSProfile, QoSReliabilityPolicy, QoSHistoryPolicy
-import time
 import websockets.client
 import asyncio
 import cv2
@@ -87,7 +86,7 @@ class ImgProcessingNode(Node):
 	
 	def __init__(self):
 		super().__init__('img_processing_node')
-        # Run the test code
+		# Run the test code
 		qos_profile = QoSProfile(
 			reliability=QoSReliabilityPolicy.RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT,
 			history=QoSHistoryPolicy.RMW_QOS_POLICY_HISTORY_KEEP_LAST,
@@ -98,7 +97,7 @@ class ImgProcessingNode(Node):
 		self.state_subscriber_ = self.create_subscription(State, 'state', self.state_callback, 10)
 		self.tracking_pos_angle_publisher_ = self.create_publisher(TrackingPosAngle,'tracking_pos_angle', 10)
 		self.cv_image = []
-		self.timer = self.create_timer(0.25, self.img_ai) 
+		self.timer = self.create_timer(0.5, self.img_ai) 
 		self.rectangle = []
 		self.image_processed = False
 		self.websocket_init = False
@@ -128,7 +127,8 @@ class ImgProcessingNode(Node):
 
 			self.image_processed = True
 				
-
+	def state_callback(self,msg) : 
+		self.state = msg.current_state
 
 
 	def image_callback(self,msg):
@@ -144,7 +144,7 @@ class ImgProcessingNode(Node):
 
 
 	def img_ai(self) : 
-		lost_treshold = 5 
+		lost_treshold = 2 
 		lost_msg = UserLost()
 		if self.cv_image != [] :
 			asyncio.run(self.send_message())
@@ -155,7 +155,7 @@ class ImgProcessingNode(Node):
 			[x1,y1,x2,y2] = self.rectangle
 			if self.rectangle != [0,0,0,0] : 
 				height, width = self.cv_image.shape[:2]
-				(a_min, a_max, a_cam) = get_angle([x1,y1, x2-x1, y2-y1], width, radians(60), radians(-90), [0,0])
+				(a_min, a_max, a_cam) = get_angle([x1,y1, x2-x1, y2-y1], width, radians(55), radians(-90), [0,0])
 				#self.get_logger().info("angle : {}".format(a_cam))
 				if a_min >= a_max :
 					tracking.min_angle = a_max
@@ -173,7 +173,7 @@ class ImgProcessingNode(Node):
 				tracking.cam_angle = float('inf') 
 				human_detected = False
 
-			if self.state == 3 : 
+			if (self.state == 3 or self.state == 4) : 
 				if not human_detected :
 					self.lost_counter = self.lost_counter + 1 
 				else : 

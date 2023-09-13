@@ -23,6 +23,7 @@ set(msg_files
   "msg/Gnss.msg"
   "msg/Obstacles.msg"
   "msg/SystemCheck.msg"
+  "msg/State.msg"
   "msg/Lidar.msg"
   "msg/WebMode.msg"
   "msg/ObstaclesId.msg"

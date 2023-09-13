@@ -44,3 +44,6 @@ jetsonNano/ros2_ws/install/
 
 raspberryPI3/static2/site/generatehash.py
 raspberryPI3/static2/site/webserver.py
+
+ai_processing/*.pt
+ai_processing/*.jpg
