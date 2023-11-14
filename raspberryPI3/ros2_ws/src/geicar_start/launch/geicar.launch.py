@@ -53,6 +53,12 @@ def generate_launch_description():
         emulate_tty=True
     )
 
+    state_machine_node = Node(
+        package="state_machine",
+        executable="state_machine_node",
+        emulate_tty=True
+    )
+
 
     ld.add_action(joystick_node)
     ld.add_action(joystick_to_cmd_node)
@@ -61,5 +67,6 @@ def generate_launch_description():
     ld.add_action(car_control_node)
     ld.add_action(imu_filter_madgwick_node)
     ld.add_action(system_check_node)
+    ld.add_action(state_machine_node)
 
     return ld
