@@ -1,0 +1,6 @@
+{
+  "package_name": "carla_msgs",
+  "non_idl_tuples": [
+    "/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/carla_msgs:msg/CarlaEgoVehicleControl.msg"
+  ]
+}

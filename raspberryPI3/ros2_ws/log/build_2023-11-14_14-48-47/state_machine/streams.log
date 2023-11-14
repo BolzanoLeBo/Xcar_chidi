@@ -1,0 +1,10 @@
+[0.089s] Invoking command in '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine -- -j8 -l8
+[0.168s] [ 50%] [32mBuilding CXX object CMakeFiles/state_machine_node.dir/src/state_machine_node.cpp.o[0m
+[0.471s] [01m[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:7:10:[m[K [01;31m[Kfatal error: [m[K../include/state_machine/state_machine_node.hpp: No such file or directory
+[0.471s]     7 | #include [01;31m[K"../include/state_machine/state_machine_node.hpp"[m[K
+[0.471s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.472s] compilation terminated.
+[0.482s] gmake[2]: *** [CMakeFiles/state_machine_node.dir/build.make:76: CMakeFiles/state_machine_node.dir/src/state_machine_node.cpp.o] Error 1
+[0.482s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/state_machine_node.dir/all] Error 2
+[0.482s] gmake: *** [Makefile:146: all] Error 2
+[0.489s] Invoked command in '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine -- -j8 -l8

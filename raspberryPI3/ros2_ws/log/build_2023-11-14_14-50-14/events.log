@@ -1,0 +1,87 @@
+[0.000000] (-) TimerEvent: {}
+[0.001083] (-) JobUnselected: {'identifier': 'can'}
+[0.001197] (-) JobUnselected: {'identifier': 'car_control'}
+[0.001383] (-) JobUnselected: {'identifier': 'carla_msgs'}
+[0.001549] (-) JobUnselected: {'identifier': 'geicar_start'}
+[0.002063] (-) JobUnselected: {'identifier': 'imu_complementary_filter'}
+[0.002312] (-) JobUnselected: {'identifier': 'imu_filter_madgwick'}
+[0.002630] (-) JobUnselected: {'identifier': 'imu_tools'}
+[0.002781] (-) JobUnselected: {'identifier': 'interfaces'}
+[0.002861] (-) JobUnselected: {'identifier': 'joystick'}
+[0.003165] (-) JobUnselected: {'identifier': 'rviz_imu_plugin'}
+[0.003670] (-) JobUnselected: {'identifier': 'simulation'}
+[0.003923] (-) JobUnselected: {'identifier': 'system_check'}
+[0.004219] (state_machine) JobQueued: {'identifier': 'state_machine', 'dependencies': OrderedDict()}
+[0.004565] (state_machine) JobStarted: {'identifier': 'state_machine'}
+[0.082088] (state_machine) JobProgress: {'identifier': 'state_machine', 'progress': 'cmake'}
+[0.082793] (state_machine) JobProgress: {'identifier': 'state_machine', 'progress': 'build'}
+[0.083581] (state_machine) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine', '--', '-j8', '-l8'], 'cwd': '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'loic'), ('LC_TIME', 'fr_FR.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/interfaces/lib:/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/carla_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/loic'), ('OLDPWD', '/home/loic'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'fr_FR.UTF-8'), ('SYSTEMD_EXEC_PID', '1401'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('QSYS_ROOTDIR', '/home/loic/intelFPGA_lite/22.1std/quartus/sopc_builder/bin'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'loic'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'loic'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/home/loic/intelFPGA_lite/22.1std/quartus/bin:/tools/Xilinx/Vivado/2018.3/bin:/tools/Xilinx/SDK/2018.3/bin:/home/loic/linux-on-litex-vexriscv/riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14/bin:/home/loic/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/opt/eclipse_prolog/bin/x86_64_linux/'), ('SESSION_MANAGER', 'local/loic-ubuntu:@/tmp/.ICE-unix/1064,unix/loic-ubuntu:/tmp/.ICE-unix/1064'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'fr_FR.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/6c70f9d0_2c4d_4940_8049_982cf6ea2fe3'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'fr_FR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.YMATE2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.134'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/interfaces:/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/carla_msgs:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'fr_FR.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'fr_FR.UTF-8'), ('LC_IDENTIFICATION', 'fr_FR.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/carla_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'fr_FR.UTF-8'), ('LC_PAPER', 'fr_FR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/interfaces:/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/carla_msgs:/opt/ros/humble')]), 'shell': False}
+[0.099644] (-) TimerEvent: {}
+[0.166851] (state_machine) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/state_machine_node.dir/src/state_machine_node.cpp.o\x1b[0m\n'}
+[0.199765] (-) TimerEvent: {}
+[0.300127] (-) TimerEvent: {}
+[0.400548] (-) TimerEvent: {}
+[0.501075] (-) TimerEvent: {}
+[0.601616] (-) TimerEvent: {}
+[0.702175] (-) TimerEvent: {}
+[0.802778] (-) TimerEvent: {}
+[0.903311] (-) TimerEvent: {}
+[1.003817] (-) TimerEvent: {}
+[1.104232] (-) TimerEvent: {}
+[1.204727] (-) TimerEvent: {}
+[1.305237] (-) TimerEvent: {}
+[1.405728] (-) TimerEvent: {}
+[1.506215] (-) TimerEvent: {}
+[1.606693] (-) TimerEvent: {}
+[1.707186] (-) TimerEvent: {}
+[1.807691] (-) TimerEvent: {}
+[1.908192] (-) TimerEvent: {}
+[2.008668] (-) TimerEvent: {}
+[2.109109] (-) TimerEvent: {}
+[2.209630] (-) TimerEvent: {}
+[2.310142] (-) TimerEvent: {}
+[2.410631] (-) TimerEvent: {}
+[2.511143] (-) TimerEvent: {}
+[2.611789] (-) TimerEvent: {}
+[2.712286] (-) TimerEvent: {}
+[2.805942] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:\x1b[m\x1b[K In constructor \xe2\x80\x98\x1b[01m\x1b[Kstate_machine::state_machine()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[2.806610] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:22:40:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kcar_control\x1b[m\x1b[K\xe2\x80\x99 has not been declared\n'}
+[2.806954] (state_machine) StderrLine: {'line': b'   22 |       "joystick_order", 10, std::bind(&\x1b[01;31m\x1b[Kcar_control\x1b[m\x1b[K::joystickOrderCallback, this, _1));\n'}
+[2.807259] (state_machine) StderrLine: {'line': b'      |                                        \x1b[01;31m\x1b[K^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[2.807551] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:22:82:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[K_1\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope; did you mean \xe2\x80\x98\x1b[01m\x1b[Kstd::placeholders::_1\x1b[m\x1b[K\xe2\x80\x99?\n'}
+[2.807922] (state_machine) StderrLine: {'line': b'   22 |       "joystick_order", 10, std::bind(&car_control::joystickOrderCallback, this, \x1b[01;31m\x1b[K_1\x1b[m\x1b[K));\n'}
+[2.808133] (state_machine) StderrLine: {'line': b'      |                                                                                  \x1b[01;31m\x1b[K^~\x1b[m\x1b[K\n'}
+[2.808328] (state_machine) StderrLine: {'line': b'      |                                                                                  \x1b[32m\x1b[Kstd::placeholders::_1\x1b[m\x1b[K\n'}
+[2.808518] (state_machine) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/c++/11/pstl/glue_algorithm_defs.h:13\x1b[m\x1b[K,\n'}
+[2.808705] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/algorithm:74\x1b[m\x1b[K,\n'}
+[2.808889] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:18\x1b[m\x1b[K,\n'}
+[2.809074] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[2.809257] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[2.809440] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[2.809632] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:2\x1b[m\x1b[K:\n'}
+[2.809818] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/functional:225:34:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kstd::placeholders::_1\x1b[m\x1b[K\xe2\x80\x99 declared here\n'}
+[2.810004] (state_machine) StderrLine: {'line': b'  225 |     extern const _Placeholder<1> \x1b[01;36m\x1b[K_1\x1b[m\x1b[K;\n'}
+[2.810188] (state_machine) StderrLine: {'line': b'      |                                  \x1b[01;36m\x1b[K^~\x1b[m\x1b[K\n'}
+[2.810372] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid state_machine::stateCallback(const JoystickOrder&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[2.810559] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:37:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kexpected \xe2\x80\x98\x1b[01m\x1b[K(\x1b[m\x1b[K\xe2\x80\x99 before \xe2\x80\x98\x1b[01m\x1b[KjoyOrder\x1b[m\x1b[K\xe2\x80\x99\n'}
+[2.810746] (state_machine) StderrLine: {'line': b'   37 |       if \x1b[01;31m\x1b[KjoyOrder\x1b[m\x1b[K.mode == 0\n'}
+[2.810930] (state_machine) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[2.811112] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:34:62:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[KjoyOrder\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter\x07-Wunused-parameter\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[2.811340] (state_machine) StderrLine: {'line': b'   34 |     void stateCallback(\x1b[01;35m\x1b[Kconst interfaces::msg::JoystickOrder &joyOrder\x1b[m\x1b[K)\n'}
+[2.811552] (state_machine) StderrLine: {'line': b'      |                        \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~\x1b[m\x1b[K\n'}
+[2.812384] (-) TimerEvent: {}
+[2.912769] (-) TimerEvent: {}
+[3.013210] (-) TimerEvent: {}
+[3.113614] (-) TimerEvent: {}
+[3.214062] (-) TimerEvent: {}
+[3.314508] (-) TimerEvent: {}
+[3.414996] (-) TimerEvent: {}
+[3.515474] (-) TimerEvent: {}
+[3.597805] (state_machine) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/state_machine_node.dir/build.make:76: CMakeFiles/state_machine_node.dir/src/state_machine_node.cpp.o] Error 1\n'}
+[3.598388] (state_machine) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/state_machine_node.dir/all] Error 2\n'}
+[3.598769] (state_machine) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[3.604019] (state_machine) CommandEnded: {'returncode': 2}
+[3.615590] (-) TimerEvent: {}
+[3.717443] (-) TimerEvent: {}
+[3.771984] (state_machine) JobEnded: {'identifier': 'state_machine', 'rc': 2}
+[3.782681] (-) EventReactorShutdown: {}

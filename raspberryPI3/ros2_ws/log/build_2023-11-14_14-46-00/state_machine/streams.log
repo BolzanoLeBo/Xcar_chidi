@@ -1,0 +1,50 @@
+[0.069s] Invoking command in '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine -DCMAKE_INSTALL_PREFIX=/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine
+[0.179s] -- The C compiler identification is GNU 11.4.0
+[0.266s] -- The CXX compiler identification is GNU 11.4.0
+[0.276s] -- Detecting C compiler ABI info
+[0.376s] -- Detecting C compiler ABI info - done
+[0.386s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.386s] -- Detecting C compile features
+[0.387s] -- Detecting C compile features - done
+[0.390s] -- Detecting CXX compiler ABI info
+[0.534s] -- Detecting CXX compiler ABI info - done
+[0.547s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.548s] -- Detecting CXX compile features
+[0.549s] -- Detecting CXX compile features - done
+[0.552s] -- Found rclcpp: 16.0.6 (/opt/ros/humble/share/rclcpp/cmake)
+[0.781s] -- Found Python3: /usr/bin/python3.10 (found version "3.10.12") found components: Interpreter 
+[0.951s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.957s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.970s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.992s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.019s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.108s] -- Found rmw_implementation_cmake: 6.1.1 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[1.110s] -- Found rmw_fastrtps_cpp: 6.2.4 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[1.262s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[1.297s] -- Found FastRTPS: /opt/ros/humble/include  
+[1.362s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[1.375s] -- Looking for pthread.h
+[1.518s] -- Looking for pthread.h - found
+[1.519s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[1.624s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[1.625s] -- Found Threads: TRUE  
+[1.887s] [31mCMake Error at CMakeLists.txt:11 (find_package):
+[1.888s]   By not providing "Findinterfaces.cmake" in CMAKE_MODULE_PATH this project
+[1.888s]   has asked CMake to find a package configuration file provided by
+[1.888s]   "interfaces", but CMake did not find one.
+[1.888s] 
+[1.888s]   Could not find a package configuration file provided by "interfaces" with
+[1.888s]   any of the following names:
+[1.888s] 
+[1.889s]     interfacesConfig.cmake
+[1.889s]     interfaces-config.cmake
+[1.889s] 
+[1.889s]   Add the installation prefix of "interfaces" to CMAKE_PREFIX_PATH or set
+[1.889s]   "interfaces_DIR" to a directory containing one of the above files.  If
+[1.889s]   "interfaces" provides a separate development package or SDK, be sure it has
+[1.889s]   been installed.
+[1.889s] 
+[1.889s] [0m
+[1.890s] -- Configuring incomplete, errors occurred!
+[1.890s] See also "/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine/CMakeFiles/CMakeOutput.log".
+[1.900s] Invoked command in '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine' returned '1': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine -DCMAKE_INSTALL_PREFIX=/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine

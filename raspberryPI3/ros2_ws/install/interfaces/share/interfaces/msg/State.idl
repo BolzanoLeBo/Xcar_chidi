@@ -1,0 +1,13 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from interfaces/msg/State.msg
+// generated code does not contain a copyright notice
+
+
+module interfaces {
+  module msg {
+    struct State {
+      @default (value=0)
+      int8 current_state;
+    };
+  };
+};
