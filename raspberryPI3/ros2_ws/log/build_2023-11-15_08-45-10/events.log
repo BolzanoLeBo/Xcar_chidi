@@ -1,0 +1,270 @@
+[0.000000] (-) TimerEvent: {}
+[0.001739] (-) JobUnselected: {'identifier': 'can'}
+[0.002875] (-) JobUnselected: {'identifier': 'car_control'}
+[0.003421] (-) JobUnselected: {'identifier': 'carla_msgs'}
+[0.003472] (-) JobUnselected: {'identifier': 'geicar_start'}
+[0.003790] (-) JobUnselected: {'identifier': 'imu_complementary_filter'}
+[0.003928] (-) JobUnselected: {'identifier': 'imu_filter_madgwick'}
+[0.004304] (-) JobUnselected: {'identifier': 'imu_tools'}
+[0.004359] (-) JobUnselected: {'identifier': 'interfaces'}
+[0.004414] (-) JobUnselected: {'identifier': 'joystick'}
+[0.004557] (-) JobUnselected: {'identifier': 'rviz_imu_plugin'}
+[0.004610] (-) JobUnselected: {'identifier': 'simulation'}
+[0.004671] (-) JobUnselected: {'identifier': 'system_check'}
+[0.004732] (state_machine) JobQueued: {'identifier': 'state_machine', 'dependencies': OrderedDict()}
+[0.004803] (state_machine) JobStarted: {'identifier': 'state_machine'}
+[0.098831] (-) TimerEvent: {}
+[0.125831] (state_machine) JobProgress: {'identifier': 'state_machine', 'progress': 'cmake'}
+[0.127003] (state_machine) JobProgress: {'identifier': 'state_machine', 'progress': 'build'}
+[0.128210] (state_machine) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine', '--', '-j8', '-l8'], 'cwd': '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'loic'), ('LC_TIME', 'fr_FR.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/loic'), ('OLDPWD', '/home/loic/Desktop/Xcar_chidi'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'fr_FR.UTF-8'), ('SYSTEMD_EXEC_PID', '1416'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('QSYS_ROOTDIR', '/home/loic/intelFPGA_lite/22.1std/quartus/sopc_builder/bin'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'loic'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'loic'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/home/loic/intelFPGA_lite/22.1std/quartus/bin:/tools/Xilinx/Vivado/2018.3/bin:/tools/Xilinx/SDK/2018.3/bin:/home/loic/linux-on-litex-vexriscv/riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14/bin:/home/loic/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/opt/eclipse_prolog/bin/x86_64_linux/'), ('SESSION_MANAGER', 'local/loic-ubuntu:@/tmp/.ICE-unix/1120,unix/loic-ubuntu:/tmp/.ICE-unix/1120'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'fr_FR.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/57e98380_8a88_4717_b1fd_a13f8b12e0a6'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'fr_FR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.RF3AE2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.101'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'fr_FR.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'fr_FR.UTF-8'), ('LC_IDENTIFICATION', 'fr_FR.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'fr_FR.UTF-8'), ('LC_PAPER', 'fr_FR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.199086] (-) TimerEvent: {}
+[0.255110] (state_machine) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target state_machine_node\x1b[0m\n'}
+[0.299275] (-) TimerEvent: {}
+[0.307406] (state_machine) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/state_machine_node.dir/src/state_machine_node.cpp.o\x1b[0m\n'}
+[0.399605] (-) TimerEvent: {}
+[0.500433] (-) TimerEvent: {}
+[0.601163] (-) TimerEvent: {}
+[0.702234] (-) TimerEvent: {}
+[0.803677] (-) TimerEvent: {}
+[0.904917] (-) TimerEvent: {}
+[1.005757] (-) TimerEvent: {}
+[1.113015] (-) TimerEvent: {}
+[1.213844] (-) TimerEvent: {}
+[1.314480] (-) TimerEvent: {}
+[1.415501] (-) TimerEvent: {}
+[1.516080] (-) TimerEvent: {}
+[1.617018] (-) TimerEvent: {}
+[1.717727] (-) TimerEvent: {}
+[1.818350] (-) TimerEvent: {}
+[1.919167] (-) TimerEvent: {}
+[2.020677] (-) TimerEvent: {}
+[2.121900] (-) TimerEvent: {}
+[2.223218] (-) TimerEvent: {}
+[2.324301] (-) TimerEvent: {}
+[2.424960] (-) TimerEvent: {}
+[2.525667] (-) TimerEvent: {}
+[2.626336] (-) TimerEvent: {}
+[2.727030] (-) TimerEvent: {}
+[2.827620] (-) TimerEvent: {}
+[2.928573] (-) TimerEvent: {}
+[3.029658] (-) TimerEvent: {}
+[3.130360] (-) TimerEvent: {}
+[3.231053] (-) TimerEvent: {}
+[3.331615] (-) TimerEvent: {}
+[3.432230] (-) TimerEvent: {}
+[3.532994] (-) TimerEvent: {}
+[3.633763] (-) TimerEvent: {}
+[3.734467] (-) TimerEvent: {}
+[3.835149] (-) TimerEvent: {}
+[3.935717] (-) TimerEvent: {}
+[4.036342] (-) TimerEvent: {}
+[4.137352] (-) TimerEvent: {}
+[4.238110] (-) TimerEvent: {}
+[4.338819] (-) TimerEvent: {}
+[4.439570] (-) TimerEvent: {}
+[4.540399] (-) TimerEvent: {}
+[4.641048] (-) TimerEvent: {}
+[4.742115] (-) TimerEvent: {}
+[4.842855] (-) TimerEvent: {}
+[4.943524] (-) TimerEvent: {}
+[5.044177] (-) TimerEvent: {}
+[5.144790] (-) TimerEvent: {}
+[5.245388] (-) TimerEvent: {}
+[5.345933] (-) TimerEvent: {}
+[5.446454] (-) TimerEvent: {}
+[5.546991] (-) TimerEvent: {}
+[5.647529] (-) TimerEvent: {}
+[5.748070] (-) TimerEvent: {}
+[5.841444] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:41:95:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[KUltrasonic\x1b[m\x1b[K\xe2\x80\x99 in namespace \xe2\x80\x98\x1b[01m\x1b[Kinterfaces::msg\x1b[m\x1b[K\xe2\x80\x99 does not name a type\n'}
+[5.842063] (state_machine) StderrLine: {'line': b'   41 | faces::msg::JoystickOrder &joyOrder, const interfaces::msg::\x1b[01;31m\x1b[KUltrasonic\x1b[m\x1b[K &ultrasonic)\n'}
+[5.842252] (state_machine) StderrLine: {'line': b'      |                                                             \x1b[01;31m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.842408] (state_machine) StderrLine: {'line': b'\n'}
+[5.848261] (-) TimerEvent: {}
+[5.850159] (state_machine) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/c++/11/pstl/glue_algorithm_defs.h:13\x1b[m\x1b[K,\n'}
+[5.850540] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/algorithm:74\x1b[m\x1b[K,\n'}
+[5.850704] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:18\x1b[m\x1b[K,\n'}
+[5.850857] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[5.851007] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[5.851157] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[5.851304] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:2\x1b[m\x1b[K:\n'}
+[5.851453] (state_machine) StderrLine: {'line': b'/usr/include/c++/11/functional: In instantiation of \xe2\x80\x98\x1b[01m\x1b[Kstruct std::_Bind_check_arity<void (state_machine::*)(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&), state_machine*, const std::_Placeholder<1>&>\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[5.851607] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/functional:768:12:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstruct std::_Bind_helper<false, void (state_machine::*)(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&), state_machine*, const std::_Placeholder<1>&>\x1b[m\x1b[K\xe2\x80\x99\n'}
+[5.851762] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/functional:789:5:\x1b[m\x1b[K   required by substitution of \xe2\x80\x98\x1b[01m\x1b[Ktemplate<class _Func, class ... _BoundArgs> typename std::_Bind_helper<std::__is_socketlike<_Func>::value, _Func, _BoundArgs ...>::type std::bind(_Func&&, _BoundArgs&& ...) [with _Func = void (state_machine::*)(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&); _BoundArgs = {state_machine*, const std::_Placeholder<1>&}]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[5.851919] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:23:40:\x1b[m\x1b[K   required from here\n'}
+[5.852068] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/functional:756:21:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kstatic assertion failed: Wrong number of arguments for pointer-to-member\n'}
+[5.852217] (state_machine) StderrLine: {'line': b'  755 |       static_assert(_Varargs::\x1b[01;31m\x1b[Kvalue\x1b[m\x1b[K\n'}
+[5.852363] (state_machine) StderrLine: {'line': b'      |                               \x1b[01;31m\x1b[K~~~~~\x1b[m\x1b[K\n'}
+[5.852513] (state_machine) StderrLine: {'line': b'  756 | \x1b[01;31m\x1b[K                    ? sizeof...(_BoundArgs) >= _Arity::value + 1\x1b[m\x1b[K\n'}
+[5.852664] (state_machine) StderrLine: {'line': b'      |                     \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.852810] (state_machine) StderrLine: {'line': b'  757 | \x1b[01;31m\x1b[K                    : sizeof...(_BoundArgs) == _Arity::value + 1\x1b[m\x1b[K,\n'}
+[5.852957] (state_machine) StderrLine: {'line': b'      |                     \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.853173] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/functional:756:21:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[K(false ? (2 >= (((long unsigned int)std::integral_constant<long unsigned int, 2>::value) + 1)) : (2 == (((long unsigned int)std::integral_constant<long unsigned int, 2>::value) + 1)))\x1b[m\x1b[K\xe2\x80\x99 evaluates to false\n'}
+[5.863947] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:\x1b[m\x1b[K In constructor \xe2\x80\x98\x1b[01m\x1b[Kstate_machine::state_machine()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[5.864770] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:25:84:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[KUltrasonic\x1b[m\x1b[K\xe2\x80\x99 is not a member of \xe2\x80\x98\x1b[01m\x1b[Kinterfaces::msg\x1b[m\x1b[K\xe2\x80\x99\n'}
+[5.865217] (state_machine) StderrLine: {'line': b'   25 | asonic_sensor_ = this->create_subscription<interfaces::msg::\x1b[01;31m\x1b[KUltrasonic\x1b[m\x1b[K>(\n'}
+[5.865562] (state_machine) StderrLine: {'line': b'      |                                                             \x1b[01;31m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.865861] (state_machine) StderrLine: {'line': b'\n'}
+[5.866155] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:25:95:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno matching function for call to \xe2\x80\x98\x1b[01m\x1b[Kstate_machine::create_subscription<<expression error> >(const char [8], int, std::_Bind_helper<false, void (state_machine::*)(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&), state_machine*, const std::_Placeholder<1>&>::type)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[5.866636] (state_machine) StderrLine: {'line': b'   25 | sonic_sensor_ = \x1b[01;31m\x1b[Kthis->create_subscription<interfaces::msg::Ultrasonic>(\x1b[m\x1b[K\n'}
+[5.866944] (state_machine) StderrLine: {'line': b'      |                 \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\x1b[m\x1b[K\n'}
+[5.867235] (state_machine) StderrLine: {'line': b'\n'}
+[5.867520] (state_machine) StderrLine: {'line': b'   26 | \x1b[01;31m\x1b[Ktd::bind(&state_machine::stateCallback, this, _1))\x1b[m\x1b[K;\n'}
+[5.867810] (state_machine) StderrLine: {'line': b'      | \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K                     \n'}
+[5.868101] (state_machine) StderrLine: {'line': b'\n'}
+[5.868392] (state_machine) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:1321\x1b[m\x1b[K,\n'}
+[5.868679] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/single_threaded_executor.hpp:28\x1b[m\x1b[K,\n'}
+[5.868971] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:22\x1b[m\x1b[K,\n'}
+[5.869329] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[5.869633] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:2\x1b[m\x1b[K:\n'}
+[5.869929] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/node_impl.hpp:92:1:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Ktemplate<class MessageT, class CallbackT, class AllocatorT, class SubscriptionT, class MessageMemoryStrategyT> std::shared_ptr<ROSMessageT> rclcpp::Node::create_subscription(const string&, const rclcpp::QoS&, CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[5.870294] (state_machine) StderrLine: {'line': b'   92 | \x1b[01;36m\x1b[KNode\x1b[m\x1b[K::create_subscription(\n'}
+[5.870586] (state_machine) StderrLine: {'line': b'      | \x1b[01;36m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[5.870869] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/node_impl.hpp:92:1:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  template argument deduction/substitution failed:\n'}
+[5.871162] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:25:95:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Ktemplate argument 1 is invalid\n'}
+[5.871452] (state_machine) StderrLine: {'line': b'   25 | sonic_sensor_ = \x1b[01;31m\x1b[Kthis->create_subscription<interfaces::msg::Ultrasonic>(\x1b[m\x1b[K\n'}
+[5.871745] (state_machine) StderrLine: {'line': b'      |                 \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\x1b[m\x1b[K\n'}
+[5.872033] (state_machine) StderrLine: {'line': b'\n'}
+[5.872316] (state_machine) StderrLine: {'line': b'   26 | \x1b[01;31m\x1b[Ktd::bind(&state_machine::stateCallback, this, _1))\x1b[m\x1b[K;\n'}
+[5.872603] (state_machine) StderrLine: {'line': b'      | \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K                     \n'}
+[5.872894] (state_machine) StderrLine: {'line': b'\n'}
+[5.873202] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid state_machine::stateCallback(const JoystickOrder&, const int&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[5.873540] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:50:51:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Krequest for member \xe2\x80\x98\x1b[01m\x1b[Kfrontcenter\x1b[m\x1b[K\xe2\x80\x99 in \xe2\x80\x98\x1b[01m\x1b[Kultrasonic\x1b[m\x1b[K\xe2\x80\x99, which is of non-class type \xe2\x80\x98\x1b[01m\x1b[Kconst int\x1b[m\x1b[K\xe2\x80\x99\n'}
+[5.873846] (state_machine) StderrLine: {'line': b'   50 |       else if (joyOrder.throttle>0 and ultrasonic.\x1b[01;31m\x1b[Kfrontcenter\x1b[m\x1b[K<=20)\n'}
+[5.874138] (state_machine) StderrLine: {'line': b'      |                                                   \x1b[01;31m\x1b[K^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.948430] (-) TimerEvent: {}
+[6.049017] (-) TimerEvent: {}
+[6.149690] (-) TimerEvent: {}
+[6.250257] (-) TimerEvent: {}
+[6.350832] (-) TimerEvent: {}
+[6.451398] (-) TimerEvent: {}
+[6.552013] (-) TimerEvent: {}
+[6.652646] (-) TimerEvent: {}
+[6.753573] (-) TimerEvent: {}
+[6.768849] (state_machine) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/subscription_base.hpp:32\x1b[m\x1b[K,\n'}
+[6.770056] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:29\x1b[m\x1b[K,\n'}
+[6.770260] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20\x1b[m\x1b[K,\n'}
+[6.770724] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25\x1b[m\x1b[K,\n'}
+[6.770881] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18\x1b[m\x1b[K,\n'}
+[6.771030] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20\x1b[m\x1b[K,\n'}
+[6.771178] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37\x1b[m\x1b[K,\n'}
+[6.771325] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[6.771494] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[6.771641] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[6.771788] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:2\x1b[m\x1b[K:\n'}
+[6.771954] (state_machine) StderrLine: {'line': b'/opt/ros/humble/include/rclcpp/rclcpp/any_subscription_callback.hpp: In instantiation of \xe2\x80\x98\x1b[01m\x1b[Krclcpp::AnySubscriptionCallback<MessageT, AllocatorT> rclcpp::AnySubscriptionCallback<MessageT, AllocatorT>::set(CallbackT) [with CallbackT = std::_Bind<void (state_machine::*(state_machine*, std::_Placeholder<1>))(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>; MessageT = interfaces::msg::JoystickOrder_<std::allocator<void> >; AllocatorT = std::allocator<void>]\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[6.772139] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/subscription_factory.hpp:94:32:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Krclcpp::SubscriptionFactory rclcpp::create_subscription_factory(CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr, std::shared_ptr<rclcpp::topic_statistics::SubscriptionTopicStatistics<ROSMessageType> >) [with MessageT = interfaces::msg::JoystickOrder_<std::allocator<void> >; CallbackT = std::_Bind<void (state_machine::*(state_machine*, std::_Placeholder<1>))(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>; AllocatorT = std::allocator<void>; SubscriptionT = rclcpp::Subscription<interfaces::msg::JoystickOrder_<std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> >; ROSMessageType = interfaces::msg::JoystickOrder_<std::allocator<void> >; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> > >]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.772312] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/create_subscription.hpp:122:63:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<ROSMessageT> rclcpp::detail::create_subscription(NodeParametersT&, NodeTopicsT&, const string&, const rclcpp::QoS&, CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr) [with MessageT = interfaces::msg::JoystickOrder_<std::allocator<void> >; CallbackT = std::_Bind<void (state_machine::*(state_machine*, std::_Placeholder<1>))(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>; AllocatorT = std::allocator<void>; SubscriptionT = rclcpp::Subscription<interfaces::msg::JoystickOrder_<std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> >; NodeParametersT = rclcpp::Node; NodeTopicsT = rclcpp::Node; ROSMessageType = interfaces::msg::JoystickOrder_<std::allocator<void> >; std::string = std::__cxx11::basic_string<char>; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> > >]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.772483] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/create_subscription.hpp:191:76:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<ROSMessageT> rclcpp::create_subscription(NodeT&, const string&, const rclcpp::QoS&, CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr) [with MessageT = interfaces::msg::JoystickOrder_<std::allocator<void> >; CallbackT = std::_Bind<void (state_machine::*(state_machine*, std::_Placeholder<1>))(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>; AllocatorT = std::allocator<void>; SubscriptionT = rclcpp::Subscription<interfaces::msg::JoystickOrder_<std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> >; NodeT = rclcpp::Node; std::string = std::__cxx11::basic_string<char>; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> > >]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.772682] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/node_impl.hpp:99:47:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<ROSMessageT> rclcpp::Node::create_subscription(const string&, const rclcpp::QoS&, CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr) [with MessageT = interfaces::msg::JoystickOrder_<std::allocator<void> >; CallbackT = std::_Bind<void (state_machine::*(state_machine*, std::_Placeholder<1>))(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>; AllocatorT = std::allocator<void>; SubscriptionT = rclcpp::Subscription<interfaces::msg::JoystickOrder_<std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> >; std::string = std::__cxx11::basic_string<char>; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> > >]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.772869] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:22:95:\x1b[m\x1b[K   required from here\n'}
+[6.773019] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_subscription_callback.hpp:394:27:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno matching function for call to \xe2\x80\x98\x1b[01m\x1b[Kstd::function<void(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>::function(std::_Bind<void (state_machine::*(state_machine*, std::_Placeholder<1>))(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.773221] (state_machine) StderrLine: {'line': b'  394 |       callback_variant_ = \x1b[01;31m\x1b[Kstatic_cast<typename scbth::callback_type>(callback)\x1b[m\x1b[K;\n'}
+[6.773379] (state_machine) StderrLine: {'line': b'      |                           \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[6.773526] (state_machine) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/c++/11/future:47\x1b[m\x1b[K,\n'}
+[6.773670] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:18\x1b[m\x1b[K,\n'}
+[6.773821] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[6.773972] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:2\x1b[m\x1b[K:\n'}
+[6.774120] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/std_function.h:435:9:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Ktemplate<class _Functor, class _Constraints> std::function<_Res(_ArgTypes ...)>::function(_Functor&&) [with _Functor = _Functor; _Constraints = _Constraints; _Res = void; _ArgTypes = {const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&}]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.774299] (state_machine) StderrLine: {'line': b'  435 |         \x1b[01;36m\x1b[Kfunction\x1b[m\x1b[K(_Functor&& __f)\n'}
+[6.774442] (state_machine) StderrLine: {'line': b'      |         \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[6.774588] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/std_function.h:435:9:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  template argument deduction/substitution failed:\n'}
+[6.774736] (state_machine) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/c++/11/bits/move.h:57\x1b[m\x1b[K,\n'}
+[6.774885] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/bits/stl_pair.h:59\x1b[m\x1b[K,\n'}
+[6.775044] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/bits/stl_algobase.h:64\x1b[m\x1b[K,\n'}
+[6.775191] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/memory:63\x1b[m\x1b[K,\n'}
+[6.775336] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153\x1b[m\x1b[K,\n'}
+[6.775482] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:2\x1b[m\x1b[K:\n'}
+[6.775630] (state_machine) StderrLine: {'line': b'/usr/include/c++/11/type_traits: In substitution of \xe2\x80\x98\x1b[01m\x1b[Ktemplate<bool _Cond, class _Tp> using __enable_if_t = typename std::enable_if::type [with bool _Cond = false; _Tp = void]\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[6.775784] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/std_function.h:353:8:\x1b[m\x1b[K   required by substitution of \xe2\x80\x98\x1b[01m\x1b[Ktemplate<class _Res, class ... _ArgTypes> template<class _Cond, class _Tp> using _Requires = std::__enable_if_t<_Cond::value, _Tp> [with _Cond = std::function<void(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>::_Callable<std::_Bind<void (state_machine::*(state_machine*, std::_Placeholder<1>))(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>&, std::_Bind<void (state_machine::*(state_machine*, std::_Placeholder<1>))(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>, std::__invoke_result<std::_Bind<void (state_machine::*(state_machine*, std::_Placeholder<1>))(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>&, const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&> >; _Tp = void; _Res = void; _ArgTypes = {const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&}]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.775985] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/std_function.h:434:9:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Krclcpp::AnySubscriptionCallback<MessageT, AllocatorT> rclcpp::AnySubscriptionCallback<MessageT, AllocatorT>::set(CallbackT) [with CallbackT = std::_Bind<void (state_machine::*(state_machine*, std::_Placeholder<1>))(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>; MessageT = interfaces::msg::JoystickOrder_<std::allocator<void> >; AllocatorT = std::allocator<void>]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.776142] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/subscription_factory.hpp:94:32:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Krclcpp::SubscriptionFactory rclcpp::create_subscription_factory(CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr, std::shared_ptr<rclcpp::topic_statistics::SubscriptionTopicStatistics<ROSMessageType> >) [with MessageT = interfaces::msg::JoystickOrder_<std::allocator<void> >; CallbackT = std::_Bind<void (state_machine::*(state_machine*, std::_Placeholder<1>))(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>; AllocatorT = std::allocator<void>; SubscriptionT = rclcpp::Subscription<interfaces::msg::JoystickOrder_<std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> >; ROSMessageType = interfaces::msg::JoystickOrder_<std::allocator<void> >; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> > >]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.776459] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/create_subscription.hpp:122:63:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<ROSMessageT> rclcpp::detail::create_subscription(NodeParametersT&, NodeTopicsT&, const string&, const rclcpp::QoS&, CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr) [with MessageT = interfaces::msg::JoystickOrder_<std::allocator<void> >; CallbackT = std::_Bind<void (state_machine::*(state_machine*, std::_Placeholder<1>))(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>; AllocatorT = std::allocator<void>; SubscriptionT = rclcpp::Subscription<interfaces::msg::JoystickOrder_<std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> >; NodeParametersT = rclcpp::Node; NodeTopicsT = rclcpp::Node; ROSMessageType = interfaces::msg::JoystickOrder_<std::allocator<void> >; std::string = std::__cxx11::basic_string<char>; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> > >]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.776664] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/create_subscription.hpp:191:76:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<ROSMessageT> rclcpp::create_subscription(NodeT&, const string&, const rclcpp::QoS&, CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr) [with MessageT = interfaces::msg::JoystickOrder_<std::allocator<void> >; CallbackT = std::_Bind<void (state_machine::*(state_machine*, std::_Placeholder<1>))(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>; AllocatorT = std::allocator<void>; SubscriptionT = rclcpp::Subscription<interfaces::msg::JoystickOrder_<std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> >; NodeT = rclcpp::Node; std::string = std::__cxx11::basic_string<char>; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> > >]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.777245] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/node_impl.hpp:99:47:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<ROSMessageT> rclcpp::Node::create_subscription(const string&, const rclcpp::QoS&, CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr) [with MessageT = interfaces::msg::JoystickOrder_<std::allocator<void> >; CallbackT = std::_Bind<void (state_machine::*(state_machine*, std::_Placeholder<1>))(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>; AllocatorT = std::allocator<void>; SubscriptionT = rclcpp::Subscription<interfaces::msg::JoystickOrder_<std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> >; std::string = std::__cxx11::basic_string<char>; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> > >]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.777480] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:22:95:\x1b[m\x1b[K   required from here\n'}
+[6.777634] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/type_traits:2205:11:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno type named \xe2\x80\x98\x1b[01m\x1b[Ktype\x1b[m\x1b[K\xe2\x80\x99 in \xe2\x80\x98\x1b[01m\x1b[Kstruct std::enable_if<false, void>\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.777793] (state_machine) StderrLine: {'line': b' 2205 |     using \x1b[01;31m\x1b[K__enable_if_t\x1b[m\x1b[K = typename enable_if<_Cond, _Tp>::type;\n'}
+[6.777945] (state_machine) StderrLine: {'line': b'      |           \x1b[01;31m\x1b[K^~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[6.778093] (state_machine) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/c++/11/future:47\x1b[m\x1b[K,\n'}
+[6.778241] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:18\x1b[m\x1b[K,\n'}
+[6.778391] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[6.778540] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:2\x1b[m\x1b[K:\n'}
+[6.778694] (state_machine) StderrLine: {'line': b'/opt/ros/humble/include/rclcpp/rclcpp/any_subscription_callback.hpp: In instantiation of \xe2\x80\x98\x1b[01m\x1b[Krclcpp::AnySubscriptionCallback<MessageT, AllocatorT> rclcpp::AnySubscriptionCallback<MessageT, AllocatorT>::set(CallbackT) [with CallbackT = std::_Bind<void (state_machine::*(state_machine*, std::_Placeholder<1>))(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>; MessageT = interfaces::msg::JoystickOrder_<std::allocator<void> >; AllocatorT = std::allocator<void>]\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[6.778910] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/subscription_factory.hpp:94:32:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Krclcpp::SubscriptionFactory rclcpp::create_subscription_factory(CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr, std::shared_ptr<rclcpp::topic_statistics::SubscriptionTopicStatistics<ROSMessageType> >) [with MessageT = interfaces::msg::JoystickOrder_<std::allocator<void> >; CallbackT = std::_Bind<void (state_machine::*(state_machine*, std::_Placeholder<1>))(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>; AllocatorT = std::allocator<void>; SubscriptionT = rclcpp::Subscription<interfaces::msg::JoystickOrder_<std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> >; ROSMessageType = interfaces::msg::JoystickOrder_<std::allocator<void> >; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> > >]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.779154] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/create_subscription.hpp:122:63:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<ROSMessageT> rclcpp::detail::create_subscription(NodeParametersT&, NodeTopicsT&, const string&, const rclcpp::QoS&, CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr) [with MessageT = interfaces::msg::JoystickOrder_<std::allocator<void> >; CallbackT = std::_Bind<void (state_machine::*(state_machine*, std::_Placeholder<1>))(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>; AllocatorT = std::allocator<void>; SubscriptionT = rclcpp::Subscription<interfaces::msg::JoystickOrder_<std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> >; NodeParametersT = rclcpp::Node; NodeTopicsT = rclcpp::Node; ROSMessageType = interfaces::msg::JoystickOrder_<std::allocator<void> >; std::string = std::__cxx11::basic_string<char>; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> > >]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.779376] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/create_subscription.hpp:191:76:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<ROSMessageT> rclcpp::create_subscription(NodeT&, const string&, const rclcpp::QoS&, CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr) [with MessageT = interfaces::msg::JoystickOrder_<std::allocator<void> >; CallbackT = std::_Bind<void (state_machine::*(state_machine*, std::_Placeholder<1>))(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>; AllocatorT = std::allocator<void>; SubscriptionT = rclcpp::Subscription<interfaces::msg::JoystickOrder_<std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> >; NodeT = rclcpp::Node; std::string = std::__cxx11::basic_string<char>; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> > >]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.779559] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/node_impl.hpp:99:47:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstd::shared_ptr<ROSMessageT> rclcpp::Node::create_subscription(const string&, const rclcpp::QoS&, CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr) [with MessageT = interfaces::msg::JoystickOrder_<std::allocator<void> >; CallbackT = std::_Bind<void (state_machine::*(state_machine*, std::_Placeholder<1>))(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>; AllocatorT = std::allocator<void>; SubscriptionT = rclcpp::Subscription<interfaces::msg::JoystickOrder_<std::allocator<void> > >; MessageMemoryStrategyT = rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> >; std::string = std::__cxx11::basic_string<char>; typename MessageMemoryStrategyT::SharedPtr = std::shared_ptr<rclcpp::message_memory_strategy::MessageMemoryStrategy<interfaces::msg::JoystickOrder_<std::allocator<void> >, std::allocator<void> > >]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.779750] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:22:95:\x1b[m\x1b[K   required from here\n'}
+[6.779910] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/std_function.h:404:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kstd::function<_Res(_ArgTypes ...)>::function(std::function<_Res(_ArgTypes ...)>&&) [with _Res = void; _ArgTypes = {const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&}]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.780084] (state_machine) StderrLine: {'line': b'  404 |       \x1b[01;36m\x1b[Kfunction\x1b[m\x1b[K(function&& __x) noexcept\n'}
+[6.780257] (state_machine) StderrLine: {'line': b'      |       \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[6.780418] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/std_function.h:404:27:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  no known conversion for argument 1 from \xe2\x80\x98\x1b[01m\x1b[Kstd::_Bind<void (state_machine::*(state_machine*, std::_Placeholder<1>))(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kstd::function<void(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>&&\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.780594] (state_machine) StderrLine: {'line': b'  404 |       function(\x1b[01;36m\x1b[Kfunction&& __x\x1b[m\x1b[K) noexcept\n'}
+[6.780740] (state_machine) StderrLine: {'line': b'      |                \x1b[01;36m\x1b[K~~~~~~~~~~~^~~\x1b[m\x1b[K\n'}
+[6.780888] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/std_function.h:386:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kstd::function<_Res(_ArgTypes ...)>::function(const std::function<_Res(_ArgTypes ...)>&) [with _Res = void; _ArgTypes = {const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&}]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.781048] (state_machine) StderrLine: {'line': b'  386 |       \x1b[01;36m\x1b[Kfunction\x1b[m\x1b[K(const function& __x)\n'}
+[6.781236] (state_machine) StderrLine: {'line': b'      |       \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[6.781394] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/std_function.h:386:32:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  no known conversion for argument 1 from \xe2\x80\x98\x1b[01m\x1b[Kstd::_Bind<void (state_machine::*(state_machine*, std::_Placeholder<1>))(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kconst std::function<void(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>&\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.781556] (state_machine) StderrLine: {'line': b'  386 |       function(\x1b[01;36m\x1b[Kconst function& __x\x1b[m\x1b[K)\n'}
+[6.781703] (state_machine) StderrLine: {'line': b'      |                \x1b[01;36m\x1b[K~~~~~~~~~~~~~~~~^~~\x1b[m\x1b[K\n'}
+[6.781850] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/std_function.h:375:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kstd::function<_Res(_ArgTypes ...)>::function(std::nullptr_t) [with _Res = void; _ArgTypes = {const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&}; std::nullptr_t = std::nullptr_t]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.782008] (state_machine) StderrLine: {'line': b'  375 |       \x1b[01;36m\x1b[Kfunction\x1b[m\x1b[K(nullptr_t) noexcept\n'}
+[6.782153] (state_machine) StderrLine: {'line': b'      |       \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[6.782301] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/std_function.h:375:16:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  no known conversion for argument 1 from \xe2\x80\x98\x1b[01m\x1b[Kstd::_Bind<void (state_machine::*(state_machine*, std::_Placeholder<1>))(const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&)>\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kstd::nullptr_t\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.782461] (state_machine) StderrLine: {'line': b'  375 |       function(\x1b[01;36m\x1b[Knullptr_t\x1b[m\x1b[K) noexcept\n'}
+[6.782608] (state_machine) StderrLine: {'line': b'      |                \x1b[01;36m\x1b[K^~~~~~~~~\x1b[m\x1b[K\n'}
+[6.782759] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/std_function.h:368:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kstd::function<_Res(_ArgTypes ...)>::function() [with _Res = void; _ArgTypes = {const interfaces::msg::JoystickOrder_<std::allocator<void> >&, const int&}]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[6.782984] (state_machine) StderrLine: {'line': b'  368 |       \x1b[01;36m\x1b[Kfunction\x1b[m\x1b[K() noexcept\n'}
+[6.783143] (state_machine) StderrLine: {'line': b'      |       \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[6.783293] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/std_function.h:368:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 0 arguments, 1 provided\n'}
+[6.853760] (-) TimerEvent: {}
+[6.954457] (-) TimerEvent: {}
+[7.055034] (-) TimerEvent: {}
+[7.155734] (-) TimerEvent: {}
+[7.256397] (-) TimerEvent: {}
+[7.357012] (-) TimerEvent: {}
+[7.457608] (-) TimerEvent: {}
+[7.558176] (-) TimerEvent: {}
+[7.658757] (-) TimerEvent: {}
+[7.759306] (-) TimerEvent: {}
+[7.859888] (-) TimerEvent: {}
+[7.960619] (-) TimerEvent: {}
+[8.061399] (-) TimerEvent: {}
+[8.162148] (-) TimerEvent: {}
+[8.262754] (-) TimerEvent: {}
+[8.363411] (-) TimerEvent: {}
+[8.464410] (-) TimerEvent: {}
+[8.565533] (-) TimerEvent: {}
+[8.666141] (-) TimerEvent: {}
+[8.766723] (-) TimerEvent: {}
+[8.867520] (-) TimerEvent: {}
+[8.968182] (-) TimerEvent: {}
+[9.068723] (-) TimerEvent: {}
+[9.169282] (-) TimerEvent: {}
+[9.269815] (-) TimerEvent: {}
+[9.370400] (-) TimerEvent: {}
+[9.471252] (-) TimerEvent: {}
+[9.572002] (-) TimerEvent: {}
+[9.672540] (-) TimerEvent: {}
+[9.773171] (-) TimerEvent: {}
+[9.873758] (-) TimerEvent: {}
+[9.974376] (-) TimerEvent: {}
+[10.074941] (-) TimerEvent: {}
+[10.175513] (-) TimerEvent: {}
+[10.276104] (-) TimerEvent: {}
+[10.376699] (-) TimerEvent: {}
+[10.477533] (-) TimerEvent: {}
+[10.578185] (-) TimerEvent: {}
+[10.678839] (-) TimerEvent: {}
+[10.779414] (-) TimerEvent: {}
+[10.880077] (-) TimerEvent: {}
+[10.980686] (-) TimerEvent: {}
+[11.081319] (-) TimerEvent: {}
+[11.136741] (state_machine) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/state_machine_node.dir/build.make:76: CMakeFiles/state_machine_node.dir/src/state_machine_node.cpp.o] Error 1\n'}
+[11.137487] (state_machine) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/state_machine_node.dir/all] Error 2\n'}
+[11.138181] (state_machine) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[11.143571] (state_machine) CommandEnded: {'returncode': 2}
+[11.181430] (-) TimerEvent: {}
+[11.281917] (-) TimerEvent: {}
+[11.346423] (state_machine) JobEnded: {'identifier': 'state_machine', 'rc': 2}
+[11.357582] (-) EventReactorShutdown: {}

@@ -1,0 +1,27 @@
+[0.135s] Invoking command in '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine -- -j8 -l8
+[0.266s] [35m[1mConsolidate compiler generated dependencies of target state_machine_node[0m
+[0.313s] [ 50%] [32mBuilding CXX object CMakeFiles/state_machine_node.dir/src/state_machine_node.cpp.o[0m
+[21.849s] [100%] [32m[1mLinking CXX executable state_machine_node[0m
+[23.877s] [100%] Built target state_machine_node
+[23.912s] Invoked command in '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine -- -j8 -l8
+[24.010s] Invoking command in '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine
+[24.038s] -- Install configuration: ""
+[24.039s] -- Installing: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/lib/state_machine/state_machine_node
+[24.062s] -- Set runtime path of "/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/lib/state_machine/state_machine_node" to ""
+[24.063s] -- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/ament_index/resource_index/package_run_dependencies/state_machine
+[24.064s] -- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/ament_index/resource_index/parent_prefix_path/state_machine
+[24.064s] -- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/environment/ament_prefix_path.sh
+[24.064s] -- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/environment/ament_prefix_path.dsv
+[24.064s] -- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/environment/path.sh
+[24.064s] -- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/environment/path.dsv
+[24.065s] -- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/local_setup.bash
+[24.065s] -- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/local_setup.sh
+[24.065s] -- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/local_setup.zsh
+[24.065s] -- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/local_setup.dsv
+[24.066s] -- Installing: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/package.dsv
+[24.066s] -- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/ament_index/resource_index/packages/state_machine
+[24.066s] -- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/cmake/ament_cmake_export_include_directories-extras.cmake
+[24.068s] -- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/cmake/state_machineConfig.cmake
+[24.068s] -- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/cmake/state_machineConfig-version.cmake
+[24.068s] -- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/package.xml
+[24.078s] Invoked command in '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine

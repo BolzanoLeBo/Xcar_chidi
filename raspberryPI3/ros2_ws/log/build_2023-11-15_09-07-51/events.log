@@ -1,0 +1,307 @@
+[0.000000] (-) TimerEvent: {}
+[0.001311] (-) JobUnselected: {'identifier': 'can'}
+[0.001408] (-) JobUnselected: {'identifier': 'car_control'}
+[0.001583] (-) JobUnselected: {'identifier': 'carla_msgs'}
+[0.001617] (-) JobUnselected: {'identifier': 'geicar_start'}
+[0.001648] (-) JobUnselected: {'identifier': 'imu_complementary_filter'}
+[0.001695] (-) JobUnselected: {'identifier': 'imu_filter_madgwick'}
+[0.001767] (-) JobUnselected: {'identifier': 'imu_tools'}
+[0.001801] (-) JobUnselected: {'identifier': 'interfaces'}
+[0.001861] (-) JobUnselected: {'identifier': 'joystick'}
+[0.002088] (-) JobUnselected: {'identifier': 'rviz_imu_plugin'}
+[0.002120] (-) JobUnselected: {'identifier': 'simulation'}
+[0.002152] (-) JobUnselected: {'identifier': 'system_check'}
+[0.002225] (state_machine) JobQueued: {'identifier': 'state_machine', 'dependencies': OrderedDict()}
+[0.002269] (state_machine) JobStarted: {'identifier': 'state_machine'}
+[0.100061] (-) TimerEvent: {}
+[0.111381] (state_machine) JobProgress: {'identifier': 'state_machine', 'progress': 'cmake'}
+[0.112718] (state_machine) JobProgress: {'identifier': 'state_machine', 'progress': 'build'}
+[0.114453] (state_machine) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine', '--', '-j8', '-l8'], 'cwd': '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'loic'), ('LC_TIME', 'fr_FR.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/loic'), ('OLDPWD', '/home/loic/Desktop/Xcar_chidi'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'fr_FR.UTF-8'), ('SYSTEMD_EXEC_PID', '1416'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('QSYS_ROOTDIR', '/home/loic/intelFPGA_lite/22.1std/quartus/sopc_builder/bin'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'loic'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'loic'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/home/loic/intelFPGA_lite/22.1std/quartus/bin:/tools/Xilinx/Vivado/2018.3/bin:/tools/Xilinx/SDK/2018.3/bin:/home/loic/linux-on-litex-vexriscv/riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14/bin:/home/loic/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/opt/eclipse_prolog/bin/x86_64_linux/'), ('SESSION_MANAGER', 'local/loic-ubuntu:@/tmp/.ICE-unix/1120,unix/loic-ubuntu:/tmp/.ICE-unix/1120'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'fr_FR.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/57e98380_8a88_4717_b1fd_a13f8b12e0a6'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'fr_FR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.RF3AE2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.101'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'fr_FR.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'fr_FR.UTF-8'), ('LC_IDENTIFICATION', 'fr_FR.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'fr_FR.UTF-8'), ('LC_PAPER', 'fr_FR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.200253] (-) TimerEvent: {}
+[0.233428] (state_machine) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target state_machine_node\x1b[0m\n'}
+[0.292222] (state_machine) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/state_machine_node.dir/src/state_machine_node.cpp.o\x1b[0m\n'}
+[0.300429] (-) TimerEvent: {}
+[0.401088] (-) TimerEvent: {}
+[0.502482] (-) TimerEvent: {}
+[0.603698] (-) TimerEvent: {}
+[0.704551] (-) TimerEvent: {}
+[0.805355] (-) TimerEvent: {}
+[0.906195] (-) TimerEvent: {}
+[1.006894] (-) TimerEvent: {}
+[1.107818] (-) TimerEvent: {}
+[1.208716] (-) TimerEvent: {}
+[1.309605] (-) TimerEvent: {}
+[1.410366] (-) TimerEvent: {}
+[1.511213] (-) TimerEvent: {}
+[1.612259] (-) TimerEvent: {}
+[1.712928] (-) TimerEvent: {}
+[1.813538] (-) TimerEvent: {}
+[1.914203] (-) TimerEvent: {}
+[2.015224] (-) TimerEvent: {}
+[2.115903] (-) TimerEvent: {}
+[2.216483] (-) TimerEvent: {}
+[2.317161] (-) TimerEvent: {}
+[2.418074] (-) TimerEvent: {}
+[2.519024] (-) TimerEvent: {}
+[2.620433] (-) TimerEvent: {}
+[2.721812] (-) TimerEvent: {}
+[2.822559] (-) TimerEvent: {}
+[2.923241] (-) TimerEvent: {}
+[3.023955] (-) TimerEvent: {}
+[3.124731] (-) TimerEvent: {}
+[3.225426] (-) TimerEvent: {}
+[3.326228] (-) TimerEvent: {}
+[3.427168] (-) TimerEvent: {}
+[3.527844] (-) TimerEvent: {}
+[3.628496] (-) TimerEvent: {}
+[3.729148] (-) TimerEvent: {}
+[3.829826] (-) TimerEvent: {}
+[3.930484] (-) TimerEvent: {}
+[4.031195] (-) TimerEvent: {}
+[4.131910] (-) TimerEvent: {}
+[4.232564] (-) TimerEvent: {}
+[4.333227] (-) TimerEvent: {}
+[4.433925] (-) TimerEvent: {}
+[4.534569] (-) TimerEvent: {}
+[4.635559] (-) TimerEvent: {}
+[4.736224] (-) TimerEvent: {}
+[4.836904] (-) TimerEvent: {}
+[4.937582] (-) TimerEvent: {}
+[5.038293] (-) TimerEvent: {}
+[5.139212] (-) TimerEvent: {}
+[5.240142] (-) TimerEvent: {}
+[5.341087] (-) TimerEvent: {}
+[5.442059] (-) TimerEvent: {}
+[5.542911] (-) TimerEvent: {}
+[5.643672] (-) TimerEvent: {}
+[5.744377] (-) TimerEvent: {}
+[5.813401] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid state_machine::joyCallback(const JoystickOrder&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[5.813993] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:56:12:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kvariable \xe2\x80\x98\x1b[01m\x1b[KstateMsg\x1b[m\x1b[K\xe2\x80\x99 set but not used [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-but-set-variable\x07-Wunused-but-set-variable\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[5.814269] (state_machine) StderrLine: {'line': b'   56 |       auto \x1b[01;35m\x1b[KstateMsg\x1b[m\x1b[K = interfaces::msg::State();\n'}
+[5.814485] (state_machine) StderrLine: {'line': b'      |            \x1b[01;35m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[5.844558] (-) TimerEvent: {}
+[5.945263] (-) TimerEvent: {}
+[6.045936] (-) TimerEvent: {}
+[6.146604] (-) TimerEvent: {}
+[6.247286] (-) TimerEvent: {}
+[6.347983] (-) TimerEvent: {}
+[6.448649] (-) TimerEvent: {}
+[6.549310] (-) TimerEvent: {}
+[6.649968] (-) TimerEvent: {}
+[6.750662] (-) TimerEvent: {}
+[6.851327] (-) TimerEvent: {}
+[6.952044] (-) TimerEvent: {}
+[7.052726] (-) TimerEvent: {}
+[7.153374] (-) TimerEvent: {}
+[7.254078] (-) TimerEvent: {}
+[7.354754] (-) TimerEvent: {}
+[7.455465] (-) TimerEvent: {}
+[7.556136] (-) TimerEvent: {}
+[7.656859] (-) TimerEvent: {}
+[7.757882] (-) TimerEvent: {}
+[7.858826] (-) TimerEvent: {}
+[7.959641] (-) TimerEvent: {}
+[8.060445] (-) TimerEvent: {}
+[8.161300] (-) TimerEvent: {}
+[8.262273] (-) TimerEvent: {}
+[8.363179] (-) TimerEvent: {}
+[8.463857] (-) TimerEvent: {}
+[8.564689] (-) TimerEvent: {}
+[8.665668] (-) TimerEvent: {}
+[8.766260] (-) TimerEvent: {}
+[8.866817] (-) TimerEvent: {}
+[8.967369] (-) TimerEvent: {}
+[9.067958] (-) TimerEvent: {}
+[9.168605] (-) TimerEvent: {}
+[9.269240] (-) TimerEvent: {}
+[9.369817] (-) TimerEvent: {}
+[9.470623] (-) TimerEvent: {}
+[9.571208] (-) TimerEvent: {}
+[9.671865] (-) TimerEvent: {}
+[9.772528] (-) TimerEvent: {}
+[9.873172] (-) TimerEvent: {}
+[9.973883] (-) TimerEvent: {}
+[10.074572] (-) TimerEvent: {}
+[10.175165] (-) TimerEvent: {}
+[10.275853] (-) TimerEvent: {}
+[10.376542] (-) TimerEvent: {}
+[10.477202] (-) TimerEvent: {}
+[10.577808] (-) TimerEvent: {}
+[10.678638] (-) TimerEvent: {}
+[10.779548] (-) TimerEvent: {}
+[10.880213] (-) TimerEvent: {}
+[10.980830] (-) TimerEvent: {}
+[11.081740] (-) TimerEvent: {}
+[11.182700] (-) TimerEvent: {}
+[11.283570] (-) TimerEvent: {}
+[11.384164] (-) TimerEvent: {}
+[11.484736] (-) TimerEvent: {}
+[11.585616] (-) TimerEvent: {}
+[11.686467] (-) TimerEvent: {}
+[11.787237] (-) TimerEvent: {}
+[11.888118] (-) TimerEvent: {}
+[11.989022] (-) TimerEvent: {}
+[12.089691] (-) TimerEvent: {}
+[12.190432] (-) TimerEvent: {}
+[12.291124] (-) TimerEvent: {}
+[12.391841] (-) TimerEvent: {}
+[12.492466] (-) TimerEvent: {}
+[12.593006] (-) TimerEvent: {}
+[12.693568] (-) TimerEvent: {}
+[12.794171] (-) TimerEvent: {}
+[12.894890] (-) TimerEvent: {}
+[12.995601] (-) TimerEvent: {}
+[13.096288] (-) TimerEvent: {}
+[13.196981] (-) TimerEvent: {}
+[13.297653] (-) TimerEvent: {}
+[13.398338] (-) TimerEvent: {}
+[13.499112] (-) TimerEvent: {}
+[13.599859] (-) TimerEvent: {}
+[13.700770] (-) TimerEvent: {}
+[13.801688] (-) TimerEvent: {}
+[13.902524] (-) TimerEvent: {}
+[14.003206] (-) TimerEvent: {}
+[14.103877] (-) TimerEvent: {}
+[14.204509] (-) TimerEvent: {}
+[14.305260] (-) TimerEvent: {}
+[14.405907] (-) TimerEvent: {}
+[14.506563] (-) TimerEvent: {}
+[14.607158] (-) TimerEvent: {}
+[14.707749] (-) TimerEvent: {}
+[14.808322] (-) TimerEvent: {}
+[14.908879] (-) TimerEvent: {}
+[15.009435] (-) TimerEvent: {}
+[15.109983] (-) TimerEvent: {}
+[15.210524] (-) TimerEvent: {}
+[15.311127] (-) TimerEvent: {}
+[15.411862] (-) TimerEvent: {}
+[15.512556] (-) TimerEvent: {}
+[15.613289] (-) TimerEvent: {}
+[15.713882] (-) TimerEvent: {}
+[15.814548] (-) TimerEvent: {}
+[15.915176] (-) TimerEvent: {}
+[16.015761] (-) TimerEvent: {}
+[16.116356] (-) TimerEvent: {}
+[16.217018] (-) TimerEvent: {}
+[16.317662] (-) TimerEvent: {}
+[16.418450] (-) TimerEvent: {}
+[16.519276] (-) TimerEvent: {}
+[16.620012] (-) TimerEvent: {}
+[16.720703] (-) TimerEvent: {}
+[16.821531] (-) TimerEvent: {}
+[16.922453] (-) TimerEvent: {}
+[17.023226] (-) TimerEvent: {}
+[17.123880] (-) TimerEvent: {}
+[17.224488] (-) TimerEvent: {}
+[17.325090] (-) TimerEvent: {}
+[17.425755] (-) TimerEvent: {}
+[17.526515] (-) TimerEvent: {}
+[17.627259] (-) TimerEvent: {}
+[17.727847] (-) TimerEvent: {}
+[17.828361] (-) TimerEvent: {}
+[17.928881] (-) TimerEvent: {}
+[18.029424] (-) TimerEvent: {}
+[18.129933] (-) TimerEvent: {}
+[18.230481] (-) TimerEvent: {}
+[18.331032] (-) TimerEvent: {}
+[18.431612] (-) TimerEvent: {}
+[18.532195] (-) TimerEvent: {}
+[18.632700] (-) TimerEvent: {}
+[18.733233] (-) TimerEvent: {}
+[18.833824] (-) TimerEvent: {}
+[18.934374] (-) TimerEvent: {}
+[19.034941] (-) TimerEvent: {}
+[19.135621] (-) TimerEvent: {}
+[19.236277] (-) TimerEvent: {}
+[19.336904] (-) TimerEvent: {}
+[19.437475] (-) TimerEvent: {}
+[19.538160] (-) TimerEvent: {}
+[19.639045] (-) TimerEvent: {}
+[19.739865] (-) TimerEvent: {}
+[19.840538] (-) TimerEvent: {}
+[19.941238] (-) TimerEvent: {}
+[20.041999] (-) TimerEvent: {}
+[20.142798] (-) TimerEvent: {}
+[20.243590] (-) TimerEvent: {}
+[20.344370] (-) TimerEvent: {}
+[20.445174] (-) TimerEvent: {}
+[20.545987] (-) TimerEvent: {}
+[20.646690] (-) TimerEvent: {}
+[20.747326] (-) TimerEvent: {}
+[20.847995] (-) TimerEvent: {}
+[20.948625] (-) TimerEvent: {}
+[21.049232] (-) TimerEvent: {}
+[21.149761] (-) TimerEvent: {}
+[21.250547] (-) TimerEvent: {}
+[21.351129] (-) TimerEvent: {}
+[21.451819] (-) TimerEvent: {}
+[21.552446] (-) TimerEvent: {}
+[21.653039] (-) TimerEvent: {}
+[21.753614] (-) TimerEvent: {}
+[21.854174] (-) TimerEvent: {}
+[21.954757] (-) TimerEvent: {}
+[22.055533] (-) TimerEvent: {}
+[22.156548] (-) TimerEvent: {}
+[22.257204] (-) TimerEvent: {}
+[22.357896] (-) TimerEvent: {}
+[22.458515] (-) TimerEvent: {}
+[22.559115] (-) TimerEvent: {}
+[22.659875] (-) TimerEvent: {}
+[22.760662] (-) TimerEvent: {}
+[22.861503] (-) TimerEvent: {}
+[22.962347] (-) TimerEvent: {}
+[23.063404] (-) TimerEvent: {}
+[23.164505] (-) TimerEvent: {}
+[23.247145] (state_machine) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable state_machine_node\x1b[0m\n'}
+[23.264759] (-) TimerEvent: {}
+[23.365604] (-) TimerEvent: {}
+[23.466652] (-) TimerEvent: {}
+[23.567770] (-) TimerEvent: {}
+[23.668906] (-) TimerEvent: {}
+[23.769794] (-) TimerEvent: {}
+[23.870691] (-) TimerEvent: {}
+[23.972087] (-) TimerEvent: {}
+[24.073315] (-) TimerEvent: {}
+[24.174017] (-) TimerEvent: {}
+[24.274753] (-) TimerEvent: {}
+[24.375370] (-) TimerEvent: {}
+[24.476031] (-) TimerEvent: {}
+[24.576664] (-) TimerEvent: {}
+[24.677435] (-) TimerEvent: {}
+[24.778181] (-) TimerEvent: {}
+[24.879150] (-) TimerEvent: {}
+[24.980457] (-) TimerEvent: {}
+[25.081669] (-) TimerEvent: {}
+[25.182839] (-) TimerEvent: {}
+[25.228590] (state_machine) StdoutLine: {'line': b'[100%] Built target state_machine_node\n'}
+[25.264099] (state_machine) CommandEnded: {'returncode': 0}
+[25.283133] (-) TimerEvent: {}
+[25.338855] (state_machine) JobProgress: {'identifier': 'state_machine', 'progress': 'install'}
+[25.366113] (state_machine) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine'], 'cwd': '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'loic'), ('LC_TIME', 'fr_FR.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/loic'), ('OLDPWD', '/home/loic/Desktop/Xcar_chidi'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'fr_FR.UTF-8'), ('SYSTEMD_EXEC_PID', '1416'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('QSYS_ROOTDIR', '/home/loic/intelFPGA_lite/22.1std/quartus/sopc_builder/bin'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'loic'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'loic'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/home/loic/intelFPGA_lite/22.1std/quartus/bin:/tools/Xilinx/Vivado/2018.3/bin:/tools/Xilinx/SDK/2018.3/bin:/home/loic/linux-on-litex-vexriscv/riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14/bin:/home/loic/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/opt/eclipse_prolog/bin/x86_64_linux/'), ('SESSION_MANAGER', 'local/loic-ubuntu:@/tmp/.ICE-unix/1120,unix/loic-ubuntu:/tmp/.ICE-unix/1120'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'fr_FR.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/57e98380_8a88_4717_b1fd_a13f8b12e0a6'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'fr_FR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.RF3AE2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.101'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'fr_FR.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'fr_FR.UTF-8'), ('LC_IDENTIFICATION', 'fr_FR.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'fr_FR.UTF-8'), ('LC_PAPER', 'fr_FR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[25.383469] (-) TimerEvent: {}
+[25.392191] (state_machine) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[25.392606] (state_machine) StdoutLine: {'line': b'-- Installing: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/lib/state_machine/state_machine_node\n'}
+[25.418441] (state_machine) StdoutLine: {'line': b'-- Set runtime path of "/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/lib/state_machine/state_machine_node" to ""\n'}
+[25.419471] (state_machine) StdoutLine: {'line': b'-- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/ament_index/resource_index/package_run_dependencies/state_machine\n'}
+[25.420170] (state_machine) StdoutLine: {'line': b'-- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/ament_index/resource_index/parent_prefix_path/state_machine\n'}
+[25.420910] (state_machine) StdoutLine: {'line': b'-- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/environment/ament_prefix_path.sh\n'}
+[25.421526] (state_machine) StdoutLine: {'line': b'-- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/environment/ament_prefix_path.dsv\n'}
+[25.421765] (state_machine) StdoutLine: {'line': b'-- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/environment/path.sh\n'}
+[25.421939] (state_machine) StdoutLine: {'line': b'-- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/environment/path.dsv\n'}
+[25.422182] (state_machine) StdoutLine: {'line': b'-- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/local_setup.bash\n'}
+[25.422425] (state_machine) StdoutLine: {'line': b'-- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/local_setup.sh\n'}
+[25.422655] (state_machine) StdoutLine: {'line': b'-- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/local_setup.zsh\n'}
+[25.422858] (state_machine) StdoutLine: {'line': b'-- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/local_setup.dsv\n'}
+[25.423030] (state_machine) StdoutLine: {'line': b'-- Installing: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/package.dsv\n'}
+[25.423206] (state_machine) StdoutLine: {'line': b'-- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/ament_index/resource_index/packages/state_machine\n'}
+[25.423378] (state_machine) StdoutLine: {'line': b'-- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[25.423600] (state_machine) StdoutLine: {'line': b'-- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/cmake/state_machineConfig.cmake\n'}
+[25.423789] (state_machine) StdoutLine: {'line': b'-- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/cmake/state_machineConfig-version.cmake\n'}
+[25.423932] (state_machine) StdoutLine: {'line': b'-- Up-to-date: /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/install/state_machine/share/state_machine/package.xml\n'}
+[25.427881] (state_machine) CommandEnded: {'returncode': 0}
+[25.483552] (-) TimerEvent: {}
+[25.584587] (-) TimerEvent: {}
+[25.685256] (-) TimerEvent: {}
+[25.786129] (-) TimerEvent: {}
+[25.789327] (state_machine) JobEnded: {'identifier': 'state_machine', 'rc': 0}
+[25.790983] (-) EventReactorShutdown: {}

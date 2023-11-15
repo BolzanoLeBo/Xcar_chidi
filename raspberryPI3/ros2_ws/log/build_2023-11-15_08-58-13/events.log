@@ -1,0 +1,258 @@
+[0.000000] (-) TimerEvent: {}
+[0.001041] (-) JobUnselected: {'identifier': 'can'}
+[0.001654] (-) JobUnselected: {'identifier': 'car_control'}
+[0.001980] (-) JobUnselected: {'identifier': 'carla_msgs'}
+[0.002085] (-) JobUnselected: {'identifier': 'geicar_start'}
+[0.002176] (-) JobUnselected: {'identifier': 'imu_complementary_filter'}
+[0.002380] (-) JobUnselected: {'identifier': 'imu_filter_madgwick'}
+[0.002570] (-) JobUnselected: {'identifier': 'imu_tools'}
+[0.002669] (-) JobUnselected: {'identifier': 'interfaces'}
+[0.002758] (-) JobUnselected: {'identifier': 'joystick'}
+[0.002978] (-) JobUnselected: {'identifier': 'rviz_imu_plugin'}
+[0.003079] (-) JobUnselected: {'identifier': 'simulation'}
+[0.003264] (-) JobUnselected: {'identifier': 'system_check'}
+[0.003369] (state_machine) JobQueued: {'identifier': 'state_machine', 'dependencies': OrderedDict()}
+[0.003477] (state_machine) JobStarted: {'identifier': 'state_machine'}
+[0.099347] (-) TimerEvent: {}
+[0.119356] (state_machine) JobProgress: {'identifier': 'state_machine', 'progress': 'cmake'}
+[0.120510] (state_machine) JobProgress: {'identifier': 'state_machine', 'progress': 'build'}
+[0.122015] (state_machine) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine', '--', '-j8', '-l8'], 'cwd': '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'loic'), ('LC_TIME', 'fr_FR.UTF-8'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/loic'), ('OLDPWD', '/home/loic/Desktop/Xcar_chidi'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'fr_FR.UTF-8'), ('SYSTEMD_EXEC_PID', '1416'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('QSYS_ROOTDIR', '/home/loic/intelFPGA_lite/22.1std/quartus/sopc_builder/bin'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'loic'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'loic'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/home/loic/intelFPGA_lite/22.1std/quartus/bin:/tools/Xilinx/Vivado/2018.3/bin:/tools/Xilinx/SDK/2018.3/bin:/home/loic/linux-on-litex-vexriscv/riscv64-unknown-elf-gcc-8.3.0-2019.08.0-x86_64-linux-ubuntu14/bin:/home/loic/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/opt/eclipse_prolog/bin/x86_64_linux/'), ('SESSION_MANAGER', 'local/loic-ubuntu:@/tmp/.ICE-unix/1120,unix/loic-ubuntu:/tmp/.ICE-unix/1120'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'fr_FR.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/57e98380_8a88_4717_b1fd_a13f8b12e0a6'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'fr_FR.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.RF3AE2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.101'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'fr_FR.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'fr_FR.UTF-8'), ('LC_IDENTIFICATION', 'fr_FR.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'fr_FR.UTF-8'), ('LC_PAPER', 'fr_FR.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.199783] (-) TimerEvent: {}
+[0.259685] (state_machine) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target state_machine_node\x1b[0m\n'}
+[0.299873] (-) TimerEvent: {}
+[0.308044] (state_machine) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/state_machine_node.dir/src/state_machine_node.cpp.o\x1b[0m\n'}
+[0.400019] (-) TimerEvent: {}
+[0.500546] (-) TimerEvent: {}
+[0.601088] (-) TimerEvent: {}
+[0.701649] (-) TimerEvent: {}
+[0.802215] (-) TimerEvent: {}
+[0.903025] (-) TimerEvent: {}
+[1.004111] (-) TimerEvent: {}
+[1.104883] (-) TimerEvent: {}
+[1.205945] (-) TimerEvent: {}
+[1.306915] (-) TimerEvent: {}
+[1.407771] (-) TimerEvent: {}
+[1.508550] (-) TimerEvent: {}
+[1.609212] (-) TimerEvent: {}
+[1.709915] (-) TimerEvent: {}
+[1.810914] (-) TimerEvent: {}
+[1.911601] (-) TimerEvent: {}
+[2.012257] (-) TimerEvent: {}
+[2.113184] (-) TimerEvent: {}
+[2.214806] (-) TimerEvent: {}
+[2.316959] (-) TimerEvent: {}
+[2.417951] (-) TimerEvent: {}
+[2.518761] (-) TimerEvent: {}
+[2.619560] (-) TimerEvent: {}
+[2.720239] (-) TimerEvent: {}
+[2.820927] (-) TimerEvent: {}
+[2.921503] (-) TimerEvent: {}
+[3.022117] (-) TimerEvent: {}
+[3.122749] (-) TimerEvent: {}
+[3.223367] (-) TimerEvent: {}
+[3.324060] (-) TimerEvent: {}
+[3.424732] (-) TimerEvent: {}
+[3.525445] (-) TimerEvent: {}
+[3.626168] (-) TimerEvent: {}
+[3.726890] (-) TimerEvent: {}
+[3.827597] (-) TimerEvent: {}
+[3.928233] (-) TimerEvent: {}
+[4.028970] (-) TimerEvent: {}
+[4.129663] (-) TimerEvent: {}
+[4.230367] (-) TimerEvent: {}
+[4.331281] (-) TimerEvent: {}
+[4.431979] (-) TimerEvent: {}
+[4.532706] (-) TimerEvent: {}
+[4.633595] (-) TimerEvent: {}
+[4.734558] (-) TimerEvent: {}
+[4.835497] (-) TimerEvent: {}
+[4.936297] (-) TimerEvent: {}
+[5.037173] (-) TimerEvent: {}
+[5.137847] (-) TimerEvent: {}
+[5.238584] (-) TimerEvent: {}
+[5.339321] (-) TimerEvent: {}
+[5.440036] (-) TimerEvent: {}
+[5.540787] (-) TimerEvent: {}
+[5.641545] (-) TimerEvent: {}
+[5.648065] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:44:43:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[KUltrasonic\x1b[m\x1b[K\xe2\x80\x99 is not a member of \xe2\x80\x98\x1b[01m\x1b[Kinterfaces::msg\x1b[m\x1b[K\xe2\x80\x99\n'}
+[5.648750] (state_machine) StderrLine: {'line': b'   44 |     rclcpp::Subscription<interfaces::msg::\x1b[01;31m\x1b[KUltrasonic\x1b[m\x1b[K>::SharedPtr subscription_ultrasonic_sensor_;\n'}
+[5.649075] (state_machine) StderrLine: {'line': b'      |                                           \x1b[01;31m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.649381] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:44:53:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Ktemplate argument 1 is invalid\n'}
+[5.649685] (state_machine) StderrLine: {'line': b'   44 |     rclcpp::Subscription<interfaces::msg::Ultrasonic\x1b[01;31m\x1b[K>\x1b[m\x1b[K::SharedPtr subscription_ultrasonic_sensor_;\n'}
+[5.649989] (state_machine) StderrLine: {'line': b'      |                                                     \x1b[01;31m\x1b[K^\x1b[m\x1b[K\n'}
+[5.650285] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:44:53:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Ktemplate argument 3 is invalid\n'}
+[5.650582] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:44:53:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Ktemplate argument 4 is invalid\n'}
+[5.650931] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:44:53:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Ktemplate argument 5 is invalid\n'}
+[5.651256] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:44:56:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kexpected \xe2\x80\x98\x1b[01m\x1b[K;\x1b[m\x1b[K\xe2\x80\x99 at end of member declaration\n'}
+[5.651556] (state_machine) StderrLine: {'line': b'   44 |     rclcpp::Subscription<interfaces::msg::Ultrasonic>::\x1b[01;31m\x1b[KSharedPtr\x1b[m\x1b[K subscription_ultrasonic_sensor_;\n'}
+[5.651859] (state_machine) StderrLine: {'line': b'      |                                                        \x1b[01;31m\x1b[K^~~~~~~~~\x1b[m\x1b[K\n'}
+[5.652155] (state_machine) StderrLine: {'line': b'      |                                                                 \x1b[32m\x1b[K;\x1b[m\x1b[K\n'}
+[5.657606] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:44:66:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Ksubscription_ultrasonic_sensor_\x1b[m\x1b[K\xe2\x80\x99 does not name a type\n'}
+[5.658097] (state_machine) StderrLine: {'line': b'   44 | clcpp::Subscription<interfaces::msg::Ultrasonic>::SharedPtr \x1b[01;31m\x1b[Ksubscription_ultrasonic_sensor_\x1b[m\x1b[K;\n'}
+[5.658395] (state_machine) StderrLine: {'line': b'      |                                                             \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.658690] (state_machine) StderrLine: {'line': b'\n'}
+[5.666903] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:47:21:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kstd_srvs\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope\n'}
+[5.667579] (state_machine) StderrLine: {'line': b'   47 |     rclcpp::Service<\x1b[01;31m\x1b[Kstd_srvs\x1b[m\x1b[K::srv::Empty>::SharedPtr state_service_;\n'}
+[5.667893] (state_machine) StderrLine: {'line': b'      |                     \x1b[01;31m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[5.668194] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:47:41:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Ktemplate argument 1 is invalid\n'}
+[5.668505] (state_machine) StderrLine: {'line': b'   47 |     rclcpp::Service<std_srvs::srv::Empty\x1b[01;31m\x1b[K>\x1b[m\x1b[K::SharedPtr state_service_;\n'}
+[5.668868] (state_machine) StderrLine: {'line': b'      |                                         \x1b[01;31m\x1b[K^\x1b[m\x1b[K\n'}
+[5.669164] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:47:44:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kexpected \xe2\x80\x98\x1b[01m\x1b[K;\x1b[m\x1b[K\xe2\x80\x99 at end of member declaration\n'}
+[5.669480] (state_machine) StderrLine: {'line': b'   47 |     rclcpp::Service<std_srvs::srv::Empty>::\x1b[01;31m\x1b[KSharedPtr\x1b[m\x1b[K state_service_;\n'}
+[5.669783] (state_machine) StderrLine: {'line': b'      |                                            \x1b[01;31m\x1b[K^~~~~~~~~\x1b[m\x1b[K\n'}
+[5.670080] (state_machine) StderrLine: {'line': b'      |                                                     \x1b[32m\x1b[K;\x1b[m\x1b[K\n'}
+[5.670377] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:47:44:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kredeclaration of \xe2\x80\x98\x1b[01m\x1b[Kint state_machine::SharedPtr\x1b[m\x1b[K\xe2\x80\x99\n'}
+[5.670734] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:44:56:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kprevious declaration \xe2\x80\x98\x1b[01m\x1b[Kint state_machine::SharedPtr\x1b[m\x1b[K\xe2\x80\x99\n'}
+[5.671123] (state_machine) StderrLine: {'line': b'   44 |     rclcpp::Subscription<interfaces::msg::Ultrasonic>::\x1b[01;36m\x1b[KSharedPtr\x1b[m\x1b[K subscription_ultrasonic_sensor_;\n'}
+[5.671483] (state_machine) StderrLine: {'line': b'      |                                                        \x1b[01;36m\x1b[K^~~~~~~~~\x1b[m\x1b[K\n'}
+[5.674452] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:47:54:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kstate_service_\x1b[m\x1b[K\xe2\x80\x99 does not name a type\n'}
+[5.675072] (state_machine) StderrLine: {'line': b'   47 |     rclcpp::Service<std_srvs::srv::Empty>::SharedPtr \x1b[01;31m\x1b[Kstate_service_\x1b[m\x1b[K;\n'}
+[5.675381] (state_machine) StderrLine: {'line': b'      |                                                      \x1b[01;31m\x1b[K^~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.675674] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:65:48:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[KUltrasonic\x1b[m\x1b[K\xe2\x80\x99 in namespace \xe2\x80\x98\x1b[01m\x1b[Kinterfaces::msg\x1b[m\x1b[K\xe2\x80\x99 does not name a type\n'}
+[5.675972] (state_machine) StderrLine: {'line': b'   65 |     void stateCallback2(const interfaces::msg::\x1b[01;31m\x1b[KUltrasonic\x1b[m\x1b[K &ultrasonic)\n'}
+[5.676262] (state_machine) StderrLine: {'line': b'      |                                                \x1b[01;31m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.716423] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:\x1b[m\x1b[K In constructor \xe2\x80\x98\x1b[01m\x1b[Kstate_machine::state_machine()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[5.717071] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:26:7:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Ksubscription_ultrasonic_sensor_\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope\n'}
+[5.717411] (state_machine) StderrLine: {'line': b'   26 |       \x1b[01;31m\x1b[Ksubscription_ultrasonic_sensor_\x1b[m\x1b[K = this->create_subscription<interfaces::msg::Ultrasonic>(\n'}
+[5.717762] (state_machine) StderrLine: {'line': b'      |       \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.718256] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:26:84:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[KUltrasonic\x1b[m\x1b[K\xe2\x80\x99 is not a member of \xe2\x80\x98\x1b[01m\x1b[Kinterfaces::msg\x1b[m\x1b[K\xe2\x80\x99\n'}
+[5.718592] (state_machine) StderrLine: {'line': b'   26 | asonic_sensor_ = this->create_subscription<interfaces::msg::\x1b[01;31m\x1b[KUltrasonic\x1b[m\x1b[K>(\n'}
+[5.719327] (state_machine) StderrLine: {'line': b'      |                                                             \x1b[01;31m\x1b[K^~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.719547] (state_machine) StderrLine: {'line': b'\n'}
+[5.719726] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:26:95:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno matching function for call to \xe2\x80\x98\x1b[01m\x1b[Kstate_machine::create_subscription<<expression error> >(const char [8], int, std::_Bind_helper<false, void (state_machine::*)(const interfaces::msg::JoystickOrder_<std::allocator<void> >&), state_machine*, const std::_Placeholder<1>&>::type)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[5.719989] (state_machine) StderrLine: {'line': b'   26 | sonic_sensor_ = \x1b[01;31m\x1b[Kthis->create_subscription<interfaces::msg::Ultrasonic>(\x1b[m\x1b[K\n'}
+[5.720338] (state_machine) StderrLine: {'line': b'      |                 \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\x1b[m\x1b[K\n'}
+[5.720454] (state_machine) StderrLine: {'line': b'\n'}
+[5.720644] (state_machine) StderrLine: {'line': b'   27 | \x1b[01;31m\x1b[Ktd::bind(&state_machine::stateCallback, this, _1))\x1b[m\x1b[K;\n'}
+[5.720766] (state_machine) StderrLine: {'line': b'      | \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K                     \n'}
+[5.720872] (state_machine) StderrLine: {'line': b'\n'}
+[5.720976] (state_machine) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:1321\x1b[m\x1b[K,\n'}
+[5.721081] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/single_threaded_executor.hpp:28\x1b[m\x1b[K,\n'}
+[5.721187] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:22\x1b[m\x1b[K,\n'}
+[5.721291] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[5.721395] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:2\x1b[m\x1b[K:\n'}
+[5.721500] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/node_impl.hpp:92:1:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Ktemplate<class MessageT, class CallbackT, class AllocatorT, class SubscriptionT, class MessageMemoryStrategyT> std::shared_ptr<ROSMessageT> rclcpp::Node::create_subscription(const string&, const rclcpp::QoS&, CallbackT&&, const rclcpp::SubscriptionOptionsWithAllocator<AllocatorT>&, typename MessageMemoryStrategyT::SharedPtr)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[5.721643] (state_machine) StderrLine: {'line': b'   92 | \x1b[01;36m\x1b[KNode\x1b[m\x1b[K::create_subscription(\n'}
+[5.721750] (state_machine) StderrLine: {'line': b'      | \x1b[01;36m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[5.721853] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/node_impl.hpp:92:1:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  template argument deduction/substitution failed:\n'}
+[5.721962] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:26:95:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Ktemplate argument 1 is invalid\n'}
+[5.722094] (state_machine) StderrLine: {'line': b'   26 | sonic_sensor_ = \x1b[01;31m\x1b[Kthis->create_subscription<interfaces::msg::Ultrasonic>(\x1b[m\x1b[K\n'}
+[5.722199] (state_machine) StderrLine: {'line': b'      |                 \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\x1b[m\x1b[K\n'}
+[5.722324] (state_machine) StderrLine: {'line': b'\n'}
+[5.722428] (state_machine) StderrLine: {'line': b'   27 | \x1b[01;31m\x1b[Ktd::bind(&state_machine::stateCallback, this, _1))\x1b[m\x1b[K;\n'}
+[5.722532] (state_machine) StderrLine: {'line': b'      | \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K                     \n'}
+[5.722637] (state_machine) StderrLine: {'line': b'\n'}
+[5.732121] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:30:7:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kstate_service_\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope; did you mean \xe2\x80\x98\x1b[01m\x1b[Kcreate_service\x1b[m\x1b[K\xe2\x80\x99?\n'}
+[5.732694] (state_machine) StderrLine: {'line': b'   30 |       \x1b[01;31m\x1b[Kstate_service_\x1b[m\x1b[K = this->create_service<std_srvs::srv::Empty>(\n'}
+[5.732997] (state_machine) StderrLine: {'line': b'      |       \x1b[01;31m\x1b[K^~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.733291] (state_machine) StderrLine: {'line': b'      |       \x1b[32m\x1b[Kcreate_service\x1b[m\x1b[K\n'}
+[5.741737] (-) TimerEvent: {}
+[5.743835] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:30:45:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kstd_srvs\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope\n'}
+[5.744346] (state_machine) StderrLine: {'line': b'   30 |       state_service_ = this->create_service<\x1b[01;31m\x1b[Kstd_srvs\x1b[m\x1b[K::srv::Empty>(\n'}
+[5.744853] (state_machine) StderrLine: {'line': b'      |                                             \x1b[01;31m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[5.745149] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:30:30:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kparse error in template argument list\n'}
+[5.745445] (state_machine) StderrLine: {'line': b'   30 |       state_service_ = this->\x1b[01;31m\x1b[Kcreate_service<std_srvs::srv::Empty>\x1b[m\x1b[K(\n'}
+[5.745738] (state_machine) StderrLine: {'line': b'      |                              \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.746024] (state_machine) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/c++/11/pstl/glue_algorithm_defs.h:13\x1b[m\x1b[K,\n'}
+[5.746314] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/algorithm:74\x1b[m\x1b[K,\n'}
+[5.746608] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:18\x1b[m\x1b[K,\n'}
+[5.746940] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[5.747257] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[5.747548] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[5.747835] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:2\x1b[m\x1b[K:\n'}
+[5.748147] (state_machine) StderrLine: {'line': b'/usr/include/c++/11/functional: In instantiation of \xe2\x80\x98\x1b[01m\x1b[Kstruct std::_Bind_check_arity<void (state_machine::*)(const interfaces::msg::JoystickOrder_<std::allocator<void> >&), state_machine*, const std::_Placeholder<1>&, const std::_Placeholder<2>&>\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[5.748490] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/functional:768:12:\x1b[m\x1b[K   required from \xe2\x80\x98\x1b[01m\x1b[Kstruct std::_Bind_helper<false, void (state_machine::*)(const interfaces::msg::JoystickOrder_<std::allocator<void> >&), state_machine*, const std::_Placeholder<1>&, const std::_Placeholder<2>&>\x1b[m\x1b[K\xe2\x80\x99\n'}
+[5.748791] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/functional:789:5:\x1b[m\x1b[K   required by substitution of \xe2\x80\x98\x1b[01m\x1b[Ktemplate<class _Func, class ... _BoundArgs> typename std::_Bind_helper<std::__is_socketlike<_Func>::value, _Func, _BoundArgs ...>::type std::bind(_Func&&, _BoundArgs&& ...) [with _Func = void (state_machine::*)(const interfaces::msg::JoystickOrder_<std::allocator<void> >&); _BoundArgs = {state_machine*, const std::_Placeholder<1>&, const std::_Placeholder<2>&}]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[5.749144] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:31:33:\x1b[m\x1b[K   required from here\n'}
+[5.749445] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/functional:756:21:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kstatic assertion failed: Wrong number of arguments for pointer-to-member\n'}
+[5.749743] (state_machine) StderrLine: {'line': b'  755 |       static_assert(_Varargs::\x1b[01;31m\x1b[Kvalue\x1b[m\x1b[K\n'}
+[5.750034] (state_machine) StderrLine: {'line': b'      |                               \x1b[01;31m\x1b[K~~~~~\x1b[m\x1b[K\n'}
+[5.750322] (state_machine) StderrLine: {'line': b'  756 | \x1b[01;31m\x1b[K                    ? sizeof...(_BoundArgs) >= _Arity::value + 1\x1b[m\x1b[K\n'}
+[5.750613] (state_machine) StderrLine: {'line': b'      |                     \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.750941] (state_machine) StderrLine: {'line': b'  757 | \x1b[01;31m\x1b[K                    : sizeof...(_BoundArgs) == _Arity::value + 1\x1b[m\x1b[K,\n'}
+[5.751259] (state_machine) StderrLine: {'line': b'      |                     \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.751546] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/functional:756:21:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[K(false ? (3 >= (((long unsigned int)std::integral_constant<long unsigned int, 1>::value) + 1)) : (3 == (((long unsigned int)std::integral_constant<long unsigned int, 1>::value) + 1)))\x1b[m\x1b[K\xe2\x80\x99 evaluates to false\n'}
+[5.755134] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:30:66:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno matching function for call to \xe2\x80\x98\x1b[01m\x1b[Kstate_machine::create_service<<expression error> >(const char [14], std::_Bind_helper<false, void (state_machine::*)(const interfaces::msg::JoystickOrder_<std::allocator<void> >&), state_machine*, const std::_Placeholder<1>&, const std::_Placeholder<2>&>::type)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[5.755473] (state_machine) StderrLine: {'line': b'   30 |       state_service_ = \x1b[01;31m\x1b[Kthis->create_service<std_srvs::srv::Empty>(\x1b[m\x1b[K\n'}
+[5.755592] (state_machine) StderrLine: {'line': b'      |                        \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\x1b[m\x1b[K\n'}
+[5.755700] (state_machine) StderrLine: {'line': b'   31 | \x1b[01;31m\x1b[K      "state_service", std::bind(&state_machine::stateCallback, this, std::placeholders::_1, std::placeholders::_2))\x1b[m\x1b[K;\n'}
+[5.755809] (state_machine) StderrLine: {'line': b'      |       \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.755941] (state_machine) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/single_threaded_executor.hpp:28\x1b[m\x1b[K,\n'}
+[5.756051] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:22\x1b[m\x1b[K,\n'}
+[5.756157] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[5.756262] (state_machine) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:2\x1b[m\x1b[K:\n'}
+[5.756368] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:267:3:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Ktemplate<class ServiceT, class CallbackT> typename rclcpp::Service<ServiceT>::SharedPtr rclcpp::Node::create_service(const string&, CallbackT&&, const rmw_qos_profile_t&, rclcpp::CallbackGroup::SharedPtr)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[5.756479] (state_machine) StderrLine: {'line': b'  267 |   \x1b[01;36m\x1b[Kcreate_service\x1b[m\x1b[K(\n'}
+[5.756585] (state_machine) StderrLine: {'line': b'      |   \x1b[01;36m\x1b[K^~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.756692] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:267:3:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  template argument deduction/substitution failed:\n'}
+[5.756799] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:30:66:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Ktemplate argument 1 is invalid\n'}
+[5.757116] (state_machine) StderrLine: {'line': b'   30 |       state_service_ = \x1b[01;31m\x1b[Kthis->create_service<std_srvs::srv::Empty>(\x1b[m\x1b[K\n'}
+[5.757235] (state_machine) StderrLine: {'line': b'      |                        \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\x1b[m\x1b[K\n'}
+[5.757345] (state_machine) StderrLine: {'line': b'   31 | \x1b[01;31m\x1b[K      "state_service", std::bind(&state_machine::stateCallback, this, std::placeholders::_1, std::placeholders::_2))\x1b[m\x1b[K;\n'}
+[5.757456] (state_machine) StderrLine: {'line': b'      |       \x1b[01;31m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.757563] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid state_machine::stateCallback2(const int&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[5.757693] (state_machine) StderrLine: {'line': b'\x1b[01m\x1b[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:68:22:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Krequest for member \xe2\x80\x98\x1b[01m\x1b[Kfrontcenter\x1b[m\x1b[K\xe2\x80\x99 in \xe2\x80\x98\x1b[01m\x1b[Kultrasonic\x1b[m\x1b[K\xe2\x80\x99, which is of non-class type \xe2\x80\x98\x1b[01m\x1b[Kconst int\x1b[m\x1b[K\xe2\x80\x99\n'}
+[5.757806] (state_machine) StderrLine: {'line': b'   68 |       if (ultrasonic.\x1b[01;31m\x1b[Kfrontcenter\x1b[m\x1b[K<=20)\n'}
+[5.757912] (state_machine) StderrLine: {'line': b'      |                      \x1b[01;31m\x1b[K^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[5.841880] (-) TimerEvent: {}
+[5.942445] (-) TimerEvent: {}
+[6.043236] (-) TimerEvent: {}
+[6.143883] (-) TimerEvent: {}
+[6.244546] (-) TimerEvent: {}
+[6.345086] (-) TimerEvent: {}
+[6.445664] (-) TimerEvent: {}
+[6.546296] (-) TimerEvent: {}
+[6.647071] (-) TimerEvent: {}
+[6.747761] (-) TimerEvent: {}
+[6.848410] (-) TimerEvent: {}
+[6.949050] (-) TimerEvent: {}
+[7.049641] (-) TimerEvent: {}
+[7.150277] (-) TimerEvent: {}
+[7.251203] (-) TimerEvent: {}
+[7.351896] (-) TimerEvent: {}
+[7.452571] (-) TimerEvent: {}
+[7.553447] (-) TimerEvent: {}
+[7.654395] (-) TimerEvent: {}
+[7.755387] (-) TimerEvent: {}
+[7.856111] (-) TimerEvent: {}
+[7.956995] (-) TimerEvent: {}
+[8.058101] (-) TimerEvent: {}
+[8.158651] (-) TimerEvent: {}
+[8.259334] (-) TimerEvent: {}
+[8.359891] (-) TimerEvent: {}
+[8.460437] (-) TimerEvent: {}
+[8.560982] (-) TimerEvent: {}
+[8.661523] (-) TimerEvent: {}
+[8.762071] (-) TimerEvent: {}
+[8.862634] (-) TimerEvent: {}
+[8.963269] (-) TimerEvent: {}
+[9.063916] (-) TimerEvent: {}
+[9.164514] (-) TimerEvent: {}
+[9.265094] (-) TimerEvent: {}
+[9.365649] (-) TimerEvent: {}
+[9.466346] (-) TimerEvent: {}
+[9.567002] (-) TimerEvent: {}
+[9.667552] (-) TimerEvent: {}
+[9.768084] (-) TimerEvent: {}
+[9.868638] (-) TimerEvent: {}
+[9.969232] (-) TimerEvent: {}
+[10.070083] (-) TimerEvent: {}
+[10.170796] (-) TimerEvent: {}
+[10.271744] (-) TimerEvent: {}
+[10.372526] (-) TimerEvent: {}
+[10.473431] (-) TimerEvent: {}
+[10.574325] (-) TimerEvent: {}
+[10.675161] (-) TimerEvent: {}
+[10.775761] (-) TimerEvent: {}
+[10.876512] (-) TimerEvent: {}
+[10.977261] (-) TimerEvent: {}
+[11.077926] (-) TimerEvent: {}
+[11.178922] (-) TimerEvent: {}
+[11.180215] (state_machine) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/state_machine_node.dir/build.make:76: CMakeFiles/state_machine_node.dir/src/state_machine_node.cpp.o] Error 1\n'}
+[11.180867] (state_machine) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/state_machine_node.dir/all] Error 2\n'}
+[11.181384] (state_machine) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[11.186011] (state_machine) CommandEnded: {'returncode': 2}
+[11.279004] (-) TimerEvent: {}
+[11.379677] (-) TimerEvent: {}
+[11.382606] (state_machine) JobEnded: {'identifier': 'state_machine', 'rc': 2}
+[11.385388] (-) EventReactorShutdown: {}
