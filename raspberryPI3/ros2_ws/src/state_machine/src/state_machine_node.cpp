@@ -3,6 +3,8 @@
 #include <chrono>
 #include <functional>
 #include <memory>
+#include <fstream>
+
 
 //#include "state_machne/srv/StateMemory.hpp"
 #include "interfaces/msg/joystick_order.hpp"
@@ -28,19 +30,18 @@ class state_machine : public rclcpp::Node {
       subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
         "us_data", 10, std::bind(&state_machine::usCallback, this, _1));
 
+      file_stream_.open("output.txt", std::ios::out);  // open .txt
 
       /*service_state_memory_ = this->create_service<state_machine::srv::StateMemory>(
         "state_service", std::bind(&state_machine::stateChanger, this, std::placeholders::_1, std::placeholders::_2));*/
 
-
-    
     }
 
   private :
 
     //Publisher
     rclcpp::Publisher<interfaces::msg::State>::SharedPtr publisher_state_;
-
+    
     //Subscriber
     rclcpp::Subscription<interfaces::msg::JoystickOrder>::SharedPtr subscription_joystick_order_;
     rclcpp::Subscription<interfaces::msg::Ultrasonic>::SharedPtr subscription_ultrasonic_sensor_;
@@ -54,14 +55,17 @@ class state_machine : public rclcpp::Node {
     int unavoidable = 0;
     int emergency_btn = 0;
 
-    
     int connexion = 0; 
     int sensor = 0;
 
-
+    std::string state_names[5] = {"idle", "Manual", "Autonomous", "Tracking", "Security"};
+    std::string obstacle_detect[2] = {"No obstacle", "Obstacle on the way"};
     int previous_state = -1; 
     int current_state = 0; 
     
+    int obstacle = 0;
+
+    std::ofstream file_stream_;
 
     //Service
     //rclcpp::Service<state_machine::srv::StateMemory>::SharedPtr service_state_memory_;
@@ -105,16 +109,19 @@ class state_machine : public rclcpp::Node {
       {
         obstacle_av = 1;
         obstacle_ar = 0;
+        obstacle = 1;
       }
       else if (ultrasonic.rear_center <= 20)
       {
         obstacle_av = 0;
         obstacle_ar = 1;
+        obstacle = 1;
       }
       else
       {
         obstacle_av = 0; 
         obstacle_ar = 0;
+        obstacle = 0;
       }
       stateChanger();
     }
@@ -126,11 +133,11 @@ class state_machine : public rclcpp::Node {
       //idle -> manual 
       if (current_state == 0 && joy_mode == 1  && !emergency_btn)
       {
-        current_state = 3;
+        current_state = 1;
       }
 
       //manual -> security
-      else if (current_state == 3 && ((dir_av && obstacle_av) || (dir_ar && obstacle_ar)) && !emergency_btn )
+      else if (current_state == 1 && ((dir_av && obstacle_av) || (dir_ar && obstacle_ar)) && !emergency_btn )
       {
         current_state = 4;
       }
@@ -138,12 +145,19 @@ class state_machine : public rclcpp::Node {
       //security -> manual 
       else if (current_state == 4 && ((!obstacle_av && !obstacle_ar) || (dir_ar && obstacle_av) || (dir_av && obstacle_ar)) && !emergency_btn )
       {
-        current_state = 3; 
+        current_state = 1; 
       }
       if (previous_state != current_state)
       {
         stateMsg.current_state = current_state;
+        stateMsg.state_name = state_names[current_state];
+        stateMsg.obstacle_detect = obstacle_detect[obstacle];
+
         publisher_state_->publish(stateMsg);
+
+        // Save file
+        file_stream_ << "\n\nMode: " << state_names[current_state] << ", Obstacle: " << obstacle_detect[obstacle] << "\n\n" << std::endl;
+        
         previous_state = current_state;
       }
     }

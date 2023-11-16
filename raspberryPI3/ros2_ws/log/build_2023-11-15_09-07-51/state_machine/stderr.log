@@ -1,4 +1,0 @@
-[01m[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:[m[K In member function ‘[01m[Kvoid state_machine::joyCallback(const JoystickOrder&)[m[K’:
-[01m[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:56:12:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[KstateMsg[m[K’ set but not used [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-but-set-variable-Wunused-but-set-variable]8;;[m[K]
-   56 |       auto [01;35m[KstateMsg[m[K = interfaces::msg::State();
-      |            [01;35m[K^~~~~~~~[m[K
