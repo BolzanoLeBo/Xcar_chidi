@@ -1,0 +1,35 @@
+[01m[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:122:38:[m[K [01;31m[Kerror: [m[K‘[01m[Kstate_machine::srv[m[K’ has not been declared
+  122 |     void stateChanger(state_machine::[01;31m[Ksrv[m[K::StateMemory)
+      |                                      [01;31m[K^~~[m[K
+[01m[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:[m[K In member function ‘[01m[Kvoid state_machine::joyCallback(const JoystickOrder&)[m[K’:
+[01m[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:98:19:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[Kstate_machine::stateChanger()[m[K’
+   98 |       [01;31m[KstateChanger()[m[K;
+      |       [01;31m[K~~~~~~~~~~~~^~[m[K
+[01m[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:122:10:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kvoid state_machine::stateChanger(int)[m[K’
+  122 |     void [01;36m[KstateChanger[m[K(state_machine::srv::StateMemory)
+      |          [01;36m[K^~~~~~~~~~~~[m[K
+[01m[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:122:10:[m[K [01;36m[Knote: [m[K  candidate expects 1 argument, 0 provided
+[01m[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:[m[K In member function ‘[01m[Kvoid state_machine::usCallback(const Ultrasonic&)[m[K’:
+[01m[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:109:27:[m[K [01;31m[Kerror: [m[K‘[01m[Kconst Ultrasonic[m[K’ {aka ‘[01m[Kconst struct interfaces::msg::Ultrasonic_<std::allocator<void> >[m[K’} has no member named ‘[01m[Kback_center[m[K’
+  109 |       else if (ultrasonic.[01;31m[Kback_center[m[K <= 20)
+      |                           [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:119:19:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[Kstate_machine::stateChanger()[m[K’
+  119 |       [01;31m[KstateChanger()[m[K;
+      |       [01;31m[K~~~~~~~~~~~~^~[m[K
+[01m[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:122:10:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kvoid state_machine::stateChanger(int)[m[K’
+  122 |     void [01;36m[KstateChanger[m[K(state_machine::srv::StateMemory)
+      |          [01;36m[K^~~~~~~~~~~~[m[K
+[01m[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:122:10:[m[K [01;36m[Knote: [m[K  candidate expects 1 argument, 0 provided
+[01m[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:[m[K In member function ‘[01m[Kvoid state_machine::stateChanger(int)[m[K’:
+[01m[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:146:9:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K;[m[K’ before ‘[01m[Kpublisher_state_[m[K’
+  146 |         [01;31m[Kpublisher_state_[m[K->publish(stateMsg);
+      |         [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[01m[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:148:7:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K;[m[K’ before ‘[01m[K}[m[K’ token
+  148 |       [01;31m[K}[m[K
+      |       [01;31m[K^[m[K
+[01m[K/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine/src/state_machine_node.cpp:122:43:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[KStateMemory[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+  122 |     void stateChanger([01;35m[Kstate_machine::srv::StateMemory[m[K)
+      |                       [01;35m[K~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/state_machine_node.dir/build.make:76: CMakeFiles/state_machine_node.dir/src/state_machine_node.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/state_machine_node.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

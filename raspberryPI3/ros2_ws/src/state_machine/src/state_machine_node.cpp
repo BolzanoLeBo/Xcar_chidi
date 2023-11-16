@@ -9,6 +9,7 @@
 #include "interfaces/msg/ultrasonic.hpp"
 #include "interfaces/msg/state.hpp"
 
+
 using namespace std;
 using placeholders::_1;
 using placeholders::_2;
@@ -28,8 +29,8 @@ class state_machine : public rclcpp::Node {
         "us_data", 10, std::bind(&state_machine::usCallback, this, _1));
 
 
-      //state_service_ = this->create_service<std_srvs::srv::Empty>(
-      //"state_service", std::bind(&state_machine::stateCallback, this, std::placeholders::_1, std::placeholders::_2));
+      /*service_state_memory_ = this->create_service<state_machine::srv::StateMemory>(
+        "state_service", std::bind(&state_machine::stateChanger, this, std::placeholders::_1, std::placeholders::_2));*/
 
 
     
@@ -44,34 +45,57 @@ class state_machine : public rclcpp::Node {
     rclcpp::Subscription<interfaces::msg::JoystickOrder>::SharedPtr subscription_joystick_order_;
     rclcpp::Subscription<interfaces::msg::Ultrasonic>::SharedPtr subscription_ultrasonic_sensor_;
 
-    int manual_button = 0; 
-    int dir_av = 0; 
+
+    int joy_mode = 0; 
+    int dir_av = 0;
+    int dir_ar = 0;
     int obstacle_av = 0; 
+    int obstacle_ar = 0; 
+    int unavoidable = 0;
+    int emergency_btn = 0;
+
+    
+    int connexion = 0; 
+    int sensor = 0;
+
+
+    int previous_state = -1; 
+    int current_state = 0; 
+    
 
     //Service
-    //rclcpp::Service<std_srvs::srv::Empty>::SharedPtr state_service_;
+    //rclcpp::Service<state_machine::srv::StateMemory>::SharedPtr service_state_memory_;
 
     void joyCallback( const interfaces::msg::JoystickOrder &joyOrder)
     {
       
-      if (joyOrder.mode == 0) 
+      joy_mode = joyOrder.mode;
+      if (joy_mode == 3) 
       {
-        manual_button = 1; 
+        emergency_btn = 1;
       }
-      else 
+      else
       {
-        manual_button = 0;
+        emergency_btn = 0; 
       }
-
-      if (joyOrder.throttle>0)
+      
+      //Direction control 
+      if (joyOrder.throttle>0 && !joyOrder.reverse)
       {
         dir_av = 1; 
+        dir_ar = 0;
+      }
+      else if (joyOrder.throttle>0 && joyOrder.reverse)
+      {
+        dir_av = 0;
+        dir_ar = 1;
       }
       else 
       {
-        dir_av = 0;
+        dir_av = 0; 
+        dir_ar = 0;
       }
-      stateCallback();
+      stateChanger();
     }
 
     void usCallback(const interfaces::msg::Ultrasonic &ultrasonic)
@@ -80,26 +104,48 @@ class state_machine : public rclcpp::Node {
       if (ultrasonic.front_center <= 20)
       {
         obstacle_av = 1;
+        obstacle_ar = 0;
+      }
+      else if (ultrasonic.rear_center <= 20)
+      {
+        obstacle_av = 0;
+        obstacle_ar = 1;
       }
       else
       {
-        obstacle_av = 0;
+        obstacle_av = 0; 
+        obstacle_ar = 0;
       }
-      stateCallback();
+      stateChanger();
     }
 
-    void stateCallback()
+    void stateChanger()
     {
       auto stateMsg = interfaces::msg::State();
-      if (manual_button) 
+
+      //idle -> manual 
+      if (current_state == 0 && joy_mode == 1  && !emergency_btn)
       {
-        stateMsg.current_state = 3;
+        current_state = 3;
       }
-      else if (dir_av && obstacle_av)
+
+      //manual -> security
+      else if (current_state == 3 && ((dir_av && obstacle_av) || (dir_ar && obstacle_ar)) && !emergency_btn )
       {
-        stateMsg.current_state = 4;
+        current_state = 4;
       }
-      publisher_state_->publish(stateMsg);
+
+      //security -> manual 
+      else if (current_state == 4 && ((!obstacle_av && !obstacle_ar) || (dir_ar && obstacle_av) || (dir_av && obstacle_ar)) && !emergency_btn )
+      {
+        current_state = 3; 
+      }
+      if (previous_state != current_state)
+      {
+        stateMsg.current_state = current_state;
+        publisher_state_->publish(stateMsg);
+        previous_state = current_state;
+      }
     }
 }; 
 

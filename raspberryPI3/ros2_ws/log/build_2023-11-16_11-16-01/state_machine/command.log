@@ -1,0 +1,2 @@
+Invoking command in '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine -- -j8 -l8
+Invoked command in '/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine' returned '2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/build/state_machine -- -j8 -l8
