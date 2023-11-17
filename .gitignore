@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+# Rep created during compilation 
+raspberryPI3/ros2_ws/log/
+raspberryPI3/ros2_ws/build/
+raspberryPI3/ros2_ws/install/
+
+*.vscode
+
