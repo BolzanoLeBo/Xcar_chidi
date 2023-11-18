@@ -7,6 +7,8 @@
 #include "interfaces/msg/motors_feedback.hpp"
 #include "interfaces/msg/steering_calibration.hpp"
 #include "interfaces/msg/joystick_order.hpp"
+#include "interfaces/msg/obstacles.hpp"
+
 
 #include "std_srvs/srv/empty.hpp"
 
@@ -25,6 +27,7 @@ public:
     : Node("car_control_node")
     {
         start = false;
+        obst = false ;
         mode = 0;
         requestedThrottle = 0;
         requestedSteerAngle = 0;
@@ -38,6 +41,9 @@ public:
 
         subscription_joystick_order_ = this->create_subscription<interfaces::msg::JoystickOrder>(
         "joystick_order", 10, std::bind(&car_control::joystickOrderCallback, this, _1));
+
+        subscription_obstacle_ = this->create_subscription<interfaces::msg::Obstacles>(
+        "obstacles", 10, std::bind(&car_control::obstaclesCallback, this, _1));
 
         subscription_motors_feedback_ = this->create_subscription<interfaces::msg::MotorsFeedback>(
         "motors_feedback", 10, std::bind(&car_control::motorsFeedbackCallback, this, _1));
@@ -67,6 +73,12 @@ private:
     */
     void joystickOrderCallback(const interfaces::msg::JoystickOrder & joyOrder) {
 
+        if (mode == 0 && start){  //if manual mode -> update throttle, angle and reverse from joystick order
+            throttleValue = joyOrder.throttle;
+            angleValue = joyOrder.steer;
+            reverseValue = joyOrder.reverse;
+        }
+
         if (joyOrder.start != start){
             start = joyOrder.start;
 
@@ -90,7 +102,7 @@ private:
             }
         }
         
-        if (mode == 0 && start){  //if manual mode -> update requestedThrottle, requestedSteerAngle and reverse from joystick order
+        if (mode == 0 && start && obst == false){  //if manual mode -> update requestedThrottle, requestedSteerAngle and reverse from joystick order
             requestedThrottle = joyOrder.throttle;
             requestedSteerAngle = joyOrder.steer;
             reverse = joyOrder.reverse;
@@ -115,11 +127,21 @@ private:
     * - requestedThrottle, reverse, requestedSteerAngle [from joystick orders]
     * - currentAngle [from motors feedback]
     */
+
+    void obstaclesCallback(const interfaces::msg::Obstacles & obstaclesorder){
+        if (((obstaclesorder.us_front_detect == 1 && reverseValue == false ) && throttleValue !=0) || (obstaclesorder.us_rear_detect== 1 && (reverseValue) && throttleValue!=0)){
+            obst=true;
+        }
+        else {
+            obst=false;
+        }
+    }
+
     void updateCmd(){
 
         auto motorsOrder = interfaces::msg::MotorsOrder();
 
-        if (!start){    //Car stopped
+        if (!start || obst){    //Car stopped
             leftRearPwmCmd = STOP;
             rightRearPwmCmd = STOP;
             steeringPwmCmd = STOP;
@@ -210,6 +232,7 @@ private:
 
     //General variables
     bool start;
+    bool obst;
     int mode;    //0 : Manual    1 : Auto    2 : Calibration
 
     
@@ -220,6 +243,10 @@ private:
     bool reverse;
     float requestedThrottle;
     float requestedSteerAngle;
+
+    bool reverseValue;
+    float throttleValue;
+    float angleValue;
 
     //Control variables
     uint8_t leftRearPwmCmd;
@@ -232,6 +259,7 @@ private:
 
     //Subscribers
     rclcpp::Subscription<interfaces::msg::JoystickOrder>::SharedPtr subscription_joystick_order_;
+    rclcpp::Subscription<interfaces::msg::Obstacles>::SharedPtr subscription_obstacle_;
     rclcpp::Subscription<interfaces::msg::MotorsFeedback>::SharedPtr subscription_motors_feedback_;
     rclcpp::Subscription<interfaces::msg::SteeringCalibration>::SharedPtr subscription_steering_calibration_;
 
