@@ -27,7 +27,8 @@ public:
     : Node("car_control_node")
     {
         start = false;
-        obst = false ;
+        obstFront = false ;
+        obstRear = false ;
         mode = 0;
         requestedThrottle = 0;
         requestedSteerAngle = 0;
@@ -102,7 +103,7 @@ private:
             }
         }
         
-        if (mode == 0 && start && obst == false){  //if manual mode -> update requestedThrottle, requestedSteerAngle and reverse from joystick order
+        if (mode == 0 && start){  //if manual mode -> update requestedThrottle, requestedSteerAngle and reverse from joystick order
             requestedThrottle = joyOrder.throttle;
             requestedSteerAngle = joyOrder.steer;
             reverse = joyOrder.reverse;
@@ -129,11 +130,17 @@ private:
     */
 
     void obstaclesCallback(const interfaces::msg::Obstacles & obstaclesorder){
-        if (((obstaclesorder.us_front_detect == 1 && reverseValue == false ) && throttleValue !=0) || (obstaclesorder.us_rear_detect== 1 && (reverseValue) && throttleValue!=0)){
-            obst=true;
+        if (obstaclesorder.us_front_detect == 1 ){
+            obstFront=true;
         }
         else {
-            obst=false;
+            obstFront=false;
+        }
+        if (obstaclesorder.us_rear_detect== 1 ) {
+            obstRear=true;
+        }
+        else {
+            obstRear=false;
         }
     }
 
@@ -141,7 +148,13 @@ private:
 
         auto motorsOrder = interfaces::msg::MotorsOrder();
 
-        if (!start || obst){    //Car stopped
+        if (!start){    //Car stopped
+            leftRearPwmCmd = STOP;
+            rightRearPwmCmd = STOP;
+            steeringPwmCmd = STOP;
+        }
+
+        else if (((obstFront && reverseValue == false ) && throttleValue !=0) || (obstRear && (reverseValue) && throttleValue!=0)){
             leftRearPwmCmd = STOP;
             rightRearPwmCmd = STOP;
             steeringPwmCmd = STOP;
@@ -232,7 +245,8 @@ private:
 
     //General variables
     bool start;
-    bool obst;
+    bool obstFront;
+    bool obstRear;
     int mode;    //0 : Manual    1 : Auto    2 : Calibration
 
     
