@@ -36,6 +36,13 @@ def generate_launch_description():
         emulate_tty=True
     )
 
+    us_detection_node = Node(
+        package="us_detection",
+        executable="us_detection_node",
+        emulate_tty=True
+    )
+
+
 
     config_dir = os.path.join(get_package_share_directory('imu_filter_madgwick'), 'config')
 
@@ -68,5 +75,6 @@ def generate_launch_description():
     ld.add_action(imu_filter_madgwick_node)
     ld.add_action(system_check_node)
     ld.add_action(state_machine_node)
+    ld.add_action(us_detection_node)
 
     return ld

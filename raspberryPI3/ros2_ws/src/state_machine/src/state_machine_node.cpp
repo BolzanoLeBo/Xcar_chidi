@@ -8,7 +8,7 @@
 
 //#include "state_machne/srv/StateMemory.hpp"
 #include "interfaces/msg/joystick_order.hpp"
-#include "interfaces/msg/ultrasonic.hpp"
+#include "interfaces/msg/obstacles.hpp"
 #include "interfaces/msg/state.hpp"
 
 
@@ -27,8 +27,8 @@ class state_machine : public rclcpp::Node {
       subscription_joystick_order_ = this->create_subscription<interfaces::msg::JoystickOrder>(
         "joystick_order", 10, std::bind(&state_machine::joyCallback, this, _1));
 
-      subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
-        "us_data", 10, std::bind(&state_machine::usCallback, this, _1));
+      subscription_obstacles_ = this->create_subscription<interfaces::msg::Obstacles>(
+        "us_data", 10, std::bind(&state_machine::obstacleCallback, this, _1));
 
       file_stream_.open("output.txt", std::ios::out);  // open .txt
 
@@ -44,7 +44,8 @@ class state_machine : public rclcpp::Node {
     
     //Subscriber
     rclcpp::Subscription<interfaces::msg::JoystickOrder>::SharedPtr subscription_joystick_order_;
-    rclcpp::Subscription<interfaces::msg::Ultrasonic>::SharedPtr subscription_ultrasonic_sensor_;
+    rclcpp::Subscription<interfaces::msg::Obstacles>::SharedPtr subscription_obstacles_;
+  
 
 
     int joy_mode = 0; 
@@ -54,6 +55,8 @@ class state_machine : public rclcpp::Node {
     int obstacle_ar = 0; 
     int unavoidable = 0;
     int emergency_btn = 0;
+
+    int start = 0; 
 
     int connexion = 0; 
     int sensor = 0;
@@ -83,6 +86,11 @@ class state_machine : public rclcpp::Node {
         emergency_btn = 0; 
       }
       
+      if (joyOrder.start && start == 0)
+      {
+        start = 1; 
+      }
+
       //Direction control 
       if (joyOrder.throttle>0 && !joyOrder.reverse)
       {
@@ -102,16 +110,16 @@ class state_machine : public rclcpp::Node {
       stateChanger();
     }
 
-    void usCallback(const interfaces::msg::Ultrasonic &ultrasonic)
+    void obstacleCallback(const interfaces::msg::Obstacles &obstacle_msg)
     {
       
-      if (ultrasonic.front_center <= 20)
+      if (obstacle_msg.us_front_detect)
       {
         obstacle_av = 1;
         obstacle_ar = 0;
         obstacle = 1;
       }
-      else if (ultrasonic.rear_center <= 20)
+      else if (obstacle_msg.us_rear_detect)
       {
         obstacle_av = 0;
         obstacle_ar = 1;
@@ -130,8 +138,15 @@ class state_machine : public rclcpp::Node {
     {
       auto stateMsg = interfaces::msg::State();
 
+
+      //standby -> manual
+      if (current_state == -1 && start)
+      {
+        current_state = 0; 
+      } 
+
       //idle -> manual 
-      if (current_state == 0 && joy_mode == 1  && !emergency_btn)
+      if (current_state == 0 && joy_mode == 0  && !emergency_btn)
       {
         current_state = 1;
       }
@@ -149,6 +164,8 @@ class state_machine : public rclcpp::Node {
       }
       if (previous_state != current_state)
       {
+        RCLCPP_INFO(this->get_logger(), "Switching to another state");
+        RCLCPP_INFO(this->get_logger(), state_names[current_state].data());
         stateMsg.current_state = current_state;
         stateMsg.state_name = state_names[current_state];
         stateMsg.obstacle_detect = obstacle_detect[obstacle];
