@@ -103,22 +103,33 @@ private:
         axisLS_X = -axisLS_X;   //axisLS_X : 1 .. -1  ;  steering_angle : -1 .. 1
         axisRT = (1.0-axisRT)/2.0;  //axisRT : 1 .. -1  ;  throttle : 0 .. 1
         axisLT = (1.0-axisLT)/2.0;  //axisLT : 1 .. -1  ;  throttle : 0 .. 1
-
-
-        //Select mode (0 : manual ; 1 : autonomous ; 2 : steering calibration)
-        if (mode == 2) //Exit steering calibration mode after request has been sent
-            mode = -1;
         
 
-        if (buttonA || buttonY || buttonDpadBottom){
+        if (buttonA || buttonY || buttonStart || buttonDpadBottom || buttonB ){
 
-            if (buttonY)
-                mode = 0;
-            else if (buttonA)
+            if (buttonY && mode == 0) {
                 mode = 1;
-            else if (buttonDpadBottom && buttonStart){
+                start=true;
+            }
+
+            else if (buttonA && mode ==0) {
                 mode = 2;
+                start=true;
+            }
+
+            else if (buttonDpadBottom && (mode ==1 || mode ==2)) {
+                mode = 0;
+                start=false;
+            }
+
+            else if (buttonStart && mode == 3){
+                mode = 0;
                 start = false;
+            }
+            // ------ Start and Stop ------
+            else if (buttonB){       // B button -> Stop the car
+                start = false;
+                mode = 3;
             }
         }
 
@@ -131,15 +142,6 @@ private:
         }
         else
             systemCheckPrintRequest = false;
-
-
-        // ------ Start and Stop ------
-        if (buttonB){       // B button -> Stop the car
-            start = false;
-
-        }else if (buttonStart && mode !=2){   // Start button -> Start the car    
-            start = true;
-        }
 
 
         // ------ Propulsion ------

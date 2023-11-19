@@ -74,7 +74,7 @@ private:
     */
     void joystickOrderCallback(const interfaces::msg::JoystickOrder & joyOrder) {
 
-        if (mode == 0 && start){  //if manual mode -> update throttle, angle and reverse from joystick order
+        if (mode == 1 && start){  //if manual mode -> update throttle, angle and reverse from joystick order
             throttleValue = joyOrder.throttle;
             angleValue = joyOrder.steer;
             reverseValue = joyOrder.reverse;
@@ -93,17 +93,20 @@ private:
         if (joyOrder.mode != mode && joyOrder.mode != -1){ //if mode change
             mode = joyOrder.mode;
 
-            if (mode==0){
-                RCLCPP_INFO(this->get_logger(), "Switching to MANUAL Mode");
-            }else if (mode==1){
-                RCLCPP_INFO(this->get_logger(), "Switching to AUTONOMOUS Mode");
+            if (mode==1){
+                RCLCPP_INFO(this->get_logger(), "Switching to MANUAL Mode !");
             }else if (mode==2){
-                RCLCPP_INFO(this->get_logger(), "Switching to STEERING CALIBRATION Mode");
-                startSteeringCalibration();
+                RCLCPP_INFO(this->get_logger(), "Switching to AUTONOMOUS Mode");
+            }else if (mode==4){
+                RCLCPP_INFO(this->get_logger(), "Switching to SECURITY Mode because obstacle detected");
+            }else if (mode==0){
+                RCLCPP_INFO(this->get_logger(), "Switching to IDLE Mode");
+            }else if (mode==3){
+                RCLCPP_INFO(this->get_logger(), "Switching to EMERGENCY STOP Mode");
             }
         }
         
-        if (mode == 0 && start){  //if manual mode -> update requestedThrottle, requestedSteerAngle and reverse from joystick order
+        if (mode == 1 && start){  //if manual mode -> update requestedThrottle, requestedSteerAngle and reverse from joystick order
             requestedThrottle = joyOrder.throttle;
             requestedSteerAngle = joyOrder.steer;
             reverse = joyOrder.reverse;
@@ -158,12 +161,13 @@ private:
             leftRearPwmCmd = STOP;
             rightRearPwmCmd = STOP;
             steeringPwmCmd = STOP;
+            mode = 4;
 
 
         }else{ //Car started
 
             //Manual Mode
-            if (mode==0){
+            if (mode==1){
                 
                 manualPropulsionCmd(requestedThrottle, reverse, leftRearPwmCmd,rightRearPwmCmd);
 
@@ -171,7 +175,7 @@ private:
 
 
             //Autonomous Mode
-            } else if (mode==1){
+            } else if (mode==2){
                 //...
             }
         }
