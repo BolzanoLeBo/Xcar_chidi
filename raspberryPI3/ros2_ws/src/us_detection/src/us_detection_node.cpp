@@ -8,7 +8,7 @@
 
 #include "interfaces/msg/ultrasonic.hpp"
 #include "interfaces/msg/obstacles.hpp"
-
+#define LIM 70
 
 #include "../include/us_detection/us_detection_node.h"
 
@@ -56,15 +56,15 @@ class us_detection : public rclcpp::Node {
         nb_warning = 0;
         obstacleMsg.us_error = 0;
         // Message of obstacle if there is one in front of the car at less than 75 cm
-        if ((ultrasonic.front_center <= 70)){
+        if ((ultrasonic.front_center <= LIM)){
         obstacleMsg.us_front_detect = 1;
         } 
         // Message of obstacle if there is one in at the left of the car at less than 20 cm
-        else if((ultrasonic.front_left <= 70)){
+        else if((ultrasonic.front_left <= LIM)){
           obstacleMsg.us_front_detect = 1;
         } 
         // Message of obstacle if there is one in at the right of the car at less than 20 cm
-        else if((ultrasonic.front_right <= 70)){
+        else if((ultrasonic.front_right <= LIM)){
           obstacleMsg.us_front_detect = 1; 
         }
         // No message of obstacle if none of those cases
@@ -72,15 +72,15 @@ class us_detection : public rclcpp::Node {
           obstacleMsg.us_front_detect = 0;
         }
 
-        if ((ultrasonic.rear_center <= 70)){
+        if ((ultrasonic.rear_center <= LIM)){
           obstacleMsg.us_rear_detect = 1;
         } 
         // Message of obstacle if there is one in at the left of the car at less than 20 cm
-        else if((ultrasonic.rear_left <= 70)){
+        else if((ultrasonic.rear_left <= LIM)){
           obstacleMsg.us_rear_detect = 1;
         } 
         // Message of obstacle if there is one in at the right of the car at less than 20 cm
-        else if((ultrasonic.rear_right <= 70)){
+        else if((ultrasonic.rear_right <= LIM)){
           obstacleMsg.us_rear_detect = 1; 
         }
         // No message of obstacle if none of those cases

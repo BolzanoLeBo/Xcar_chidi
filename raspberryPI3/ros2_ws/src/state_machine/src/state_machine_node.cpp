@@ -28,9 +28,11 @@ class state_machine : public rclcpp::Node {
         "joystick_order", 10, std::bind(&state_machine::joyCallback, this, _1));
 
       subscription_obstacles_ = this->create_subscription<interfaces::msg::Obstacles>(
-        "us_data", 10, std::bind(&state_machine::obstacleCallback, this, _1));
+        "obstacles", 10, std::bind(&state_machine::obstacleCallback, this, _1));
 
-      file_stream_.open("output.txt", std::ios::out);  // open .txt
+      //timer_ = this->create_wall_timer(1ms, std::bind(&state_machine::stateChanger, this));
+
+      //file_stream_.open("output.txt", std::ios::out);  // open .txt
 
       /*service_state_memory_ = this->create_service<state_machine::srv::StateMemory>(
         "state_service", std::bind(&state_machine::stateChanger, this, std::placeholders::_1, std::placeholders::_2));*/
@@ -61,6 +63,9 @@ class state_machine : public rclcpp::Node {
     int connexion = 0; 
     int sensor = 0;
 
+    //rclcpp::TimerBase::SharedPtr timer_;
+
+
     std::string state_names[5] = {"idle", "Manual", "Autonomous", "Tracking", "Security"};
     std::string obstacle_detect[2] = {"No obstacle", "Obstacle on the way"};
     int previous_state = -1; 
@@ -68,72 +73,13 @@ class state_machine : public rclcpp::Node {
     
     int obstacle = 0;
 
-    std::ofstream file_stream_;
+    //std::ofstream file_stream_;
 
     //Service
     //rclcpp::Service<state_machine::srv::StateMemory>::SharedPtr service_state_memory_;
-
-    void joyCallback( const interfaces::msg::JoystickOrder &joyOrder)
-    {
-      
-      joy_mode = joyOrder.mode;
-      start = joyOrder.start;
-      if (joy_mode == 3 && start == 0) 
-      {
-        emergency_btn = 0;
-      }
-      else
-      {
-        emergency_btn = 1; 
-      }
-
-      //Direction control 
-      if (joyOrder.throttle>0 && !joyOrder.reverse)
-      {
-        dir_av = 1; 
-        dir_ar = 0;
-      }
-      else if (joyOrder.throttle>0 && joyOrder.reverse)
-      {
-        dir_av = 0;
-        dir_ar = 1;
-      }
-      else 
-      {
-        dir_av = 0; 
-        dir_ar = 0;
-      }
-      stateChanger();
-    }
-
-    void obstacleCallback(const interfaces::msg::Obstacles &obstacle_msg)
-    {
-      
-      if (obstacle_msg.us_front_detect)
-      {
-        obstacle_av = 1;
-        obstacle_ar = 0;
-        obstacle = 1;
-      }
-      else if (obstacle_msg.us_rear_detect)
-      {
-        obstacle_av = 0;
-        obstacle_ar = 1;
-        obstacle = 1;
-      }
-      else
-      {
-        obstacle_av = 0; 
-        obstacle_ar = 0;
-        obstacle = 0;
-      }
-      stateChanger();
-    }
-
     void stateChanger()
     {
       auto stateMsg = interfaces::msg::State();
-
       //emergency stop
       //emergency btn is inversed in case of a shutdown 
       if (!emergency_btn)
@@ -175,14 +121,14 @@ class state_machine : public rclcpp::Node {
           }
 
           // -> security
-          else if (((dir_av && obstacle_av) || (dir_ar && obstacle_ar)))
+          else if ((dir_av && obstacle_av) || (dir_ar && obstacle_ar))
           {
             current_state = 4;
           }
         }
 
         //autonomous -> ? 
-        if (current_state == 2)
+        else if (current_state == 2)
         {
           // -> idle
           if (joy_mode == 0)
@@ -193,31 +139,91 @@ class state_machine : public rclcpp::Node {
 
 
         //security -> manual 
-        else if (current_state == 4 && ((!obstacle_av && !obstacle_ar) || (dir_ar && obstacle_av) || (dir_av && obstacle_ar)) )
+        else if (current_state == 4 && !(dir_ar && obstacle_ar) && !(dir_av && obstacle_av) && 
+                ((!obstacle_av && !obstacle_ar) || (dir_ar && obstacle_av) || (dir_av && obstacle_ar)))
         {
           current_state = 1; 
         }
 
       }
-
-
-      //-------------------------------STATE CHANGE------------------------------------------------
+          //-------------------------------STATE CHANGE------------------------------------------------
       if (previous_state != current_state)
       {
-        RCLCPP_INFO(this->get_logger(),("From : "  + state_names[previous_state] + "Switching to another state : " + state_names[current_state]).data());
-        RCLCPP_INFO(this->get_logger(), ("change because obstacle ? " + obstacle_detect[obstacle]).data());
+
         stateMsg.current_state = current_state;
         stateMsg.state_name = state_names[current_state];
         stateMsg.obstacle_detect = obstacle_detect[obstacle];
-
         publisher_state_->publish(stateMsg);
+        previous_state = current_state;
+        RCLCPP_INFO(this->get_logger(),("From : "  + state_names[previous_state] + "Switching to another state : " + state_names[current_state]).data());
+        RCLCPP_INFO(this->get_logger(), ("change because obstacle ? " + obstacle_detect[obstacle]).data());
+        
 
         // Save file
-        file_stream_ << "\n\nMode: " << state_names[current_state] << ", Obstacle: " << obstacle_detect[obstacle] << "\n\n" << std::endl;
+        //file_stream_ << "\n\nMode: " << state_names[current_state] << ", Obstacle: " << obstacle_detect[obstacle] << "\n\n" << std::endl;
         
-        previous_state = current_state;
+        
       }
     }
+
+    void joyCallback( const interfaces::msg::JoystickOrder &joyOrder)
+    {
+      
+      joy_mode = joyOrder.mode;
+      start = joyOrder.start;
+      if (joy_mode == 3 && start == 0) 
+      {
+        emergency_btn = 0;
+      }
+      else
+      {
+        emergency_btn = 1; 
+      }
+
+      //Direction control 
+      if (joyOrder.throttle>0 && !joyOrder.reverse)
+      {
+        dir_av = 1; 
+        dir_ar = 0;
+      }
+      else if (joyOrder.throttle>0 && joyOrder.reverse)
+      {
+        dir_av = 0;
+        dir_ar = 1;
+      }
+      else 
+      {
+        dir_av = 0; 
+        dir_ar = 0;
+      }
+      stateChanger();
+    }
+
+    void obstacleCallback(const interfaces::msg::Obstacles &obstacle_msg)
+    {
+      
+      if (obstacle_msg.us_front_detect)
+      {
+        obstacle_av = 1;
+        obstacle = 1;
+      }
+      if (obstacle_msg.us_rear_detect)
+      {
+        obstacle_ar = 1;
+        obstacle = 1;
+      }
+      if (!obstacle_msg.us_rear_detect && !obstacle_msg.us_front_detect)
+      {
+        obstacle_av = 0; 
+        obstacle_ar = 0;
+        obstacle = 0;
+      }
+      stateChanger();
+    }
+
+
+
+
 }; 
 
 int main(int argc, char * argv[])

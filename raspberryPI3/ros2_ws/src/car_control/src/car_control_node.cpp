@@ -70,9 +70,14 @@ private:
     * 
     */
     void joystickOrderCallback(const interfaces::msg::JoystickOrder & joyOrder) {
+
         throttleValue = joyOrder.throttle;
         angleValue = joyOrder.steer;
         reverseValue = joyOrder.reverse;
+
+        requestedThrottle = joyOrder.throttle;
+        requestedSteerAngle = joyOrder.steer;
+        reverse = joyOrder.reverse;
         /*if (mode == 0 && start){  //if manual mode -> update throttle, angle and reverse from joystick order
             throttleValue = joyOrder.throttle;
             angleValue = joyOrder.steer;
@@ -132,13 +137,12 @@ private:
     */
 
     void stateCallback(const interfaces::msg::State & state_msg){
-        state = state_msg.current_state;   
+        state = state_msg.current_state;  
     }
 
     void updateCmd(){
 
         auto motorsOrder = interfaces::msg::MotorsOrder();
-
         //emergency idle or security
         if (state == -1 or state == 0 or state == 4){    //Car stopped
             leftRearPwmCmd = STOP;
