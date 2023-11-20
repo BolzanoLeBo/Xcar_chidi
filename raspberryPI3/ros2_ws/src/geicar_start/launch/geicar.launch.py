@@ -42,8 +42,6 @@ def generate_launch_description():
         emulate_tty=True
     )
 
-
-
     config_dir = os.path.join(get_package_share_directory('imu_filter_madgwick'), 'config')
 
     imu_filter_madgwick_node = Node(

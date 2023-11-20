@@ -7,7 +7,7 @@
 #include "interfaces/msg/motors_feedback.hpp"
 #include "interfaces/msg/steering_calibration.hpp"
 #include "interfaces/msg/joystick_order.hpp"
-#include "interfaces/msg/obstacles.hpp"
+#include "interfaces/msg/state.hpp"
 
 
 #include "std_srvs/srv/empty.hpp"
@@ -26,14 +26,9 @@ public:
     car_control()
     : Node("car_control_node")
     {
-        start = false;
-        obstFront = false ;
-        obstRear = false ;
-        mode = 0;
         requestedThrottle = 0;
         requestedSteerAngle = 0;
 
-        current_state = -1;
     
 
         publisher_can_= this->create_publisher<interfaces::msg::MotorsOrder>("motors_order", 10);
@@ -45,20 +40,20 @@ public:
         subscription_joystick_order_ = this->create_subscription<interfaces::msg::JoystickOrder>(
         "joystick_order", 10, std::bind(&car_control::joystickOrderCallback, this, _1));
 
-        subscription_state_machine_ = this->create_subscription<interfaces::msg::State>(
-        "obstacles", 10, std::bind(&car_control::stateCallback, this, _1));
+        subscription_state_ = this->create_subscription<interfaces::msg::State>(
+        "state", 10, std::bind(&car_control::stateCallback, this, _1));
 
         subscription_motors_feedback_ = this->create_subscription<interfaces::msg::MotorsFeedback>(
         "motors_feedback", 10, std::bind(&car_control::motorsFeedbackCallback, this, _1));
 
-        subscription_steering_calibration_ = this->create_subscription<interfaces::msg::SteeringCalibration>(
-        "steering_calibration", 10, std::bind(&car_control::steeringCalibrationCallback, this, _1));
+        /*subscription_steering_calibration_ = this->create_subscription<interfaces::msg::SteeringCalibration>(
+        "steering_calibration", 10, std::bind(&car_control::steeringCalibrationCallback, this, _1));*/
 
 
         
 
-        server_calibration_ = this->create_service<std_srvs::srv::Empty>(
-                            "steering_calibration", std::bind(&car_control::steeringCalibration, this, std::placeholders::_1, std::placeholders::_2));
+        /*server_calibration_ = this->create_service<std_srvs::srv::Empty>(
+            "steering_calibration", std::bind(&car_control::steeringCalibration, this, std::placeholders::_1, std::placeholders::_2));*/
 
         timer_ = this->create_wall_timer(PERIOD_UPDATE_CMD, std::bind(&car_control::updateCmd, this));
 
@@ -97,17 +92,20 @@ private:
         if (joyOrder.mode != mode && joyOrder.mode != -1){ //if mode change
             mode = joyOrder.mode;
 
-            if (mode==0){
-                RCLCPP_INFO(this->get_logger(), "Switching to MANUAL Mode");
-            }else if (mode==1){
-                RCLCPP_INFO(this->get_logger(), "Switching to AUTONOMOUS Mode");
+            if (mode==1){
+                RCLCPP_INFO(this->get_logger(), "Switching to MANUAL Mode !");
             }else if (mode==2){
-                RCLCPP_INFO(this->get_logger(), "Switching to STEERING CALIBRATION Mode");
-                startSteeringCalibration();
+                RCLCPP_INFO(this->get_logger(), "Switching to AUTONOMOUS Mode");
+            }else if (mode==4){
+                RCLCPP_INFO(this->get_logger(), "Switching to SECURITY Mode because obstacle detected");
+            }else if (mode==0){
+                RCLCPP_INFO(this->get_logger(), "Switching to IDLE Mode");
+            }else if (mode==3){
+                RCLCPP_INFO(this->get_logger(), "Switching to EMERGENCY STOP Mode");
             }
         }
         
-        if (mode == 0 && start){  //if manual mode -> update requestedThrottle, requestedSteerAngle and reverse from joystick order
+        if (mode == 1 && start){  //if manual mode -> update requestedThrottle, requestedSteerAngle and reverse from joystick order
             requestedThrottle = joyOrder.throttle;
             requestedSteerAngle = joyOrder.steer;
             reverse = joyOrder.reverse;
@@ -141,17 +139,16 @@ private:
 
         auto motorsOrder = interfaces::msg::MotorsOrder();
 
+        //emergency idle or security
         if (state == -1 or state == 0 or state == 4){    //Car stopped
             leftRearPwmCmd = STOP;
             rightRearPwmCmd = STOP;
             steeringPwmCmd = STOP;
         }
-
-
-        }else{ //Car started
+        else{ //Car started
 
             //Manual Mode
-            if (state == 3){
+            if (state == 1){
                 
                 manualPropulsionCmd(requestedThrottle, reverse, leftRearPwmCmd,rightRearPwmCmd);
 
@@ -159,12 +156,11 @@ private:
 
 
             //Autonomous Mode
-            } else if (state==5){
+            } 
+            else if (state==2){
                 //...
             }
         }
-
-
         //Send order to motors
         motorsOrder.left_rear_pwm = leftRearPwmCmd;
         motorsOrder.right_rear_pwm = rightRearPwmCmd;
@@ -178,35 +174,36 @@ private:
     *
     * Publish a calibration request on the "/steering_calibration" topic
     */
-    void startSteeringCalibration(){
+   
+    /*void startSteeringCalibration(){
 
         auto calibrationMsg = interfaces::msg::SteeringCalibration();
         calibrationMsg.request = true;
 
         RCLCPP_INFO(this->get_logger(), "Sending calibration request .....");
         publisher_steeringCalibration_->publish(calibrationMsg);
-    }
+    }*/
 
 
     /* Function called by "steering_calibration" service
     * 1. Switch to calibration mode
     * 2. Call startSteeringCalibration function
     */
-    void steeringCalibration([[maybe_unused]] std_srvs::srv::Empty::Request::SharedPtr req,
+    /*void steeringCalibration([[maybe_unused]] std_srvs::srv::Empty::Request::SharedPtr req,
                             [[maybe_unused]] std_srvs::srv::Empty::Response::SharedPtr res)
     {
 
         mode = 2;    //Switch to calibration mode
         RCLCPP_WARN(this->get_logger(), "Switching to STEERING CALIBRATION Mode");
         startSteeringCalibration();
-    }
+    }*/
     
 
     /* Manage steering calibration process [callback function]  :
     *
     * This function is called when a message is published on the "/steering_calibration" topic
     */
-    void steeringCalibrationCallback (const interfaces::msg::SteeringCalibration & calibrationMsg){
+    /*void steeringCalibrationCallback (const interfaces::msg::SteeringCalibration & calibrationMsg){
 
         if (calibrationMsg.in_progress == true && calibrationMsg.user_need == false){
         RCLCPP_INFO(this->get_logger(), "Steering Calibration in progress, please wait ....");
@@ -217,26 +214,17 @@ private:
         } else if (calibrationMsg.status == 1){
             RCLCPP_INFO(this->get_logger(), "Steering calibration [SUCCESS]");
             RCLCPP_INFO(this->get_logger(), "Switching to MANUAL Mode");
-            mode = 0;    //Switch to manual mode
-            start = false;  //Stop car
         
         } else if (calibrationMsg.status == -1){
             RCLCPP_ERROR(this->get_logger(), "Steering calibration [FAILED]");
             RCLCPP_INFO(this->get_logger(), "Switching to MANUAL Mode");
-            mode = 0;    //Switch to manual mode
-            start = false;  //Stop car
         }
     
-    }
+    }*/
     
     // ---- Private variables ----
 
-    //General variables
-    bool start;
-    bool obstFront;
-    bool obstRear;
-    int mode;    //0 : Manual    1 : Auto    2 : Calibration
-
+    int state = -1;
     
     //Motors feedback variables
     float currentAngle;
@@ -261,9 +249,9 @@ private:
 
     //Subscribers
     rclcpp::Subscription<interfaces::msg::JoystickOrder>::SharedPtr subscription_joystick_order_;
-    rclcpp::Subscription<interfaces::msg::Obstacles>::SharedPtr subscription_obstacle_;
     rclcpp::Subscription<interfaces::msg::MotorsFeedback>::SharedPtr subscription_motors_feedback_;
     rclcpp::Subscription<interfaces::msg::SteeringCalibration>::SharedPtr subscription_steering_calibration_;
+    rclcpp::Subscription<interfaces::msg::State>::SharedPtr subscription_state_;
 
     //Timer
     rclcpp::TimerBase::SharedPtr timer_;

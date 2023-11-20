@@ -77,18 +77,14 @@ class state_machine : public rclcpp::Node {
     {
       
       joy_mode = joyOrder.mode;
-      if (joy_mode == 3) 
+      start = joyOrder.start;
+      if (joy_mode == 3 && start == 0) 
       {
-        emergency_btn = 1;
+        emergency_btn = 0;
       }
       else
       {
-        emergency_btn = 0; 
-      }
-      
-      if (joyOrder.start && start == 0)
-      {
-        start = 1; 
+        emergency_btn = 1; 
       }
 
       //Direction control 
@@ -138,34 +134,78 @@ class state_machine : public rclcpp::Node {
     {
       auto stateMsg = interfaces::msg::State();
 
-
-      //standby -> manual
-      if (current_state == -1 && start)
+      //emergency stop
+      //emergency btn is inversed in case of a shutdown 
+      if (!emergency_btn)
       {
-        current_state = 0; 
-      } 
-
-      //idle -> manual 
-      if (current_state == 0 && joy_mode == 0  && !emergency_btn)
-      {
-        current_state = 1;
+        current_state = -1; 
       }
 
-      //manual -> security
-      else if (current_state == 1 && ((dir_av && obstacle_av) || (dir_ar && obstacle_ar)) && !emergency_btn )
+      // not emergency 
+      else 
       {
-        current_state = 4;
+        //emergency stop -> idle
+        if (current_state == -1 && joy_mode == 0)
+        {
+          current_state = 0; 
+        }
+
+        //idle -> ?
+        else if (current_state == 0)
+        {
+          // -> manual 
+          if (joy_mode == 1)
+          {
+            current_state = 1;
+          }
+          // -> autonomous 
+          else if (joy_mode == 2)
+          {
+            current_state = 2;
+          }
+        }
+
+        //manual -> ? 
+        else if (current_state == 1) 
+        {
+          // -> idle
+          if (joy_mode == 0)
+          {
+            current_state = 0;
+          }
+
+          // -> security
+          else if (((dir_av && obstacle_av) || (dir_ar && obstacle_ar)))
+          {
+            current_state = 4;
+          }
+        }
+
+        //autonomous -> ? 
+        if (current_state == 2)
+        {
+          // -> idle
+          if (joy_mode == 0)
+          {
+            current_state = 0;
+          }
+        }
+
+
+        //security -> manual 
+        else if (current_state == 4 && ((!obstacle_av && !obstacle_ar) || (dir_ar && obstacle_av) || (dir_av && obstacle_ar)) )
+        {
+          current_state = 1; 
+        }
+
       }
 
-      //security -> manual 
-      else if (current_state == 4 && ((!obstacle_av && !obstacle_ar) || (dir_ar && obstacle_av) || (dir_av && obstacle_ar)) && !emergency_btn )
-      {
-        current_state = 1; 
-      }
+
+      //-------------------------------STATE CHANGE------------------------------------------------
       if (previous_state != current_state)
       {
-        RCLCPP_INFO(this->get_logger(), "Switching to another state");
-        RCLCPP_INFO(this->get_logger(), state_names[current_state].data());
+        RCLCPP_INFO(this->get_logger(),("From : "  + state_names[previous_state] + "Switching to another state : " + state_names[current_state]).data());
+        RCLCPP_INFO(this->get_logger(), ("change because obstacle ? " + obstacle_detect[obstacle]).data());
         stateMsg.current_state = current_state;
         stateMsg.state_name = state_names[current_state];
         stateMsg.obstacle_detect = obstacle_detect[obstacle];
