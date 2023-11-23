@@ -1,4 +1,0 @@
-source;share/state_machine/local_setup.bash
-source;share/state_machine/local_setup.dsv
-source;share/state_machine/local_setup.sh
-source;share/state_machine/local_setup.zsh

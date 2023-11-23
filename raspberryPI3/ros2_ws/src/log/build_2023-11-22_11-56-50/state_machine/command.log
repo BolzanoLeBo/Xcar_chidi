@@ -1,6 +1,0 @@
-Invoking command in '/home/pi/ros2_ws/src/build/state_machine': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/pi/ros2_ws/src/state_machine -DCMAKE_INSTALL_PREFIX=/home/pi/ros2_ws/src/install/state_machine
-Invoked command in '/home/pi/ros2_ws/src/build/state_machine' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/pi/ros2_ws/src/state_machine -DCMAKE_INSTALL_PREFIX=/home/pi/ros2_ws/src/install/state_machine
-Invoking command in '/home/pi/ros2_ws/src/build/state_machine': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/pi/ros2_ws/src/build/state_machine -- -j4 -l4
-Invoked command in '/home/pi/ros2_ws/src/build/state_machine' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/pi/ros2_ws/src/build/state_machine -- -j4 -l4
-Invoking command in '/home/pi/ros2_ws/src/build/state_machine': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/pi/ros2_ws/src/build/state_machine
-Invoked command in '/home/pi/ros2_ws/src/build/state_machine' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/pi/ros2_ws/src/build/state_machine

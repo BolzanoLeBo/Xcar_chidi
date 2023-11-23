@@ -144,7 +144,7 @@ private:
 
         auto motorsOrder = interfaces::msg::MotorsOrder();
         //emergency idle or security
-        if (state == -1 or state == 0 or state == 4){    //Car stopped
+        if (state == 5 or state == 0 or state == 4){    //Car stopped
             leftRearPwmCmd = STOP;
             rightRearPwmCmd = STOP;
             steeringPwmCmd = STOP;
@@ -228,7 +228,7 @@ private:
     
     // ---- Private variables ----
 
-    int state = -1;
+    int state = 0;
     
     //Motors feedback variables
     float currentAngle;
