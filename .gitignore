@@ -31,18 +31,10 @@
 *.out
 *.app
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/SCRUM-22-Integrate-obstacle-on-the-car
 # Rep created during compilation 
 raspberryPI3/ros2_ws/log/
 raspberryPI3/ros2_ws/build/
 raspberryPI3/ros2_ws/install/
 
-<<<<<<< HEAD
-*.vscode
-=======
 *.vscode
 
->>>>>>> origin/SCRUM-22-Integrate-obstacle-on-the-car
