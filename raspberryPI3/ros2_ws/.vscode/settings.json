@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "functional": "cpp"
+    },
+    "cmake.sourceDirectory": "/home/loic/Desktop/Xcar_chidi/raspberryPI3/ros2_ws/src/state_machine"
+}
