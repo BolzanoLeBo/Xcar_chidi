@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contrôle de la voiture</title>
+  <!-- Ajoutez des styles CSS si nécessaire -->
+</head>
+<body>
+  <h1>Choisissez le mode</h1>
+  <button onclick="selectMode('manuel')">Mode Manuel</button>
+  <button onclick="selectMode('autonome')">Mode Autonome</button>
+  <button onclick="selectMode('tracking')">Mode Tracking</button>
+
+  <script>
+    function selectMode(mode) {
+      // Envoyer la commande au backend Flask via une requête POST
+      fetch('/select_mode', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'mode=' + mode,
+      })
+      .then(response => response.text())
+      .then(data => {
+        // Traiter la réponse du serveur (si nécessaire)
+        console.log(data);
+      })
+      .catch(error => {
+        console.error('Erreur lors de l\'envoi de la requête:', error);
+      });
+    }
+  </script>
+  </script>
+</body>
+</html>
