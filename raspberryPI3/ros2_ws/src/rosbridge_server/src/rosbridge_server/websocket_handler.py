@@ -128,6 +128,14 @@ class RosbridgeWebSocket(WebSocketHandler):
     @log_exceptions
     def open(self):
         cls = self.__class__
+
+        if cls.clients_connected >= 1:
+            self.node_handle.get_logger().warn(
+                "Connection refused. Only one client is allowed at a time."
+            )
+            self.close()  # Close the connection
+            return
+
         parameters = {
             "fragment_timeout": cls.fragment_timeout,
             "delay_between_messages": cls.delay_between_messages,
@@ -136,9 +144,10 @@ class RosbridgeWebSocket(WebSocketHandler):
             "bson_only_mode": cls.bson_only_mode,
         }
         try:
-            self.client_id = uuid.uuid4()
+            client_id = uuid.uuid4()
+            self.client_id = client_id  # Store client_id as an attribute
             self.protocol = RosbridgeProtocol(
-                self.client_id, cls.node_handle, parameters=parameters
+                client_id, cls.node_handle, parameters=parameters
             )
             self.incoming_queue = IncomingQueue(self.protocol)
             self.incoming_queue.start()
@@ -146,7 +155,7 @@ class RosbridgeWebSocket(WebSocketHandler):
             self.set_nodelay(True)
             cls.clients_connected += 1
             if cls.client_manager:
-                cls.client_manager.add_client(self.client_id, self.request.remote_ip)
+                cls.client_manager.add_client(client_id, self.request.remote_ip)
         except Exception as exc:
             cls.node_handle.get_logger().error(
                 f"Unable to accept incoming connection.  Reason: {exc}"
@@ -165,13 +174,21 @@ class RosbridgeWebSocket(WebSocketHandler):
     @log_exceptions
     def on_close(self):
         cls = self.__class__
-        cls.clients_connected -= 1
-        if cls.client_manager:
-            cls.client_manager.remove_client(self.client_id, self.request.remote_ip)
-        cls.node_handle.get_logger().info(
-            f"Client disconnected. {cls.clients_connected} clients total."
-        )
-        self.incoming_queue.finish()
+        client_id = getattr(self, 'client_id', None)  # Access client_id attribute
+
+        # Check if the connection was refused before updating the count
+        if client_id:
+            if cls.client_manager:
+                cls.client_manager.remove_client(client_id, self.request.remote_ip)
+
+            # Check if incoming_queue is defined before trying to finish it
+            if hasattr(self, 'incoming_queue') and self.incoming_queue:
+                self.incoming_queue.finish()
+
+            cls.clients_connected -= 1
+            cls.node_handle.get_logger().info(
+                f"Client disconnected. {cls.clients_connected} clients total."
+            )
 
     def send_message(self, message, compression="none"):
         if isinstance(message, bson.BSON):
