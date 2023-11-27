@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="./images/icon.png">
+    <title>X-Car</title>
+    <style>
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.2;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .blinking {
+            animation: blink 1.5s infinite;
+        }
+    </style>
+</head>
+<body style="background-image: url('./images/principal_background.png');">
+
+    <div class="container">
+        <h1 class="larger-text">X-Car</h1>
+        <h2 class="blinking">Manual Mode ON</h2>
+        <h2><em class="italic-text">Please take the joystick to use the vehicle.</em></h2>
+        <img src="./images/joystick.png" alt="Joystick Image" class="controller-image">
+        <div class="button-container">
+            <button onclick="redirectTo('home.html')">Return</button>
+        </div>
+    </div>
+
+    <script>
+        var x = 1;
+
+        if (x === 1) {
+            showObstacleAlert();
+        }
+
+        function showObstacleAlert() {
+            alert("Object Detected!");
+        }
+
+        function redirectTo(page) {
+            window.location.href = page;
+        }
+    </script>
+
+</body>
+</html>

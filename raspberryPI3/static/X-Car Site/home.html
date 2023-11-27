@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="./images/icon.png">
+    <title>X-Car</title>
+</head>
+<body style="background-image: url('./images/principal_background.png');">
+
+    <div class="container">
+        <h1 class="larger-text">X-Car</h1>
+        <h2><em class="italic-text">"Intelligent vehicle designed to support the INSA community."</em></h2>
+        <div class="button-container">
+            <button onclick="redirectTo('manual.html')">Manual Mode</button>
+            <button onclick="redirectTo('tracking.html')">Tracking Mode</button>
+            <button onclick="redirectTo('autonomous.html')">Autonomous Mode</button>
+            <button class="logout-b" onclick="redirectTo('index.html')">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        function redirectTo(page) {
+            window.location.href = page;
+        }
+    </script>
+
+</body>
+</html>
