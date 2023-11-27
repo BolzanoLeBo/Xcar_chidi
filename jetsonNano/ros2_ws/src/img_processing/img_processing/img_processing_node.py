@@ -41,7 +41,7 @@ def main(args=None):
     # Destroy the node explicitly
     # (optional - otherwise it will be done automatically
     # when the garbage collector destroys the node object)
-    joystick_ros2.destroy_node()
+    img_processing.destroy_node()
     rclpy.shutdown()
 
 
