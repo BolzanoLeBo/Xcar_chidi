@@ -127,8 +127,11 @@ private:
 
             //Tracking Mode
             else if (state==2){
-
+                RCLCPP_INFO(this->get_logger(), ("AUTONOMOUS MODE : state= " + state).data());
+                RCLCPP_INFO(this->get_logger(), ("DISTANCE = " + currentLeftDistance).data());
                 compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
+                RCLCPP_INFO(this->get_logger(), ("PWM COMMAND LEFT = " + leftRearPwmCmd).data());
+                RCLCPP_INFO(this->get_logger(), ("PWM COMMAND RIGHT = " + rightRearPwmCmd).data());
                 steeringPwmCmd = 50;
                 reinit = 0;
 
