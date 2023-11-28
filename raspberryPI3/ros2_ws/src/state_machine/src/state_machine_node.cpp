@@ -211,7 +211,7 @@ class state_machine : public rclcpp::Node {
     void obstacleCallback(const interfaces::msg::Obstacles &obstacle_msg)
     {
       
-      if (obstacle_msg.us_front_detect)
+      if (obstacle_msg.us_front_detect || obstacle_msg.lidar_front_detect)
       {
         obstacle_av = 1;
         obstacle = 1;
@@ -219,7 +219,7 @@ class state_machine : public rclcpp::Node {
       else {
         obstacle_av = 0 ;
       }
-      if (obstacle_msg.us_rear_detect)
+      if (obstacle_msg.us_rear_detect || obstacle_msg.lidar_rear_detect)
       {
         obstacle_ar = 1;
         obstacle = 1;

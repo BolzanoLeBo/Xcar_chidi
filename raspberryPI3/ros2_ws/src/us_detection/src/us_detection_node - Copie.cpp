@@ -9,7 +9,9 @@
 
 #include "interfaces/msg/ultrasonic.hpp"
 #include "interfaces/msg/obstacles.hpp"
-#define LIM 70
+#define LIM_US 70
+#define LIM_LIDAR_FRONT 1.70
+#define LIM_LIDAR_REAR 0.70
 
 #include "../include/us_detection/us_detection_node.h"
 
@@ -47,7 +49,6 @@ class detection : public rclcpp::Node {
 
     uint8_t last_front_lidar_detect = 0;
     uint8_t last_rear_lidar_detect = 0;
-    uint8_t last_lidar_error = 0;
 
     //Publisher
     rclcpp::Publisher<interfaces::msg::Obstacles>::SharedPtr publisher_obstacle_;
@@ -67,15 +68,15 @@ class detection : public rclcpp::Node {
         nb_warning = 0;
         obstacleMsg.us_error = 0;
         // Message of obstacle if there is one in front of the car at less than 75 cm
-        if ((ultrasonic.front_center <= LIM)){
+        if ((ultrasonic.front_center <= LIM_US)){
         obstacleMsg.us_front_detect = 1;
         } 
         // Message of obstacle if there is one in at the left of the car at less than 20 cm
-        else if((ultrasonic.front_left <= LIM)){
+        else if((ultrasonic.front_left <= LIM_US)){
           obstacleMsg.us_front_detect = 1;
         } 
         // Message of obstacle if there is one in at the right of the car at less than 20 cm
-        else if((ultrasonic.front_right <= LIM)){
+        else if((ultrasonic.front_right <= LIM_US)){
           obstacleMsg.us_front_detect = 1; 
         }
         // No message of obstacle if none of those cases
@@ -83,15 +84,15 @@ class detection : public rclcpp::Node {
           obstacleMsg.us_front_detect = 0;
         }
 
-        if ((ultrasonic.rear_center <= LIM)){
+        if ((ultrasonic.rear_center <= LIM_US)){
           obstacleMsg.us_rear_detect = 1;
         } 
         // Message of obstacle if there is one in at the left of the car at less than 20 cm
-        else if((ultrasonic.rear_left <= LIM)){
+        else if((ultrasonic.rear_left <= LIM_US)){
           obstacleMsg.us_rear_detect = 1;
         } 
         // Message of obstacle if there is one in at the right of the car at less than 20 cm
-        else if((ultrasonic.rear_right <= LIM)){
+        else if((ultrasonic.rear_right <= LIM_US)){
           obstacleMsg.us_rear_detect = 1; 
         }
         // No message of obstacle if none of those cases
@@ -118,25 +119,46 @@ class detection : public rclcpp::Node {
       }
     }
 
-  void lidarDataCallback(const interfaces::msg::Ultrasonic & ultrasonic){
+  void lidarDataCallback(const interfaces::msg::LaserScan & scan){
       
       auto obstacleMsg = interfaces::msg::Obstacles();
       int size = (int)scan.ranges.size();
-      if 
+      float front_min = 100.0; 
+      float rear_min = 100.0;
+      for (int i = 0;i<size;i++){
+        if (i<=3*size/16 && i<(5*size)/16){
+          if (scan.ranges[i]<front_min){
+              front_min=scan.ranges[i];
+          }
+        }
+        else if (i<=11*size/16 && i<(13*size)/16){
+          if (scan.ranges[i]<rear_min){
+              rear_min=scan.ranges[i];
+          }
+        }
+      }
+
+      if (front_min<LIM_LIDAR_FRONT){
+        obstacleMsg.lidar_front_detect=1;
+      }
       else{
-        //WARNING if strange value of the us_data (too far or negative value)
-        RCLCPP_WARN(this->get_logger(), "Warning : wrong us data");
-        nb_warning += 1;
+        obstacle.lidar_front_detect=0;
+      }
+
+      if (rear_min<LIM_LIDAR_REAR){
+        obstacleMsg.lidar_rear_detect=1;
+      }
+      else{
+        obstacle.lidar_rear_detect=0;
       }
 
       // Changing last value of lidar_front_detect and publishing message of obstacle
-      if ((last_front_lidar_detect != obstacleMsg.lidar_front_detect) || last_rear_lidar_detect != obstacleMsg.lidar_rear_detect || last_lidar_error != obstacleMsg.us_error ) {   
+      if ((last_front_lidar_detect != obstacleMsg.lidar_front_detect) || last_rear_lidar_detect != obstacleMsg.lidar_rear_detect) {   
         last_front_lidar_detect = obstacleMsg.lidar_front_detect;
         last_rear_lidar_detect = obstacleMsg.lidar_rear_detect;
-        last_lidar_error = obstacleMsg.lidar_error;
         publisher_obstacle_->publish(obstacleMsg);
       }
-  }
+  }    
 
 };
 
