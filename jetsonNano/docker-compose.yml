@@ -1,0 +1,15 @@
+version: "3"
+services:
+    ros:
+      restart: unless-stopped
+      container_name: ros-compose
+      image: joelimgu/geicar:dev.0.0.1
+      environment:
+        - ROS_DOMAIN_ID=1
+      network_mode: host
+      volumes:
+        - ~/Xcar_chidi:/root/Xcar_chidi/
+      devices:
+        - /dev/ttyUSB0:/dev/ttyUSB0
+        - /dev/video0:/dev/video0
+      entrypoint: "sleep inf"
