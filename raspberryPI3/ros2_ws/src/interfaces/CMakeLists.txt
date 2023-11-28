@@ -23,6 +23,7 @@ set(msg_files
   "msg/SystemCheck.msg"
   "msg/Obstacles.msg"
   "msg/State.msg"
+  "msg/WebMode.msg"
 )
 
 rosidl_generate_interfaces(${PROJECT_NAME}

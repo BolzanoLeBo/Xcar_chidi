@@ -10,6 +10,7 @@
 #include "sensor_msgs/msg/joy.hpp"
 #include "interfaces/msg/joystick_order.hpp"
 #include "interfaces/msg/system_check.hpp"
+#include "interfaces/msg/web_mode.hpp"
 
 
 using namespace std;
@@ -65,7 +66,11 @@ public:
 
         subscription_joy_ = this->create_subscription<sensor_msgs::msg::Joy>(
         "joy", 10, std::bind(&joystick_to_cmd::joyCallback, this, _1));
+        subscription_web_mode_ = this->create_subscription<interfaces::msg::WebMode>(
+        "web_mode", 10, std::bind(&joystick_to_cmd::webCallback, this, _1));
 
+
+        timer_ = this->create_wall_timer(1ms, std::bind(&joystick_to_cmd::updateCmd, this));
         
         RCLCPP_INFO(this->get_logger(), "joystick_to_cmd_node READY");
     }
@@ -80,6 +85,7 @@ private:
         buttonB = joy.buttons[buttonsMap.find("B")->second];    
         buttonA = joy.buttons[buttonsMap.find("A")->second];  
         buttonY = joy.buttons[buttonsMap.find("Y")->second]; 
+        buttonX = joy.buttons[buttonsMap.find("X")->second]; 
         
 
         axisRT = joy.axes[axisMap.find("RT")->second];      //Motors (go forward)
@@ -96,38 +102,76 @@ private:
         else
             buttonDpadLeft = false;
         
-        
-
-
         //Normalise values
         axisLS_X = -axisLS_X;   //axisLS_X : 1 .. -1  ;  steering_angle : -1 .. 1
         axisRT = (1.0-axisRT)/2.0;  //axisRT : 1 .. -1  ;  throttle : 0 .. 1
         axisLT = (1.0-axisLT)/2.0;  //axisLT : 1 .. -1  ;  throttle : 0 .. 1
+    }
+
+    void webCallback(const interfaces::msg::WebMode & web) {
         
+        webButtonEmergency = false;
+        webButtonStart = false;
+        webButtonAutonomous = false;
+        webButtonManual = false;
+        webButtonReturn = false;
+        webButtonTracking = false;
 
-        if (buttonA || buttonY || buttonStart || buttonDpadBottom || buttonB ){
+        switch (web.button) {
+            case 0:
+                webButtonReturn = true;
+                break;
+            case 1:
+                webButtonManual = true;
+                break;
+            case 2:
+                webButtonAutonomous = true;
+                break;
+            case 3:
+                webButtonTracking = true;
+                break;
+            case 4:
+                webButtonEmergency = true;
+                break;
+            case 5:
+                webButtonStart = true;
+                break;
+            default:
+                RCLCPP_INFO(this->get_logger(), "unknown webButton pressed");
+                break;
+        }
+    }
 
-            if (buttonY && mode==0) {
+    void updateCmd() {
+
+        if (buttonA || buttonY || buttonStart || buttonDpadBottom || buttonB || buttonX || webButtonAutonomous|| webButtonManual || webButtonStart || webButtonReturn || webButtonEmergency || webButtonTracking ){
+
+            if ((buttonY || webButtonManual) && mode==0) {
                 mode = 1;
                 start=true;
             }
 
-            else if (buttonA && mode==0) {
+            else if ((buttonA || webButtonAutonomous) && mode==0) {
                 mode = 2;
                 start=true;
             }
 
-            else if (buttonDpadBottom && (mode ==1 || mode ==2)) {
+            else if ((buttonX || webButtonTracking) && mode==0) {
+                mode = 4;
+                start=true;
+            }
+
+            else if ((buttonDpadBottom || webButtonReturn) && (mode ==1 || mode ==2 || mode ==4)) {
                 mode = 0;
                 start=false;
             }
 
-            else if (buttonStart && mode == 3){
+            else if ((buttonStart || webButtonStart) && mode == 3){
                 mode = 0;
                 start = false;
             }
             // ------ Start and Stop ------
-            else if (buttonB){       // B button -> Stop the car
+            else if (buttonB || webButtonEmergency){       // B button -> Stop the car
                 start = false;
                 mode = 3;
             }
@@ -179,12 +223,14 @@ private:
         joystickOrderMsg.reverse = reverse;
 
         publisher_joystick_order_->publish(joystickOrderMsg); //Send order to the car_control_node
+
     }
 
     //Joystick variables
     map<string,int> axisMap;
     map<string,int> buttonsMap;
-    bool buttonB, buttonStart, buttonA, buttonY, buttonDpadBottom, buttonDpadLeft ;
+    bool buttonB, buttonStart, buttonA, buttonY, buttonDpadBottom, buttonDpadLeft, buttonX ;
+    bool webButtonEmergency, webButtonStart, webButtonAutonomous, webButtonManual, webButtonReturn, webButtonTracking ;
     
     float axisRT, axisLT, axisLS_X;
 
@@ -204,6 +250,8 @@ private:
     rclcpp::Publisher<interfaces::msg::SystemCheck>::SharedPtr publisher_system_check_;
 
     rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr subscription_joy_;
+    rclcpp::Subscription<interfaces::msg::WebMode>::SharedPtr subscription_web_mode_;
+    rclcpp::TimerBase::SharedPtr timer_;
 };
 
 

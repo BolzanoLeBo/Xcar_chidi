@@ -114,6 +114,12 @@ class state_machine : public rclcpp::Node {
             current_state = 2;
             RCLCPP_INFO(this->get_logger(),("idle->auto"));
           }
+          // -> tracking
+          else if (joy_mode == 4)
+          {
+            current_state = 3;
+            RCLCPP_INFO(this->get_logger(),("idle->tracking"));
+          }
         }
 
         //manual -> ? 
@@ -145,7 +151,16 @@ class state_machine : public rclcpp::Node {
           }
         }
 
-
+        //tracking -> ? 
+        else if (current_state == 3)
+        {
+          // -> idle
+          if (joy_mode == 0)
+          {
+            current_state = 0;
+            RCLCPP_INFO(this->get_logger(),("tracking->idle"));
+          }
+        }
         //security -> manual 
         else if (current_state == 4 && ((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar) || (dir_av && !obstacle_av)))
         {
