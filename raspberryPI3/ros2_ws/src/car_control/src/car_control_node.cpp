@@ -155,6 +155,9 @@ private:
     float currentLeftSpeed;
     float currentRightSpeed;
 
+    float currentRightDistance;
+    float currentLeftDistance;
+
     //Manual Mode variables (with joystick control)
     float requestedThrottle;
     float requestedSteerAngle;
@@ -175,6 +178,7 @@ private:
 
     //Subscribers
     rclcpp::Subscription<interfaces::msg::JoystickOrder>::SharedPtr subscription_joystick_order_;
+    rclcpp::Subscription<interfaces::msg::Ultrasonic>::SharedPtr subscription_ultrasonic_sensor_;
     rclcpp::Subscription<interfaces::msg::MotorsFeedback>::SharedPtr subscription_motors_feedback_;
     rclcpp::Subscription<interfaces::msg::SteeringCalibration>::SharedPtr subscription_steering_calibration_;
     rclcpp::Subscription<interfaces::msg::State>::SharedPtr subscription_state_;
