@@ -20,11 +20,11 @@ function selectMode(mode) {
     var modePublisher = new ROSLIB.Topic({
         ros: ros,
         name: '/web_mode',
-        messageType: 'std_msgs/String'
+        messageType: 'interfaces/msg/WebMode'
     });
 
     var modeMsg = new ROSLIB.Message({
-        data: mode
+        button: mode
     });
 
     modePublisher.publish(modeMsg);
@@ -44,13 +44,9 @@ stateListener.subscribe(function (message) {
 
     document.getElementById('stateData').innerHTML = 'Data from "state" topic:<br>' + stateData;
 
-    //if (message.current_state) {
-    //    alert("Object Detected!");
-    //}
-
     switch (message.current_state) {
         case 0:
-            window.local.href = 'home.html';
+            window.location.href = 'home.html';
             break;
         case 1:
             // Redirection vers manual.html
