@@ -36,9 +36,9 @@ def generate_launch_description():
         emulate_tty=True
     )
 
-    us_detection_node = Node(
-        package="us_detection",
-        executable="us_detection_node",
+    detection _node = Node(
+        package="detection ",
+        executable="detection _node",
         emulate_tty=True
     )
 
@@ -73,6 +73,6 @@ def generate_launch_description():
     ld.add_action(imu_filter_madgwick_node)
     ld.add_action(system_check_node)
     ld.add_action(state_machine_node)
-    ld.add_action(us_detection_node)
+    ld.add_action(detection _node)
 
     return ld

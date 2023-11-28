@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(us_detection)
+project(detection )
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -10,17 +10,17 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(interfaces REQUIRED)
 
-add_executable(us_detection_node src/us_detection_node.cpp)
+add_executable(detection _node src/detection _node.cpp)
 
-ament_target_dependencies(us_detection_node rclcpp interfaces)
+ament_target_dependencies(detection _node rclcpp interfaces)
 ament_export_include_directories(include)
 
-target_include_directories(us_detection_node PUBLIC
+target_include_directories(detection _node PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
-target_compile_features(us_detection_node PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
+target_compile_features(detection _node PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
 
-install(TARGETS us_detection_node
+install(TARGETS detection _node
   DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)

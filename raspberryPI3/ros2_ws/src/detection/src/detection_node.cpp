@@ -13,7 +13,7 @@
 #define LIM_LIDAR_FRONT 1.70
 #define LIM_LIDAR_REAR 0.70
 
-#include "../include/us_detection/us_detection_node.h"
+#include "../include/detection /detection _node.h"
 
 using namespace std;
 using placeholders::_1;
@@ -165,7 +165,7 @@ class detection : public rclcpp::Node {
 int main(int argc, char * argv[])
 {
   rclcpp::init(argc, argv);
-  auto node = std::make_shared<us_detection>();
+  auto node = std::make_shared<detection >();
   rclcpp::spin(node);
   rclcpp::shutdown();
   return 0;
