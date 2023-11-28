@@ -49,7 +49,7 @@ public:
         "motors_feedback", 10, std::bind(&car_control::motorsFeedbackCallback, this, _1));        
 
         subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
-        "us_data", 10, std::bind(&us_detection::distanceCallback, this, _1));
+        "us_data", 10, std::bind(&car_control::distanceCallback, this, _1));
 
         timer_ = this->create_wall_timer(PERIOD_UPDATE_CMD, std::bind(&car_control::updateCmd, this));
 
@@ -158,7 +158,8 @@ private:
     //Manual Mode variables (with joystick control)
     float requestedThrottle;
     float requestedSteerAngle;
-
+    bool reverse;
+    
     bool reverseValue;
     float throttleValue;
     float angleValue;
