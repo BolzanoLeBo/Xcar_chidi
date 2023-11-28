@@ -99,3 +99,7 @@ button:hover {
     height: auto; /* Mantém a proporção original da imagem */
     max-height: 250px; /* Limite de altura (ajuste conforme necessário) */
 }
+
+.hidden {
+    display: none;
+}

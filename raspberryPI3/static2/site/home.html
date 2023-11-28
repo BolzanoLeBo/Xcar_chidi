@@ -16,7 +16,7 @@
     <div class="container">
         <h1 class="larger-text">X-Car</h1>
         <h2><em class="italic-text">"Intelligent vehicle designed to support the INSA community."</em></h2>
-        <div id="stateData"></div> <!-- Ajout de la balise div pour afficher les données du topic state -->
+        <div id="stateData" class="hidden"></div>
         <div class="button-container">
             <button onclick="redirectAndSelectMode('manual.html', 'manuel')">Manual Mode</button>
             <button onclick="redirectAndSelectMode('tracking.html', 'tracking')">Tracking Mode</button>
@@ -27,7 +27,7 @@
 
     <script>
         function redirectAndSelectMode(page, mode) {
-            window.location.href = page;
+            //window.location.href = page;
             selectMode(mode);
         }
     </script>

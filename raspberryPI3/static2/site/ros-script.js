@@ -44,7 +44,35 @@ stateListener.subscribe(function (message) {
 
     document.getElementById('stateData').innerHTML = 'Data from "state" topic:<br>' + stateData;
 
-    if (message.current_state) {
-        alert("Object Detected!");
+    //if (message.current_state) {
+    //    alert("Object Detected!");
+    //}
+
+    switch (message.current_state) {
+        case 0:
+            window.local.href = 'home.html';
+            break;
+        case 1:
+            // Redirection vers manual.html
+            window.location.href = 'manual.html';
+            break;
+        case 2:
+            // Redirection vers tracking.html
+            window.location.href = 'autonomous.html';
+            break;
+        case 3:
+            // Redirection vers autonomous.html
+            window.location.href = 'tracking.html';
+            break;
+        case 4:
+            // Redirection vers autonomous.html
+            window.location.href = 'security.html';
+            break;        
+        case 5:
+            // Redirection vers autonomous.html
+            window.location.href = 'emergency.html';
+            break;
+        default:
+            console.log('Unknown State');
     }
 });
