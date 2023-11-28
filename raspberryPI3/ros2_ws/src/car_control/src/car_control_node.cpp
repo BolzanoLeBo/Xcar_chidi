@@ -8,12 +8,14 @@
 #include "interfaces/msg/steering_calibration.hpp"
 #include "interfaces/msg/joystick_order.hpp"
 #include "interfaces/msg/state.hpp"
+#include "interface/msg/ultrasonic.hpp"
 
 
 #include "std_srvs/srv/empty.hpp"
 
 #include "../include/car_control/steeringCmd.h"
 #include "../include/car_control/propulsionCmd.h"
+#include "../include/car_control/control_loop.h"
 #include "../include/car_control/car_control_node.h"
 
 using namespace std;
@@ -81,8 +83,8 @@ private:
     */
     void motorsFeedbackCallback(const interfaces::msg::MotorsFeedback & motorsFeedback){
         currentAngle = motorsFeedback.steering_angle;
-        currentRightSpeed = motors_feedback.right_rear_speed;
-        currentLeftSpeed = motors_feedback.left_rear_speed;
+        currentRightSpeed = motorsFeedback.right_rear_speed;
+        currentLeftSpeed = motorsFeedback.left_rear_speed;
     }
 
     void distanceCallback(const interfaces::msg::Ultrasonic & ultrasonic) {
@@ -154,7 +156,6 @@ private:
     float currentRightSpeed;
 
     //Manual Mode variables (with joystick control)
-    bool reverse;
     float requestedThrottle;
     float requestedSteerAngle;
 

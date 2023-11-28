@@ -8,7 +8,7 @@
 *   Error -> Erreur(k+1)
 *   Error_last -> Erreur(k)
 */
-void recurrence_equation(double RPM_order, double Error, double& Error_last, double& PWM_order, double& PWM_order_last, double Distance_to_target){
+void recurrence_equation(double Error, double& Error_last, double& PWM_order, double& PWM_order_last, double Distance_to_target){
     
     // Error that corresponds to the command - the distance from the car to the target
     Error=DISTANCE_COMMAND-Distance_to_target;  //meters 
@@ -30,7 +30,7 @@ void recurrence_equation(double RPM_order, double Error, double& Error_last, dou
     PWM_order_last=PWM_order;
 }
 
-void compensator_recurrence(bool init, double RPM_order, bool reverse,double currentRightDistance, double currentLeftDistance, uint8_t& rightRearPwmCmd, uint8_t& leftRearPwmCmd){   
+void compensator_recurrence(bool init, bool reverse,double currentRightDistance, double currentLeftDistance, uint8_t& rightRearPwmCmd, uint8_t& leftRearPwmCmd){   
 
     // Variable statique pour conserver la valeur entre les appels
     static double Left_PWM_order;
@@ -40,20 +40,23 @@ void compensator_recurrence(bool init, double RPM_order, bool reverse,double cur
     static double Left_Error_last;
     static double Right_Error_last;
     
-    if (init):
+    if (init)
+    {
         Left_PWM_order = 0.0;
         Right_PWM_order = 0.0;
         Left_PWM_order_last = 0.0;
         Right_PWM_order_last = 0.0;
         Left_Error_last = 0.0;
         Right_Error_last = 0.0;
+    }
+        
     
     double Left_Error=0.0;
     double Right_Error=0.0;
 
 
-    recurrence_equation(RPM_order, Right_Error, Right_Error_last, Right_PWM_order, Right_PWM_order_last, currentRightDistance);
-    recurrence_equation(RPM_order, Left_Error, Left_Error_last, Left_PWM_order, Left_PWM_order_last, currentLeftDistance);
+    recurrence_equation(Right_Error, Right_Error_last, Right_PWM_order, Right_PWM_order_last, currentRightDistance);
+    recurrence_equation(Left_Error, Left_Error_last, Left_PWM_order, Left_PWM_order_last, currentLeftDistance);
     
     rightRearPwmCmd = Right_PWM_order + 50; 
     leftRearPwmCmd = Left_PWM_order + 50;    
