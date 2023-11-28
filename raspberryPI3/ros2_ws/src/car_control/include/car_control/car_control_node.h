@@ -6,7 +6,6 @@
 
 
 #define PERIOD_UPDATE_CMD 1ms //Period to update proupulsion and steering command in [ms]
-#define WHEEL_DIAMETER 0.1 //meters
 #define STOP 50 //PWM value to stop motors
 
 
