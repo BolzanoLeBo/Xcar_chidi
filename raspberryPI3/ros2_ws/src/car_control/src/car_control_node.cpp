@@ -128,7 +128,7 @@ private:
             //Tracking Mode
             else if (state==2){
 
-                compensator_recurrence(reinit ,RPM_order, reverse, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
+                compensator_recurrence(reinit, reverse, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
                 steeringPwmCmd = 50;
                 reinit = 0;
 
