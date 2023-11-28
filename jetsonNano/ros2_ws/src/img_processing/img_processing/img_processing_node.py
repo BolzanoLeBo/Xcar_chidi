@@ -7,7 +7,7 @@ import cv2
 
 class ImgProcessing(Node):
     def __init__(self):
-        super().__init__('img_processing')
+        super().__init__('img_processing_node')
         self.subscriber_ = self.create_subscription(Image, 'image_raw', self.image_callback)
     
 
@@ -35,13 +35,13 @@ class ImgProcessing(Node):
 def main(args=None):
     rclpy.init(args=args)
 
-    img_processing = ImgProcessing()
-    img_processing.run()
+    img_processing_node = ImgProcessing()
+    img_processing_node.run()
 
     # Destroy the node explicitly
     # (optional - otherwise it will be done automatically
     # when the garbage collector destroys the node object)
-    img_processing.destroy_node()
+    img_processing_node.destroy_node()
     rclpy.shutdown()
 
 
