@@ -1,4 +1,6 @@
 int8 us_front_detect 0    #signal [0;1]
 int8 us_rear_detect 0 #signal [0;1]
+int8 lidar_front_detect 0    #signal [0;1]
+int8 lidar_rear_detect 0 #signal[0;1]
 int8 us_error 0 #signal [0;1]
-int8 lidar_detect 0    #signal [0;2]
+int8 lidar_error 0 #signal [0;1]
