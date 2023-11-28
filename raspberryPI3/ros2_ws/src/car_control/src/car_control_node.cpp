@@ -128,7 +128,7 @@ private:
             //Tracking Mode
             else if (state==2){
 
-                compensator_recurrence(reinit, reverse, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
+                compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
                 steeringPwmCmd = 50;
                 reinit = 0;
 
@@ -148,15 +148,15 @@ private:
     // ---- Private variables ----
 
     int state = 0;
-    int reinit;
+    int reinit = 1;
     
     //Motors feedback variables
     float currentAngle;
     float currentLeftSpeed;
     float currentRightSpeed;
 
-    float currentRightDistance;
-    float currentLeftDistance;
+    int currentRightDistance;
+    int currentLeftDistance;
 
     //Manual Mode variables (with joystick control)
     float requestedThrottle;
