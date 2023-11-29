@@ -2,6 +2,8 @@
 #include <chrono>
 #include <functional>
 #include <memory>
+#include <iostream>
+#include <string>
 
 #include "interfaces/msg/motors_order.hpp"
 #include "interfaces/msg/motors_feedback.hpp"
