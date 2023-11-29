@@ -158,8 +158,8 @@ private:
     float currentLeftSpeed;
     float currentRightSpeed;
 
-    int currentRightDistance;
-    int currentLeftDistance;
+    double currentRightDistance;
+    double currentLeftDistance;
 
     //Manual Mode variables (with joystick control)
     float requestedThrottle;

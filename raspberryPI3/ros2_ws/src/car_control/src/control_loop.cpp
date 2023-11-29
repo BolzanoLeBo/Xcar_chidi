@@ -8,10 +8,11 @@
 *   Error -> Erreur(k+1)
 *   Error_last -> Erreur(k)
 */
-void recurrence_equation(double Error, int& Error_last, double& PWM_order, double& PWM_order_last, int Distance_to_target){
+void recurrence_equation(double Error, double& Error_last, double& PWM_order, double& PWM_order_last, double Distance_to_target){
     
     // Error that corresponds to the command - the distance from the car to the target
-    Error=DISTANCE_COMMAND-Distance_to_target;  //meters 
+    Error=DISTANCE_COMMAND-Distance_to_target;  //centimeters
+    Error = Error/100;
     
     // A QUOI CA SERT ??
     ///Error=Error*0.9;
@@ -30,7 +31,7 @@ void recurrence_equation(double Error, int& Error_last, double& PWM_order, doubl
     PWM_order_last=PWM_order;
 }
 
-void compensator_recurrence(bool init,int currentRightDistance, int currentLeftDistance, uint8_t& rightRearPwmCmd, uint8_t& leftRearPwmCmd){   
+void compensator_recurrence(bool init,double currentRightDistance, double currentLeftDistance, uint8_t& rightRearPwmCmd, uint8_t& leftRearPwmCmd){   
 
     // Variable statique pour conserver la valeur entre les appels
     static double Left_PWM_order;
