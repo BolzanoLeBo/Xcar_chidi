@@ -129,7 +129,7 @@ private:
 
             //Tracking Mode
             else if (state==2){
-                RCLCPP_INFO(this->get_logger(), "State = ".c_str() + std::to_string(currentLeftDistance).c_str());
+                RCLCPP_INFO(this->get_logger(), std::to_string("State = ").c_str() + std::to_string(currentLeftDistance).c_str());
                 RCLCPP_INFO(this->get_logger(), ("Current Distance = " + std::to_string(currentLeftDistance).c_str()).data());
                 compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
                 RCLCPP_INFO(this->get_logger(), ("Left PWM = " + std::to_string(leftRearPwmCmd).c_str()).data());
