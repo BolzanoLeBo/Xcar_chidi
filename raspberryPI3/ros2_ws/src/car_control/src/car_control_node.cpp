@@ -127,9 +127,8 @@ private:
 
             //Tracking Mode
             else if (state==2){
-                ROS_INFO("My variable is: %d", sate);
 
-                RCLCPP_INFO(this->get_logger(), (currentLeftDistance));
+                RCLCPP_INFO(this->get_logger(), std::to_string(currentLeftDistance));
                 compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
                 RCLCPP_INFO(this->get_logger(), (leftRearPwmCmd));
                 RCLCPP_INFO(this->get_logger(), (rightRearPwmCmd));
