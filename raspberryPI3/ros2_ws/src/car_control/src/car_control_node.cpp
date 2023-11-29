@@ -127,11 +127,11 @@ private:
 
             //Tracking Mode
             else if (state==2){
-                RCLCPP_INFO(this->get_logger(), (state).data());
-                RCLCPP_INFO(this->get_logger(), (currentLeftDistance).data());
+                RCLCPP_INFO(this->get_logger(), (state));
+                RCLCPP_INFO(this->get_logger(), (currentLeftDistance));
                 compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
-                RCLCPP_INFO(this->get_logger(), (leftRearPwmCmd).data());
-                RCLCPP_INFO(this->get_logger(), (rightRearPwmCmd).data());
+                RCLCPP_INFO(this->get_logger(), (leftRearPwmCmd));
+                RCLCPP_INFO(this->get_logger(), (rightRearPwmCmd));
                 steeringPwmCmd = 50;
                 reinit = 0;
 
