@@ -134,7 +134,6 @@ private:
                 compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
                 RCLCPP_INFO(this->get_logger(), std::to_string(leftRearPwmCmd).c_str());
                 RCLCPP_INFO(this->get_logger(), std::to_string(rightRearPwmCmd).c_str());
-                RCLCPP_INFO(this->get_logger(), std::to_string(Error_last).c_str());
                 steeringPwmCmd = 50;
                 reinit = 0;
 
