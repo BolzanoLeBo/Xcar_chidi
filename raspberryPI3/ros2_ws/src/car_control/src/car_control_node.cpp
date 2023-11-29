@@ -160,7 +160,6 @@ private:
     float currentLeftSpeed;
     float currentRightSpeed;
 
-    float error
 
     double currentRightDistance;
     double currentLeftDistance;
