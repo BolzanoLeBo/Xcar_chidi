@@ -60,9 +60,11 @@ void compensator_recurrence(bool init,double currentRightDistance, double curren
 
 
     recurrence_equation(Right_Error, Right_Error_last, Right_PWM_order, Right_PWM_order_last, currentRightDistance);
-    recurrence_equation(Left_Error, Left_Error_last, Left_PWM_order, Left_PWM_order_last, currentLeftDistance);
+    //recurrence_equation(Left_Error, Left_Error_last, Left_PWM_order, Left_PWM_order_last, currentLeftDistance);
     
+
     rightRearPwmCmd = Right_PWM_order + 50; 
-    leftRearPwmCmd = Left_PWM_order + 50;    
+    leftRearPwmCmd = Right_PWM_order + 50; 
+
 
 }
