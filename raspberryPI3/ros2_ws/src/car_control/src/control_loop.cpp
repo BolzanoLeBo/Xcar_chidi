@@ -20,7 +20,7 @@ void recurrence_equation(double Error, double& Error_last, double& PWM_order, do
     // Corrected PWM 
 
     //PWM_order = PWM_order_last + 9.025*Error + 8.975*Error_last;
-    PWM_order = 10*Error;
+    PWM_order = 20*Error;
 
 
     // Error Update
