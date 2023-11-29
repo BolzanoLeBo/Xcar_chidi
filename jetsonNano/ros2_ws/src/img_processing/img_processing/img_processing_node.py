@@ -17,7 +17,7 @@ class ImgProcessing(Node):
         self.subscriber_ = self.create_subscription(Image, 'image_raw', self.image_callback,qos_profile = qos_profile)
     
 
-    def image_callback(msg):
+    def image_callback(self,msg):
         self.get_logger().info("img callback")
         bridge = CvBridge()
         
