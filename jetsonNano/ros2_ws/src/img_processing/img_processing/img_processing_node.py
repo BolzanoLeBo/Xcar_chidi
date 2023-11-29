@@ -25,7 +25,7 @@ class ImgProcessing(Node):
 
         # Your image processing or display logic here
         #cv2.imshow("Received Image", cv_image)
-        cv2.imwrite("img/img.png", cv_image)
+        cv2.imwrite("/img.png", cv_image)
 
     def run(self):
         # Main loop of the node
