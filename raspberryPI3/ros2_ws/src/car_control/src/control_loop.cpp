@@ -38,8 +38,8 @@ void compensator_recurrence(bool init,double currentRightDistance, double curren
     static double Right_PWM_order;
     static double Left_PWM_order_last;
     static double Right_PWM_order_last;
-    static int Left_Error_last;
-    static int Right_Error_last;
+    static double Left_Error_last;
+    static double Right_Error_last;
     
     if (init)
     {
