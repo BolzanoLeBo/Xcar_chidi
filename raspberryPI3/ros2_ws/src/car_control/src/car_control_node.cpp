@@ -53,7 +53,7 @@ public:
         subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
         "us_data", 10, std::bind(&car_control::distanceCallback, this, _1));
 
-        timer_ = this->create_wall_timer(PERIOD_UPDATE_CMD, std::bind(&car_control::updateCmd, this));
+        timer_ = this->create_wall_timer(PERIOD_UPDATE_CMD/10, std::bind(&car_control::updateCmd, this));
 
         
         RCLCPP_INFO(this->get_logger(), "car_control_node READY");
