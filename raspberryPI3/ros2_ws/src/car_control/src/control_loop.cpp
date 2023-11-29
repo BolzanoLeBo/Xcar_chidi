@@ -20,7 +20,7 @@ void recurrence_equation(double Error, double& Error_last, double& PWM_order, do
     // Corrected PWM 
 
     PWM_order = PWM_order_last + 9.025*Error + 8.975*Error_last;
-    RCLCPP_INFO(this->get_logger(), std::to_string(PWM_order).c_str());
+
 
 
     // Error Update
