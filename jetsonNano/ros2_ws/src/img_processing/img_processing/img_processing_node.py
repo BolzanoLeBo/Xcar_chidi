@@ -8,7 +8,12 @@ import cv2
 class ImgProcessing(Node):
     def __init__(self):
         super().__init__('img_processing_node')
-        self.subscriber_ = self.create_subscription(Image, 'image_raw', self.image_callback)
+        qos_profile = QoSProfile(
+            reliability=QoSReliabilityPolicy.RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT,
+            history=QoSHistoryPolicy.RMW_QOS_POLICY_HISTORY_KEEP_LAST,
+            depth=1
+        )
+        self.subscriber_ = self.create_subscription(Image, 'image_raw', self.image_callback,qos_profile = qos_profile)
     
 
     def image_callback(msg):
