@@ -109,13 +109,6 @@ private:
     }
 
     void webCallback(const interfaces::msg::WebMode & web) {
-        
-        webButtonEmergency = false;
-        webButtonStart = false;
-        webButtonAutonomous = false;
-        webButtonManual = false;
-        webButtonReturn = false;
-        webButtonTracking = false;
 
         switch (web.button) {
             case 0:
@@ -223,6 +216,13 @@ private:
         joystickOrderMsg.reverse = reverse;
 
         publisher_joystick_order_->publish(joystickOrderMsg); //Send order to the car_control_node
+
+        webButtonEmergency = false;
+        webButtonStart = false;
+        webButtonAutonomous = false;
+        webButtonManual = false;
+        webButtonReturn = false;
+        webButtonTracking = false;
 
     }
 
