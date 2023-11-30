@@ -9,7 +9,21 @@ body {
     height: 100vh;
 }
 
+.align{
+    text-align: center;
+    align-items: center;
+}
+
 .container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+
+.container_log {
     text-align: center;
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
@@ -78,6 +92,8 @@ button:hover {
     font-size: 60px;
     font-family: 'Georgia', 'Times', sans-serif;
     color: rgba(0, 151, 157, 0.64);
+    margin-top: 10px;
+    margin-bottom: 10px; 
 }
 
 .button-container {
@@ -95,7 +111,77 @@ button:hover {
 
 .controller-image {
     text-align: center; 
-    max-width: 100%; /* Garante que a imagem não ultrapasse a largura da div */
-    height: auto; /* Mantém a proporção original da imagem */
-    max-height: 250px; /* Limite de altura (ajuste conforme necessário) */
+    max-width: 100%; 
+    height: auto; 
+    max-height: 250px; 
 }
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.blinking {
+    animation: blink 1.5s infinite;
+}
+
+/* Tab settings */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgba(0, 151, 157, 0.8);
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center; 
+}
+
+li {
+    /* float: left; */
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    align-items: center;
+    /* padding: 14px 16px; */
+    text-decoration: none;
+    padding: 30px;            
+}
+
+li a:hover {
+    background-color: rgba(4, 133, 137, 0.74); /*ao tocar*/
+}
+
+.tab-content {
+    display: none;
+}
+
+#menu {
+    display: block;
+}
+
+/* End tab settings */
+
+
+/* Terminal settings */
+
+#terminal {
+    max-height: 400px; 
+    max-width: 500px;
+    overflow: auto; 
+    padding: 10px;
+}
+
+/* End terminal settings */
