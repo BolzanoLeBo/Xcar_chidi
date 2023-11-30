@@ -185,3 +185,7 @@ li a:hover {
 }
 
 /* End terminal settings */
+
+.hidden {
+    display: none;
+}
