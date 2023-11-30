@@ -20,6 +20,7 @@ set(msg_files
   "msg/SteeringCalibration.msg"
   "msg/Ultrasonic.msg"
   "msg/Gnss.msg"
+  "msg/Obstacles.msg"
   "msg/SystemCheck.msg"
   "msg/Lidar.msg"
 )
