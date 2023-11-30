@@ -28,7 +28,7 @@
             <h2><em class="italic-text">Vehicle on the way.</em></h2>
             <img src="./images/autonomous.png" alt="Autonomous" class="controller-image">
             <div class="button-container">
-                <button onclick="redirectTo('home.html')">Return</button>
+                <button onclick="redirectAndSelectMode('home.html', 0)">Return</button>
             </div>
         </div>
 
@@ -66,8 +66,8 @@
             alert("Object Detected!");
         }
 
-        function redirectTo(page) {
-            window.location.href = page;
+        function redirectAndSelectMode(page, mode) {
+            selectMode(mode);
         }
     </script>
 

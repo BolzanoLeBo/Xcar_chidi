@@ -25,10 +25,11 @@
                 <h1 class="larger-text">X-Car</h1>
                 <div id="stateData" class="hidden"></div>
                 <h2><em class="italic-text">"Intelligent vehicle designed to support the INSA community."</em></h2>
-                <button onclick="redirectTo('manual.html')">Manual Mode</button>
-                <button onclick="redirectTo('tracking.html')">Tracking Mode</button>
-                <button onclick="redirectTo('autonomous.html')">Autonomous Mode</button>
-                <button class="logout-b" onclick="redirectTo('index.html')">Logout</button>
+                <button onclick="redirectAndSelectMode('manual.html', 1)">Manual Mode</button>
+                <button onclick="redirectAndSelectMode('tracking.html', 3)">Tracking Mode</button>
+                <button onclick="redirectAndSelectMode('autonomous.html', 2)">Autonomous Mode</button>
+                <button onclick="redirectAndSelectMode('emergency.html', 4)">Emergency Mode</button>
+                <button class="logout-b" onclick="redirectAndSelectMode('index.html', 6)">Logout</button>
             </div>
         </div>
 
@@ -46,8 +47,8 @@
     </div>
 
     <script>
-        function redirectTo(page) {
-            window.location.href = page;
+        function redirectAndSelectMode(page, mode) {
+            selectMode(mode);
         }
 
         function showTab(tabName) {

@@ -28,7 +28,7 @@
             <h2><em class="italic-text">Please take the joystick to use the vehicle.</em></h2>
             <img src="./images/joystick.png" alt="Joystick Image" class="controller-image">
             <div class="button-container">
-                <button onclick="redirectTo('home.html')">Everything fine ?</button>
+                <button onclick="redirectAndSelectMode('home.html', 5)">Everything fine ?</button>
             </div>
         </div>
 
@@ -66,8 +66,8 @@
             alert("Object Detected!");
         }
 
-        function redirectTo(page) {
-            window.location.href = page;
+        function redirectAndSelectMode(page, mode) {
+            selectMode(mode);
         }
     </script>
 
