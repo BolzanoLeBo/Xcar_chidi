@@ -2,7 +2,8 @@ import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image, CameraInfo
 from rclpy.qos import QoSProfile, QoSReliabilityPolicy, QoSHistoryPolicy
-from TrackingPosAngle.msg import TrackAngle
+
+from interfaces import TrackingPosAngle
 
 from cv_bridge import CvBridge
 import cv2
@@ -16,11 +17,7 @@ class ImgProcessing(Node):
             depth=1
         )
         self.subscriber_ = self.create_subscription(Image, 'image_raw', self.image_callback,qos_profile = qos_profile)
-        self.publisher_ = self.create_publisher(TrackAngle,'tracking_angles',qos_profile = qos_profile)
-
-        #init value of angle
-        self.TrackAngle.min_angle = 0
-        self.TrackAngle.max_angle = 0
+        self.tracking_pos_angle_publisher_ = self.create_publisher(TrackingPosAngle,'/tracking_pos_angle',qos_profile = qos_profile)
 
 
 
@@ -31,6 +28,9 @@ class ImgProcessing(Node):
     def image_callback(self,msg):
         self.get_logger().info("img callback")
         bridge = CvBridge()
+        msg = TrackingPosAngle()
+        msg.min_angle = 1
+        msg.max_angle = 2
         
         cv_image = bridge.imgmsg_to_cv2(msg, desired_encoding="bgr8")
 
@@ -38,14 +38,8 @@ class ImgProcessing(Node):
         #cv2.imshow("Received Image", cv_image)
         cv2.imwrite("/img.png", cv_image)
 
-
-
-        #update both value by 1/ CHANGE LATER
-        self.TrackAngle.min_angle += 1
-        self.TrackAngle.max_angle += 1
-
         # Publish the msg for angle
-        self.publisher_.publish(self.TrackAngle)
+        self.tracking_pos_angle_publisher_.publish(msg)
 
     def run(self):
         # Main loop of the node

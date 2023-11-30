@@ -1,0 +1,35 @@
+running egg_info
+creating ../../../../build/img_processing/img_processing.egg-info
+writing ../../../../build/img_processing/img_processing.egg-info/PKG-INFO
+writing dependency_links to ../../../../build/img_processing/img_processing.egg-info/dependency_links.txt
+writing entry points to ../../../../build/img_processing/img_processing.egg-info/entry_points.txt
+writing requirements to ../../../../build/img_processing/img_processing.egg-info/requires.txt
+writing top-level names to ../../../../build/img_processing/img_processing.egg-info/top_level.txt
+writing manifest file '../../../../build/img_processing/img_processing.egg-info/SOURCES.txt'
+reading manifest file '../../../../build/img_processing/img_processing.egg-info/SOURCES.txt'
+writing manifest file '../../../../build/img_processing/img_processing.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/loic/Desktop/Xcar_chidi/build/img_processing/build
+creating /home/loic/Desktop/Xcar_chidi/build/img_processing/build/lib
+creating /home/loic/Desktop/Xcar_chidi/build/img_processing/build/lib/img_processing
+copying img_processing/__init__.py -> /home/loic/Desktop/Xcar_chidi/build/img_processing/build/lib/img_processing
+copying img_processing/img_processing_node.py -> /home/loic/Desktop/Xcar_chidi/build/img_processing/build/lib/img_processing
+running install
+running install_lib
+creating /home/loic/Desktop/Xcar_chidi/install/img_processing/lib/python3.10/site-packages/img_processing
+copying /home/loic/Desktop/Xcar_chidi/build/img_processing/build/lib/img_processing/__init__.py -> /home/loic/Desktop/Xcar_chidi/install/img_processing/lib/python3.10/site-packages/img_processing
+copying /home/loic/Desktop/Xcar_chidi/build/img_processing/build/lib/img_processing/img_processing_node.py -> /home/loic/Desktop/Xcar_chidi/install/img_processing/lib/python3.10/site-packages/img_processing
+byte-compiling /home/loic/Desktop/Xcar_chidi/install/img_processing/lib/python3.10/site-packages/img_processing/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/loic/Desktop/Xcar_chidi/install/img_processing/lib/python3.10/site-packages/img_processing/img_processing_node.py to img_processing_node.cpython-310.pyc
+running install_data
+creating /home/loic/Desktop/Xcar_chidi/install/img_processing/share/ament_index
+creating /home/loic/Desktop/Xcar_chidi/install/img_processing/share/ament_index/resource_index
+creating /home/loic/Desktop/Xcar_chidi/install/img_processing/share/ament_index/resource_index/packages
+copying resource/img_processing -> /home/loic/Desktop/Xcar_chidi/install/img_processing/share/ament_index/resource_index/packages
+copying package.xml -> /home/loic/Desktop/Xcar_chidi/install/img_processing/share/img_processing
+running install_egg_info
+Copying ../../../../build/img_processing/img_processing.egg-info to /home/loic/Desktop/Xcar_chidi/install/img_processing/lib/python3.10/site-packages/img_processing-0.0.0-py3.10.egg-info
+running install_scripts
+Installing img_processing_node script to /home/loic/Desktop/Xcar_chidi/install/img_processing/lib/img_processing
+writing list of installed files to '/home/loic/Desktop/Xcar_chidi/build/img_processing/install.log'

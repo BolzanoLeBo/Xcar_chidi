@@ -5,7 +5,7 @@ package_name = 'img_processing'
 setup(
     name=package_name,
     version='0.0.0',
-    packages=find_packages(exclude="interfaces" ),
+    packages=find_packages(exclude="tests" ),
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
@@ -15,8 +15,8 @@ setup(
     zip_safe=True,
     maintainer='loic',
     maintainer_email='loic.thomas1509@gmail.com',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    description='Package description',
+    license='License declaration',
     entry_points={
         'console_scripts': [
             'img_processing_node = img_processing.img_processing_node:main'
