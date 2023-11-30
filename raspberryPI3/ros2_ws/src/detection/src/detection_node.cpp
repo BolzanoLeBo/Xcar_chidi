@@ -41,7 +41,7 @@ class detection: public rclcpp::Node {
 
     //Counter of warnings
     int nb_warning = 0;
-
+    
     //Speed variable
     uint8_t last_front_us_detect = 0;
     uint8_t last_rear_us_detect = 0;
@@ -50,6 +50,8 @@ class detection: public rclcpp::Node {
     uint8_t last_front_lidar_detect = 0;
     uint8_t last_rear_lidar_detect = 0;
 
+
+    int print_list = 0;
     //Publisher
     rclcpp::Publisher<interfaces::msg::Obstacles>::SharedPtr publisher_obstacle_;
 
@@ -123,15 +125,25 @@ class detection: public rclcpp::Node {
       
       auto obstacleMsg = interfaces::msg::Obstacles();
       int size = (int)scan.ranges.size();
-      float front_min = 100.0; 
-      float rear_min = 100.0;
+      int delta = size/16;
+      if (!print_list)
+      {
+        for (int i = 0; i < size; i++)
+        {
+          RCLCPP_INFO(this->get_logger(),((to_string(i) + "  lidar  " + to_string(scan.ranges[i])).data()));
+        }
+        print_list = 1 ;
+
+      }
+      float front_min = 12.0; 
+      float rear_min = 12.0;
       for (int i = 0;i<size;i++){
-        if (i<=3*size/16 && i<(5*size)/16){
+        if (i>=3*size/16 && i<(5*size)/16){
           if (scan.ranges[i]<front_min){
               front_min=scan.ranges[i];
           }
         }
-        else if (i<=11*size/16 && i<(13*size)/16){
+        if (i<=(size*3/4) + delta && i >= (size*3/4) - delta){
           if (scan.ranges[i]<rear_min){
               rear_min=scan.ranges[i];
           }
@@ -140,9 +152,11 @@ class detection: public rclcpp::Node {
 
       if (front_min<LIM_LIDAR_FRONT){
         obstacleMsg.lidar_front_detect=1;
+        RCLCPP_INFO(this->get_logger(),(("  lidar  1" + to_string(front_min)).data()));
       }
       else{
         obstacleMsg.lidar_front_detect=0;
+        RCLCPP_INFO(this->get_logger(),(("  lidar  0" + to_string(front_min)).data()));
       }
 
       if (rear_min<LIM_LIDAR_REAR){
@@ -153,7 +167,7 @@ class detection: public rclcpp::Node {
       }
 
       // Changing last value of lidar_front_detect and publishing message of obstacle
-      if ((last_front_lidar_detect != obstacleMsg.lidar_front_detect) || last_rear_lidar_detect != obstacleMsg.lidar_rear_detect) {   
+      if ((last_front_lidar_detect != obstacleMsg.lidar_front_detect) || (last_rear_lidar_detect != obstacleMsg.lidar_rear_detect)) {   
         last_front_lidar_detect = obstacleMsg.lidar_front_detect;
         last_rear_lidar_detect = obstacleMsg.lidar_rear_detect;
         publisher_obstacle_->publish(obstacleMsg);
