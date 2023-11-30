@@ -13,7 +13,7 @@
 #define LIM_LIDAR_FRONT 1.70
 #define LIM_LIDAR_REAR 0.70
 
-#include "../include/detection /detection _node.h"
+#include "../include/detection/detection_node.h"
 
 using namespace std;
 using placeholders::_1;
@@ -21,7 +21,7 @@ using placeholders::_1;
 /* This example creates a subclass of Node and uses std::bind() to register a
  * member function as a callback from the timer. */
 
-class detection : public rclcpp::Node {
+class detection: public rclcpp::Node {
   public:
     detection()
     : Node("detection_node")
@@ -31,7 +31,7 @@ class detection : public rclcpp::Node {
       subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
         "us_data", 10, std::bind(&detection::usDataCallback, this, _1));
 
-      subscription_lidar_ = this->create_subscription<interfaces::msg::LaserScan>(
+      subscription_lidar_ = this->create_subscription<sensor_msgs::msg::LaserScan>(
         "scan", 10, std::bind(&detection::lidarDataCallback, this, _1));
     
       RCLCPP_INFO(this->get_logger(), "detection_node READY");
@@ -57,7 +57,7 @@ class detection : public rclcpp::Node {
     rclcpp::Subscription<interfaces::msg::Ultrasonic>::SharedPtr subscription_ultrasonic_sensor_;
 
     //Subscriber
-    rclcpp::Subscription<interfaces::msg::LaserScan>::SharedPtr subscription_lidar_;
+    rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr subscription_lidar_;
 
     void usDataCallback(const interfaces::msg::Ultrasonic & ultrasonic){
       
@@ -119,7 +119,7 @@ class detection : public rclcpp::Node {
       }
     }
 
-  void lidarDataCallback(const interfaces::msg::LaserScan & scan){
+  void lidarDataCallback(const sensor_msgs::msg::LaserScan & scan){
       
       auto obstacleMsg = interfaces::msg::Obstacles();
       int size = (int)scan.ranges.size();
@@ -142,14 +142,14 @@ class detection : public rclcpp::Node {
         obstacleMsg.lidar_front_detect=1;
       }
       else{
-        obstacle.lidar_front_detect=0;
+        obstacleMsg.lidar_front_detect=0;
       }
 
       if (rear_min<LIM_LIDAR_REAR){
         obstacleMsg.lidar_rear_detect=1;
       }
       else{
-        obstacle.lidar_rear_detect=0;
+        obstacleMsg.lidar_rear_detect=0;
       }
 
       // Changing last value of lidar_front_detect and publishing message of obstacle
@@ -165,7 +165,7 @@ class detection : public rclcpp::Node {
 int main(int argc, char * argv[])
 {
   rclcpp::init(argc, argv);
-  auto node = std::make_shared<detection >();
+  auto node = std::make_shared<detection>();
   rclcpp::spin(node);
   rclcpp::shutdown();
   return 0;
