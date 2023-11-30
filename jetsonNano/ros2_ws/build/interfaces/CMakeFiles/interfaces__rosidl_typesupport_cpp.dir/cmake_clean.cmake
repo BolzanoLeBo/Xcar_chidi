@@ -13,6 +13,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/steering_calibration__type_support.cpp.o.d"
   "CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/system_check__type_support.cpp.o"
   "CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/system_check__type_support.cpp.o.d"
+  "CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/tracking_pos_angle__type_support.cpp.o"
+  "CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/tracking_pos_angle__type_support.cpp.o.d"
   "CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/ultrasonic__type_support.cpp.o"
   "CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/ultrasonic__type_support.cpp.o.d"
   "libinterfaces__rosidl_typesupport_cpp.pdb"
@@ -24,6 +26,7 @@ file(REMOVE_RECURSE
   "rosidl_typesupport_cpp/interfaces/msg/motors_order__type_support.cpp"
   "rosidl_typesupport_cpp/interfaces/msg/steering_calibration__type_support.cpp"
   "rosidl_typesupport_cpp/interfaces/msg/system_check__type_support.cpp"
+  "rosidl_typesupport_cpp/interfaces/msg/tracking_pos_angle__type_support.cpp"
   "rosidl_typesupport_cpp/interfaces/msg/ultrasonic__type_support.cpp"
 )
 

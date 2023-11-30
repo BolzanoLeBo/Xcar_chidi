@@ -17,6 +17,8 @@ file(REMOVE_RECURSE
   "../rosidl_generator_py/interfaces/msg/_steering_calibration_s.c"
   "../rosidl_generator_py/interfaces/msg/_system_check.py"
   "../rosidl_generator_py/interfaces/msg/_system_check_s.c"
+  "../rosidl_generator_py/interfaces/msg/_tracking_pos_angle.py"
+  "../rosidl_generator_py/interfaces/msg/_tracking_pos_angle_s.c"
   "../rosidl_generator_py/interfaces/msg/_ultrasonic.py"
   "../rosidl_generator_py/interfaces/msg/_ultrasonic_s.c"
   "CMakeFiles/interfaces__py"

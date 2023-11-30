@@ -13,6 +13,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/steering_calibration__functions.c.o.d"
   "CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/system_check__functions.c.o"
   "CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/system_check__functions.c.o.d"
+  "CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/tracking_pos_angle__functions.c.o"
+  "CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/tracking_pos_angle__functions.c.o.d"
   "CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/ultrasonic__functions.c.o"
   "CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/ultrasonic__functions.c.o.d"
   "libinterfaces__rosidl_generator_c.pdb"
@@ -45,6 +47,10 @@ file(REMOVE_RECURSE
   "rosidl_generator_c/interfaces/msg/detail/system_check__functions.h"
   "rosidl_generator_c/interfaces/msg/detail/system_check__struct.h"
   "rosidl_generator_c/interfaces/msg/detail/system_check__type_support.h"
+  "rosidl_generator_c/interfaces/msg/detail/tracking_pos_angle__functions.c"
+  "rosidl_generator_c/interfaces/msg/detail/tracking_pos_angle__functions.h"
+  "rosidl_generator_c/interfaces/msg/detail/tracking_pos_angle__struct.h"
+  "rosidl_generator_c/interfaces/msg/detail/tracking_pos_angle__type_support.h"
   "rosidl_generator_c/interfaces/msg/detail/ultrasonic__functions.c"
   "rosidl_generator_c/interfaces/msg/detail/ultrasonic__functions.h"
   "rosidl_generator_c/interfaces/msg/detail/ultrasonic__struct.h"
@@ -56,6 +62,7 @@ file(REMOVE_RECURSE
   "rosidl_generator_c/interfaces/msg/motors_order.h"
   "rosidl_generator_c/interfaces/msg/steering_calibration.h"
   "rosidl_generator_c/interfaces/msg/system_check.h"
+  "rosidl_generator_c/interfaces/msg/tracking_pos_angle.h"
   "rosidl_generator_c/interfaces/msg/ultrasonic.h"
 )
 

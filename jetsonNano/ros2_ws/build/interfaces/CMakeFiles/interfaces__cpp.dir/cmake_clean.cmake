@@ -21,6 +21,9 @@ file(REMOVE_RECURSE
   "rosidl_generator_cpp/interfaces/msg/detail/system_check__builder.hpp"
   "rosidl_generator_cpp/interfaces/msg/detail/system_check__struct.hpp"
   "rosidl_generator_cpp/interfaces/msg/detail/system_check__traits.hpp"
+  "rosidl_generator_cpp/interfaces/msg/detail/tracking_pos_angle__builder.hpp"
+  "rosidl_generator_cpp/interfaces/msg/detail/tracking_pos_angle__struct.hpp"
+  "rosidl_generator_cpp/interfaces/msg/detail/tracking_pos_angle__traits.hpp"
   "rosidl_generator_cpp/interfaces/msg/detail/ultrasonic__builder.hpp"
   "rosidl_generator_cpp/interfaces/msg/detail/ultrasonic__struct.hpp"
   "rosidl_generator_cpp/interfaces/msg/detail/ultrasonic__traits.hpp"
@@ -31,6 +34,7 @@ file(REMOVE_RECURSE
   "rosidl_generator_cpp/interfaces/msg/motors_order.hpp"
   "rosidl_generator_cpp/interfaces/msg/steering_calibration.hpp"
   "rosidl_generator_cpp/interfaces/msg/system_check.hpp"
+  "rosidl_generator_cpp/interfaces/msg/tracking_pos_angle.hpp"
   "rosidl_generator_cpp/interfaces/msg/ultrasonic.hpp"
 )
 

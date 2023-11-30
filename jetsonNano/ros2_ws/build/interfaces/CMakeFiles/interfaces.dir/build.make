@@ -74,6 +74,7 @@ CMakeFiles/interfaces: /home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/src/inte
 CMakeFiles/interfaces: /home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces/msg/Ultrasonic.msg
 CMakeFiles/interfaces: /home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces/msg/Gnss.msg
 CMakeFiles/interfaces: /home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces/msg/SystemCheck.msg
+CMakeFiles/interfaces: /home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces/msg/TrackingPosAngle.msg
 
 interfaces: CMakeFiles/interfaces
 interfaces: CMakeFiles/interfaces.dir/build.make

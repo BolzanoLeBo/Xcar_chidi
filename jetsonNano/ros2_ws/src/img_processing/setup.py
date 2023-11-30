@@ -5,7 +5,7 @@ package_name = 'img_processing'
 setup(
     name=package_name,
     version='0.0.0',
-    packages=find_packages(exclude=['test']),
+    packages=find_packages(exclude="interfaces" ),
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
@@ -17,7 +17,6 @@ setup(
     maintainer_email='loic.thomas1509@gmail.com',
     description='TODO: Package description',
     license='TODO: License declaration',
-    tests_require=['pytest'],
     entry_points={
         'console_scripts': [
             'img_processing_node = img_processing.img_processing_node:main'

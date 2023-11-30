@@ -12,5 +12,7 @@ msg/SteeringCalibration.idl
 msg/SteeringCalibration.msg
 msg/SystemCheck.idl
 msg/SystemCheck.msg
+msg/TrackingPosAngle.idl
+msg/TrackingPosAngle.msg
 msg/Ultrasonic.idl
 msg/Ultrasonic.msg

@@ -10,7 +10,8 @@
     "/home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces/rosidl_adapter/interfaces:msg/SteeringCalibration.idl",
     "/home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces/rosidl_adapter/interfaces:msg/Ultrasonic.idl",
     "/home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces/rosidl_adapter/interfaces:msg/Gnss.idl",
-    "/home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces/rosidl_adapter/interfaces:msg/SystemCheck.idl"
+    "/home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces/rosidl_adapter/interfaces:msg/SystemCheck.idl",
+    "/home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces/rosidl_adapter/interfaces:msg/TrackingPosAngle.idl"
   ],
   "target_dependencies": [
     "/opt/ros/humble/share/rosidl_generator_py/cmake/../../../lib/rosidl_generator_py/rosidl_generator_py",
@@ -33,6 +34,7 @@
     "/home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces/rosidl_adapter/interfaces/msg/SteeringCalibration.idl",
     "/home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces/rosidl_adapter/interfaces/msg/Ultrasonic.idl",
     "/home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces/rosidl_adapter/interfaces/msg/Gnss.idl",
-    "/home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces/rosidl_adapter/interfaces/msg/SystemCheck.idl"
+    "/home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces/rosidl_adapter/interfaces/msg/SystemCheck.idl",
+    "/home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces/rosidl_adapter/interfaces/msg/TrackingPosAngle.idl"
   ]
 }

@@ -11,6 +11,3 @@ setup.py
 img_processing/__init__.py
 img_processing/img_processing_node.py
 resource/img_processing
-test/test_copyright.py
-test/test_flake8.py
-test/test_pep257.py

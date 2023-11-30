@@ -8,6 +8,7 @@
     "/home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/SteeringCalibration.msg",
     "/home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/Ultrasonic.msg",
     "/home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/Gnss.msg",
-    "/home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/SystemCheck.msg"
+    "/home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/SystemCheck.msg",
+    "/home/loic/Desktop/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/TrackingPosAngle.msg"
   ]
 }

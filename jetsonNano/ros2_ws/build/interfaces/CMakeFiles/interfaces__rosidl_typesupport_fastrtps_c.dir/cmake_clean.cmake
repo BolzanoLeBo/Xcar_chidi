@@ -13,6 +13,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/steering_calibration__type_support_c.cpp.o.d"
   "CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/system_check__type_support_c.cpp.o"
   "CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/system_check__type_support_c.cpp.o.d"
+  "CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/tracking_pos_angle__type_support_c.cpp.o"
+  "CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/tracking_pos_angle__type_support_c.cpp.o.d"
   "CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/ultrasonic__type_support_c.cpp.o"
   "CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/ultrasonic__type_support_c.cpp.o.d"
   "libinterfaces__rosidl_typesupport_fastrtps_c.pdb"
@@ -31,6 +33,8 @@ file(REMOVE_RECURSE
   "rosidl_typesupport_fastrtps_c/interfaces/msg/detail/steering_calibration__type_support_c.cpp"
   "rosidl_typesupport_fastrtps_c/interfaces/msg/detail/system_check__rosidl_typesupport_fastrtps_c.h"
   "rosidl_typesupport_fastrtps_c/interfaces/msg/detail/system_check__type_support_c.cpp"
+  "rosidl_typesupport_fastrtps_c/interfaces/msg/detail/tracking_pos_angle__rosidl_typesupport_fastrtps_c.h"
+  "rosidl_typesupport_fastrtps_c/interfaces/msg/detail/tracking_pos_angle__type_support_c.cpp"
   "rosidl_typesupport_fastrtps_c/interfaces/msg/detail/ultrasonic__rosidl_typesupport_fastrtps_c.h"
   "rosidl_typesupport_fastrtps_c/interfaces/msg/detail/ultrasonic__type_support_c.cpp"
 )
