@@ -28,8 +28,8 @@ class detection: public rclcpp::Node {
     {
       publisher_obstacle_ = this->create_publisher<interfaces::msg::Obstacles>("obstacles", 10);
 
-      subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
-        "us_data", 10, std::bind(&detection::usDataCallback, this, _1));
+      //subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
+      //  "us_data", 10, std::bind(&detection::usDataCallback, this, _1));
 
       subscription_lidar_ = this->create_subscription<sensor_msgs::msg::LaserScan>(
         "scan", 10, std::bind(&detection::lidarDataCallback, this, _1));
@@ -56,70 +56,70 @@ class detection: public rclcpp::Node {
     rclcpp::Publisher<interfaces::msg::Obstacles>::SharedPtr publisher_obstacle_;
 
     //Subscriber
-    rclcpp::Subscription<interfaces::msg::Ultrasonic>::SharedPtr subscription_ultrasonic_sensor_;
+    //rclcpp::Subscription<interfaces::msg::Ultrasonic>::SharedPtr subscription_ultrasonic_sensor_;
 
     //Subscriber
     rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr subscription_lidar_;
 
-    void usDataCallback(const interfaces::msg::Ultrasonic & ultrasonic){
+    // void usDataCallback(const interfaces::msg::Ultrasonic & ultrasonic){
       
-      auto obstacleMsg = interfaces::msg::Obstacles();
+    //   auto obstacleMsg = interfaces::msg::Obstacles();
 
-      // Checking that the data sent by us sensors are normal
-      if(ultrasonic.front_center < 600 && ultrasonic.front_left < 600 && ultrasonic.front_right < 600 && ultrasonic.rear_center < 600 && ultrasonic.rear_left < 600 && ultrasonic.rear_right < 600 && ultrasonic.front_center > 0 && ultrasonic.front_left > 0 && ultrasonic.front_right > 0 && ultrasonic.rear_center > 0 && ultrasonic.rear_right > 0 && ultrasonic.rear_left > 0){
-        nb_warning = 0;
-        obstacleMsg.us_error = 0;
-        // Message of obstacle if there is one in front of the car at less than 75 cm
-        if ((ultrasonic.front_center <= LIM_US)){
-        obstacleMsg.us_front_detect = 1;
-        } 
-        // Message of obstacle if there is one in at the left of the car at less than 20 cm
-        else if((ultrasonic.front_left <= LIM_US)){
-          obstacleMsg.us_front_detect = 1;
-        } 
-        // Message of obstacle if there is one in at the right of the car at less than 20 cm
-        else if((ultrasonic.front_right <= LIM_US)){
-          obstacleMsg.us_front_detect = 1; 
-        }
-        // No message of obstacle if none of those cases
-        else{
-          obstacleMsg.us_front_detect = 0;
-        }
+    //   // Checking that the data sent by us sensors are normal
+    //   if(ultrasonic.front_center < 600 && ultrasonic.front_left < 600 && ultrasonic.front_right < 600 && ultrasonic.rear_center < 600 && ultrasonic.rear_left < 600 && ultrasonic.rear_right < 600 && ultrasonic.front_center > 0 && ultrasonic.front_left > 0 && ultrasonic.front_right > 0 && ultrasonic.rear_center > 0 && ultrasonic.rear_right > 0 && ultrasonic.rear_left > 0){
+    //     nb_warning = 0;
+    //     obstacleMsg.us_error = 0;
+    //     // Message of obstacle if there is one in front of the car at less than 75 cm
+    //     if ((ultrasonic.front_center <= LIM_US)){
+    //     obstacleMsg.us_front_detect = 1;
+    //     } 
+    //     // Message of obstacle if there is one in at the left of the car at less than 20 cm
+    //     else if((ultrasonic.front_left <= LIM_US)){
+    //       obstacleMsg.us_front_detect = 1;
+    //     } 
+    //     // Message of obstacle if there is one in at the right of the car at less than 20 cm
+    //     else if((ultrasonic.front_right <= LIM_US)){
+    //       obstacleMsg.us_front_detect = 1; 
+    //     }
+    //     // No message of obstacle if none of those cases
+    //     else{
+    //       obstacleMsg.us_front_detect = 0;
+    //     }
 
-        if ((ultrasonic.rear_center <= LIM_US)){
-          obstacleMsg.us_rear_detect = 1;
-        } 
-        // Message of obstacle if there is one in at the left of the car at less than 20 cm
-        else if((ultrasonic.rear_left <= LIM_US)){
-          obstacleMsg.us_rear_detect = 1;
-        } 
-        // Message of obstacle if there is one in at the right of the car at less than 20 cm
-        else if((ultrasonic.rear_right <= LIM_US)){
-          obstacleMsg.us_rear_detect = 1; 
-        }
-        // No message of obstacle if none of those cases
-        else{
-          obstacleMsg.us_rear_detect = 0;
-        }
+    //     if ((ultrasonic.rear_center <= LIM_US)){
+    //       obstacleMsg.us_rear_detect = 1;
+    //     } 
+    //     // Message of obstacle if there is one in at the left of the car at less than 20 cm
+    //     else if((ultrasonic.rear_left <= LIM_US)){
+    //       obstacleMsg.us_rear_detect = 1;
+    //     } 
+    //     // Message of obstacle if there is one in at the right of the car at less than 20 cm
+    //     else if((ultrasonic.rear_right <= LIM_US)){
+    //       obstacleMsg.us_rear_detect = 1; 
+    //     }
+    //     // No message of obstacle if none of those cases
+    //     else{
+    //       obstacleMsg.us_rear_detect = 0;
+    //     }
  
-      } else if(nb_warning >= 5){
-        //ERROR if strange value of the us_data (too far or negative value) 5 times in a row
-        RCLCPP_ERROR(this->get_logger(), "Error : wrong us data for too long");
-        // Adding the message when there is a problem with the us sensors
-        obstacleMsg.us_error = 1;
-      } else{
-        //WARNING if strange value of the us_data (too far or negative value)
-        RCLCPP_WARN(this->get_logger(), "Warning : wrong us data");
-        nb_warning += 1;
-      }
-      // Changing last value of us_front_detect and publishing message of obstacle
-      if ((last_front_us_detect != obstacleMsg.us_front_detect) || last_rear_us_detect != obstacleMsg.us_rear_detect || last_us_error != obstacleMsg.us_error ) {   
-        last_front_us_detect = obstacleMsg.us_front_detect;
-        last_rear_us_detect = obstacleMsg.us_rear_detect;
-        last_us_error = obstacleMsg.us_error;
-        publisher_obstacle_->publish(obstacleMsg);
-      }
-    }
+    //   } else if(nb_warning >= 5){
+    //     //ERROR if strange value of the us_data (too far or negative value) 5 times in a row
+    //     RCLCPP_ERROR(this->get_logger(), "Error : wrong us data for too long");
+    //     // Adding the message when there is a problem with the us sensors
+    //     obstacleMsg.us_error = 1;
+    //   } else{
+    //     //WARNING if strange value of the us_data (too far or negative value)
+    //     RCLCPP_WARN(this->get_logger(), "Warning : wrong us data");
+    //     nb_warning += 1;
+    //   }
+    //   // Changing last value of us_front_detect and publishing message of obstacle
+    //   if ((last_front_us_detect != obstacleMsg.us_front_detect) || last_rear_us_detect != obstacleMsg.us_rear_detect || last_us_error != obstacleMsg.us_error ) {   
+    //     last_front_us_detect = obstacleMsg.us_front_detect;
+    //     last_rear_us_detect = obstacleMsg.us_rear_detect;
+    //     last_us_error = obstacleMsg.us_error;
+    //     publisher_obstacle_->publish(obstacleMsg);
+    //   }
+    // }
 
   void lidarDataCallback(const sensor_msgs::msg::LaserScan & scan){
       
@@ -167,11 +167,11 @@ class detection: public rclcpp::Node {
       }
 
       // Changing last value of lidar_front_detect and publishing message of obstacle
-      if ((last_front_lidar_detect != obstacleMsg.lidar_front_detect) || (last_rear_lidar_detect != obstacleMsg.lidar_rear_detect)) {   
-        last_front_lidar_detect = obstacleMsg.lidar_front_detect;
-        last_rear_lidar_detect = obstacleMsg.lidar_rear_detect;
-        publisher_obstacle_->publish(obstacleMsg);
-      }
+      //if ((last_front_lidar_detect != obstacleMsg.lidar_front_detect) || (last_rear_lidar_detect != obstacleMsg.lidar_rear_detect)) {   
+      //last_front_lidar_detect = obstacleMsg.lidar_front_detect;
+      //last_rear_lidar_detect = obstacleMsg.lidar_rear_detect;
+      publisher_obstacle_->publish(obstacleMsg);
+      //}
   }    
 
 };
