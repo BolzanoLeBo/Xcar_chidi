@@ -49,11 +49,14 @@ def detect_human(frame, net, layer_names, confidence_threshold=0.5):
 	for i in indices:
 		#i = i[0]
 		x, y, w, h = boxes[i]
+		cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+		cv2.putText(frame, 'Person', (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 		if confidences[i] > max_confidence : 
 			best_rect = (x,y,w,h)
 			max_confidence = confidences[i]
 
-	xmax, ymax, wmax, hmax = best_rect	
+	xmax, ymax, wmax, hmax = best_rect
+	cv2.rectangle(frame, (xmax, ymax), (xmax+ wmax, ymax + hmax), (255, 0, 0), 2)		
 	return (frame, best_rect, len(indices)>0)
 
 def vector_rotation(v, theta): 
@@ -112,9 +115,9 @@ def get_angle(rect, sc, a, phi, d) :
 
 def get_tracking_angle(frame, camera_angle, lidar_rotation, lidar_translation) : 
 	# Load YOLOv3 model
-	yolo_weights = "./yolo/yolov3-tiny.weights"
-	yolo_config = "./yolo/yolov3-tiny.cfg"
-	yolo_classes = "./yolo/coco.names"
+	yolo_weights = "/root/Xcar_chidi/jetsonNano/ros2_ws/src/img_processing/img_processing/yolo/yolov3-tiny.weights"
+	yolo_config = "/root/Xcar_chidi/jetsonNano/ros2_ws/src/img_processing/img_processing/yolo/yolov3-tiny.cfg"
+	yolo_classes = "/root/Xcar_chidi/jetsonNano/ros2_ws/src/img_processing/img_processing/yolo/coco.names"
 
 	height, width = frame.shape[:2]
 
@@ -123,17 +126,16 @@ def get_tracking_angle(frame, camera_angle, lidar_rotation, lidar_translation) :
 	target = ""
 
 	# Detect humans in the current frame
-	(rect, person_detected) = detect_human(frame, net, layer_names)
-	
+	(new_frame, rect, person_detected) = detect_human(frame, net, layer_names)
+	cv2.imwrite("/root/Xcar_chidi/img.png", new_frame)
 	#take the angle in the frame
 	if person_detected :
 		return (person_detected, get_angle(rect, width, radians(camera_angle), lidar_rotation, lidar_translation))
 	else : 
 		return (person_detected, (inf, inf))
 
-
 class ImgProcessingNode(Node):
-
+	
 	def __init__(self):
 		super().__init__('img_processing_node')
 		qos_profile = QoSProfile(
@@ -141,6 +143,7 @@ class ImgProcessingNode(Node):
 			history=QoSHistoryPolicy.RMW_QOS_POLICY_HISTORY_KEEP_LAST,
 			depth=1
 		)
+		self.init = 0
 		self.subscriber_ = self.create_subscription(Image, 'image_raw', self.image_callback,qos_profile = qos_profile)
 		self.tracking_pos_angle_publisher_ = self.create_publisher(TrackingPosAngle,'tracking_pos_angle', 10)
 		
@@ -153,13 +156,19 @@ class ImgProcessingNode(Node):
 	def image_callback(self,msg):
 		bridge = CvBridge()
 		tracking = TrackingPosAngle()
-
+		a_min = 0
+		a_max = 0
+		human_detected = 0
 		
 		cv_image = bridge.imgmsg_to_cv2(msg, desired_encoding="bgr8")
-		(person_detected, (a_min, a_max)) = get_tracking_angle(cv_image, radians(60), -radians(-90), [0,0])
+
+		(human_detected, (a_min, a_max)) = get_tracking_angle(cv_image, radians(60), 0, [0,0])
+		#self.get_logger().info("img_h : {}".format(rect[0]))
+			
+
 		# Your image processing or display logic here
 		#cv2.imshow("Received Image", cv_image)
-		#cv2.imwrite("/img.png", cv_image)
+		
 		tracking.min_angle = a_min
 		tracking.max_angle = a_max
 		# Publish the msg for angle
