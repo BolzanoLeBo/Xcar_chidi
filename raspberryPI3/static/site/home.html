@@ -29,7 +29,7 @@
                 <button onclick="redirectAndSelectMode('tracking.html', 3)">Tracking Mode</button>
                 <button onclick="redirectAndSelectMode('autonomous.html', 2)">Autonomous Mode</button>
                 <button onclick="redirectAndSelectMode('emergency.html', 4)">Emergency Mode</button>
-                <button class="logout-b" onclick="redirectAndSelectMode('index.html', 6)">Logout</button>
+                <button class="logout-b" onclick="redirect('index.html')">Logout</button>
             </div>
         </div>
 
@@ -49,6 +49,10 @@
     <script>
         function redirectAndSelectMode(page, mode) {
             selectMode(mode);
+        }
+
+        function redirect(page) {
+            window.location.href = 'index.html';
         }
 
         function showTab(tabName) {
