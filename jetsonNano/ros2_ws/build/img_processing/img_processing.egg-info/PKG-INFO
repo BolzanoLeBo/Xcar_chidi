@@ -1,8 +1,0 @@
-Metadata-Version: 2.1
-Name: img-processing
-Version: 0.0.0
-Summary: Package description
-Maintainer: loic
-Maintainer-email: loic.thomas1509@gmail.com
-License: License declaration
-Requires-Dist: setuptools
