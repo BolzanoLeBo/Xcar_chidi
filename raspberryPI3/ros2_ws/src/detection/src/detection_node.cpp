@@ -28,11 +28,13 @@ class detection: public rclcpp::Node {
     {
       publisher_obstacle_ = this->create_publisher<interfaces::msg::Obstacles>("obstacles", 10);
 
-      //subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
-      //  "us_data", 10, std::bind(&detection::usDataCallback, this, _1));
+      subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
+       "us_data", 10, std::bind(&detection::usDataCallback, this, _1));
 
       subscription_lidar_ = this->create_subscription<sensor_msgs::msg::LaserScan>(
         "scan", 10, std::bind(&detection::lidarDataCallback, this, _1));
+
+      timer_ = this->create_wall_timer(PERIOD_UPDATE_CMD, std::bind(&detection::DetectCom, this));
     
       RCLCPP_INFO(this->get_logger(), "detection_node READY");
     }
@@ -50,82 +52,90 @@ class detection: public rclcpp::Node {
     uint8_t last_front_lidar_detect = 0;
     uint8_t last_rear_lidar_detect = 0;
 
+    uint8_t lidar_front =0;
+    uint8_t lidar_rear =0;
+
+
+    uint8_t us_front =0;
+    uint8_t us_rear =0;
+
 
     int print_list = 0;
     //Publisher
     rclcpp::Publisher<interfaces::msg::Obstacles>::SharedPtr publisher_obstacle_;
 
     //Subscriber
-    //rclcpp::Subscription<interfaces::msg::Ultrasonic>::SharedPtr subscription_ultrasonic_sensor_;
+    rclcpp::Subscription<interfaces::msg::Ultrasonic>::SharedPtr subscription_ultrasonic_sensor_;
 
     //Subscriber
     rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr subscription_lidar_;
 
-    // void usDataCallback(const interfaces::msg::Ultrasonic & ultrasonic){
+    rclcpp::TimerBase::SharedPtr timer_;
+
+    void usDataCallback(const interfaces::msg::Ultrasonic & ultrasonic){
       
-    //   auto obstacleMsg = interfaces::msg::Obstacles();
 
-    //   // Checking that the data sent by us sensors are normal
-    //   if(ultrasonic.front_center < 600 && ultrasonic.front_left < 600 && ultrasonic.front_right < 600 && ultrasonic.rear_center < 600 && ultrasonic.rear_left < 600 && ultrasonic.rear_right < 600 && ultrasonic.front_center > 0 && ultrasonic.front_left > 0 && ultrasonic.front_right > 0 && ultrasonic.rear_center > 0 && ultrasonic.rear_right > 0 && ultrasonic.rear_left > 0){
-    //     nb_warning = 0;
-    //     obstacleMsg.us_error = 0;
-    //     // Message of obstacle if there is one in front of the car at less than 75 cm
-    //     if ((ultrasonic.front_center <= LIM_US)){
-    //     obstacleMsg.us_front_detect = 1;
-    //     } 
-    //     // Message of obstacle if there is one in at the left of the car at less than 20 cm
-    //     else if((ultrasonic.front_left <= LIM_US)){
-    //       obstacleMsg.us_front_detect = 1;
-    //     } 
-    //     // Message of obstacle if there is one in at the right of the car at less than 20 cm
-    //     else if((ultrasonic.front_right <= LIM_US)){
-    //       obstacleMsg.us_front_detect = 1; 
-    //     }
-    //     // No message of obstacle if none of those cases
-    //     else{
-    //       obstacleMsg.us_front_detect = 0;
-    //     }
+      // Checking that the data sent by us sensors are normal
+      if(ultrasonic.front_center < 600 && ultrasonic.front_left < 600 && ultrasonic.front_right < 600 && ultrasonic.rear_center < 600 && ultrasonic.rear_left < 600 && ultrasonic.rear_right < 600 && ultrasonic.front_center > 0 && ultrasonic.front_left > 0 && ultrasonic.front_right > 0 && ultrasonic.rear_center > 0 && ultrasonic.rear_right > 0 && ultrasonic.rear_left > 0){
+        // nb_warning = 0;
+        // obstacleMsg.us_error = 0;
+        // Message of obstacle if there is one in front of the car at less than 75 cm
+        if ((ultrasonic.front_center <= LIM_US)){
+        us_front = 1;
+        } 
+        // Message of obstacle if there is one in at the left of the car at less than 20 cm
+        else if((ultrasonic.front_left <= LIM_US)){
+          us_front = 1;
+        } 
+        // Message of obstacle if there is one in at the right of the car at less than 20 cm
+        else if((ultrasonic.front_right <= LIM_US)){
+          us_front = 1; 
+        }
+        // No message of obstacle if none of those cases
+        else{
+          us_front = 0;
+        }
 
-    //     if ((ultrasonic.rear_center <= LIM_US)){
-    //       obstacleMsg.us_rear_detect = 1;
-    //     } 
-    //     // Message of obstacle if there is one in at the left of the car at less than 20 cm
-    //     else if((ultrasonic.rear_left <= LIM_US)){
-    //       obstacleMsg.us_rear_detect = 1;
-    //     } 
-    //     // Message of obstacle if there is one in at the right of the car at less than 20 cm
-    //     else if((ultrasonic.rear_right <= LIM_US)){
-    //       obstacleMsg.us_rear_detect = 1; 
-    //     }
-    //     // No message of obstacle if none of those cases
-    //     else{
-    //       obstacleMsg.us_rear_detect = 0;
-    //     }
+        if ((ultrasonic.rear_center <= LIM_US)){
+          us_rear = 1;
+        } 
+        // Message of obstacle if there is one in at the left of the car at less than 20 cm
+        else if((ultrasonic.rear_left <= LIM_US)){
+          us_rear = 1;
+        } 
+        // Message of obstacle if there is one in at the right of the car at less than 20 cm
+        else if((ultrasonic.rear_right <= LIM_US)){
+          us_rear = 1; 
+        }
+        // No message of obstacle if none of those cases
+        else{
+          us_rear= 0;
+        }
  
-    //   } else if(nb_warning >= 5){
-    //     //ERROR if strange value of the us_data (too far or negative value) 5 times in a row
-    //     RCLCPP_ERROR(this->get_logger(), "Error : wrong us data for too long");
-    //     // Adding the message when there is a problem with the us sensors
-    //     obstacleMsg.us_error = 1;
-    //   } else{
-    //     //WARNING if strange value of the us_data (too far or negative value)
-    //     RCLCPP_WARN(this->get_logger(), "Warning : wrong us data");
-    //     nb_warning += 1;
-    //   }
-    //   // Changing last value of us_front_detect and publishing message of obstacle
-    //   if ((last_front_us_detect != obstacleMsg.us_front_detect) || last_rear_us_detect != obstacleMsg.us_rear_detect || last_us_error != obstacleMsg.us_error ) {   
-    //     last_front_us_detect = obstacleMsg.us_front_detect;
-    //     last_rear_us_detect = obstacleMsg.us_rear_detect;
-    //     last_us_error = obstacleMsg.us_error;
-    //     publisher_obstacle_->publish(obstacleMsg);
-    //   }
-    // }
+      // } else if(nb_warning >= 5){
+      //   //ERROR if strange value of the us_data (too far or negative value) 5 times in a row
+      //   RCLCPP_ERROR(this->get_logger(), "Error : wrong us data for too long");
+      //   // Adding the message when there is a problem with the us sensors
+      //   obstacleMsg.us_error = 1;
+      // } else{
+        //WARNING if strange value of the us_data (too far or negative value)
+        // RCLCPP_WARN(this->get_logger(), "Warning : wrong us data");
+        // nb_warning += 1;
+      //}
+      // Changing last value of us_front_detect and publishing message of obstacle
+      // if ((last_front_us_detect != obstacleMsg.us_front_detect) || last_rear_us_detect != obstacleMsg.us_rear_detect || last_us_error != obstacleMsg.us_error ) {   
+      //   last_front_us_detect = obstacleMsg.us_front_detect;
+      //   last_rear_us_detect = obstacleMsg.us_rear_detect;
+      //   last_us_error = obstacleMsg.us_error;
+      //   publisher_obstacle_->publish(obstacleMsg);
+      // }
+    }
+    }
 
   void lidarDataCallback(const sensor_msgs::msg::LaserScan & scan){
       
-      auto obstacleMsg = interfaces::msg::Obstacles();
       int size = (int)scan.ranges.size();
-      int delta = size/16;
+      int delta = size/8;
       if (!print_list)
       {
         for (int i = 0; i < size; i++)
@@ -151,29 +161,46 @@ class detection: public rclcpp::Node {
       }
 
       if (front_min<LIM_LIDAR_FRONT){
-        obstacleMsg.lidar_front_detect=1;
-        RCLCPP_INFO(this->get_logger(),(("  lidar  1" + to_string(front_min)).data()));
+        lidar_front=1;
+        //RCLCPP_INFO(this->get_logger(),(("  lidar  1 " + to_string(front_min)).data()));
       }
       else{
-        obstacleMsg.lidar_front_detect=0;
-        RCLCPP_INFO(this->get_logger(),(("  lidar  0" + to_string(front_min)).data()));
+        lidar_front=0;
+        //RCLCPP_INFO(this->get_logger(),(("  lidar  0 " + to_string(front_min)).data()));
       }
 
       if (rear_min<LIM_LIDAR_REAR){
-        obstacleMsg.lidar_rear_detect=1;
+        lidar_rear=1;
       }
       else{
-        obstacleMsg.lidar_rear_detect=0;
+        lidar_rear=0;
       }
 
       // Changing last value of lidar_front_detect and publishing message of obstacle
       //if ((last_front_lidar_detect != obstacleMsg.lidar_front_detect) || (last_rear_lidar_detect != obstacleMsg.lidar_rear_detect)) {   
       //last_front_lidar_detect = obstacleMsg.lidar_front_detect;
-      //last_rear_lidar_detect = obstacleMsg.lidar_rear_detect;
-      publisher_obstacle_->publish(obstacleMsg);
+      //last_rear_lidar_detect = obstacleMsg.lidar_rear_detect
       //}
   }    
 
+  void DetectCom(){
+    auto obstacleMsg = interfaces::msg::Obstacles();
+    if (lidar_front ){//|| us_front){
+      obstacleMsg.front=1;
+    }
+    else{
+    obstacleMsg.front=0;
+    }
+    if (lidar_rear ){//|| us_rear){
+      obstacleMsg.rear=1;
+    }
+    else{
+    obstacleMsg.rear=0;
+    }
+
+    publisher_obstacle_->publish(obstacleMsg);
+  }
+  
 };
 
 int main(int argc, char * argv[])
