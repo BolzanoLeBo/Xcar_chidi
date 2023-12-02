@@ -16,19 +16,90 @@ ros.on('close', function () {
     console.log('Connexion au serveur websocket ROS fermée.');
 });
 
-function selectMode(mode) {
-    var modePublisher = new ROSLIB.Topic({
-        ros: ros,
-        name: '/web_mode',
-        messageType: 'interfaces/msg/WebMode'
-    });
+var modePublisher = new ROSLIB.Topic({
+    ros: ros,
+    name: '/web_mode',
+    messageType: 'interfaces/msg/WebMode'
+});
 
+function publishWebMode(button, throttle, steering, reverse) {
     var modeMsg = new ROSLIB.Message({
-        button: mode
+        button: button,
+        throttle: throttle,
+        steering: steering,
+        reverse: reverse
     });
 
     modePublisher.publish(modeMsg);
-    console.log('Commande envoyée: ' + mode);
+    //console.log('Commande envoyée - Button:', button, 'Throttle:', throttle, 'Steering:', steering, 'Reverse:', reverse);
+}
+
+function selectMode(mode) {
+    publishWebMode(mode, 0, 0, false);
+}
+
+var throttle = 0;
+var reverse = false;
+var steering = 0;
+var timer;
+
+function move() {
+    publishWebMode(7, throttle, steering, reverse);
+}
+
+function createJoystick() {
+    var options = {
+        zone: document.getElementById('zone_joystick'),
+        threshold: 0.1,
+        position: { left: '50%', top: '50%' },
+        mode: 'static',
+        size: 150,
+        color: '#000000',
+    };
+
+    var manager = nipplejs.create(options);
+
+    manager.on('move', function (event, nipple) {
+        //console.log("Moving");
+        var max_throttle = 1.0;
+        var max_reverse_distance = 37.5; // pixels;
+        var max_steering = 1.0;
+
+        // Calcul des valeurs
+        throttle = nipple.distance / (max_reverse_distance * 2) * max_throttle;
+        steering = Math.cos(nipple.angle.radian) * max_steering;
+    });
+
+    manager.on('plain:up', function () {
+        reverse = false;
+    });
+
+    manager.on('plain:down', function () {
+        reverse = true;
+    });
+
+    manager.on('start', function () {
+        //console.log("Movement start");
+        if (!timer) {
+            timer = setInterval(move, 25);
+        }
+    });
+
+    manager.on('end', function () {
+        //console.log("Movement end");
+        if (timer) {
+            clearInterval(timer);
+            timer = null;
+        }
+        throttle = 0;
+        steering = 0;
+        reverse = false;
+        move();
+    });
+}
+
+window.onload = function () {
+    createJoystick();
 }
 
 var stateListener = new ROSLIB.Topic({
