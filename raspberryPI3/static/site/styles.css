@@ -52,7 +52,7 @@ label {
 }
 
 button {
-    margin: 10px;
+    margin: 0.001px;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -69,7 +69,7 @@ button:hover {
 
 /*Init Emergy buttom*/
 buttonE {
-    margin: 10px;
+    margin: 0.001px;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -90,6 +90,12 @@ buttonE:hover {
     height: 200px;
     background-color: lightgray;
     margin: 20px auto;
+}
+
+#zone_joystick {
+    width: 100px;
+    height: 100px;
+    margin: auto;
 }
 
 .alert {
@@ -144,6 +150,13 @@ buttonE:hover {
     max-width: 100%; 
     height: auto; 
     max-height: 250px; 
+}
+
+.controller-image-sm {
+    text-align: center; 
+    max-width: 100%; 
+    height: auto; 
+    max-height: 400px; 
 }
 
 @keyframes blink {

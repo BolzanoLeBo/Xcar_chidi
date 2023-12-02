@@ -47,13 +47,45 @@ function move() {
     publishWebMode(7, throttle, steering, reverse);
 }
 
+function toggleJoystickAndImage() {
+    var joystickImage = document.querySelector('.controller-image');
+    var existingJoystickDiv = document.getElementById('zone_joystick');
+
+    // Verifica se a zona do joystick já foi criada
+    if (!existingJoystickDiv) {
+        // Cria a div da zona do joystick
+        var newJoystickDiv = document.createElement('div');
+        newJoystickDiv.id = 'zone_joystick';
+        newJoystickDiv.style.position = 'relative';
+
+        // Obtém a referência ao botão "Toggle Joystick"
+        var toggleButton = document.getElementById('toggleButton');
+
+        // Insere a nova div acima do botão
+        toggleButton.parentNode.insertBefore(newJoystickDiv, toggleButton);
+
+        // Inicializa o joystick na nova div
+        createJoystick();
+    }
+
+    // Alterna a visibilidade da imagem e da zona do joystick
+    if (joystickImage.style.display !== 'none') {
+        joystickImage.style.display = 'none';
+        existingJoystickDiv.style.display = 'block';
+    } else {
+        joystickImage.style.display = 'block';
+        existingJoystickDiv.style.display = 'none';
+    }
+}
+
+
 function createJoystick() {
     var options = {
         zone: document.getElementById('zone_joystick'),
         threshold: 0.1,
         position: { left: '50%', top: '50%' },
         mode: 'static',
-        size: 150,
+        size: 100,
         color: '#000000',
     };
 

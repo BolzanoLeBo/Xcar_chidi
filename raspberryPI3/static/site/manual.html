@@ -28,15 +28,15 @@
             <div id="stateData" class="hidden"></div>
             <h2><em class="italic-text">Please take the joystick to use the vehicle.</em></h2>
             <img src="./images/joystick.png" alt="Joystick Image" class="controller-image">
-            <div id="zone_joystick" style="position: relative;"></div>
             <div class="button-container">
+                <button id="toggleButton" onclick="toggleJoystickAndImage()">Toggle Joystick</button>
                 <button onclick="redirectAndSelectMode('home.html', 0)">Return</button>
                 <buttonE onclick="redirectAndSelectMode('emergency.html', 4)">Emergency Mode</buttonE>
             </div>
         </div>
 
         <div id="stateMachine" class="tab-content container">
-            <!--State Machine -->
+            <img src="./images/sm_manual.png" alt="Manual" class="controller-image-sm">
         </div>
 
         <div id="terminal" class="tab-content container">
