@@ -67,6 +67,24 @@ button:hover {
     background-color: rgba(4, 133, 137);
 }
 
+/*Init Emergy buttom*/
+buttonE {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    background-color:red;
+    color: rgba(255, 255, 255);
+    transition: background-color 0.3s;
+}
+
+buttonE:hover {
+    background-color: rgb(183, 0, 0);
+}
+/*End Emergy buttom*/
+
 #controller {
     width: 300px;
     height: 200px;
@@ -84,6 +102,12 @@ button:hover {
 
 .italic-text {
     font-style: italic;
+    font-weight: normal;
+    font-size: 15px;
+}
+
+.text {
+    font-style: normal;
     font-weight: normal;
     font-size: 15px;
 }
