@@ -19,7 +19,7 @@ def detect_human(frame, net, layer_names, confidence_threshold=0.5):
 	height, width = frame.shape[:2]
 
 	# Create a blob from the frame and perform a forward pass
-	blob = cv2.dnn.blobFromImage(frame, 1/255.0, (480, 480), swapRB=True, crop=False)
+	blob = cv2.dnn.blobFromImage(frame, 1/255.0, (416, 416), swapRB=True, crop=False)
 	net.setInput(blob)
 	outputs = net.forward(layer_names)
 
@@ -120,17 +120,18 @@ def get_tracking_angle(frame, camera_angle, lidar_rotation, lidar_translation) :
 	yolo_classes = "/root/Xcar_chidi/jetsonNano/ros2_ws/src/img_processing/img_processing/yolo/coco.names"
 
 	height, width = frame.shape[:2]
-
+	center_x, center_y = frame.shape[1] // 2, frame.shape[0] // 2
+	cropped_frame = cv2.getRectSubPix(frame, (height, height), (center_x, center_y))
 	net	 = cv2.dnn.readNet(yolo_weights, yolo_config)
 	layer_names = net.getUnconnectedOutLayersNames()
 	target = ""
-
 	# Detect humans in the current frame
-	(new_frame, rect, person_detected) = detect_human(frame, net, layer_names)
+	(new_frame, rect, person_detected) = detect_human(cropped_frame, net, layer_names)
 	cv2.imwrite("/root/Xcar_chidi/img.png", new_frame)
 	#take the angle in the frame
 	if person_detected :
-		return (person_detected, get_angle(rect, width, radians(camera_angle), lidar_rotation, lidar_translation))
+		#we use height because the frame is a square
+		return (person_detected, get_angle(rect, height, radians(camera_angle), lidar_rotation, lidar_translation))
 	else : 
 		return (person_detected, (inf, inf))
 
@@ -138,16 +139,16 @@ class ImgProcessingNode(Node):
 	
 	def __init__(self):
 		super().__init__('img_processing_node')
+        
 		qos_profile = QoSProfile(
 			reliability=QoSReliabilityPolicy.RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT,
 			history=QoSHistoryPolicy.RMW_QOS_POLICY_HISTORY_KEEP_LAST,
 			depth=1
 		)
-		self.init = 0
 		self.subscriber_ = self.create_subscription(Image, 'image_raw', self.image_callback,qos_profile = qos_profile)
 		self.tracking_pos_angle_publisher_ = self.create_publisher(TrackingPosAngle,'tracking_pos_angle', 10)
-		
-
+		self.cv_image = []
+		self.timer = self.create_timer(1, self.img_ai) #1 second
 
 
 	#here we define how to update the angle value of the tracking
@@ -155,24 +156,25 @@ class ImgProcessingNode(Node):
 
 	def image_callback(self,msg):
 		bridge = CvBridge()
-		tracking = TrackingPosAngle()
-		a_min = 0
-		a_max = 0
-		human_detected = 0
-		
-		cv_image = bridge.imgmsg_to_cv2(msg, desired_encoding="bgr8")
+		self.cv_image = bridge.imgmsg_to_cv2(msg, desired_encoding="bgr8")
 
-		(human_detected, (a_min, a_max)) = get_tracking_angle(cv_image, radians(60), 0, [0,0])
 		#self.get_logger().info("img_h : {}".format(rect[0]))
 			
 
 		# Your image processing or display logic here
 		#cv2.imshow("Received Image", cv_image)
 		
-		tracking.min_angle = a_min
-		tracking.max_angle = a_max
-		# Publish the msg for angle
-		self.tracking_pos_angle_publisher_.publish(tracking)
+
+
+	def img_ai(self) : 
+		if self.cv_image != [] :
+			tracking = TrackingPosAngle()
+			(human_detected, (a_min, a_max)) = get_tracking_angle(self.cv_image, radians(60), 0, [0,0])
+			tracking.min_angle = a_min
+			tracking.max_angle = a_max
+			# Publish the msg for angle
+			self.tracking_pos_angle_publisher_.publish(tracking)
+
 
 def main(args=None):
 	rclpy.init(args=args)
