@@ -210,26 +210,30 @@ class detection: public rclcpp::Node {
       //int Sum=0;
       //int moyenne = 0;
       aux.clear();
-      for (int i=0; i<size ; i++){
-        if (i>=(Tracking_Pos_Angle.angle_min) && i<(Tracking_Pos_Angle.angle_max)){
-          //Sum +=lidar_data[i];
-          aux.push_back(lidar_data[i]);
-          //count+=1;
+      if(Tracking_Pos_Angle.angle_min>=-360 && Tracking_Pos_Angle.angle_max<=360 && Tracking_Pos_Angle.angle_min<= 360 && Tracking_Pos_Angle.angle_max>=-360){
+        for (int i=0; i<size ; i++){
+          if (i>=(Tracking_Pos_Angle.angle_min) && i<(Tracking_Pos_Angle.angle_max)){
+            //Sum +=lidar_data[i];
+            aux.push_back(lidar_data[i]);
+            //count+=1;
+          }
+        }
+        size2=aux.size();
+        if (size2>0){
+          std::sort(aux, aux + size2);
+          //Renvoie de la médiane
+          if (size2 % 2 != 0) {
+            Userdist.distance_tracking= aux[size2 / 2];
+          }
+          else{
+            Userdist.distance_tracking = (aux[(size2-1)/2] + aux[size2/2])/2;
+          }
+
+          //moyenne=Sum/count;
+          //distance.distance_tracking=moyenne;
+          publisher_userdistance_->publish(Userdist);
         }
       }
-      size2=aux.size();
-      std::sort(aux, aux + size2);
-      //Renvoie de la médiane
-      if (size2 % 2 != 0) {
-        Userdist.distance_tracking= aux[size2 / 2];
-      }
-      else{
-        Userdist.distance_tracking = (aux[(size2-1)/2] + aux[size2/2])/2;
-      }
-
-      //moyenne=Sum/count;
-      //distance.distance_tracking=moyenne;
-      publisher_userdistance_->publish(Userdist);
   }    
 
   void DetectCom(){
