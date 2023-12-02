@@ -130,9 +130,13 @@ private:
                 webButtonStart = true;
                 break;
             default:
-                RCLCPP_INFO(this->get_logger(), "unknown webButton pressed");
+                //RCLCPP_INFO(this->get_logger(), "unknown webButton pressed");
                 break;
         }
+
+        webSteering = web.steering;
+        webThrottle = web.throttle;
+        webReverse = web.reverse;
     }
 
     void updateCmd() {
@@ -206,6 +210,11 @@ private:
             requestedAngle = axisLS_X;    
         }
 
+
+        //Proppulsion et steering avec interface web
+        requestedThrottle = webThrottle;
+        requestedAngle = webSteering;
+        reverse = webReverse;
         
 
         auto joystickOrderMsg = interfaces::msg::JoystickOrder();
@@ -243,6 +252,8 @@ private:
     //Manual mode variables
     float requestedAngle, requestedThrottle;
     bool reverse;
+    float webSteering, webThrottle;
+    bool webReverse;
 
 
 
