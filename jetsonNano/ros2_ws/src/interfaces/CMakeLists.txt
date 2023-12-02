@@ -23,6 +23,7 @@ set(msg_files
   "msg/Obstacles.msg"
   "msg/SystemCheck.msg"
   "msg/Lidar.msg"
+  "msg/User_Distance.msg"
 )
 
 rosidl_generate_interfaces(${PROJECT_NAME}

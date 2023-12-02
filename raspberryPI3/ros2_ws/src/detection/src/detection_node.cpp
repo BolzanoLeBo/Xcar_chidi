@@ -6,9 +6,14 @@
 
 #include <chrono>
 #include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
 
 #include "interfaces/msg/ultrasonic.hpp"
 #include "interfaces/msg/obstacles.hpp"
+#include "interfaces/msg/userdistance.hpp"
+#include "interfaces/msg/trackingposangle.hpp"
 #define LIM_US 70
 #define LIM_LIDAR_FRONT 1.70
 #define LIM_LIDAR_REAR 0.70
@@ -28,11 +33,16 @@ class detection: public rclcpp::Node {
     {
       publisher_obstacle_ = this->create_publisher<interfaces::msg::Obstacles>("obstacles", 10);
 
+      publisher_userdistance_ = this->create_publisher<interfaces::msg::Userdistance>("userdistance", 10);
+
       subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
        "us_data", 10, std::bind(&detection::usDataCallback, this, _1));
 
       subscription_lidar_ = this->create_subscription<sensor_msgs::msg::LaserScan>(
         "scan", 10, std::bind(&detection::lidarDataCallback, this, _1));
+
+      subscription_TrackingPos_ = this->create_subscription<interfaces::msg::TrackingPosAngle>(
+        "TrackingPosAngle", 10, std::bind(&detection::CameraDataCallBack, this, _1));
 
       timer_ = this->create_wall_timer(PERIOD_UPDATE_CMD, std::bind(&detection::DetectCom, this));
     
@@ -43,7 +53,8 @@ class detection: public rclcpp::Node {
 
     //Counter of warnings
     int nb_warning = 0;
-    
+    std::vector<float> lidar_data;
+
     //Speed variable
     uint8_t last_front_us_detect = 0;
     uint8_t last_rear_us_detect = 0;
@@ -59,16 +70,19 @@ class detection: public rclcpp::Node {
     uint8_t us_front =0;
     uint8_t us_rear =0;
 
-
     int print_list = 0;
     //Publisher
     rclcpp::Publisher<interfaces::msg::Obstacles>::SharedPtr publisher_obstacle_;
+
+    rclcpp::Publisher<interfaces::msg::Userdistance>::SharedPtr publisher_userdistance_;
 
     //Subscriber
     rclcpp::Subscription<interfaces::msg::Ultrasonic>::SharedPtr subscription_ultrasonic_sensor_;
 
     //Subscriber
     rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr subscription_lidar_;
+
+    rclcpp::Subscription<sensor_msgs::msg::TrackingPosAngle>::SharedPtr subscription_TrackingPos_;
 
     rclcpp::TimerBase::SharedPtr timer_;
 
@@ -147,7 +161,9 @@ class detection: public rclcpp::Node {
       }
       float front_min = 12.0; 
       float rear_min = 12.0;
+      lidar_data.clear();
       for (int i = 0;i<size;i++){
+        lidar_data.push_back(scan.ranges[i]);
         if (i>=3*size/16 && i<(5*size)/16){
           if (scan.ranges[i]<front_min){
               front_min=scan.ranges[i];
@@ -181,6 +197,39 @@ class detection: public rclcpp::Node {
       //last_front_lidar_detect = obstacleMsg.lidar_front_detect;
       //last_rear_lidar_detect = obstacleMsg.lidar_rear_detect
       //}
+  }
+
+
+  
+   void CameraDataCallback(const interfaces::msg::TrackingPosAngle & Tracking_Pos_Angle){
+      auto Userdist = interfaces::msg::Userdistance();
+      int size = lidar_data.size();
+      std::vector<float> aux;
+      //int count =0;
+      int size2 =0;
+      //int Sum=0;
+      //int moyenne = 0;
+      aux.clear();
+      for (int i=0; i<size ; i++){
+        if (i>=(Tracking_Pos_Angle.angle_min) && i<(Tracking_Pos_Angle.angle_max)){
+          //Sum +=lidar_data[i];
+          aux.push_back(lidar_data[i]);
+          //count+=1;
+        }
+      }
+      size2=aux.size();
+      std::sort(aux, aux + size2);
+      //Renvoie de la médiane
+      if (size2 % 2 != 0) {
+        Userdist.distance_tracking= aux[size2 / 2];
+      }
+      else{
+        Userdist.distance_tracking = (aux[(size2-1)/2] + aux[size2/2])/2;
+      }
+
+      //moyenne=Sum/count;
+      //distance.distance_tracking=moyenne;
+      publisher_userdistance_->publish(Userdist);
   }    
 
   void DetectCom(){
@@ -197,7 +246,6 @@ class detection: public rclcpp::Node {
     else{
     obstacleMsg.rear=0;
     }
-
     publisher_obstacle_->publish(obstacleMsg);
   }
   
