@@ -129,6 +129,9 @@ private:
             case 5:
                 webButtonStart = true;
                 break;
+            case 7:
+                webButtonJoystick = true;
+                break;
             default:
                 //RCLCPP_INFO(this->get_logger(), "unknown webButton pressed");
                 break;
@@ -212,10 +215,12 @@ private:
 
 
         //Proppulsion et steering avec interface web
-        requestedThrottle = webThrottle;
-        requestedAngle = webSteering;
-        reverse = webReverse;
-        
+        if (webButtonJoystick) {
+            requestedThrottle = webThrottle;
+            requestedAngle = webSteering;
+            reverse = webReverse;
+        }
+
 
         auto joystickOrderMsg = interfaces::msg::JoystickOrder();
         joystickOrderMsg.start = start;
@@ -232,6 +237,7 @@ private:
         webButtonManual = false;
         webButtonReturn = false;
         webButtonTracking = false;
+        webButtonJoystick = false;
 
     }
 
@@ -239,7 +245,7 @@ private:
     map<string,int> axisMap;
     map<string,int> buttonsMap;
     bool buttonB, buttonStart, buttonA, buttonY, buttonDpadBottom, buttonDpadLeft, buttonX ;
-    bool webButtonEmergency, webButtonStart, webButtonAutonomous, webButtonManual, webButtonReturn, webButtonTracking ;
+    bool webButtonEmergency, webButtonStart, webButtonAutonomous, webButtonManual, webButtonReturn, webButtonTracking, webButtonJoystick ;
     
     float axisRT, axisLT, axisLS_X;
 
