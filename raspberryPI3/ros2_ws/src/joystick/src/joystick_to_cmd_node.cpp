@@ -214,8 +214,8 @@ private:
         }
 
 
-        //Proppulsion et steering avec interface web
-        if (webButtonJoystick) {
+        //Propulsion et steering avec interface web
+        if(requestedThrottle == 0) {
             requestedThrottle = webThrottle;
             requestedAngle = webSteering;
             reverse = webReverse;
