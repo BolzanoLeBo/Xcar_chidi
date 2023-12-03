@@ -215,7 +215,7 @@ private:
 
 
         //Propulsion et steering avec interface web
-        if(requestedThrottle == 0) {
+        if(requestedThrottle == 0 && requestedAngle == CENTER) {
             requestedThrottle = webThrottle;
             requestedAngle = webSteering;
             reverse = webReverse;
