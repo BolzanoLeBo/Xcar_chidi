@@ -13,7 +13,7 @@
 #include "interfaces/msg/ultrasonic.hpp"
 #include "interfaces/msg/obstacles.hpp"
 #include "interfaces/msg/userdistance.hpp"
-#include "interfaces/msg/trackingposangle.hpp"
+#include "interfaces/msg/tracking_pos_angle.hpp"
 #define LIM_US 70
 #define LIM_LIDAR_FRONT 1.70
 #define LIM_LIDAR_REAR 0.70
@@ -41,8 +41,8 @@ class detection: public rclcpp::Node {
       subscription_lidar_ = this->create_subscription<sensor_msgs::msg::LaserScan>(
         "scan", 10, std::bind(&detection::lidarDataCallback, this, _1));
 
-      subscription_TrackingPos_ = this->create_subscription<interfaces::msg::TrackingPosAngle>(
-        "TrackingPosAngle", 10, std::bind(&detection::CameraDataCallBack, this, _1));
+      subscription_tracking_pos_ = this->create_subscription<interfaces::msg::TrackingPosAngle>(
+        "tracking_pos_angle", 10, std::bind(&detection::cameraDataCallback, this, _1));
 
       timer_ = this->create_wall_timer(PERIOD_UPDATE_CMD, std::bind(&detection::DetectCom, this));
     
@@ -82,7 +82,7 @@ class detection: public rclcpp::Node {
     //Subscriber
     rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr subscription_lidar_;
 
-    rclcpp::Subscription<sensor_msgs::msg::TrackingPosAngle>::SharedPtr subscription_TrackingPos_;
+    rclcpp::Subscription<interfaces::msg::TrackingPosAngle>::SharedPtr subscription_tracking_pos_;
 
     rclcpp::TimerBase::SharedPtr timer_;
 
@@ -146,114 +146,114 @@ class detection: public rclcpp::Node {
     }
     }
 
-  void lidarDataCallback(const sensor_msgs::msg::LaserScan & scan){
-      
-      int size = (int)scan.ranges.size();
-      int delta = size/8;
-      if (!print_list)
-      {
-        for (int i = 0; i < size; i++)
+    void lidarDataCallback(const sensor_msgs::msg::LaserScan & scan){
+        
+        int size = (int)scan.ranges.size();
+        int delta = size/8;
+        if (!print_list)
         {
-          RCLCPP_INFO(this->get_logger(),((to_string(i) + "  lidar  " + to_string(scan.ranges[i])).data()));
-        }
-        print_list = 1 ;
+          for (int i = 0; i < size; i++)
+          {
+            RCLCPP_INFO(this->get_logger(),((to_string(i) + "  lidar  " + to_string(scan.ranges[i])).data()));
+          }
+          print_list = 1 ;
 
-      }
-      float front_min = 12.0; 
-      float rear_min = 12.0;
-      lidar_data.clear();
-      for (int i = 0;i<size;i++){
-        lidar_data.push_back(scan.ranges[i]);
-        if (i>=3*size/16 && i<(5*size)/16){
-          if (scan.ranges[i]<front_min){
-              front_min=scan.ranges[i];
+        }
+        float front_min = 12.0; 
+        float rear_min = 12.0;
+        lidar_data.clear();
+        for (int i = 0;i<size;i++){
+          lidar_data.push_back(scan.ranges[i]);
+          if (i>=3*size/16 && i<(5*size)/16){
+            if (scan.ranges[i]<front_min){
+                front_min=scan.ranges[i];
+            }
+          }
+          if (i<=(size*3/4) + delta && i >= (size*3/4) - delta){
+            if (scan.ranges[i]<rear_min){
+                rear_min=scan.ranges[i];
+            }
           }
         }
-        if (i<=(size*3/4) + delta && i >= (size*3/4) - delta){
-          if (scan.ranges[i]<rear_min){
-              rear_min=scan.ranges[i];
+
+        if (front_min<LIM_LIDAR_FRONT){
+          lidar_front=1;
+          //RCLCPP_INFO(this->get_logger(),(("  lidar  1 " + to_string(front_min)).data()));
+        }
+        else{
+          lidar_front=0;
+          //RCLCPP_INFO(this->get_logger(),(("  lidar  0 " + to_string(front_min)).data()));
+        }
+
+        if (rear_min<LIM_LIDAR_REAR){
+          lidar_rear=1;
+        }
+        else{
+          lidar_rear=0;
+        }
+
+        // Changing last value of lidar_front_detect and publishing message of obstacle
+        //if ((last_front_lidar_detect != obstacleMsg.lidar_front_detect) || (last_rear_lidar_detect != obstacleMsg.lidar_rear_detect)) {   
+        //last_front_lidar_detect = obstacleMsg.lidar_front_detect;
+        //last_rear_lidar_detect = obstacleMsg.lidar_rear_detect
+        //}
+    }
+
+
+    
+    void cameraDataCallback(const interfaces::msg::TrackingPosAngle & angle_msg){
+        auto Userdist = interfaces::msg::Userdistance();
+        int size = lidar_data.size();
+        std::vector<float> aux;
+        //int count =0;
+        int size2 =0;
+        //int Sum=0;
+        //int moyenne = 0;
+        aux.clear();
+        if(angle_msg.min_angle>=-360 && angle_msg.max_angle<=360 && angle_msg.min_angle<= 360 && angle_msg.max_angle>=-360){
+          for (int i=0; i<size ; i++){
+            if (i>=(angle_msg.min_angle) && i<(angle_msg.max_angle)){
+              //Sum +=lidar_data[i];
+              aux.push_back(lidar_data[i]);
+              //count+=1;
+            }
+          }
+          size2=aux.size();
+          if (size2>0){
+            std::sort(aux.begin(), aux.end());
+            //Renvoie de la médiane
+            if (size2 % 2 != 0) {
+              Userdist.distance_tracking= aux[size2 / 2];
+            }
+            else{
+              Userdist.distance_tracking = (aux[(size2-1)/2] + aux[size2/2])/2;
+            }
+
+            //moyenne=Sum/count;
+            //distance.distance_tracking=moyenne;
+            publisher_userdistance_->publish(Userdist);
           }
         }
-      }
+    }    
 
-      if (front_min<LIM_LIDAR_FRONT){
-        lidar_front=1;
-        //RCLCPP_INFO(this->get_logger(),(("  lidar  1 " + to_string(front_min)).data()));
+    void DetectCom(){
+      auto obstacleMsg = interfaces::msg::Obstacles();
+      if (lidar_front ){//|| us_front){
+        obstacleMsg.front=1;
       }
       else{
-        lidar_front=0;
-        //RCLCPP_INFO(this->get_logger(),(("  lidar  0 " + to_string(front_min)).data()));
+      obstacleMsg.front=0;
       }
-
-      if (rear_min<LIM_LIDAR_REAR){
-        lidar_rear=1;
+      if (lidar_rear ){//|| us_rear){
+        obstacleMsg.rear=1;
       }
       else{
-        lidar_rear=0;
+      obstacleMsg.rear=0;
       }
-
-      // Changing last value of lidar_front_detect and publishing message of obstacle
-      //if ((last_front_lidar_detect != obstacleMsg.lidar_front_detect) || (last_rear_lidar_detect != obstacleMsg.lidar_rear_detect)) {   
-      //last_front_lidar_detect = obstacleMsg.lidar_front_detect;
-      //last_rear_lidar_detect = obstacleMsg.lidar_rear_detect
-      //}
-  }
-
-
-  
-   void CameraDataCallback(const interfaces::msg::TrackingPosAngle & Tracking_Pos_Angle){
-      auto Userdist = interfaces::msg::Userdistance();
-      int size = lidar_data.size();
-      std::vector<float> aux;
-      //int count =0;
-      int size2 =0;
-      //int Sum=0;
-      //int moyenne = 0;
-      aux.clear();
-      if(Tracking_Pos_Angle.angle_min>=-360 && Tracking_Pos_Angle.angle_max<=360 && Tracking_Pos_Angle.angle_min<= 360 && Tracking_Pos_Angle.angle_max>=-360){
-        for (int i=0; i<size ; i++){
-          if (i>=(Tracking_Pos_Angle.angle_min) && i<(Tracking_Pos_Angle.angle_max)){
-            //Sum +=lidar_data[i];
-            aux.push_back(lidar_data[i]);
-            //count+=1;
-          }
-        }
-        size2=aux.size();
-        if (size2>0){
-          std::sort(aux, aux + size2);
-          //Renvoie de la médiane
-          if (size2 % 2 != 0) {
-            Userdist.distance_tracking= aux[size2 / 2];
-          }
-          else{
-            Userdist.distance_tracking = (aux[(size2-1)/2] + aux[size2/2])/2;
-          }
-
-          //moyenne=Sum/count;
-          //distance.distance_tracking=moyenne;
-          publisher_userdistance_->publish(Userdist);
-        }
-      }
-  }    
-
-  void DetectCom(){
-    auto obstacleMsg = interfaces::msg::Obstacles();
-    if (lidar_front ){//|| us_front){
-      obstacleMsg.front=1;
+      publisher_obstacle_->publish(obstacleMsg);
     }
-    else{
-    obstacleMsg.front=0;
-    }
-    if (lidar_rear ){//|| us_rear){
-      obstacleMsg.rear=1;
-    }
-    else{
-    obstacleMsg.rear=0;
-    }
-    publisher_obstacle_->publish(obstacleMsg);
-  }
-  
-};
+    
+  };
 
 int main(int argc, char * argv[])
 {
