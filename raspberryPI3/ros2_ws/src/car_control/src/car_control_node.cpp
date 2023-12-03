@@ -2,18 +2,22 @@
 #include <chrono>
 #include <functional>
 #include <memory>
+#include <iostream>
+#include <string>
 
 #include "interfaces/msg/motors_order.hpp"
 #include "interfaces/msg/motors_feedback.hpp"
 #include "interfaces/msg/steering_calibration.hpp"
 #include "interfaces/msg/joystick_order.hpp"
 #include "interfaces/msg/state.hpp"
+#include "interfaces/msg/ultrasonic.hpp"
 
 
 #include "std_srvs/srv/empty.hpp"
 
 #include "../include/car_control/steeringCmd.h"
 #include "../include/car_control/propulsionCmd.h"
+#include "../include/car_control/control_loop.h"
 #include "../include/car_control/car_control_node.h"
 
 using namespace std;
@@ -44,16 +48,10 @@ public:
         "state", 10, std::bind(&car_control::stateCallback, this, _1));
 
         subscription_motors_feedback_ = this->create_subscription<interfaces::msg::MotorsFeedback>(
-        "motors_feedback", 10, std::bind(&car_control::motorsFeedbackCallback, this, _1));
+        "motors_feedback", 10, std::bind(&car_control::motorsFeedbackCallback, this, _1));        
 
-        /*subscription_steering_calibration_ = this->create_subscription<interfaces::msg::SteeringCalibration>(
-        "steering_calibration", 10, std::bind(&car_control::steeringCalibrationCallback, this, _1));*/
-
-
-        
-
-        /*server_calibration_ = this->create_service<std_srvs::srv::Empty>(
-            "steering_calibration", std::bind(&car_control::steeringCalibration, this, std::placeholders::_1, std::placeholders::_2));*/
+        subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
+        "us_data", 10, std::bind(&car_control::distanceCallback, this, _1));
 
         timer_ = this->create_wall_timer(PERIOD_UPDATE_CMD, std::bind(&car_control::updateCmd, this));
 
@@ -78,43 +76,6 @@ private:
         requestedThrottle = joyOrder.throttle;
         requestedSteerAngle = joyOrder.steer;
         reverse = joyOrder.reverse;
-        /*if (mode == 0 && start){  //if manual mode -> update throttle, angle and reverse from joystick order
-            throttleValue = joyOrder.throttle;
-            angleValue = joyOrder.steer;
-            reverseValue = joyOrder.reverse;
-        }
-        
-        if (joyOrder.start != start){
-            start = joyOrder.start;
-
-            if (start)
-                RCLCPP_INFO(this->get_logger(), "START");
-            else 
-                RCLCPP_INFO(this->get_logger(), "STOP");
-        }
-        
-
-        if (joyOrder.mode != mode && joyOrder.mode != -1){ //if mode change
-            mode = joyOrder.mode;
-
-            if (mode==1){
-                RCLCPP_INFO(this->get_logger(), "Switching to MANUAL Mode !");
-            }else if (mode==2){
-                RCLCPP_INFO(this->get_logger(), "Switching to AUTONOMOUS Mode");
-            }else if (mode==4){
-                RCLCPP_INFO(this->get_logger(), "Switching to SECURITY Mode because obstacle detected");
-            }else if (mode==0){
-                RCLCPP_INFO(this->get_logger(), "Switching to IDLE Mode");
-            }else if (mode==3){
-                RCLCPP_INFO(this->get_logger(), "Switching to EMERGENCY STOP Mode");
-            }
-        }
-        
-        if (mode == 1 && start){  //if manual mode -> update requestedThrottle, requestedSteerAngle and reverse from joystick order
-            requestedThrottle = joyOrder.throttle;
-            requestedSteerAngle = joyOrder.steer;
-            reverse = joyOrder.reverse;
-        }*/
     }
 
     /* Update currentAngle from motors feedback [callback function]  :
@@ -124,8 +85,14 @@ private:
     */
     void motorsFeedbackCallback(const interfaces::msg::MotorsFeedback & motorsFeedback){
         currentAngle = motorsFeedback.steering_angle;
+        currentRightSpeed = motorsFeedback.right_rear_speed;
+        currentLeftSpeed = motorsFeedback.left_rear_speed;
     }
 
+    void distanceCallback(const interfaces::msg::Ultrasonic & ultrasonic) {
+        currentRightDistance = ultrasonic.front_center;
+        currentLeftDistance = currentRightDistance;
+    }
 
     /* Update PWM commands : leftRearPwmCmd, rightRearPwmCmd, steeringPwmCmd
     *
@@ -155,15 +122,19 @@ private:
             if (state == 1){
                 
                 manualPropulsionCmd(requestedThrottle, reverse, leftRearPwmCmd,rightRearPwmCmd);
-
                 steeringCmd(requestedSteerAngle,currentAngle, steeringPwmCmd);
-
-
-            //Autonomous Mode
+                reinit = 1;
+            
             } 
+
+            //Tracking Mode
             else if (state==2){
-                //...
+                compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
+                steeringPwmCmd = 50;
+                reinit = 0;
+
             }
+
         }
         //Send order to motors
         motorsOrder.left_rear_pwm = leftRearPwmCmd;
@@ -174,70 +145,26 @@ private:
     }
 
 
-    /* Start the steering calibration process :
-    *
-    * Publish a calibration request on the "/steering_calibration" topic
-    */
-   
-    /*void startSteeringCalibration(){
-
-        auto calibrationMsg = interfaces::msg::SteeringCalibration();
-        calibrationMsg.request = true;
-
-        RCLCPP_INFO(this->get_logger(), "Sending calibration request .....");
-        publisher_steeringCalibration_->publish(calibrationMsg);
-    }*/
-
-
-    /* Function called by "steering_calibration" service
-    * 1. Switch to calibration mode
-    * 2. Call startSteeringCalibration function
-    */
-    /*void steeringCalibration([[maybe_unused]] std_srvs::srv::Empty::Request::SharedPtr req,
-                            [[maybe_unused]] std_srvs::srv::Empty::Response::SharedPtr res)
-    {
-
-        mode = 2;    //Switch to calibration mode
-        RCLCPP_WARN(this->get_logger(), "Switching to STEERING CALIBRATION Mode");
-        startSteeringCalibration();
-    }*/
-    
-
-    /* Manage steering calibration process [callback function]  :
-    *
-    * This function is called when a message is published on the "/steering_calibration" topic
-    */
-    /*void steeringCalibrationCallback (const interfaces::msg::SteeringCalibration & calibrationMsg){
-
-        if (calibrationMsg.in_progress == true && calibrationMsg.user_need == false){
-        RCLCPP_INFO(this->get_logger(), "Steering Calibration in progress, please wait ....");
-
-        } else if (calibrationMsg.in_progress == true && calibrationMsg.user_need == true){
-            RCLCPP_WARN(this->get_logger(), "Please use the buttons (L/R) to center the steering wheels.\nThen, press the blue button on the NucleoF103 to continue");
-        
-        } else if (calibrationMsg.status == 1){
-            RCLCPP_INFO(this->get_logger(), "Steering calibration [SUCCESS]");
-            RCLCPP_INFO(this->get_logger(), "Switching to MANUAL Mode");
-        
-        } else if (calibrationMsg.status == -1){
-            RCLCPP_ERROR(this->get_logger(), "Steering calibration [FAILED]");
-            RCLCPP_INFO(this->get_logger(), "Switching to MANUAL Mode");
-        }
-    
-    }*/
     
     // ---- Private variables ----
 
     int state = 0;
+    int reinit = 1;
     
     //Motors feedback variables
     float currentAngle;
+    float currentLeftSpeed;
+    float currentRightSpeed;
+
+
+    double currentRightDistance;
+    double currentLeftDistance;
 
     //Manual Mode variables (with joystick control)
-    bool reverse;
     float requestedThrottle;
     float requestedSteerAngle;
-
+    bool reverse;
+    
     bool reverseValue;
     float throttleValue;
     float angleValue;
@@ -253,6 +180,7 @@ private:
 
     //Subscribers
     rclcpp::Subscription<interfaces::msg::JoystickOrder>::SharedPtr subscription_joystick_order_;
+    rclcpp::Subscription<interfaces::msg::Ultrasonic>::SharedPtr subscription_ultrasonic_sensor_;
     rclcpp::Subscription<interfaces::msg::MotorsFeedback>::SharedPtr subscription_motors_feedback_;
     rclcpp::Subscription<interfaces::msg::SteeringCalibration>::SharedPtr subscription_steering_calibration_;
     rclcpp::Subscription<interfaces::msg::State>::SharedPtr subscription_state_;

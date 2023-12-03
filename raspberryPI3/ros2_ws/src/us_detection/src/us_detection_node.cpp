@@ -55,6 +55,9 @@ class us_detection : public rclcpp::Node {
       if(ultrasonic.front_center < 600 && ultrasonic.front_left < 600 && ultrasonic.front_right < 600 && ultrasonic.rear_center < 600 && ultrasonic.rear_left < 600 && ultrasonic.rear_right < 600 && ultrasonic.front_center > 0 && ultrasonic.front_left > 0 && ultrasonic.front_right > 0 && ultrasonic.rear_center > 0 && ultrasonic.rear_right > 0 && ultrasonic.rear_left > 0){
         nb_warning = 0;
         obstacleMsg.us_error = 0;
+
+        // IN FRONT OF THE CAR
+
         // Message of obstacle if there is one in front of the car at less than 75 cm
         if ((ultrasonic.front_center <= LIM)){
         obstacleMsg.us_front_detect = 1;
@@ -72,6 +75,7 @@ class us_detection : public rclcpp::Node {
           obstacleMsg.us_front_detect = 0;
         }
 
+        // AT the BACK OF THE CAR
         if ((ultrasonic.rear_center <= LIM)){
           obstacleMsg.us_rear_detect = 1;
         } 
