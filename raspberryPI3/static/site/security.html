@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="./images/icon.png">
     <title>X-Car</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.7.3/nipplejs.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/eventemitter2@6.4.9/lib/eventemitter2.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/roslib@1/build/roslib.min.js"></script>
     <script type="text/javascript" src="ros-script.js"></script>
@@ -28,6 +29,7 @@
             <div id="stateData" class="hidden"></div>
             <h2><em class="italic-text">Obstacles have been detected, please check around the vehicle.</em></h2>
             <img src="./images/obstacle.png" alt="Obstacle" class="controller-image">
+            <div id="zone_joystick" style="position: relative;"></div>
             <div class="button-container">
                 <buttonE onclick="redirectAndSelectMode('emergency.html', 4)">Emergency Mode</buttonE>
             </div>
@@ -70,6 +72,8 @@
         function redirectAndSelectMode(page, mode) {
             selectMode(mode);
         }
+
+        createJoystick();
     </script>
 
 </body>

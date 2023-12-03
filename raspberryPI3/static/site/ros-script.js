@@ -47,38 +47,6 @@ function move() {
     publishWebMode(7, throttle, steering, reverse);
 }
 
-function toggleJoystickAndImage() {
-    var joystickImage = document.querySelector('.controller-image');
-    var existingJoystickDiv = document.getElementById('zone_joystick');
-
-    // Verifica se a zona do joystick já foi criada
-    if (!existingJoystickDiv) {
-        // Cria a div da zona do joystick
-        var newJoystickDiv = document.createElement('div');
-        newJoystickDiv.id = 'zone_joystick';
-        newJoystickDiv.style.position = 'relative';
-
-        // Obtém a referência ao botão "Toggle Joystick"
-        var toggleButton = document.getElementById('toggleButton');
-
-        // Insere a nova div acima do botão
-        toggleButton.parentNode.insertBefore(newJoystickDiv, toggleButton);
-
-        // Inicializa o joystick na nova div
-        createJoystick();
-    }
-
-    // Alterna a visibilidade da imagem e da zona do joystick
-    if (joystickImage.style.display !== 'none') {
-        joystickImage.style.display = 'none';
-        existingJoystickDiv.style.display = 'block';
-    } else {
-        joystickImage.style.display = 'block';
-        existingJoystickDiv.style.display = 'none';
-    }
-}
-
-
 function createJoystick() {
     var options = {
         zone: document.getElementById('zone_joystick'),
@@ -86,7 +54,7 @@ function createJoystick() {
         position: { left: '50%', top: '50%' },
         mode: 'static',
         size: 100,
-        color: '#000000',
+        color: 'grey',
     };
 
     var manager = nipplejs.create(options);
@@ -98,8 +66,13 @@ function createJoystick() {
         var max_steering = 1.0;
 
         // Calcul des valeurs
-        throttle = nipple.distance / (max_reverse_distance * 2) * max_throttle;
+        var adjusted_max_reverse_distance = (max_reverse_distance / 150) * options.size;
+
+        throttle = nipple.distance / (adjusted_max_reverse_distance * 2) * max_throttle;
         steering = Math.cos(nipple.angle.radian) * max_steering;
+
+        throttle = Math.max(0, Math.min(throttle, 1));
+        steering = Math.max(-1, Math.min(steering, 1));
     });
 
     manager.on('plain:up', function () {
@@ -140,12 +113,14 @@ var stateListener = new ROSLIB.Topic({
     messageType: 'interfaces/msg/State'
 });
 
-stateListener.subscribe(function (message) {
-    var stateData = 'Current State: ' + message.current_state +
-        '<br>State Name: ' + message.state_name +
-        '<br>Obstacle Detection: ' + message.obstacle_detect;
+var stateData = [];
 
-    document.getElementById('stateData').innerHTML = 'Data from "state" topic:<br>' + stateData;
+stateListener.subscribe(function (message) {
+    
+    stateData.push('Current State: ' + message.current_state +
+        '<br>State Name: ' + message.state_name +
+        '<br>Obstacle Detection: ' + message.obstacle_detect);
+
 
     switch (message.current_state) {
         case 0:
