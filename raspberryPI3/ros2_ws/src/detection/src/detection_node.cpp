@@ -150,7 +150,7 @@ class detection: public rclcpp::Node {
         
         int size = (int)scan.ranges.size();
         int delta = size/8;
-        if (!print_list)
+        /*if (!print_list)
         {
           for (int i = 0; i < size; i++)
           {
@@ -158,7 +158,7 @@ class detection: public rclcpp::Node {
           }
           print_list = 1 ;
 
-        }
+        }*/
         float front_min = 12.0; 
         float rear_min = 12.0;
         lidar_data.clear();
@@ -203,25 +203,22 @@ class detection: public rclcpp::Node {
     
     void cameraDataCallback(const interfaces::msg::TrackingPosAngle & angle_msg){
         auto Userdist = interfaces::msg::Userdistance();
-        std::vector<float> lidar_data2(lidar_data)
+        std::vector<float> lidar_data2(lidar_data);
         int size = lidar_data2.size();
         std::vector<float> aux;
         //int count =0;
         int size2 =0;
         //int Sum=0;
         //int moyenne = 0;
-        RCLCPP_INFO(this->get_logger(),("Debut"));
+        
         aux.clear();
         float mid=0.0;
         if(angle_msg.min_angle>=-360 && angle_msg.max_angle<=360 && angle_msg.min_angle<= 360 && angle_msg.max_angle>=-360){
-          RCLCPP_INFO(this->get_logger(),("Ok"));
           mid = (angle_msg.max_angle + angle_msg.min_angle)/2;
           for (int i=0; i<size ; i++){
-            RCLCPP_INFO(this->get_logger(),("Rentre dans le for"));
             if (i>=(mid - 2.5) && i<=( mid + 2.5)){
               //Sum +=lidar_data2[i];
               if (lidar_data2[i]<12.0){
-                RCLCPP_INFO(this->get_logger(),("Ok2"));
                 aux.push_back(lidar_data2[i]);
               }
               //count+=1;
