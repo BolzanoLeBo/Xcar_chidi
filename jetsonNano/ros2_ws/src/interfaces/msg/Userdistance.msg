@@ -1,1 +1,1 @@
-int16 distance_tracking
+float32 distance_tracking

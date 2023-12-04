@@ -169,7 +169,7 @@ class ImgProcessingNode(Node):
 	def img_ai(self) : 
 		if self.cv_image != [] :
 			tracking = TrackingPosAngle()
-			(human_detected, (a_min, a_max)) = get_tracking_angle(self.cv_image, 60, -90, [0,0])
+			(human_detected, (a_min, a_max)) = get_tracking_angle(self.cv_image, 35, -90, [0,0])
 			tracking.min_angle = a_min
 			tracking.max_angle = a_max
 			# Publish the msg for angle

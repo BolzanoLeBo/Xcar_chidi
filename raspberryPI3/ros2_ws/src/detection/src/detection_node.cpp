@@ -203,23 +203,33 @@ class detection: public rclcpp::Node {
     
     void cameraDataCallback(const interfaces::msg::TrackingPosAngle & angle_msg){
         auto Userdist = interfaces::msg::Userdistance();
-        int size = lidar_data.size();
+        std::vector<float> lidar_data2(lidar_data)
+        int size = lidar_data2.size();
         std::vector<float> aux;
         //int count =0;
         int size2 =0;
         //int Sum=0;
         //int moyenne = 0;
+        RCLCPP_INFO(this->get_logger(),("Debut"));
         aux.clear();
+        float mid=0.0;
         if(angle_msg.min_angle>=-360 && angle_msg.max_angle<=360 && angle_msg.min_angle<= 360 && angle_msg.max_angle>=-360){
+          RCLCPP_INFO(this->get_logger(),("Ok"));
+          mid = (angle_msg.max_angle + angle_msg.min_angle)/2;
           for (int i=0; i<size ; i++){
-            if (i>=(angle_msg.min_angle) && i<(angle_msg.max_angle)){
-              //Sum +=lidar_data[i];
-              aux.push_back(lidar_data[i]);
+            RCLCPP_INFO(this->get_logger(),("Rentre dans le for"));
+            if (i>=(mid - 2.5) && i<=( mid + 2.5)){
+              //Sum +=lidar_data2[i];
+              if (lidar_data2[i]<12.0){
+                RCLCPP_INFO(this->get_logger(),("Ok2"));
+                aux.push_back(lidar_data2[i]);
+              }
               //count+=1;
             }
           }
           size2=aux.size();
           if (size2>0){
+            RCLCPP_INFO(this->get_logger(),("Ok3"));
             std::sort(aux.begin(), aux.end());
             //Renvoie de la médiane
             if (size2 % 2 != 0) {
@@ -232,19 +242,20 @@ class detection: public rclcpp::Node {
             //moyenne=Sum/count;
             //distance.distance_tracking=moyenne;
             publisher_userdistance_->publish(Userdist);
+            RCLCPP_INFO(this->get_logger(),("Ok4"));
           }
         }
     }    
 
     void DetectCom(){
       auto obstacleMsg = interfaces::msg::Obstacles();
-      if (lidar_front ){//|| us_front){
+      if (lidar_front || us_front){
         obstacleMsg.front=1;
       }
       else{
       obstacleMsg.front=0;
       }
-      if (lidar_rear ){//|| us_rear){
+      if (lidar_rear|| us_rear){
         obstacleMsg.rear=1;
       }
       else{
