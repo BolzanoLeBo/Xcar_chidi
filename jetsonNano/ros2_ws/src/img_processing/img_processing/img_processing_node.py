@@ -115,25 +115,32 @@ def get_angle(rect, sc, a, phi, d) :
 
 def get_tracking_angle(frame, camera_angle, lidar_rotation, lidar_translation) : 
 	# Load YOLOv3 model
+	crop = 0
 	yolo_weights = "/root/Xcar_chidi/jetsonNano/ros2_ws/src/img_processing/img_processing/yolo/yolov3-tiny.weights"
 	yolo_config = "/root/Xcar_chidi/jetsonNano/ros2_ws/src/img_processing/img_processing/yolo/yolov3-tiny.cfg"
 	yolo_classes = "/root/Xcar_chidi/jetsonNano/ros2_ws/src/img_processing/img_processing/yolo/coco.names"
 
 	height, width = frame.shape[:2]
-	center_x, center_y = frame.shape[1] // 2, frame.shape[0] // 2
-	cropped_frame = cv2.getRectSubPix(frame, (height, height), (center_x, center_y))
 	net	 = cv2.dnn.readNet(yolo_weights, yolo_config)
 	layer_names = net.getUnconnectedOutLayersNames()
-	target = ""
-	# Detect humans in the current frame
-	(new_frame, rect, person_detected) = detect_human(cropped_frame, net, layer_names)
+	if crop :
+		center_x, center_y = frame.shape[1] // 2, frame.shape[0] // 2
+		cropped_frame = cv2.getRectSubPix(frame, (height, height), (center_x, center_y))
+		target = ""
+		# Detect humans in the current frame
+		(new_frame, rect, person_detected) = detect_human(cropped_frame, net, layer_names)
+		screen_size = height
+	else : 
+		(new_frame, rect, person_detected) = detect_human(frame, net, layer_names)
+		screen_size = width
 	cv2.imwrite("/root/Xcar_chidi/img.png", new_frame)
 	#take the angle in the frame
 	if person_detected :
 		#we use height because the frame is a square
-		return (person_detected, get_angle(rect, height, radians(camera_angle), radians(lidar_rotation), lidar_translation))
+		return (person_detected, get_angle(rect, screen_size, radians(camera_angle), radians(lidar_rotation), lidar_translation))
 	else : 
 		return (person_detected, (inf, inf))
+
 
 class ImgProcessingNode(Node):
 	
