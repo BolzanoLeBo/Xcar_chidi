@@ -18,23 +18,13 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_python REQUIRED)
-find_package(rclcpp REQUIRED)
 find_package(rclpy REQUIRED)
-find_package(interfaces REQUIRED)
 find_package(sensor_msgs REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
 include_directories(include)
-
-add_executable(joystick_to_cmd src/joystick_to_cmd_node.cpp)
-ament_target_dependencies(joystick_to_cmd rclcpp interfaces sensor_msgs)
-
-install(TARGETS
-joystick_to_cmd
-  DESTINATION lib/${PROJECT_NAME}
-)
 
 ament_python_install_package(${PROJECT_NAME})
 

@@ -15,12 +15,6 @@ def generate_launch_description():
         emulate_tty=True
     )
 
-    joystick_to_cmd_node = Node(
-        package="joystick",
-        executable="joystick_to_cmd",
-        emulate_tty=True
-    )
-
     can_rx_node = Node(
         package="can",
         executable="can_rx_node",
@@ -73,7 +67,6 @@ def generate_launch_description():
 
 
     ld.add_action(joystick_node)
-    ld.add_action(joystick_to_cmd_node)
     ld.add_action(can_rx_node)
     ld.add_action(can_tx_node)
     ld.add_action(car_control_node)

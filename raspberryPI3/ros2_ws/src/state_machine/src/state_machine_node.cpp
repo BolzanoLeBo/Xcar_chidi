@@ -73,7 +73,11 @@ public:
     buttonsMap.insert({"LS", 9});  // Left Stick Button
     buttonsMap.insert({"RS", 10}); // Right Stick Button
 
-    timer_ = this->create_wall_timer(1ms, std::bind(&joystick_to_cmd::updateCmd, this));
+    systemCheckPrintRequest = false;
+    reverse = false;
+    requestedThrottle = STOP;
+    requestedAngle = CENTER;
+
   }
 
 private:
@@ -89,15 +93,12 @@ private:
   // Timer
   rclcpp::TimerBase::SharedPtr timer_;
 
-  int joy_mode = 0;
   int dir_av = 0;
   int dir_ar = 0;
   int obstacle_av = 0;
   int obstacle_ar = 0;
   int unavoidable = 0;
   int emergency_btn = 1;
-
-  int start = 0;
 
   int connexion = 0;
   int sensor = 0;
@@ -120,7 +121,6 @@ private:
   float axisRT, axisLT, axisLS_X;
 
   // General variables
-  bool start;
   int mode;
   bool systemCheckPrintRequest;
 
@@ -136,10 +136,67 @@ private:
   // rclcpp::Service<state_machine::srv::StateMemory>::SharedPtr service_state_memory_;
   void stateChanger()
   {
+        // ------ Propulsion ------
+    if (axisLT > DEADZONE_LT_RT && axisRT > DEADZONE_LT_RT)
+    { // Incompatible orders : Stop the car
+      requestedThrottle = STOP;
+      RCLCPP_WARN(this->get_logger(), "Incompatible orders : LT = %f, RT = %f", axisLT, axisRT);
+    }
+    else if (axisLT < DEADZONE_LT_RT && axisRT < DEADZONE_LT_RT)
+    {
+      requestedThrottle = STOP;
+    }
+    else if (axisLT > DEADZONE_LT_RT)
+    { // Move backward
+      reverse = true;
+      requestedThrottle = axisLT;
+    }
+    else if (axisRT > DEADZONE_LT_RT)
+    { // Move forward
+      reverse = false;
+      requestedThrottle = axisRT;
+    }
+
+    // ------ Steering ------
+    if (axisLS_X > DEADZONE_LS_X_LEFT && axisLS_X < DEADZONE_LS_X_RIGHT)
+    { // asymmetric deadzone (hardware : joystick LS)
+      requestedAngle = CENTER;
+    }
+    else
+    {
+      requestedAngle = axisLS_X;
+    }
+
+    // Propulsion et steering avec interface web
+    if (requestedThrottle == 0 && requestedAngle == CENTER)
+    {
+      requestedThrottle = webThrottle;
+      requestedAngle = webSteering;
+      reverse = webReverse;
+    }
+
+    // Direction control
+    if (requestedThrottle > 0 && !reverse)
+    {
+      dir_av = 1;
+      dir_ar = 0;
+    }
+    else if (requestedThrottle > 0 && reverse)
+    {
+      dir_av = 0;
+      dir_ar = 1;
+    }
+    else
+    {
+      dir_av = 0;
+      dir_ar = 0;
+    }
+
+
     auto stateMsg = interfaces::msg::State();
     // emergency stop
     // emergency btn is inversed in case of a shutdown
-    if (!emergency_btn)
+    if (buttonB || webButtonEmergency)
     {
       current_state = 5;
     }
@@ -148,7 +205,7 @@ private:
     else
     {
       // emergency stop -> idle
-      if (current_state == 5 && joy_mode == 0)
+      if (current_state == 5 && (buttonStart || webButtonStart))
       {
         current_state = 0;
         RCLCPP_INFO(this->get_logger(), ("emergency->manual"));
@@ -158,19 +215,19 @@ private:
       else if (current_state == 0)
       {
         // -> manual
-        if (joy_mode == 1)
+        if (buttonY || webButtonManual)
         {
           current_state = 1;
           RCLCPP_INFO(this->get_logger(), ("idle->manual"));
         }
         // -> autonomous
-        else if (joy_mode == 2)
+        else if (buttonA || webButtonAutonomous)
         {
           current_state = 2;
           RCLCPP_INFO(this->get_logger(), ("idle->auto"));
         }
         // -> tracking
-        else if (joy_mode == 4)
+        else if (buttonX || webButtonTracking)
         {
           current_state = 3;
           RCLCPP_INFO(this->get_logger(), ("idle->tracking"));
@@ -181,7 +238,7 @@ private:
       else if (current_state == 1)
       {
         // -> idle
-        if (joy_mode == 0)
+        if (buttonDpadBottom || webButtonReturn)
         {
           current_state = 0;
           RCLCPP_INFO(this->get_logger(), ("manual->idle"));
@@ -199,7 +256,7 @@ private:
       else if (current_state == 2)
       {
         // -> idle
-        if (joy_mode == 0)
+        if (buttonDpadBottom || webButtonReturn)
         {
           current_state = 0;
           RCLCPP_INFO(this->get_logger(), ("autonomous->idle"));
@@ -210,7 +267,7 @@ private:
       else if (current_state == 3)
       {
         // -> idle
-        if (joy_mode == 0)
+        if (buttonDpadBottom || webButtonReturn)
         {
           current_state = 0;
           RCLCPP_INFO(this->get_logger(), ("tracking->idle"));
@@ -254,45 +311,6 @@ private:
     else
       systemCheckPrintRequest = false;
 
-    // ------ Propulsion ------
-    if (axisLT > DEADZONE_LT_RT && axisRT > DEADZONE_LT_RT)
-    { // Incompatible orders : Stop the car
-      requestedThrottle = STOP;
-      RCLCPP_WARN(this->get_logger(), "Incompatible orders : LT = %f, RT = %f", axisLT, axisRT);
-    }
-    else if (axisLT < DEADZONE_LT_RT && axisRT < DEADZONE_LT_RT)
-    {
-      requestedThrottle = STOP;
-    }
-    else if (axisLT > DEADZONE_LT_RT)
-    { // Move backward
-      reverse = true;
-      requestedThrottle = axisLT;
-    }
-    else if (axisRT > DEADZONE_LT_RT)
-    { // Move forward
-      reverse = false;
-      requestedThrottle = axisRT;
-    }
-
-    // ------ Steering ------
-    if (axisLS_X > DEADZONE_LS_X_LEFT && axisLS_X < DEADZONE_LS_X_RIGHT)
-    { // asymmetric deadzone (hardware : joystick LS)
-      requestedAngle = CENTER;
-    }
-    else
-    {
-      requestedAngle = axisLS_X;
-    }
-
-    // Propulsion et steering avec interface web
-    if (requestedThrottle == 0 && requestedAngle == CENTER)
-    {
-      requestedThrottle = webThrottle;
-      requestedAngle = webSteering;
-      reverse = webReverse;
-    }
-
     auto joystickOrderMsg = interfaces::msg::JoystickOrder();
     joystickOrderMsg.throttle = requestedThrottle;
     joystickOrderMsg.steer = requestedAngle;
@@ -307,38 +325,6 @@ private:
     webButtonReturn = false;
     webButtonTracking = false;
     webButtonJoystick = false;
-  }
-
-  void joyCallback(const interfaces::msg::JoystickOrder &joyOrder)
-  {
-
-    joy_mode = joyOrder.mode;
-    if (joy_mode == 3)
-    {
-      emergency_btn = 0;
-    }
-
-    else if (joy_mode != 3 && emergency_btn == 0)
-    {
-      emergency_btn = 1;
-    }
-
-    // Direction control
-    if (joyOrder.throttle > 0 && !joyOrder.reverse)
-    {
-      dir_av = 1;
-      dir_ar = 0;
-    }
-    else if (joyOrder.throttle > 0 && joyOrder.reverse)
-    {
-      dir_av = 0;
-      dir_ar = 1;
-    }
-    else
-    {
-      dir_av = 0;
-      dir_ar = 0;
-    }
   }
 
   void obstacleCallback(const interfaces::msg::Obstacles &obstacle_msg)
