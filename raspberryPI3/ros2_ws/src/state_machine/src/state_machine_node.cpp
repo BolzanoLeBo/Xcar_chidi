@@ -4,252 +4,434 @@
 #include <functional>
 #include <memory>
 #include <fstream>
+#include <stdint.h>
+#include <string.h>
+#include <map>
 
-
-//#include "state_machne/srv/StateMemory.hpp"
-#include "interfaces/msg/joystick_order.hpp"
+// #include "state_machne/srv/StateMemory.hpp"
+#include "sensor_msgs/msg/joy.hpp"
 #include "interfaces/msg/obstacles.hpp"
 #include "interfaces/msg/state.hpp"
+#include "interfaces/msg/system_check.hpp"
+#include "interfaces/msg/joystick_order.hpp"
+#include "interfaces/msg/web_mode.hpp"
 
+#define DEADZONE_LT_RT 0.15     // %
+#define DEADZONE_LS_X_LEFT 0.4  // %
+#define DEADZONE_LS_X_RIGHT 0.2 // %
+
+#define STOP 0
+#define CENTER 0
 
 using namespace std;
 using placeholders::_1;
 using placeholders::_2;
 
-class state_machine : public rclcpp::Node {
+class state_machine : public rclcpp::Node
+{
 
-  public:
-    state_machine()
-    : Node("state_machine_node")
-    {
-      publisher_state_= this->create_publisher<interfaces::msg::State>("state", 10);
-      
-      subscription_joystick_order_ = this->create_subscription<interfaces::msg::JoystickOrder>(
-        "joystick_order", 10, std::bind(&state_machine::joyCallback, this, _1));
+public:
+  state_machine()
+      : Node("state_machine_node")
+  {
+    publisher_state_ = this->create_publisher<interfaces::msg::State>("state", 10);
+    publisher_system_check_ = this->create_publisher<interfaces::msg::SystemCheck>("system_check", 10);
+    publisher_joystick_order_ = this->create_publisher<interfaces::msg::JoystickOrder>("joystick_order", 10);
 
-      subscription_obstacles_ = this->create_subscription<interfaces::msg::Obstacles>(
+    subscription_joy_ = this->create_subscription<sensor_msgs::msg::Joy>(
+        "joy", 10, std::bind(&state_machine::joyCallback, this, _1));
+    subscription_obstacles_ = this->create_subscription<interfaces::msg::Obstacles>(
         "obstacles", 10, std::bind(&state_machine::obstacleCallback, this, _1));
+    subscription_web_mode_ = this->create_subscription<interfaces::msg::WebMode>(
+        "web_mode", 10, std::bind(&state_machine::webCallback, this, _1));
 
-      timer_ = this->create_wall_timer(1ms, std::bind(&state_machine::stateChanger, this));
+    timer_ = this->create_wall_timer(1ms, std::bind(&state_machine::stateChanger, this));
 
-      //file_stream_.open("output.txt", std::ios::out);  // open .txt
+    // file_stream_.open("output.txt", std::ios::out);  // open .txt
 
-      /*service_state_memory_ = this->create_service<state_machine::srv::StateMemory>(
-        "state_service", std::bind(&state_machine::stateChanger, this, std::placeholders::_1, std::placeholders::_2));*/
+    /*service_state_memory_ = this->create_service<state_machine::srv::StateMemory>(
+      "state_service", std::bind(&state_machine::stateChanger, this, std::placeholders::_1, std::placeholders::_2));*/
 
+    axisMap.insert({"LS_X", 0});   // Left Stick axis X  (full left) 1.0 > -1.0 (full right)
+    axisMap.insert({"LS_Y", 1});   // Left Stick axis Y  (full high) 1.0 > -1.0 (full bottom)
+    axisMap.insert({"LT", 2});     // LT  (high) 1.0 > -1.0 (bottom)
+    axisMap.insert({"RS_X", 3});   // Right Stick axis X  (full left) 1.0 > -1.0 (full right)
+    axisMap.insert({"RS_Y", 4});   // Right Stick axis Y  (full high) 1.0 > -1.0 (full bottom)
+    axisMap.insert({"RT", 5});     // RT  (high) 1.0 > -1.0 (bottom)
+    axisMap.insert({"DPAD_X", 6}); //(left) 1.0 > -1.0 (right)
+    axisMap.insert({"DPAD_Y", 7}); //(hight) 1.0 > -1.0 (bottom)
+
+    buttonsMap.insert({"A", 0});
+    buttonsMap.insert({"B", 1});
+    buttonsMap.insert({"Y", 2});
+    buttonsMap.insert({"X", 3});
+    buttonsMap.insert({"LB", 4});
+    buttonsMap.insert({"RB", 5});
+    buttonsMap.insert({"START", 6});
+    buttonsMap.insert({"SELECT", 7});
+    buttonsMap.insert({"XBOX", 8});
+    buttonsMap.insert({"LS", 9});  // Left Stick Button
+    buttonsMap.insert({"RS", 10}); // Right Stick Button
+
+    timer_ = this->create_wall_timer(1ms, std::bind(&joystick_to_cmd::updateCmd, this));
+  }
+
+private:
+  // Publisher
+  rclcpp::Publisher<interfaces::msg::State>::SharedPtr publisher_state_;
+  rclcpp::Publisher<interfaces::msg::SystemCheck>::SharedPtr publisher_system_check_;
+  rclcpp::Publisher<interfaces::msg::JoystickOrder>::SharedPtr publisher_joystick_order_;
+
+  // Subscriber
+  rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr subscription_joy_;
+  rclcpp::Subscription<interfaces::msg::Obstacles>::SharedPtr subscription_obstacles_;
+  rclcpp::Subscription<interfaces::msg::WebMode>::SharedPtr subscription_web_mode_;
+  // Timer
+  rclcpp::TimerBase::SharedPtr timer_;
+
+  int joy_mode = 0;
+  int dir_av = 0;
+  int dir_ar = 0;
+  int obstacle_av = 0;
+  int obstacle_ar = 0;
+  int unavoidable = 0;
+  int emergency_btn = 1;
+
+  int start = 0;
+
+  int connexion = 0;
+  int sensor = 0;
+
+  // rclcpp::TimerBase::SharedPtr timer_;
+
+  std::string state_names[6] = {"idle", "Manual", "Autonomous", "Tracking", "Security", "Emergency"};
+  std::string obstacle_detect[2] = {"No obstacle", "Obstacle on the way"};
+  int previous_state = -1;
+  int current_state = 0;
+
+  int obstacle = 0;
+
+  // Joystick variables
+  map<string, int> axisMap;
+  map<string, int> buttonsMap;
+  bool buttonB, buttonStart, buttonA, buttonY, buttonDpadBottom, buttonDpadLeft, buttonX;
+  bool webButtonEmergency, webButtonStart, webButtonAutonomous, webButtonManual, webButtonReturn, webButtonTracking, webButtonJoystick;
+
+  float axisRT, axisLT, axisLS_X;
+
+  // General variables
+  bool start;
+  int mode;
+  bool systemCheckPrintRequest;
+
+  // Manual mode variables
+  float requestedAngle, requestedThrottle;
+  bool reverse;
+  float webSteering, webThrottle;
+  bool webReverse;
+
+  // std::ofstream file_stream_;
+
+  // Service
+  // rclcpp::Service<state_machine::srv::StateMemory>::SharedPtr service_state_memory_;
+  void stateChanger()
+  {
+    auto stateMsg = interfaces::msg::State();
+    // emergency stop
+    // emergency btn is inversed in case of a shutdown
+    if (!emergency_btn)
+    {
+      current_state = 5;
     }
 
-  private :
-
-    //Publisher
-    rclcpp::Publisher<interfaces::msg::State>::SharedPtr publisher_state_;
-    
-    //Subscriber
-    rclcpp::Subscription<interfaces::msg::JoystickOrder>::SharedPtr subscription_joystick_order_;
-    rclcpp::Subscription<interfaces::msg::Obstacles>::SharedPtr subscription_obstacles_;
-    //Timer
-    rclcpp::TimerBase::SharedPtr timer_;
-  
-
-
-    int joy_mode = 0; 
-    int dir_av = 0;
-    int dir_ar = 0;
-    int obstacle_av = 0; 
-    int obstacle_ar = 0; 
-    int unavoidable = 0;
-    int emergency_btn = 1;
-
-    int start = 0; 
-
-    int connexion = 0; 
-    int sensor = 0;
-
-    //rclcpp::TimerBase::SharedPtr timer_;
-
-
-    std::string state_names[6] = {"idle", "Manual", "Autonomous", "Tracking", "Security", "Emergency"};
-    std::string obstacle_detect[2] = {"No obstacle", "Obstacle on the way"};
-    int previous_state = -1; 
-    int current_state = 0; 
-    
-    int obstacle = 0;
-
-    //std::ofstream file_stream_;
-
-    //Service
-    //rclcpp::Service<state_machine::srv::StateMemory>::SharedPtr service_state_memory_;
-    void stateChanger()
+    // not emergency
+    else
     {
-      auto stateMsg = interfaces::msg::State();
-      //emergency stop
-      //emergency btn is inversed in case of a shutdown 
-      if (!emergency_btn)
+      // emergency stop -> idle
+      if (current_state == 5 && joy_mode == 0)
       {
-        current_state = 5;
+        current_state = 0;
+        RCLCPP_INFO(this->get_logger(), ("emergency->manual"));
       }
 
-      // not emergency 
-      else 
+      // idle -> ?
+      else if (current_state == 0)
       {
-        //emergency stop -> idle
-        if (current_state == 5 && joy_mode == 0)
+        // -> manual
+        if (joy_mode == 1)
         {
-          current_state = 0; 
-          RCLCPP_INFO(this->get_logger(),("emergency->manual"));
+          current_state = 1;
+          RCLCPP_INFO(this->get_logger(), ("idle->manual"));
         }
-
-        //idle -> ?
-        else if (current_state == 0)
+        // -> autonomous
+        else if (joy_mode == 2)
         {
-          // -> manual 
-          if (joy_mode == 1)
-          {
-            current_state = 1;
-            RCLCPP_INFO(this->get_logger(),("idle->manual"));
-          }
-          // -> autonomous 
-          else if (joy_mode == 2)
-          {
-            current_state = 2;
-            RCLCPP_INFO(this->get_logger(),("idle->auto"));
-          }
-          // -> tracking
-          else if (joy_mode == 4)
-          {
-            current_state = 3;
-            RCLCPP_INFO(this->get_logger(),("idle->tracking"));
-          }
+          current_state = 2;
+          RCLCPP_INFO(this->get_logger(), ("idle->auto"));
         }
-
-        //manual -> ? 
-        else if (current_state == 1) 
+        // -> tracking
+        else if (joy_mode == 4)
         {
-          // -> idle
-          if (joy_mode == 0)
-          {
-            current_state = 0;
-            RCLCPP_INFO(this->get_logger(),("manual->idle"));
-          }
-
-          // -> security
-          else if ((dir_av && obstacle_av) || (dir_ar && obstacle_ar))
-          {
-            current_state = 4;
-            RCLCPP_INFO(this->get_logger(),("manual->security"));
-          }
-        }
-
-        //autonomous -> ? 
-        else if (current_state == 2)
-        {
-          // -> idle
-          if (joy_mode == 0)
-          {
-            current_state = 0;
-            RCLCPP_INFO(this->get_logger(),("autonomous->idle"));
-          }
-        }
-
-        //tracking -> ? 
-        else if (current_state == 3)
-        {
-          // -> idle
-          if (joy_mode == 0)
-          {
-            current_state = 0;
-            RCLCPP_INFO(this->get_logger(),("tracking->idle"));
-          }
-        }
-        //security -> manual 
-        else if (current_state == 4 && ((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar) || (dir_av && !obstacle_av)))
-        {
-          current_state = 1; 
-          RCLCPP_INFO(this->get_logger(),("sec->man"));
-        }
-        else {
-          current_state=current_state;
+          current_state = 3;
+          RCLCPP_INFO(this->get_logger(), ("idle->tracking"));
         }
       }
-          //-------------------------------STATE CHANGE------------------------------------------------
-      if (previous_state != current_state)
+
+      // manual -> ?
+      else if (current_state == 1)
       {
+        // -> idle
+        if (joy_mode == 0)
+        {
+          current_state = 0;
+          RCLCPP_INFO(this->get_logger(), ("manual->idle"));
+        }
 
-        stateMsg.current_state = current_state;
-        stateMsg.state_name = state_names[current_state];
-        stateMsg.obstacle_detect = obstacle_detect[obstacle];
-        publisher_state_->publish(stateMsg);
-        RCLCPP_INFO(this->get_logger(),("From : "  + state_names[previous_state] + "Switching to another state : " + state_names[current_state]).data());
-        RCLCPP_INFO(this->get_logger(), ("change because obstacle ? " + obstacle_detect[obstacle]).data());
-        previous_state = current_state;
-        
-
-        // Save file
-        //file_stream_ << "\n\nMode: " << state_names[current_state] << ", Obstacle: " << obstacle_detect[obstacle] << "\n\n" << std::endl;
-        
-        
-      }
-    }
-
-    void joyCallback( const interfaces::msg::JoystickOrder &joyOrder)
-    {
-      
-      joy_mode = joyOrder.mode;
-      if (joy_mode == 3) 
-      {
-        emergency_btn = 0;
+        // -> security
+        else if ((dir_av && obstacle_av) || (dir_ar && obstacle_ar))
+        {
+          current_state = 4;
+          RCLCPP_INFO(this->get_logger(), ("manual->security"));
+        }
       }
 
-      else if (joy_mode != 3 && emergency_btn == 0)
+      // autonomous -> ?
+      else if (current_state == 2)
       {
-        emergency_btn = 1; 
+        // -> idle
+        if (joy_mode == 0)
+        {
+          current_state = 0;
+          RCLCPP_INFO(this->get_logger(), ("autonomous->idle"));
+        }
       }
 
-      //Direction control 
-      if (joyOrder.throttle>0 && !joyOrder.reverse)
+      // tracking -> ?
+      else if (current_state == 3)
       {
-        dir_av = 1; 
-        dir_ar = 0;
+        // -> idle
+        if (joy_mode == 0)
+        {
+          current_state = 0;
+          RCLCPP_INFO(this->get_logger(), ("tracking->idle"));
+        }
       }
-      else if (joyOrder.throttle>0 && joyOrder.reverse)
+      // security -> manual
+      else if (current_state == 4 && ((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar) || (dir_av && !obstacle_av)))
       {
-        dir_av = 0;
-        dir_ar = 1;
+        current_state = 1;
+        RCLCPP_INFO(this->get_logger(), ("sec->man"));
       }
       else
       {
-        dir_av = 0; 
-        dir_ar = 0;
+        current_state = current_state;
       }
     }
-
-    void obstacleCallback(const interfaces::msg::Obstacles &obstacle_msg)
+    //-------------------------------STATE CHANGE------------------------------------------------
+    if (previous_state != current_state)
     {
-      
-      if (obstacle_msg.front)
-      {
-        obstacle_av = 1;
-        obstacle = 1;
-      }
-      else {
-        obstacle_av = 0 ;
-      }
-      if (obstacle_msg.rear)
-      {
-        obstacle_ar = 1;
-        obstacle = 1;
-      }
-      else {
-        obstacle_ar = 0;
-      }
+
+      stateMsg.current_state = current_state;
+      stateMsg.state_name = state_names[current_state];
+      stateMsg.obstacle_detect = obstacle_detect[obstacle];
+      publisher_state_->publish(stateMsg);
+      RCLCPP_INFO(this->get_logger(), ("From : " + state_names[previous_state] + "Switching to another state : " + state_names[current_state]).data());
+      RCLCPP_INFO(this->get_logger(), ("change because obstacle ? " + obstacle_detect[obstacle]).data());
+      previous_state = current_state;
+
+      // Save file
+      // file_stream_ << "\n\nMode: " << state_names[current_state] << ", Obstacle: " << obstacle_detect[obstacle] << "\n\n" << std::endl;
     }
 
+    if (buttonDpadLeft && !systemCheckPrintRequest)
+    { // Request to print the last system check report
+      systemCheckPrintRequest = true;
 
+      auto systemCheckMsg = interfaces::msg::SystemCheck();
+      systemCheckMsg.print = true;
+      publisher_system_check_->publish(systemCheckMsg); // Send print request to system_check_node
+    }
+    else
+      systemCheckPrintRequest = false;
 
+    // ------ Propulsion ------
+    if (axisLT > DEADZONE_LT_RT && axisRT > DEADZONE_LT_RT)
+    { // Incompatible orders : Stop the car
+      requestedThrottle = STOP;
+      RCLCPP_WARN(this->get_logger(), "Incompatible orders : LT = %f, RT = %f", axisLT, axisRT);
+    }
+    else if (axisLT < DEADZONE_LT_RT && axisRT < DEADZONE_LT_RT)
+    {
+      requestedThrottle = STOP;
+    }
+    else if (axisLT > DEADZONE_LT_RT)
+    { // Move backward
+      reverse = true;
+      requestedThrottle = axisLT;
+    }
+    else if (axisRT > DEADZONE_LT_RT)
+    { // Move forward
+      reverse = false;
+      requestedThrottle = axisRT;
+    }
 
-}; 
+    // ------ Steering ------
+    if (axisLS_X > DEADZONE_LS_X_LEFT && axisLS_X < DEADZONE_LS_X_RIGHT)
+    { // asymmetric deadzone (hardware : joystick LS)
+      requestedAngle = CENTER;
+    }
+    else
+    {
+      requestedAngle = axisLS_X;
+    }
 
-int main(int argc, char * argv[])
+    // Propulsion et steering avec interface web
+    if (requestedThrottle == 0 && requestedAngle == CENTER)
+    {
+      requestedThrottle = webThrottle;
+      requestedAngle = webSteering;
+      reverse = webReverse;
+    }
+
+    auto joystickOrderMsg = interfaces::msg::JoystickOrder();
+    joystickOrderMsg.throttle = requestedThrottle;
+    joystickOrderMsg.steer = requestedAngle;
+    joystickOrderMsg.reverse = reverse;
+
+    publisher_joystick_order_->publish(joystickOrderMsg); // Send order to the car_control_node
+
+    webButtonEmergency = false;
+    webButtonStart = false;
+    webButtonAutonomous = false;
+    webButtonManual = false;
+    webButtonReturn = false;
+    webButtonTracking = false;
+    webButtonJoystick = false;
+  }
+
+  void joyCallback(const interfaces::msg::JoystickOrder &joyOrder)
+  {
+
+    joy_mode = joyOrder.mode;
+    if (joy_mode == 3)
+    {
+      emergency_btn = 0;
+    }
+
+    else if (joy_mode != 3 && emergency_btn == 0)
+    {
+      emergency_btn = 1;
+    }
+
+    // Direction control
+    if (joyOrder.throttle > 0 && !joyOrder.reverse)
+    {
+      dir_av = 1;
+      dir_ar = 0;
+    }
+    else if (joyOrder.throttle > 0 && joyOrder.reverse)
+    {
+      dir_av = 0;
+      dir_ar = 1;
+    }
+    else
+    {
+      dir_av = 0;
+      dir_ar = 0;
+    }
+  }
+
+  void obstacleCallback(const interfaces::msg::Obstacles &obstacle_msg)
+  {
+
+    if (obstacle_msg.front)
+    {
+      obstacle_av = 1;
+      obstacle = 1;
+    }
+    else
+    {
+      obstacle_av = 0;
+    }
+    if (obstacle_msg.rear)
+    {
+      obstacle_ar = 1;
+      obstacle = 1;
+    }
+    else
+    {
+      obstacle_ar = 0;
+    }
+  }
+
+  // Update requestedThrottle, requestedAngle and reverse from the joystick
+  void joyCallback(const sensor_msgs::msg::Joy &joy)
+  {
+
+    buttonStart = joy.buttons[buttonsMap.find("START")->second];
+    buttonB = joy.buttons[buttonsMap.find("B")->second];
+    buttonA = joy.buttons[buttonsMap.find("A")->second];
+    buttonY = joy.buttons[buttonsMap.find("Y")->second];
+    buttonX = joy.buttons[buttonsMap.find("X")->second];
+
+    axisRT = joy.axes[axisMap.find("RT")->second];     // Motors (go forward)
+    axisLT = joy.axes[axisMap.find("LT")->second];     // Motors (go backward)
+    axisLS_X = joy.axes[axisMap.find("LS_X")->second]; // Steering
+
+    if (joy.axes[axisMap.find("DPAD_Y")->second] == -1.0)
+      buttonDpadBottom = true;
+    else
+      buttonDpadBottom = false;
+
+    if (joy.axes[axisMap.find("DPAD_X")->second] == 1.0)
+      buttonDpadLeft = true;
+    else
+      buttonDpadLeft = false;
+
+    // Normalise values
+    axisLS_X = -axisLS_X;          // axisLS_X : 1 .. -1  ;  steering_angle : -1 .. 1
+    axisRT = (1.0 - axisRT) / 2.0; // axisRT : 1 .. -1  ;  throttle : 0 .. 1
+    axisLT = (1.0 - axisLT) / 2.0; // axisLT : 1 .. -1  ;  throttle : 0 .. 1
+  }
+
+  void webCallback(const interfaces::msg::WebMode &web)
+  {
+
+    switch (web.button)
+    {
+    case 0:
+      webButtonReturn = true;
+      break;
+    case 1:
+      webButtonManual = true;
+      break;
+    case 2:
+      webButtonAutonomous = true;
+      break;
+    case 3:
+      webButtonTracking = true;
+      break;
+    case 4:
+      webButtonEmergency = true;
+      break;
+    case 5:
+      webButtonStart = true;
+      break;
+    case 7:
+      webButtonJoystick = true;
+      break;
+    default:
+      // RCLCPP_INFO(this->get_logger(), "unknown webButton pressed");
+      break;
+    }
+
+    webSteering = web.steering;
+    webThrottle = web.throttle;
+    webReverse = web.reverse;
+  }
+};
+
+int main(int argc, char *argv[])
 {
   rclcpp::init(argc, argv);
   auto node = std::make_shared<state_machine>();
