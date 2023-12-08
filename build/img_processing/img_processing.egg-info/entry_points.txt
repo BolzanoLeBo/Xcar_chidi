@@ -1,0 +1,2 @@
+[console_scripts]
+img_processing_node = img_processing.img_processing_node:main

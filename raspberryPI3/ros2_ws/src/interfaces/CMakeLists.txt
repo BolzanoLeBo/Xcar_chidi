@@ -24,6 +24,8 @@ set(msg_files
   "msg/Obstacles.msg"
   "msg/State.msg"
   "msg/WebMode.msg"
+  "msg/Userdistance.msg"
+  "msg/TrackingPosAngle.msg"
 )
 
 rosidl_generate_interfaces(${PROJECT_NAME}
