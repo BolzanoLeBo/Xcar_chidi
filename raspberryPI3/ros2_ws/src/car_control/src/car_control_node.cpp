@@ -99,7 +99,11 @@ private:
     }
     
     void angleFromLidar(const interfaces::msg::TrackingPosAngle & trackingPosAngle){
-        desiredAngle = -trackingPosAngle.cam_angle;
+        if (trackingPosAngle.cam_angle >= -30 and trackingPosAngle.cam_angle <= 30)
+        {
+            desiredAngle = -trackingPosAngle.cam_angle;
+        }
+        
     }
 
     /* Update PWM commands : leftRearPwmCmd, rightRearPwmCmd, steeringPwmCmd
