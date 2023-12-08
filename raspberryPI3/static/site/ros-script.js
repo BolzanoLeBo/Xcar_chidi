@@ -137,6 +137,7 @@ stateListener.subscribe(function (message) {
             window.location.href = 'home.html';
             break;
         case 1:
+            publishWebMode(7, 0, 0, false);
             window.location.href = 'manual.html';
             break;
         case 2:
@@ -146,6 +147,7 @@ stateListener.subscribe(function (message) {
             window.location.href = 'tracking.html';
             break;
         case 4:
+            publishWebMode(7, 0, 0, false);
             window.location.href = 'security.html';
             break;        
         case 5:
