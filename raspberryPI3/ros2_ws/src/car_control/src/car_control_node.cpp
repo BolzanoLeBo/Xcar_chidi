@@ -93,6 +93,10 @@ private:
         currentRightDistance = ultrasonic.front_center;
         currentLeftDistance = currentRightDistance;
     }
+    
+    void angleFromLidar(const interfaces::msg::TrackingPosAngle & trackingPosAngle){
+        desiredAngle = -trackingPosAngle.cam_angle;
+    }
 
     /* Update PWM commands : leftRearPwmCmd, rightRearPwmCmd, steeringPwmCmd
     *
@@ -132,7 +136,16 @@ private:
                 compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
                 steeringPwmCmd = 50;
                 reinit = 0;
+            }
+            
+            //Autonomous mode
+            else if (state==2){
+                angle_error = desiredAngle/30 - currentAngle;
 
+                steeringPwmCmd = steeringPwmCmd_last + 0.9*angle_error + (2*0.001-0.9)*angle_error_last;
+
+                steeringPwmCmd_last = steeringPwmCmd;
+                angle_error_last = angle_error;
             }
 
         }
@@ -168,11 +181,15 @@ private:
     bool reverseValue;
     float throttleValue;
     float angleValue;
+    float desiredAngle;
+    float angle_error;
+    float angle_error_last = 0;
 
     //Control variables
     uint8_t leftRearPwmCmd;
     uint8_t rightRearPwmCmd;
     uint8_t steeringPwmCmd;
+    uint8_t steeringPwmCmd_last = 0;
 
     //Publishers
     rclcpp::Publisher<interfaces::msg::MotorsOrder>::SharedPtr publisher_can_;
@@ -184,6 +201,8 @@ private:
     rclcpp::Subscription<interfaces::msg::MotorsFeedback>::SharedPtr subscription_motors_feedback_;
     rclcpp::Subscription<interfaces::msg::SteeringCalibration>::SharedPtr subscription_steering_calibration_;
     rclcpp::Subscription<interfaces::msg::State>::SharedPtr subscription_state_;
+    rclcpp::Subscription<interfaces::msg::TrackingPosAngle>::SharedPtr subscription_state_;
+
 
     //Timer
     rclcpp::TimerBase::SharedPtr timer_;

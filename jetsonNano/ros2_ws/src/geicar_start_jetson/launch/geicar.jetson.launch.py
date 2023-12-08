@@ -33,9 +33,16 @@ def generate_launch_description():
         emulate_tty=True
     )
 
+    img_processing_node = Node(
+        package="img_processing", 
+        executable="img_processing_node", 
+        emulate_tty=True
+    )
+
 
     ld.add_action(lidar_node)
     ld.add_action(camera_node)
     ld.add_action(system_check_ack_node)
+    ld.add_action(img_processing_node)
 
     return ld
