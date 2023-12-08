@@ -43,6 +43,12 @@ var reverse = false;
 var steering = 0;
 var timer;
 
+function stopJoystick() {
+    if (manager) {
+        manager.trigger('end'); // Force l'événement 'end' quand je décharge la page
+    }
+}
+
 function move() {
     publishWebMode(7, throttle, steering, reverse);
 }
@@ -101,11 +107,15 @@ function createJoystick() {
         reverse = false;
         move();
     });
+
+    return manager;
 }
 
 window.onload = function () {
-    createJoystick();
+    var manager = createJoystick();
 }
+
+window.addEventListener('beforeunload', stopJoystick);
 
 var stateListener = new ROSLIB.Topic({
     ros: ros,
@@ -127,6 +137,7 @@ stateListener.subscribe(function (message) {
             window.location.href = 'home.html';
             break;
         case 1:
+            publishWebMode(7, 0, 0, false);
             window.location.href = 'manual.html';
             break;
         case 2:
@@ -136,6 +147,7 @@ stateListener.subscribe(function (message) {
             window.location.href = 'tracking.html';
             break;
         case 4:
+            publishWebMode(7, 0, 0, false);
             window.location.href = 'security.html';
             break;        
         case 5:
@@ -145,3 +157,20 @@ stateListener.subscribe(function (message) {
             console.log('Unknown State');
     }
 });
+
+var generalDataListener = new ROSLIB.Topic({
+    ros: ros,
+    name: '/general_data', 
+    messageType: 'interfaces/msg/GeneralData'
+});
+
+
+function updateBatteryDisplay(message) {
+
+    if (message.battery_level !== undefined) {
+
+        document.getElementById('batteryDisplay').innerHTML = 'Battery Level: ' + message.battery_level;
+    }
+}
+
+generalDataListener.subscribe(updateBatteryDisplay);
