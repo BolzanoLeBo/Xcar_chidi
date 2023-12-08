@@ -141,7 +141,6 @@ def get_tracking_angle(frame, camera_angle, lidar_rotation, lidar_translation) :
 	else : 
 		return (person_detected, (inf, inf))
 
-
 class ImgProcessingNode(Node):
 	
 	def __init__(self):
@@ -177,8 +176,12 @@ class ImgProcessingNode(Node):
 		if self.cv_image != [] :
 			tracking = TrackingPosAngle()
 			(human_detected, (a_min, a_max)) = get_tracking_angle(self.cv_image, 35, -90, [0,0])
-			tracking.min_angle = a_min
-			tracking.max_angle = a_max
+			if a_min >= a_max :
+				tracking.min_angle = a_max
+				tracking.max_angle = a_min
+			else :
+				tracking.min_angle = a_min
+				tracking.max_angle = a_max
 			# Publish the msg for angle
 			self.tracking_pos_angle_publisher_.publish(tracking)
 

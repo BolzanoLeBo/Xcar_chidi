@@ -150,7 +150,7 @@ class detection: public rclcpp::Node {
         
         int size = (int)scan.ranges.size();
         int delta = size/8;
-        /*if (!print_list)
+        if (!print_list)
         {
           for (int i = 0; i < size; i++)
           {
@@ -158,7 +158,7 @@ class detection: public rclcpp::Node {
           }
           print_list = 1 ;
 
-        }*/
+        }
         float front_min = 12.0; 
         float rear_min = 12.0;
         lidar_data.clear();
@@ -210,15 +210,17 @@ class detection: public rclcpp::Node {
         int size2 =0;
         //int Sum=0;
         //int moyenne = 0;
-        
         aux.clear();
         float mid=0.0;
+        RCLCPP_INFO(this->get_logger(),("Loic est mort 1"));
         if(angle_msg.min_angle>=-360 && angle_msg.max_angle<=360 && angle_msg.min_angle<= 360 && angle_msg.max_angle>=-360){
-          mid = (angle_msg.max_angle + angle_msg.min_angle)/2;
+          //mid = (angle_msg.max_angle + angle_msg.min_angle)/2;
+          RCLCPP_INFO(this->get_logger(),("Loic est mort 2"));
           for (int i=0; i<size ; i++){
-            if (i>=(mid - 2.5) && i<=( mid + 2.5)){
+            RCLCPP_INFO(this->get_logger(),("Loic est mort 3"));
+            if (lidar_data2[i]<3.5){//lidar_data2[i]>0.9 && (lidar_data2[i]<3.5)){
               //Sum +=lidar_data2[i];
-              if (lidar_data2[i]<12.0){
+                RCLCPP_INFO(this->get_logger(),("Loic est mort 4"));
                 aux.push_back(lidar_data2[i]);
               }
               //count+=1;
@@ -226,7 +228,6 @@ class detection: public rclcpp::Node {
           }
           size2=aux.size();
           if (size2>0){
-            RCLCPP_INFO(this->get_logger(),("Ok3"));
             std::sort(aux.begin(), aux.end());
             //Renvoie de la médiane
             if (size2 % 2 != 0) {
@@ -239,9 +240,7 @@ class detection: public rclcpp::Node {
             //moyenne=Sum/count;
             //distance.distance_tracking=moyenne;
             publisher_userdistance_->publish(Userdist);
-            RCLCPP_INFO(this->get_logger(),("Ok4"));
           }
-        }
     }    
 
     void DetectCom(){
