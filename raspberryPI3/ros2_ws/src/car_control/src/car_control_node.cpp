@@ -11,6 +11,7 @@
 #include "interfaces/msg/joystick_order.hpp"
 #include "interfaces/msg/state.hpp"
 #include "interfaces/msg/ultrasonic.hpp"
+#include "interfaces/msg/tracking_pos_angle.hpp"
 
 
 #include "std_srvs/srv/empty.hpp"
@@ -52,6 +53,9 @@ public:
 
         subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
         "us_data", 10, std::bind(&car_control::distanceCallback, this, _1));
+
+        subscription_tracking_angle_ = this->create_subscription<interfaces::msg::TrackingPosAngle>(
+        "tracking_pos_angle", 10, std::bind(&car_control::angleFromLidar, this, _1));
 
         timer_ = this->create_wall_timer(PERIOD_UPDATE_CMD, std::bind(&car_control::updateCmd, this));
 
@@ -96,6 +100,11 @@ private:
     
     void angleFromLidar(const interfaces::msg::TrackingPosAngle & trackingPosAngle){
         desiredAngle = -trackingPosAngle.cam_angle;
+        if (trackingPosAngle.cam_angle >= -30 and trackingPosAngle.cam_angle <= 30)
+        {
+            desiredAngle = -trackingPosAngle.cam_angle;
+        }
+        
     }
 
     /* Update PWM commands : leftRearPwmCmd, rightRearPwmCmd, steeringPwmCmd
@@ -201,7 +210,7 @@ private:
     rclcpp::Subscription<interfaces::msg::MotorsFeedback>::SharedPtr subscription_motors_feedback_;
     rclcpp::Subscription<interfaces::msg::SteeringCalibration>::SharedPtr subscription_steering_calibration_;
     rclcpp::Subscription<interfaces::msg::State>::SharedPtr subscription_state_;
-    rclcpp::Subscription<interfaces::msg::TrackingPosAngle>::SharedPtr subscription_state_;
+    rclcpp::Subscription<interfaces::msg::TrackingPosAngle>::SharedPtr subscription_tracking_angle_;
 
 
     //Timer

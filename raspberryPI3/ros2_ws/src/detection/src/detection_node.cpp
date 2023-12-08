@@ -206,21 +206,17 @@ class detection: public rclcpp::Node {
         std::vector<float> lidar_data2(lidar_data);
         int size = lidar_data2.size();
         std::vector<float> aux;
+        float a_min = angle_msg.min_angle; 
+        float a_max = angle_msg.max_angle;
         //int count =0;
         int size2 =0;
         //int Sum=0;
         //int moyenne = 0;
         aux.clear();
         float mid=0.0;
-        RCLCPP_INFO(this->get_logger(),("Loic est mort 1"));
-        if(angle_msg.min_angle>=-360 && angle_msg.max_angle<=360 && angle_msg.min_angle<= 360 && angle_msg.max_angle>=-360){
-          //mid = (angle_msg.max_angle + angle_msg.min_angle)/2;
-          RCLCPP_INFO(this->get_logger(),("Loic est mort 2"));
-          for (int i=0; i<size ; i++){
-            RCLCPP_INFO(this->get_logger(),("Loic est mort 3"));
-            if (lidar_data2[i]<3.5){//lidar_data2[i]>0.9 && (lidar_data2[i]<3.5)){
-              //Sum +=lidar_data2[i];
-                RCLCPP_INFO(this->get_logger(),("Loic est mort 4"));
+        if(a_min>=-360 && a_max<=360 && a_min<= 360 && a_max>=-360){
+          for (int i=(int)a_min; i<(int)a_max ; i++){
+            if (lidar_data2[i]<3.5){
                 aux.push_back(lidar_data2[i]);
               }
               //count+=1;
@@ -263,8 +259,6 @@ class detection: public rclcpp::Node {
       //last_front_lidar_detect = obstacleMsg.lidar_front_detect;
       //last_rear_lidar_detect = obstacleMsg.lidar_rear_detect
       //}
-  }    
-
   void DetectCom(){
     auto obstacleMsg = interfaces::msg::Obstacles();
     if (lidar_front || us_front){
