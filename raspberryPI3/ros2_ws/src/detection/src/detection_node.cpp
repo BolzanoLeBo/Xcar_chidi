@@ -239,6 +239,11 @@ class detection: public rclcpp::Node {
           }
     }    
 
+      // Changing last value of lidar_front_detect and publishing message of obstacle
+      //if ((last_front_lidar_detect != obstacleMsg.lidar_front_detect) || (last_rear_lidar_detect != obstacleMsg.lidar_rear_detect)) {   
+      //last_front_lidar_detect = obstacleMsg.lidar_front_detect;
+      //last_rear_lidar_detect = obstacleMsg.lidar_rear_detect
+      //}
     void DetectCom(){
       auto obstacleMsg = interfaces::msg::Obstacles();
       if (lidar_front || us_front){
@@ -247,35 +252,15 @@ class detection: public rclcpp::Node {
       else{
       obstacleMsg.front=0;
       }
-      if (lidar_rear|| us_rear){
+      if (lidar_rear || us_rear){
         obstacleMsg.rear=1;
       }
       else{
       obstacleMsg.rear=0;
       }
 
-      // Changing last value of lidar_front_detect and publishing message of obstacle
-      //if ((last_front_lidar_detect != obstacleMsg.lidar_front_detect) || (last_rear_lidar_detect != obstacleMsg.lidar_rear_detect)) {   
-      //last_front_lidar_detect = obstacleMsg.lidar_front_detect;
-      //last_rear_lidar_detect = obstacleMsg.lidar_rear_detect
-      //}
-  void DetectCom(){
-    auto obstacleMsg = interfaces::msg::Obstacles();
-    if (lidar_front || us_front){
-      obstacleMsg.front=1;
+      publisher_obstacle_->publish(obstacleMsg);
     }
-    else{
-    obstacleMsg.front=0;
-    }
-    if (lidar_rear || us_rear){
-      obstacleMsg.rear=1;
-    }
-    else{
-    obstacleMsg.rear=0;
-    }
-
-    publisher_obstacle_->publish(obstacleMsg);
-  }
   
 };
 
