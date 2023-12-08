@@ -88,6 +88,12 @@ def get_angle(rect, sc, a, phi, d) :
 		h2 = [a_min[0], a_min[1] - dh - w]	'''
 	h1 = [a_min[0], a_min[1] - dh]
 	h2 = [a_min[0], a_min[1] - dh - w]
+	h_middle = [a_min[0], a_min[1] - dh - w/2]
+	h_mid_unit = h_middle/np.linalg.norm(h_middle)
+	if h_mid_unit[1] < 0 :
+		theta_mid = -degrees(acos(np.dot(h_mid_unit, [1,0])))
+	else : 
+		theta_mid = degrees(acos(np.dot(h_mid_unit, [1,0])))
 	#we have to find the angle between h1 and h2 in the lidar basis (rotation of lidar_angle and translation of lidar_distance)
 	#rotate h1 and h2
 	h1_rot = vector_rotation(h1, phi)
@@ -111,7 +117,7 @@ def get_angle(rect, sc, a, phi, d) :
 	else:
 		theta2 = degrees(acos(np.dot(h2_unit, [1,0])))
 
-	return (theta1, theta2)
+	return (theta1, theta2, theta_mid)
 
 def get_tracking_angle(frame, camera_angle, lidar_rotation, lidar_translation) : 
 	# Load YOLOv3 model
@@ -139,7 +145,7 @@ def get_tracking_angle(frame, camera_angle, lidar_rotation, lidar_translation) :
 		#we use height because the frame is a square
 		return (person_detected, get_angle(rect, screen_size, radians(camera_angle), radians(lidar_rotation), lidar_translation))
 	else : 
-		return (person_detected, (inf, inf))
+		return (person_detected, (inf, inf, inf))
 
 class ImgProcessingNode(Node):
 	
@@ -175,13 +181,14 @@ class ImgProcessingNode(Node):
 	def img_ai(self) : 
 		if self.cv_image != [] :
 			tracking = TrackingPosAngle()
-			(human_detected, (a_min, a_max)) = get_tracking_angle(self.cv_image, 35, -90, [0,0])
+			(human_detected, (a_min, a_max, a_cam), ) = get_tracking_angle(self.cv_image, 60, -90, [0,0])
 			if a_min >= a_max :
 				tracking.min_angle = a_max
 				tracking.max_angle = a_min
 			else :
 				tracking.min_angle = a_min
 				tracking.max_angle = a_max
+			tracking.cam_angle = a_cam
 			# Publish the msg for angle
 			self.tracking_pos_angle_publisher_.publish(tracking)
 
