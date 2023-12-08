@@ -189,6 +189,7 @@ class ImgProcessingNode(Node):
 				tracking.min_angle = a_min
 				tracking.max_angle = a_max
 			tracking.cam_angle = a_cam
+			tracking.person_detected = human_detected
 			# Publish the msg for angle
 			self.tracking_pos_angle_publisher_.publish(tracking)
 
