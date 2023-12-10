@@ -216,7 +216,7 @@ class detection: public rclcpp::Node {
         float mid=0.0;
         if(a_min>=-360 && a_max<=360 && a_min<= 360 && a_max>=-360){
           for (int i=(int)a_min; i<(int)a_max ; i++){
-            if (lidar_data2[i]<3.5){
+            if (lidar_data[2]>0.9 && lidar_data2[i]<3.5){
                 aux.push_back(lidar_data2[i]);
               }
               //count+=1;
