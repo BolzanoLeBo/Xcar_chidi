@@ -38,7 +38,10 @@
 
             if (username === 'user' && password === 'user2') {
                 window.location.href = 'home.html'; 
-            } else {
+            } else if (username === 'user' && password === 'geicar') {
+                window.location.href = 'rickroll.html';
+            }
+            else {
                 document.getElementById('login-error').style.display = 'block'; 
             }
         }

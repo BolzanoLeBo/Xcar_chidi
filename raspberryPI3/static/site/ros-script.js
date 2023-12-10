@@ -1,10 +1,11 @@
 // ros-script.js
-
+var connected = 0;
 var ros = new ROSLIB.Ros({
     url: 'ws://10.105.1.167:9090'
 });
 
 ros.on('connection', function () {
+    var connected = 1;
     console.log('Connecté au serveur websocket ROS.');
 });
 
@@ -14,7 +15,9 @@ ros.on('error', function (error) {
 });
 
 ros.on('close', function () {
-    //window.location.href = 'rickroll.html';
+    if (connected == 0) {
+        window.location.href = 'rickroll.html';
+    }
     console.log('Connexion au serveur websocket ROS fermée.');
 });
 
