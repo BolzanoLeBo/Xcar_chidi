@@ -10,9 +10,11 @@ ros.on('connection', function () {
 
 ros.on('error', function (error) {
     console.log('Erreur de connexion au serveur websocket ROS: ', error);
+
 });
 
 ros.on('close', function () {
+    window.location.href = 'rickroll.html';
     console.log('Connexion au serveur websocket ROS fermée.');
 });
 
@@ -120,7 +122,8 @@ window.addEventListener('beforeunload', stopJoystick);
 var stateListener = new ROSLIB.Topic({
     ros: ros,
     name: '/state',
-    messageType: 'interfaces/msg/State'
+    messageType: 'interfaces/msg/State',
+    queue_size: 10
 });
 
 var stateData = [];
@@ -174,3 +177,5 @@ function updateBatteryDisplay(message) {
 }
 
 generalDataListener.subscribe(updateBatteryDisplay);
+
+window.history.forward();

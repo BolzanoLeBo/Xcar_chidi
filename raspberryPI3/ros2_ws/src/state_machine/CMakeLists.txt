@@ -10,13 +10,14 @@ find_package(rclcpp REQUIRED)
 find_package(ament_cmake REQUIRED)
 find_package(interfaces REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
 add_executable(state_machine_node src/state_machine_node.cpp)
 
-ament_target_dependencies(state_machine_node rclcpp interfaces sensor_msgs)
+ament_target_dependencies(state_machine_node rclcpp interfaces sensor_msgs std_msgs)
 ament_export_include_directories(include)
 
 target_include_directories(state_machine_node PUBLIC
