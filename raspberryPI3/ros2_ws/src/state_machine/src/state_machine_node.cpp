@@ -278,10 +278,18 @@ private:
         }
       }
       // security -> manual
-      else if (current_state == 4 && ((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar) || (dir_av && !obstacle_av)))
+      else if (current_state == 4)
       {
-        current_state = 1;
-        RCLCPP_INFO(this->get_logger(), ("sec->man"));
+        if (((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar) || (dir_av && !obstacle_av)) && connexion) {
+          current_state = 1;
+          RCLCPP_INFO(this->get_logger(), ("sec->man"));
+        }
+
+        else if ((!connexion)) {
+          current_state = 0;
+          RCLCPP_INFO(this->get_logger(), ("security->idle"));
+        }
+
       }
       else
       {
