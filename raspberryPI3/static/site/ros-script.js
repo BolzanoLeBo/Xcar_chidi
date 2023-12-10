@@ -14,7 +14,7 @@ ros.on('error', function (error) {
 });
 
 ros.on('close', function () {
-    window.location.href = 'rickroll.html';
+    //window.location.href = 'rickroll.html';
     console.log('Connexion au serveur websocket ROS fermée.');
 });
 
