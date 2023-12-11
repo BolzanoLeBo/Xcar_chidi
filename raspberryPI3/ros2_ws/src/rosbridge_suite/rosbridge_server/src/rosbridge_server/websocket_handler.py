@@ -149,8 +149,11 @@ class RosbridgeWebSocket(WebSocketHandler):
             self.protocol = RosbridgeProtocol(
                 client_id, cls.node_handle, parameters=parameters
             )
+
+            # Create the incoming queue only if the connection is accepted
             self.incoming_queue = IncomingQueue(self.protocol)
             self.incoming_queue.start()
+            
             self.protocol.outgoing = self.send_message
             self.set_nodelay(True)
             cls.clients_connected += 1
@@ -169,7 +172,8 @@ class RosbridgeWebSocket(WebSocketHandler):
     def on_message(self, message):
         if isinstance(message, bytes):
             message = message.decode("utf-8")
-        self.incoming_queue.push(message)
+        if hasattr(self, 'incoming_queue') and self.incoming_queue:
+            self.incoming_queue.push(message)
 
     @log_exceptions
     def on_close(self):
@@ -232,3 +236,4 @@ class RosbridgeWebSocket(WebSocketHandler):
             return None
 
         return {}
+
