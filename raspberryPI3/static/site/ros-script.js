@@ -1,11 +1,11 @@
 // ros-script.js
 var connected = 0;
 var ros = new ROSLIB.Ros({
-    url: 'ws://10.105.1.167:9090'
+    url: 'ws://loic-ras.freeboxos.fr:16900'
 });
 
 ros.on('connection', function () {
-    var connected = 1;
+    connected = 1;
     console.log('Connecté au serveur websocket ROS.');
 });
 
