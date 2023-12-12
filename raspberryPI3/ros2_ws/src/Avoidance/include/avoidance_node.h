@@ -1,5 +1,5 @@
-#ifndef __obstacle_avoidance_node_H
-#define __obstacle_avoidance_node_H
+#ifndef __avoidance_node_H
+#define __avoidance_node_H
 
 #include <stdint.h>
 #include <string.h>  

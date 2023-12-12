@@ -5,7 +5,7 @@
 #include "interfaces/msg/obstacle_side.hpp"
 
 
-#include "../include/obstacle_avoidance/obstacle_avoidance_node.h"
+#include "../include/avoidance/avoidance_node.h"
 #include <fstream> 
 
 
@@ -13,21 +13,21 @@ using namespace std;
 using placeholders::_1;
 
 
-class obstacle_avoidance : public rclcpp::Node {
+class avoidance : public rclcpp::Node {
 
 public:
-    obstacle_avoidance()
-    : Node("obstacle_avoidance_node")
+    avoidance()
+    : Node("avoidance_node")
     {
-        subscription_lidar_ = this->create_subscription<interfaces::msg::ObstacleSide>(
-        "obstacle_side", 10, std::bind(&obstacle_avoidance::lidarDataCallback, this, _1));
+        subscription_side_ = this->create_subscription<interfaces::msg::SideObstacles>(
+        "side_obstacles", 10, std::bind(&avoidance::sideDataCallback, this, _1));
 
-        subscription_us_ = this->create_subscription<interfaces::msg::ObstaclesID>(
-        "obstacles_id", 10, std::bind(&obstacle_avoidance::usDataCallback, this, _1));
+        subscription_id_ = this->create_subscription<interfaces::msg::ObstaclesId>(
+        "obstacles_id", 10, std::bind(&avoidance::idDataCallback, this, _1));
 
         publisher_avoidance_param_= this->create_publisher<interfaces::msg::AvoidanceParameters>("avoidance_parameters", 10);
 
-        timer_ = this->create_wall_timer(PERIOD_UPDATE_CMD, std::bind(&obstacle_avoidance::updateParam, this));
+        timer_ = this->create_wall_timer(PERIOD_UPDATE_CMD, std::bind(&avoidance::updateParam, this));
 
         RCLCPP_INFO(this->get_logger(), "obstacle_avoidance_node READY");
     }
