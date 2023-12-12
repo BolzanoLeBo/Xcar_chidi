@@ -103,13 +103,15 @@ private:
             if (trackingPosAngle.cam_angle >= -30 and trackingPosAngle.cam_angle <= 30)
             {
                 desiredAngle = -trackingPosAngle.cam_angle;
+
             }
         }else{
             desiredAngle = lastDesiredAngle;
         }
 
         lastDesiredAngle = desiredAngle;
-        
+
+
         
     }
 
@@ -156,9 +158,8 @@ private:
             //Autonomous mode
             else if (state==2){
                 angle_error = desiredAngle/30 - currentAngle;
-
-                steeringPwmCmd = steeringPwmCmd_last + 0.9*angle_error + (2*0.001-0.9)*angle_error_last;
-
+                //steeringPwmCmd = steeringPwmCmd_last + 0.9*angle_error + (2*0.001-0.9)*angle_error_last;
+                steeringPwmCmd = 50 + 2 *angle_error;
                 steeringPwmCmd_last = steeringPwmCmd;
                 angle_error_last = angle_error;
             }
