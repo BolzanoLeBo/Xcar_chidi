@@ -40,11 +40,11 @@ private:
     *
     *  This function is called when a message is published on the "/obstacle_side" topic
     */
-    void lidarDataCallback(const interfaces::msg::ObstacleSide & lidar_obstacle) {
-        lidar_left = lidar_obstacle.left_lidar;
-        lidar_right = lidar_obstacle.right_lidar;
-        left_min = lidar_obstacle.left_min;
-        right_min = lidar_obstacle.right_min;
+    void sideDataCallback(const interfaces::msg::SideObstacles & side_obstacle) {
+        lidar_left = side_obstacle.left_lidar;
+        lidar_right = side_obstacle.right_lidar;
+        left_min = side_obstacle.left_min;
+        right_min = side_obstacle.right_min;
     }
 
 
@@ -52,11 +52,11 @@ private:
     *
     *  This function is called when a message is published on the "/obstacle_id" topic
     */
-    void usDataCallback(const interfaces::msg::ObstaclesID & us_obstacle) {
-        us_left = us_obstacle.obstacle_left;
-        us_right = us_obstacle.obstacle_right;
-        us_middle = us_obstacle.obstacle_middle;
-        us_big = us_obstacle.big_obstacle;
+    void idDataCallback(const interfaces::msg::ObstaclesId & id_obstacle) {
+        us_left = id_obstacle.obstacle_left;
+        us_right = id_obstacle.obstacle_right;
+        us_middle = id_obstacle.obstacle_middle;
+        us_big = id_obstacle.big_obstacle;
     }
 
 
@@ -137,8 +137,8 @@ private:
     rclcpp::Publisher<interfaces::msg::AvoidanceParameters>::SharedPtr publisher_avoidance_param_;
 
     //Subscribers
-    rclcpp::Subscription<interfaces::msg::ObstacleSide>::SharedPtr subscription_lidar_;
-    rclcpp::Subscription<interfaces::msg::ObstaclesID>::SharedPtr subscription_us_;
+    rclcpp::Subscription<interfaces::msg::SideObstacles>::SharedPtr subscription_side_;
+    rclcpp::Subscription<interfaces::msg::ObstaclesId>::SharedPtr subscription_id_;
 
 
     //Timer
@@ -150,7 +150,7 @@ private:
 int main(int argc, char * argv[])
 {
   rclcpp::init(argc, argv);
-  auto node = std::make_shared<obstacle_avoidance>();
+  auto node = std::make_shared<avoidance>();
 
   rclcpp::spin(node);
 

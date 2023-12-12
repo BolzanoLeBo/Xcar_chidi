@@ -25,7 +25,7 @@ set(msg_files
   "msg/SystemCheck.msg"
   "msg/Lidar.msg"
   "msg/WebMode.msg"
-  "msg/ObstacleId.msg"
+  "msg/ObstaclesId.msg"
   "msg/SideObstacles.msg"
   "msg/Userdistance.msg"
   "msg/TrackingPosAngle.msg"
