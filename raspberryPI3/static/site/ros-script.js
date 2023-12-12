@@ -14,12 +14,12 @@ ros.on('error', function (error) {
     console.log('Erreur de connexion au serveur websocket ROS: ', error);
 });
 
-// ros.on('close', function () {
-//     if (connected == 0) {
-//         window.location.href = 'rickroll.html';
-//     }
-//     console.log('Connexion au serveur websocket ROS fermée.');
-// });
+ros.on('close', function () {
+     //if (connected == 0) {
+     //    window.location.href = 'rickroll.html';
+     //}
+     console.log('Connexion au serveur websocket ROS fermée.');
+ });
 
 var modePublisher = new ROSLIB.Topic({
     ros: ros,
@@ -172,9 +172,22 @@ var generalDataListener = new ROSLIB.Topic({
 
 
 function updateBatteryDisplay(message) {
-    
     if (message.battery_level !== undefined) {
-        document.getElementById('batteryDisplay').innerHTML = message.battery_level;
+        var batteryLevelDiv = document.getElementById('batteryLevel');
+
+        batteryLevelDiv.style.width = message.battery_level + '%';
+        document.getElementById('batteryText').innerText = message.battery_level + '%';
+        batteryLevelDiv.classList.remove('battery-low', 'battery-medium', 'battery-normal', 'battery-high');
+
+        if (message.battery_level <= 15) {
+            batteryLevelDiv.classList.add('battery-low');
+        } else if (message.battery_level <= 25) {
+            batteryLevelDiv.classList.add('battery-medium');
+        } else if (message.battery_level < 80) {
+            batteryLevelDiv.classList.add('battery-normal');
+        } else {
+            batteryLevelDiv.classList.add('battery-high');
+        }
     }
 }
 

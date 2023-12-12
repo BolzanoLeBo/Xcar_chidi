@@ -68,31 +68,6 @@
 
             document.getElementById(tabName).style.display = 'block';
         }
-        //battery function
-        function updateBatteryDisplay(message) {
-            if (message.battery_level !== undefined) {
-                var batteryLevelDiv = document.getElementById('batteryLevel');
-
-                batteryLevelDiv.style.width = message.battery_level + '%';
-                document.getElementById('batteryText').innerText = message.battery_level + '%';
-                batteryLevelDiv.classList.remove('battery-low', 'battery-medium', 'battery-normal', 'battery-high');
-
-                if (message.battery_level <= 15) {
-                    batteryLevelDiv.classList.add('battery-low');
-                } else if (message.battery_level <= 25) {
-                    batteryLevelDiv.classList.add('battery-medium');
-                } else if (message.battery_level < 80) {
-                    batteryLevelDiv.classList.add('battery-normal');
-                } else {
-                    batteryLevelDiv.classList.add('battery-high');
-                }
-            }
-        }
-        // Simulation
-        var exemploMensagemBateria = {
-            battery_level: 80 
-        };
-        updateBatteryDisplay(exemploMensagemBateria);
     </script>
 
 </body>
