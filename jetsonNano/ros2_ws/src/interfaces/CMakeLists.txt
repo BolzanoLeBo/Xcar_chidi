@@ -14,6 +14,7 @@ find_package(rosidl_default_generators REQUIRED)
 
 set(msg_files
   "msg/JoystickOrder.msg"
+  "msg/AvoidanceParameters.msg"
   "msg/MotorsOrder.msg"
   "msg/MotorsFeedback.msg"
   "msg/GeneralData.msg"
@@ -24,6 +25,8 @@ set(msg_files
   "msg/SystemCheck.msg"
   "msg/Lidar.msg"
   "msg/WebMode.msg"
+  "msg/ObstacleId.msg"
+  "msg/SideObstacles.msg"
   "msg/Userdistance.msg"
   "msg/TrackingPosAngle.msg"
 )
