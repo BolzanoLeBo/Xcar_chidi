@@ -99,11 +99,17 @@ private:
     }
     
     void angleFromLidar(const interfaces::msg::TrackingPosAngle & trackingPosAngle){
-        desiredAngle = -trackingPosAngle.cam_angle;
-        if (trackingPosAngle.cam_angle >= -30 and trackingPosAngle.cam_angle <= 30)
-        {
-            desiredAngle = -trackingPosAngle.cam_angle;
+        if(tracking_pos_angle.person_detected){
+            if (trackingPosAngle.cam_angle >= -30 and trackingPosAngle.cam_angle <= 30)
+            {
+                desiredAngle = -trackingPosAngle.cam_angle;
+            }
+        }else{
+            desiredAngle = lastDesiredAngle;
         }
+
+        lastDesiredAngle = desiredAngle;
+        
         
     }
 
@@ -193,6 +199,7 @@ private:
     float desiredAngle;
     float angle_error;
     float angle_error_last = 0;
+    float lastDesiredAngle = 0;
 
     //Control variables
     uint8_t leftRearPwmCmd;
