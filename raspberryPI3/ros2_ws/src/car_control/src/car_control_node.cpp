@@ -99,7 +99,7 @@ private:
     }
     
     void angleFromLidar(const interfaces::msg::TrackingPosAngle & trackingPosAngle){
-        if(tracking_pos_angle.person_detected){
+        if(trackingPosAngle.person_detected){
             if (trackingPosAngle.cam_angle >= -30 and trackingPosAngle.cam_angle <= 30)
             {
                 desiredAngle = -trackingPosAngle.cam_angle;
