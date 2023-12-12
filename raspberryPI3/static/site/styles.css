@@ -213,6 +213,7 @@ li a:hover {
 
 #menu {
     display: block;
+    position: relative;
 }
 
 /* End tab settings */
@@ -232,3 +233,65 @@ li a:hover {
 .hidden {
     display: none;
 }
+
+/* Battery config init */
+
+#batteryIcon {
+    position: absolute;
+    top: 10px; 
+    right: 10px; 
+    width: 50px;
+    height: 24px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+#batteryLevel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #d3d3d3;
+    transition: background-color 0.5s ease;
+}
+
+#batteryVisual {
+    position: absolute;
+    top: 10%; 
+    right: 0; 
+    width: 20px;
+    height: 80%;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 0 6px 6px 0; 
+}
+
+
+#batteryLevel.battery-low {
+    background-color: #ff0000; /* roge pour <= 15% */
+}
+
+#batteryLevel.battery-medium {
+    background-color: #ffcc00; /* jaune pour 16% - 25% */
+}
+
+#batteryLevel.battery-normal {
+    background-color: #d3d3d3; /* gray pour 26% - 80% */
+}
+
+#batteryLevel.battery-high {
+    background-color: #00cc00; /* verd pour 81% - 100% */
+}
+
+
+#batteryText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+}
+
+/* Battery config end */

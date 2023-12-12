@@ -9,17 +9,17 @@ ros.on('connection', function () {
     console.log('Connecté au serveur websocket ROS.');
 });
 
+
 ros.on('error', function (error) {
     console.log('Erreur de connexion au serveur websocket ROS: ', error);
-
 });
 
-ros.on('close', function () {
-    if (connected == 0) {
-        window.location.href = 'rickroll.html';
-    }
-    console.log('Connexion au serveur websocket ROS fermée.');
-});
+// ros.on('close', function () {
+//     if (connected == 0) {
+//         window.location.href = 'rickroll.html';
+//     }
+//     console.log('Connexion au serveur websocket ROS fermée.');
+// });
 
 var modePublisher = new ROSLIB.Topic({
     ros: ros,
@@ -172,13 +172,13 @@ var generalDataListener = new ROSLIB.Topic({
 
 
 function updateBatteryDisplay(message) {
-
+    
     if (message.battery_level !== undefined) {
-
-        document.getElementById('batteryDisplay').innerHTML = 'Battery Level: ' + message.battery_level;
+        document.getElementById('batteryDisplay').innerHTML = message.battery_level;
     }
 }
 
 generalDataListener.subscribe(updateBatteryDisplay);
+
 
 window.history.forward();
