@@ -17,7 +17,7 @@
 #include "interfaces/msg/userdistance.hpp"
 #include "interfaces/msg/tracking_pos_angle.hpp"
 #define LIM_US 70
-#define LIM_AVOID_US 100
+#define LIM_AVOID_US 70
 #define LIM_LIDAR_FRONT 1.70
 #define LIM_LIDAR_REAR 0.70
 
@@ -218,6 +218,8 @@ class detection: public rclcpp::Node {
         } */
         float front_min = 12.0; 
         float rear_min = 12.0;
+        right_min=100.0;
+        left_min=100.0;
         lidar_data.clear();
         for (int i = 0;i<size;i++){
           lidar_data.push_back(scan.ranges[i]);
@@ -231,7 +233,7 @@ class detection: public rclcpp::Node {
                 rear_min=scan.ranges[i];
             }
           }
-          if ( 0<= i && i < size/8){              // front/right
+          if ( i>= 2*size/16 && i < 4*size/16){              // front/right
                 if (scan.ranges[i] > 0 && scan.ranges[i] < scan.range_max){
                     right_distance += scan.ranges[i];
                     right_count++;
@@ -240,7 +242,7 @@ class detection: public rclcpp::Node {
                     right_min = scan.ranges[i];
                 }
             }
-            else if(3*size/8 <=i && i < size/2){    // front/left
+         if (4*size/16 <=i && i < 6*size/16){    // front/left
                 if (scan.ranges[i] > 0 && scan.ranges[i] < scan.range_max){
                     left_distance += scan.ranges[i];
                     left_count++;
@@ -289,8 +291,6 @@ class detection: public rclcpp::Node {
             left_lidar = true;
             right_lidar = false;
         }
-        left_min = left_min;
-        right_min = right_min;
 
 
     }
