@@ -150,7 +150,7 @@ class detection: public rclcpp::Node {
         
         int size = (int)scan.ranges.size();
         int delta = size/8;
-        if (!print_list)
+        /*if (!print_list)
         {
           for (int i = 0; i < size; i++)
           {
@@ -158,7 +158,7 @@ class detection: public rclcpp::Node {
           }
           print_list = 1 ;
 
-        }
+        }*/
         float front_min = 12.0; 
         float rear_min = 12.0;
         lidar_data.clear();

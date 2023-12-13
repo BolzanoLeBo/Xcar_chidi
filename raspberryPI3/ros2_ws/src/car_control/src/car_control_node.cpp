@@ -103,13 +103,15 @@ private:
             if (trackingPosAngle.cam_angle >= -30 and trackingPosAngle.cam_angle <= 30)
             {
                 desiredAngle = -trackingPosAngle.cam_angle;
+
             }
         }else{
             desiredAngle = lastDesiredAngle;
         }
 
         lastDesiredAngle = desiredAngle;
-        
+
+
         
     }
 
@@ -155,6 +157,7 @@ private:
             
             //Autonomous mode
             else if (state==2){
+<<<<<<< HEAD
                 MAX_ANGLE = 30; // maximum wheel's steering angle
                 angle_error = desiredAngle/MAX_ANGLE - currentAngle; // [-2; 2]
                 
@@ -168,6 +171,16 @@ private:
                 steeringPwmCmd_last = steeringPwmCmd;
                 angle_error_last = angle_error;
 
+=======
+                angle_error = desiredAngle/MAX_ANGLE - currentAngle;  //[-2; 2]
+                steeringPwmCmd = 50 + 50*angle_error;
+
+                // Saturation
+                if(steeringPwmCmd > 100) steeringPwmCmd = 100;
+                else if(steeringPwmCmd < 0) steeringPwmCmd = 0;
+
+
+>>>>>>> d444d128a0152502bff24fbadfc1725728a832b6
             }
 
         }
@@ -205,14 +218,12 @@ private:
     float angleValue;
     float desiredAngle;
     float angle_error;
-    float angle_error_last = 0;
     float lastDesiredAngle = 0;
 
     //Control variables
     uint8_t leftRearPwmCmd;
     uint8_t rightRearPwmCmd;
     uint8_t steeringPwmCmd;
-    uint8_t steeringPwmCmd_last = 0;
 
     //Publishers
     rclcpp::Publisher<interfaces::msg::MotorsOrder>::SharedPtr publisher_can_;
