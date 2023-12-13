@@ -164,7 +164,7 @@ private:
                 //steeringPwmCmd = steeringPwmCmd_last + 0.9*angle_error + (2*0.001-0.9)*angle_error_last;
                 steeringPwmCmd = steeringPwmCmd*50 + 50;
                 // Saturation
-                if(steeringPwmCmd > 100) steeringPwmCmd = 100
+                if(steeringPwmCmd > 100) steeringPwmCmd = 100;
                 else if(steeringPwmCmd < 0) steeringPwmCmd = 0;
 
             }
