@@ -9,6 +9,7 @@
 #define STOP 50
 #define MAX_PWM_LEFT 0
 #define MAX_PWM_RIGHT 100
+#define MAX_ANGLE 30        // Maximum steering angle in degree
 
 #define TOLERANCE_ANGLE 0.08
 

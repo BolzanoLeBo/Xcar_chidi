@@ -157,11 +157,14 @@ private:
             
             //Autonomous mode
             else if (state==2){
-                angle_error = desiredAngle/30 - currentAngle;
-                //steeringPwmCmd = steeringPwmCmd_last + 0.9*angle_error + (2*0.001-0.9)*angle_error_last;
-                steeringPwmCmd = 50 + 2 *angle_error;
-                steeringPwmCmd_last = steeringPwmCmd;
-                angle_error_last = angle_error;
+                angle_error = desiredAngle/MAX_ANGLE - currentAngle;  //[-2; 2]
+                steeringPwmCmd = 50 + 50*angle_error;
+
+                // Saturation
+                if(steeringPwmCmd > 100) steeringPwmCmd = 100;
+                else if(steeringPwmCmd < 0) steeringPwmCmd = 0;
+
+
             }
 
         }
@@ -199,14 +202,12 @@ private:
     float angleValue;
     float desiredAngle;
     float angle_error;
-    float angle_error_last = 0;
     float lastDesiredAngle = 0;
 
     //Control variables
     uint8_t leftRearPwmCmd;
     uint8_t rightRearPwmCmd;
     uint8_t steeringPwmCmd;
-    uint8_t steeringPwmCmd_last = 0;
 
     //Publishers
     rclcpp::Publisher<interfaces::msg::MotorsOrder>::SharedPtr publisher_can_;
