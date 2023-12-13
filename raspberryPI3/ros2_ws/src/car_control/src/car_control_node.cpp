@@ -155,12 +155,19 @@ private:
             
             //Autonomous mode
             else if (state==2){
-                angle_error = desiredAngle/30 - currentAngle;
-
+                MAX_ANGLE = 30; // maximum wheel's steering angle
+                angle_error = desiredAngle/MAX_ANGLE - currentAngle; // [-2; 2]
+                
+                // PWM Command
                 steeringPwmCmd = steeringPwmCmd_last + 0.9*angle_error + (2*0.001-0.9)*angle_error_last;
+                steeringPwmCmd = steeringPwmCmd*50 + 50;
+                // Saturation
+                if(steeringPwmCmd > 100) steeringPwmCmd = 100
+                else if(steeringPwmCmd < 0) steeringPwmCmd = 0;
 
                 steeringPwmCmd_last = steeringPwmCmd;
                 angle_error_last = angle_error;
+
             }
 
         }
