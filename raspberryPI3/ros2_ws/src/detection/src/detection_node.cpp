@@ -92,7 +92,7 @@ class detection: public rclcpp::Node {
     //Publisher
     rclcpp::Publisher<interfaces::msg::Obstacles>::SharedPtr publisher_obstacle_;
 
-    rclcpp::Publisher<interfaces::msg::Obstacles>::SharedPtr publisher_side_;
+    rclcpp::Publisher<interfaces::msg::SideObstacles>::SharedPtr publisher_side_;
 
     rclcpp::Publisher<interfaces::msg::ObstaclesId>::SharedPtr publisher_id_;
 
@@ -271,6 +271,7 @@ class detection: public rclcpp::Node {
         }
         else{
           lidar_rear=0;
+
         }
 
         // Changing last value of lidar_front_detect and publishing message of obstacle

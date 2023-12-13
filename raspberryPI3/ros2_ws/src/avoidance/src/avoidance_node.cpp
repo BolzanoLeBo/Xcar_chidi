@@ -1,9 +1,8 @@
-#include "rclcpp/rclcpp.hpp"
-
 #include "interfaces/msg/avoidance_parameters.hpp"
 #include "interfaces/msg/obstacles_id.hpp"
-#include "interfaces/msg/obstacle_side.hpp"
+#include "interfaces/msg/side_obstacles.hpp"
 
+#include "rclcpp/rclcpp.hpp"
 
 #include "../include/avoidance/avoidance_node.h"
 #include <fstream> 
@@ -29,7 +28,7 @@ public:
 
         timer_ = this->create_wall_timer(PERIOD_UPDATE_CMD, std::bind(&avoidance::updateParam, this));
 
-        RCLCPP_INFO(this->get_logger(), "obstacle_avoidance_node READY");
+        RCLCPP_INFO(this->get_logger(), "avoidance_node READY");
     }
 
     
@@ -153,6 +152,7 @@ int main(int argc, char * argv[])
   auto node = std::make_shared<avoidance>();
 
   rclcpp::spin(node);
+
 
   rclcpp::shutdown();
   return 0;
