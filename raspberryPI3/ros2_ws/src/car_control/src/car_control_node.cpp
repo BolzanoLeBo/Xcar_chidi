@@ -159,15 +159,16 @@ private:
             //Autonomous mode
             else if (state==2){
                 angle_error = desiredAngle/MAX_ANGLE - currentAngle; // [-2;2]
-                angle_error = angle_error*10;
 
                 //steeringPwmCmd = steeringPwmCmd_last + 0.9*angle_error + (2*0.001-0.9)*angle_error_last;
-                steeringPwmCmd = (50*angle_error + 50);
-
+                steeringPwmCmd = 70*angle_error;
                 RCLCPP_INFO(this->get_logger(),(("angle_error" + to_string(angle_error) + " | PWM " + to_string(steeringPwmCmd)).data()));
+                
                 // Saturation
                 if(steeringPwmCmd > 100) steeringPwmCmd = 100;
                 else if (steeringPwmCmd < 0) steeringPwmCmd = 0;
+
+                steeringPwmCmd = steeringPwmCmd + 50;
             }
 
         }
