@@ -1,7 +1,7 @@
 // ros-script.js
 var connected = 0;
 var ros = new ROSLIB.Ros({
-    url: 'ws://loic-ras.freeboxos.fr:16900'
+    url: 'ws://loic-ras.freeboxos.fr:9090'
 });
 
 ros.on('connection', function () {

@@ -28,6 +28,6 @@ if __name__ == "__main__":
     # Remplacez les valeurs suivantes par celles de votre configuration
     local_port = 9090  # Port local (ROSBridge)
     remote_host = "loic-ras.freeboxos.fr"
-    remote_port = "16900"
+    remote_port = "9090"
 
     asyncio.get_event_loop().run_until_complete(forward_messages(local_port, remote_host, remote_port))
