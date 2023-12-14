@@ -99,11 +99,20 @@ private:
     }
     
     void angleFromLidar(const interfaces::msg::TrackingPosAngle & trackingPosAngle){
-        desiredAngle = -trackingPosAngle.cam_angle;
-        if (trackingPosAngle.cam_angle >= -30 and trackingPosAngle.cam_angle <= 30)
+        if(trackingPosAngle.person_detected)
         {
-            desiredAngle = -trackingPosAngle.cam_angle;
+            if (trackingPosAngle.cam_angle >= -30 and trackingPosAngle.cam_angle <= 30)
+            {
+                desiredAngle = -trackingPosAngle.cam_angle;
+            }
+        }else
+        {
+            desiredAngle = keepAngle;
         }
+
+        keepAngle = desiredAngle;
+
+        
         
     }
 
@@ -149,12 +158,16 @@ private:
             
             //Autonomous mode
             else if (state==2){
-                angle_error = desiredAngle/30 - currentAngle;
+                angle_error = desiredAngle/MAX_ANGLE - currentAngle; // [-2;2]
+                angle_error = angle_error*10;
 
-                steeringPwmCmd = steeringPwmCmd_last + 0.9*angle_error + (2*0.001-0.9)*angle_error_last;
+                //steeringPwmCmd = steeringPwmCmd_last + 0.9*angle_error + (2*0.001-0.9)*angle_error_last;
+                steeringPwmCmd = (50*angle_error + 50);
 
-                steeringPwmCmd_last = steeringPwmCmd;
-                angle_error_last = angle_error;
+                RCLCPP_INFO(this->get_logger(),(("angle_error" + to_string(angle_error) + " | PWM " + to_string(steeringPwmCmd)).data()));
+                // Saturation
+                if(steeringPwmCmd > 100) steeringPwmCmd = 100;
+                else if (steeringPwmCmd < 0) steeringPwmCmd = 0;
             }
 
         }
@@ -191,6 +204,7 @@ private:
     float throttleValue;
     float angleValue;
     float desiredAngle;
+    float keepAngle = 0;
     float angle_error;
     float angle_error_last = 0;
 
