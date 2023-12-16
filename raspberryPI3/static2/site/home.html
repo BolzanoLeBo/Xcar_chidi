@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,10 +8,11 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="./images/icon.png">
     <title>X-Car</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/eventemitter2@6.4.9/lib/eventemitter2.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/roslib@1/build/roslib.min.js"></script>
-    <script type="text/javascript" src="ros-script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/eventemitter2@6.4.9/lib/eventemitter2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/roslib@1/build/roslib.min.js"></script>
+    <script src="ros-script.js"></script>
 </head>
+
 <body style="background-image: url('./images/principal_background.png');">
 
     <div class="align">
@@ -19,22 +21,84 @@
             <li><a href="#" onclick="showTab('stateMachine')">State Machine</a></li>
             <li><a href="#" onclick="showTab('terminal')">Terminal</a></li>
         </ul>
-        
+
         <div id="menu" class="tab-content container">
-            <div class="button-container">
-                <div id="batteryIcon">
-                    <div id="batteryLevel"></div>
-                    <div id="batteryText">Not Connection</div>
-                    <div id="batteryVisual"></div>
+            <div id="idleDiv">
+                <div class="button-container">
+                    <div id="batteryIcon">
+                        <div id="batteryLevel"></div>
+                        <div id="batteryText">Not Connection</div>
+                        <div id="batteryVisual"></div>
+                    </div>
+                    <h1 class="larger-text">X-Car</h1>
+                    <div id="stateData" class="hidden"></div>
+                    <h2><em class="italic-text">"Intelligent vehicle designed to support the INSA community."</em></h2>
+                    <button onclick="redirectAndSelectMode('manual.html', 1)">Manual Mode</button>
+                    <button onclick="redirectAndSelectMode('tracking.html', 3)">Tracking Mode</button>
+                    <button onclick="redirectAndSelectMode('autonomous.html', 2)">Autonomous Mode</button>
+                    <buttonE onclick="redirectAndSelectMode('emergency.html', 4)">Emergency Mode</buttonE>
+                    <button class="logout-b" onclick="redirect('index.html')">Logout</button>
                 </div>
+            </div>
+
+            <div id="securityDiv">
                 <h1 class="larger-text">X-Car</h1>
+                <h2>Security Mode</h2>
+                <h2 class="blinking alarm">Obstacle detected</h2>
                 <div id="stateData" class="hidden"></div>
-                <h2><em class="italic-text">"Intelligent vehicle designed to support the INSA community."</em></h2>
-                <button onclick="redirectAndSelectMode('manual.html', 1)">Manual Mode</button>
-                <button onclick="redirectAndSelectMode('tracking.html', 3)">Tracking Mode</button>
-                <button onclick="redirectAndSelectMode('autonomous.html', 2)">Autonomous Mode</button>
-                <buttonE onclick="redirectAndSelectMode('emergency.html', 4)">Emergency Mode</buttonE>
-                <button class="logout-b" onclick="redirect('index.html')">Logout</button>
+                <h2><em class="italic-text">Obstacles have been detected, please check around the vehicle.</em></h2>
+                <img src="./images/obstacle.png" alt="Obstacle" class="controller-image">
+                <div id="zone_joystick" style="position: relative;"></div>
+                <div class="button-container">
+                    <buttonE onclick="redirectAndSelectMode('emergency.html', 4)">Emergency Mode</buttonE>
+                </div>
+            </div>
+
+            <div id="manualDiv">
+                <h2 id="manualTitle" class="blinking">Manual Mode</h2>
+                <div id="stateData" class="hidden"></div>
+                <h2><em class="italic-text">Please take the joystick to use the vehicle.</em></h2>
+                <img src="./images/joystick.png" alt="Joystick Image" class="controller-image">
+                <div id="zone_joystick" style="position: relative;"></div>
+                <div class="button-container">
+                    <button onclick="redirectAndSelectMode('home.html', 0)">Return</button>
+                    <buttonE onclick="redirectAndSelectMode('emergency.html', 4)">Emergency Mode</buttonE>
+                </div>
+            </div>
+
+            <div id="trackingDiv">
+                <h1 class="larger-text">X-Car</h1>
+                <h2 class="blinking">Tracking Mode</h2>
+                <div id="stateData" class="hidden"></div>
+                <h2><em class="italic-text">The vehicle is ready to follow you.</em></h2>
+                <img src="./images/tracking1.png" alt="Tracking Image" class="controller-image">
+                <div class="button-container">
+                    <button onclick="redirectAndSelectMode('home.html', 0)">Return</button>
+                    <buttonE onclick="redirectAndSelectMode('emergency.html', 4)">Emergency Mode</buttonE>
+                </div>
+            </div>
+
+            <div id="autoDiv">
+                <h1 class="larger-text">X-Car</h1>
+                <h2 class="blinking">Autonomous Mode</h2>
+                <div id="stateData" class="hidden"></div>
+                <h2><em class="italic-text">Vehicle on the way.</em></h2>
+                <img src="./images/autonomous.png" alt="Autonomous" class="controller-image">
+                <div class="button-container">
+                    <button onclick="redirectAndSelectMode('home.html', 0)">Return</button>
+                    <buttonE onclick="redirectAndSelectMode('emergency.html', 4)">Emergency Mode</buttonE>
+                </div>
+            </div>
+
+            <div id="emergencyDiv">
+                <h1 class="larger-text">X-Car</h1>
+                <h2 class="blinking alarm">Emergency Mode</h2>
+                <div id="stateData" class="hidden"></div>
+                <h2><em class="text">Please click on</em><em class="italic-text">"everything is fine"</em><p class="text">to return to the home page.</p></h2>
+                <img src="./images/stop.png" alt="Stop Image" class="controller-image">
+                <div class="button-container">
+                    <button onclick="redirectAndSelectMode('home.html', 5)">Everything fine!</button>
+                </div>
             </div>
         </div>
 
@@ -44,11 +108,11 @@
 
         <div id="terminal" class="tab-content container">
             <div id="terminal-content">
-                <p>Texto longo aqui...</p>
-                <p>Lorem ipsum dolor sit amet. Ut officia veritatis ut iste molestias eum omnis sapiente eum voluptatibus itaque et quas veniam? Hic doloribus beatae est galisum tempore ut nesciunt voluptatem eos omnis quia. Hic excepturi voluptate aut nostrum excepturi in aspernatur consequatur quo placeat excepturi. </p><p>Aut praesentium rerum ea ipsa quia aut rerum inventore est quod illum quo adipisci voluptate et dolor dolores. Est expedita velit id voluptatem error quo quia quasi et commodi accusantium sed harum error eos tenetur quisquam. </p><p>Et beatae commodi quo accusantium eveniet aut ducimus consequatur sit quod dolorum. In sunt soluta qui aliquam voluptatem hic mollitia repellendus nam omnis officiis ut inventore sunt sit ipsum consequuntur. Ab culpa cupiditate qui repellat dignissimos sed dolor minima cum exercitationem quidem id quaerat eaque. </p>
-
+                <div id="stateInfo">
+                    <h2>State Information</h2>
+                </div>
             </div>
-
+        </div>
     </div>
 
     <script>
@@ -68,7 +132,67 @@
 
             document.getElementById(tabName).style.display = 'block';
         }
+
+        function showAppropriateDiv() {
+            var securityDiv = document.getElementById("securityDiv");
+            var manualDiv = document.getElementById("manualDiv");
+            var idleDiv = document.getElementById("idleDiv");
+            var autoDiv = document.getElementById("autoDiv");
+            var emergencyDiv = document.getElementById("emergencyDiv");
+            var trackingDiv = document.getElementById("trackingDiv");
+
+
+            if (state === 0) {
+                securityDiv.style.display = "none";
+                manualDiv.style.display = "none";
+                idleDiv.style.display = "block";
+                emergencyDiv.style.display = "none";
+                autoDiv.style.display = "none";
+                trackingDiv.style.display = "none";
+            } else if (state === 1) {
+                securityDiv.style.display = "none";
+                manualDiv.style.display = "block";
+                idleDiv.style.display = "none";
+                emergencyDiv.style.display = "none";
+                autoDiv.style.display = "none";
+                trackingDiv.style.display = "none";
+            } else if (state === 2) {
+                securityDiv.style.display = "none";
+                manualDiv.style.display = "none";
+                idleDiv.style.display = "none";
+                emergencyDiv.style.display = "none";
+                autoDiv.style.display = "block";
+                trackingDiv.style.display = "none";
+            }
+            else if (state === 3) {
+                securityDiv.style.display = "none";
+                manualDiv.style.display = "none";
+                idleDiv.style.display = "none";
+                emergencyDiv.style.display = "none";
+                autoDiv.style.display = "none";
+                trackingDiv.style.display = "block";
+            }
+            else if (state === 4) {
+                securityDiv.style.display = "block";
+                manualDiv.style.display = "none";
+                idleDiv.style.display = "none";
+                emergencyDiv.style.display = "none";
+                autoDiv.style.display = "none";
+                trackingDiv.style.display = "none";
+            }
+            else if (state === 5) {
+                securityDiv.style.display = "none";
+                manualDiv.style.display = "none";
+                idleDiv.style.display = "none";
+                emergencyDiv.style.display = "block";
+                autoDiv.style.display = "none";
+                trackingDiv.style.display = "none";
+            }  
+        }
+
+        showAppropriateDiv();
     </script>
 
 </body>
+
 </html>

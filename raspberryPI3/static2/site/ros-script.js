@@ -41,6 +41,7 @@ var throttle = 0;
 var reverse = false;
 var steering = 0;
 var timer;
+var state = 0;
 
 function stopJoystick() {
     if (manager) {
@@ -137,28 +138,29 @@ stateListener.subscribe(function (message) {
 
     switch (message.current_state) {
         case 0:
-            //window.location.href = 'home.html';
+            state=0;
             break;
         case 1:
+            state=1;
             publishWebMode(7, 0, 0, false);
-            //window.location.href = 'manual.html';
             break;
         case 2:
-            //window.location.href = 'autonomous.html';
+            state=2;
             break;
         case 3:
-            //window.location.href = 'tracking.html';
+            state=3;
             break;
         case 4:
             publishWebMode(7, 0, 0, false);
-            //window.location.href = 'security.html';
+            state=4;
             break;        
         case 5:
-            //window.location.href = 'emergency.html';
+            state=5;
             break;
         default:
             console.log('Unknown State');
     }
+    showAppropriateDiv();
 });
 
 var listener = new ROSLIB.Topic({
@@ -218,8 +220,6 @@ function updateBatteryDisplay(message) {
     }
 }
 
-
 generalDataListener.subscribe(updateBatteryDisplay);
-
 
 window.history.forward();
