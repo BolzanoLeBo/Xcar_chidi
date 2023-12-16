@@ -18,9 +18,10 @@
 #include "interfaces/msg/tracking_pos_angle.hpp"
 #define LIM_US 70
 #define LIM_AVOID_US 70
+#define LIM_NON_AVOID_US 60
 #define LIM_LIDAR_FRONT 1.70
 #define LIM_LIDAR_REAR 0.70
-
+#define LIM_LIDAR_AVOID 2.50
 #include "../include/detection/detection_node.h"
 
 using namespace std;
@@ -73,6 +74,7 @@ class detection: public rclcpp::Node {
     uint8_t lidar_front =0;
     uint8_t lidar_rear =0;
     bool left_lidar; 
+    bool obstacle_avoid = false;
     bool right_lidar;
     float right_min=100.0;
     float left_min=100.0;
@@ -87,6 +89,8 @@ class detection: public rclcpp::Node {
     uint8_t us_front_right = 0;
     uint8_t us_front_center = 0;
     uint8_t us_front_big = 0;
+
+
 
     int print_list = 0;
     //Publisher
@@ -137,31 +141,41 @@ class detection: public rclcpp::Node {
         us_front_center = 1;
         } 
         // Message of obstacle if there is one in at the left of the car at less than 20 cm
-        else if((ultrasonic.front_left <= LIM_AVOID_US)){
+        if((ultrasonic.front_left <= LIM_AVOID_US)){
           us_front_left = 1;
         } 
         // Message of obstacle if there is one in at the right of the car at less than 20 cm
-        else if((ultrasonic.front_right <= LIM_AVOID_US)){
+        if((ultrasonic.front_right <= LIM_AVOID_US)){
           us_front_right = 1; 
         }
+
 
         if (us_front_left && us_front_right && us_front_center){
         us_front_big = 1;
         us_front_center = 1;
         us_front_right = 0;
         us_front_left = 0 ;
-        }else if (us_front_left && us_front_center){
+        }else if (us_front_left && us_front_center && !us_front_right){
         us_front_left = 1;
         us_front_big = 0;
         us_front_center = 0;
         us_front_right = 0;
-        }else if (us_front_center && us_front_right){
+        }else if (us_front_center && us_front_right && !us_front_left){
         us_front_right= 1;
+        us_front_big = 0;
+        us_front_left = 0;
+        us_front_center = 0 ;
+        }else if (!us_front_center && !us_front_right && !us_front_left){
+        us_front_right= 0;
         us_front_big = 0;
         us_front_left = 0;
         us_front_center = 0 ;
         }
 
+        if ((ultrasonic.front_center <= LIM_NON_AVOID_US)){
+        us_front_big= 1;
+        } 
+        
         if ((ultrasonic.rear_center <= LIM_US)){
           us_rear = 1;
         } 
@@ -267,6 +281,14 @@ class detection: public rclcpp::Node {
           lidar_front=0;
           //RCLCPP_INFO(this->get_logger(),(("  lidar  0 " + to_string(front_min)).data()));
         }
+        if (front_min<LIM_LIDAR_AVOID){
+          obstacle_avoid=1;
+          //RCLCPP_INFO(this->get_logger(),(("  lidar  1 " + to_string(front_min)).data()));
+        }
+        else{
+          obstacle_avoid=0;
+          //RCLCPP_INFO(this->get_logger(),(("  lidar  0 " + to_string(front_min)).data()));
+        }
 
         if (rear_min<LIM_LIDAR_REAR){
           lidar_rear=1;
@@ -366,6 +388,7 @@ class detection: public rclcpp::Node {
       sideMsg.right_lidar=right_lidar;
       sideMsg.right_min=right_min;
       sideMsg.left_min=left_min;
+      sideMsg.obstoavoid = obstacle_avoid;
 
       publisher_obstacle_->publish(obstacleMsg);
       publisher_side_->publish(sideMsg);

@@ -44,6 +44,7 @@ private:
         lidar_right = side_obstacle.right_lidar;
         left_min = side_obstacle.left_min;
         right_min = side_obstacle.right_min;
+        obsatcletoavoid = side_obstacle.obstoavoid;
     }
 
 
@@ -68,6 +69,7 @@ private:
 
         auto avoidanceParam = interfaces::msg::AvoidanceParameters();
         avoidanceParam.big = false;
+        avoidanceParam.obstacle= obsatcletoavoid;
 
         if (us_big){                                        /* Big obstacle */
             avoidanceParam.big = true;
@@ -77,6 +79,7 @@ private:
             if(us_left && !us_right && !us_middle){             // Obstacle on the left ->
                 avoidanceParam.left = false;                    // Go by the right
             }
+            
             else if(!us_left && us_right && !us_middle){        // Obstacle on the right ->    
                 if (left_min >= AVOIDANCE_DISTANCE) {       
                     avoidanceParam.left = true;                 // + space on the left -> Go by the left 
@@ -131,6 +134,7 @@ private:
     bool lidar_right;
     float left_min;
     float right_min;
+    bool obsatcletoavoid;
 
     //Publishers
     rclcpp::Publisher<interfaces::msg::AvoidanceParameters>::SharedPtr publisher_avoidance_param_;

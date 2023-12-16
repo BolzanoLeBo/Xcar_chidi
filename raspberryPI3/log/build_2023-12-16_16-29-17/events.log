@@ -1,0 +1,29 @@
+[0.000000] (-) TimerEvent: {}
+[0.001877] (-) JobUnselected: {'identifier': 'can'}
+[0.002293] (-) JobUnselected: {'identifier': 'car_control'}
+[0.002652] (-) JobUnselected: {'identifier': 'carla_msgs'}
+[0.002762] (-) JobUnselected: {'identifier': 'detection'}
+[0.002932] (-) JobUnselected: {'identifier': 'geicar_start'}
+[0.003021] (-) JobUnselected: {'identifier': 'imu_complementary_filter'}
+[0.003154] (-) JobUnselected: {'identifier': 'imu_filter_madgwick'}
+[0.003775] (-) JobUnselected: {'identifier': 'imu_tools'}
+[0.004136] (-) JobUnselected: {'identifier': 'interfaces'}
+[0.004450] (-) JobUnselected: {'identifier': 'joystick'}
+[0.004571] (-) JobUnselected: {'identifier': 'rosapi'}
+[0.004740] (-) JobUnselected: {'identifier': 'rosapi_msgs'}
+[0.004832] (-) JobUnselected: {'identifier': 'rosbridge_library'}
+[0.004970] (-) JobUnselected: {'identifier': 'rosbridge_msgs'}
+[0.005315] (-) JobUnselected: {'identifier': 'rosbridge_server'}
+[0.005432] (-) JobUnselected: {'identifier': 'rosbridge_suite'}
+[0.005534] (-) JobUnselected: {'identifier': 'rosbridge_test_msgs'}
+[0.005705] (-) JobUnselected: {'identifier': 'rviz_imu_plugin'}
+[0.005853] (-) JobUnselected: {'identifier': 'simulation'}
+[0.006279] (-) JobUnselected: {'identifier': 'state_machine'}
+[0.006391] (-) JobUnselected: {'identifier': 'system_check'}
+[0.006570] (avoidance) JobQueued: {'identifier': 'avoidance', 'dependencies': OrderedDict([('interfaces', '/home/pi/avoidance/Xcar_chidi/raspberryPI3/install/interfaces')])}
+[0.006761] (avoidance) JobStarted: {'identifier': 'avoidance'}
+[0.099042] (-) TimerEvent: {}
+[0.199899] (-) TimerEvent: {}
+[0.301147] (-) TimerEvent: {}
+[0.376199] (avoidance) JobEnded: {'identifier': 'avoidance', 'rc': 1}
+[0.387539] (-) EventReactorShutdown: {}
