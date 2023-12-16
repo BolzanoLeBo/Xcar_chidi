@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="./images/icon.png">
+    <title>X-Car</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/eventemitter2@6.4.9/lib/eventemitter2.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/roslib@1/build/roslib.min.js"></script>
+    <script type="text/javascript" src="ros-script.js"></script>
+</head>
+
+<body style="background-image: url('./images/principal_background.png');">
+
+    <div class="align">
+        <ul>
+            <li><a href="#" onclick="showTab('menu')">Home</a></li>
+            <li><a href="#" onclick="showTab('stateMachine')">State Machine</a></li>
+            <li><a href="#" onclick="showTab('terminal')">Terminal</a></li>
+        </ul>
+
+        <div id="menu" class="tab-content container">
+            <h1 class="larger-text">X-Car</h1>
+            <h2 class="blinking">Tracking Mode</h2>
+            <div id="stateData" class="hidden"></div>
+            <h2><em class="italic-text">The vehicle is ready to follow you.</em></h2>
+            <img src="./images/tracking1.png" alt="Tracking Image" class="controller-image">
+            <div class="button-container">
+                <button onclick="redirectAndSelectMode('home.html', 0)">Return</button>
+                <buttonE onclick="redirectAndSelectMode('emergency.html', 4)">Emergency Mode</buttonE>
+            </div>
+        </div>
+
+        <div id="stateMachine" class="tab-content container">
+            <img src="./images/sm_tracking.png" alt="Autonomous" class="controller-image-sm">
+        </div>
+
+        <div id="terminal" class="tab-content container">
+            <div id="terminal-content">
+                <p>Texto longo aqui...</p>
+                <p>Lorem ipsum dolor sit amet. Ut officia veritatis ut iste molestias eum omnis sapiente eum voluptatibus itaque et quas veniam? Hic doloribus beatae est galisum tempore ut nesciunt voluptatem eos omnis quia. Hic excepturi voluptate aut nostrum excepturi in aspernatur consequatur quo placeat excepturi. </p><p>Aut praesentium rerum ea ipsa quia aut rerum inventore est quod illum quo adipisci voluptate et dolor dolores. Est expedita velit id voluptatem error quo quia quasi et commodi accusantium sed harum error eos tenetur quisquam. </p><p>Et beatae commodi quo accusantium eveniet aut ducimus consequatur sit quod dolorum. In sunt soluta qui aliquam voluptatem hic mollitia repellendus nam omnis officiis ut inventore sunt sit ipsum consequuntur. Ab culpa cupiditate qui repellat dignissimos sed dolor minima cum exercitationem quidem id quaerat eaque. </p>
+                <p>Lorem ipsum dolor sit amet. Ut officia veritatis ut iste molestias eum omnis sapiente eum voluptatibus itaque et quas veniam? Hic doloribus beatae est galisum tempore ut nesciunt voluptatem eos omnis quia. Hic excepturi voluptate aut nostrum excepturi in aspernatur consequatur quo placeat excepturi. </p><p>Aut praesentium rerum ea ipsa quia aut rerum inventore est quod illum quo adipisci voluptate et dolor dolores. Est expedita velit id voluptatem error quo quia quasi et commodi accusantium sed harum error eos tenetur quisquam. </p><p>Et beatae commodi quo accusantium eveniet aut ducimus consequatur sit quod dolorum. In sunt soluta qui aliquam voluptatem hic mollitia repellendus nam omnis officiis ut inventore sunt sit ipsum consequuntur. Ab culpa cupiditate qui repellat dignissimos sed dolor minima cum exercitationem quidem id quaerat eaque. </p>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            var tabs = document.getElementsByClassName('tab-content');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].style.display = 'none';
+            }
+
+            document.getElementById(tabName).style.display = 'block';
+        }
+
+        function redirectAndSelectMode(page, mode) {
+            selectMode(mode);
+        }
+    </script>
+
+</body>
+</html>

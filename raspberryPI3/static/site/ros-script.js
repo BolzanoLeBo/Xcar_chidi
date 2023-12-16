@@ -1,11 +1,8 @@
-// ros-script.js
-var connected = 0;
 var ros = new ROSLIB.Ros({
-    url: 'ws://loic-ras.freeboxos.fr:9090'
+    url: 'ws://loic-ras.freeboxos.fr:80'
 });
 
 ros.on('connection', function () {
-    connected = 1;
     console.log('Connecté au serveur websocket ROS.');
 });
 
@@ -15,9 +12,6 @@ ros.on('error', function (error) {
 });
 
 ros.on('close', function () {
-     //if (connected == 0) {
-     //    window.location.href = 'rickroll.html';
-     //}
      console.log('Connexion au serveur websocket ROS fermée.');
  });
 
@@ -161,6 +155,18 @@ stateListener.subscribe(function (message) {
             break;
         default:
             console.log('Unknown State');
+    }
+});
+
+var listener = new ROSLIB.Topic({
+    ros: ros,
+    name: '/some_topic',
+    messageType: 'std_msgs/String'
+});
+
+listener.subscribe(function (message) {
+    if (message.action === 'redirect') {
+        window.location.href = 'rickroll.html';
     }
 });
 
