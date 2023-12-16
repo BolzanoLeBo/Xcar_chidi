@@ -74,6 +74,7 @@ function createJoystick() {
         var adjusted_max_reverse_distance = (max_reverse_distance / 150) * options.size;
 
         throttle = nipple.distance / (adjusted_max_reverse_distance * 2) * max_throttle;
+        throttle = throttle * Math.abs(Math.sin(nipple.angle.radian));
         steering = Math.cos(nipple.angle.radian) * max_steering;
 
         throttle = Math.max(0, Math.min(throttle, 1));
@@ -177,25 +178,44 @@ var generalDataListener = new ROSLIB.Topic({
 });
 
 
+function voltageToPercentage(voltage) {
+    // Définir les valeurs minimale et maximale de la tension
+    var minVoltage = 9;
+    var maxVoltage = 14;
+
+    // Assurer que la tension est dans la plage définie
+    voltage = Math.max(minVoltage, Math.min(voltage, maxVoltage));
+
+    // Effectuer la conversion linéaire
+    var percentage = ((voltage - minVoltage) / (maxVoltage - minVoltage)) * 100;
+
+    // Arrondir le pourcentage à deux décimales
+    return Math.round(percentage * 100) / 100;
+}
+
 function updateBatteryDisplay(message) {
     if (message.battery_level !== undefined) {
         var batteryLevelDiv = document.getElementById('batteryLevel');
 
-        batteryLevelDiv.style.width = message.battery_level + '%';
-        document.getElementById('batteryText').innerText = message.battery_level + '%';
+        // Convertir la tension en pourcentage
+        var percentage = voltageToPercentage(message.battery_level);
+
+        batteryLevelDiv.style.width = percentage + '%';
+        document.getElementById('batteryText').innerText = percentage + '%';
         batteryLevelDiv.classList.remove('battery-low', 'battery-medium', 'battery-normal', 'battery-high');
 
-        if (message.battery_level <= 15) {
+        if (percentage <= 15) {
             batteryLevelDiv.classList.add('battery-low');
-        } else if (message.battery_level <= 25) {
+        } else if (percentage <= 25) {
             batteryLevelDiv.classList.add('battery-medium');
-        } else if (message.battery_level < 80) {
+        } else if (percentage < 80) {
             batteryLevelDiv.classList.add('battery-normal');
         } else {
             batteryLevelDiv.classList.add('battery-high');
         }
     }
 }
+
 
 generalDataListener.subscribe(updateBatteryDisplay);
 
