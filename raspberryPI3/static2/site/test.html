@@ -198,6 +198,7 @@
                 autoDiv.style.display = "none";
                 trackingDiv.style.display = "none";
                 zoneJoystick.classList.remove('hidden');
+                window.dispatchEvent(new Event("resize"));
                 changeState('manual');
             } else if (state === 2) {
                 securityDiv.style.display = "none";
