@@ -30,7 +30,6 @@
         </div>
         
         <div id="menu" class="tab-content container">
-            <div id="zone_joystick" style="position: relative;"></div>
             <div id="idleDiv">
                 <div class="button-container">
                     <h1 class="larger-text">X-Car</h1>
@@ -51,7 +50,6 @@
                 <div id="stateData" class="hidden"></div>
                 <h2><em class="italic-text">Obstacles have been detected, please check around the vehicle.</em></h2>
                 <img src="./images/obstacle.png" alt="Obstacle" class="controller-image">
-                <div id="zone_joystick" style="position: relative;"></div>
                 <div class="button-container">
                     <buttonE onclick="redirectAndSelectMode('emergency.html', 4)">Emergency Mode</buttonE>
                 </div>
@@ -62,7 +60,6 @@
                 <div id="stateData" class="hidden"></div>
                 <h2><em class="italic-text">Please take the joystick to use the vehicle.</em></h2>
                 <img src="./images/joystick.png" alt="Joystick Image" class="controller-image">
-                <div id="zone_joystick" style="position: relative;"></div>
                 <div class="button-container">
                     <button onclick="redirectAndSelectMode('home.html', 0)">Return</button>
                     <buttonE onclick="redirectAndSelectMode('emergency.html', 4)">Emergency Mode</buttonE>
@@ -103,6 +100,7 @@
                     <button onclick="redirectAndSelectMode('home.html', 0)">Everything fine!</button>
                 </div>
             </div>
+            <div id="zone_joystick" style="position: relative;" class="hidden"></div>
         </div>
 
         <div id="stateMachine" class="tab-content container">
@@ -180,6 +178,7 @@
             var autoDiv = document.getElementById("autoDiv");
             var emergencyDiv = document.getElementById("emergencyDiv");
             var trackingDiv = document.getElementById("trackingDiv");
+            var zoneJoystick = document.getElementById('zone_joystick');
 
 
             if (state === 0) {
@@ -189,6 +188,7 @@
                 emergencyDiv.style.display = "none";
                 autoDiv.style.display = "none";
                 trackingDiv.style.display = "none";
+                zoneJoystick.classList.add('hidden');
                 changeState('idle');
             } else if (state === 1) {
                 securityDiv.style.display = "none";
@@ -197,6 +197,7 @@
                 emergencyDiv.style.display = "none";
                 autoDiv.style.display = "none";
                 trackingDiv.style.display = "none";
+                zoneJoystick.classList.remove('hidden');
                 changeState('manual');
             } else if (state === 2) {
                 securityDiv.style.display = "none";
@@ -205,6 +206,7 @@
                 emergencyDiv.style.display = "none";
                 autoDiv.style.display = "block";
                 trackingDiv.style.display = "none";
+                zoneJoystick.classList.add('hidden');
                 changeState('autonomous');
             }
             else if (state === 3) {
@@ -214,6 +216,7 @@
                 emergencyDiv.style.display = "none";
                 autoDiv.style.display = "none";
                 trackingDiv.style.display = "block";
+                zoneJoystick.classList.add('hidden');
                 changeState('tracking');
             }
             else if (state === 4) {
@@ -223,6 +226,7 @@
                 emergencyDiv.style.display = "none";
                 autoDiv.style.display = "none";
                 trackingDiv.style.display = "none";
+                zoneJoystick.classList.remove('hidden');
                 changeState('security');
             }
             else if (state === 5) {
@@ -232,6 +236,7 @@
                 emergencyDiv.style.display = "block";
                 autoDiv.style.display = "none";
                 trackingDiv.style.display = "none";
+                zoneJoystick.classList.add('hidden');
                 changeState('stop');
             }  
         }
