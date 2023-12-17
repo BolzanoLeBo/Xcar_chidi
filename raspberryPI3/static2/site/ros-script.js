@@ -1,5 +1,5 @@
 var ros = new ROSLIB.Ros({
-    url: 'ws://localhost:9090'
+    url: 'ws://loic-ras.freeboxos.fr:80'
 });
 
 ros.on('connection', function () {
