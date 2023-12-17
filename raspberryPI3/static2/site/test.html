@@ -30,6 +30,7 @@
         </div>
         
         <div id="menu" class="tab-content container">
+            <div id="zone_joystick" style="position: relative;"></div>
             <div id="idleDiv">
                 <div class="button-container">
                     <h1 class="larger-text">X-Car</h1>
@@ -161,7 +162,6 @@
     </div>
 
     <script>
-        createJoystick();
         function redirectAndSelectMode(page, mode) {
             selectMode(mode);
         }
@@ -302,6 +302,7 @@
                 }
             }
         }
+        createJoystick();
     </script>
 
 </body>
