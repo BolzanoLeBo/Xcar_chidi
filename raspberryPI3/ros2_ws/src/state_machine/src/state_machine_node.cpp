@@ -272,6 +272,12 @@ private:
           current_state = 0;
           RCLCPP_INFO(this->get_logger(), ("tracking->idle"));
         }
+
+        if (obstacle_ar && dir_ar)
+        {
+          current_state = 4;
+          RCLCPP_INFO(this->get_logger(), ("tracking->security"));
+        }
       }
       // security -> manual
       else if (current_state == 4 && ((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar) || (dir_av && !obstacle_av)))
