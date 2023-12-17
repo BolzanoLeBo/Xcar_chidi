@@ -315,8 +315,8 @@ li a:hover {
 
 
 .state {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     background-color: #3498db; /* Cor padrão dos estados */
     color: white;
@@ -331,8 +331,8 @@ li a:hover {
 
 .state:hover {
     transform: scale(1.2);
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
 }
 
 .state.active {
