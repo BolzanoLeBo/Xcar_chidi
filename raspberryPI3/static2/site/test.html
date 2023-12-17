@@ -120,22 +120,22 @@
             </div>
             <div class="state-machine">
         
-                <div class="state" id="stop" onclick="changeState('stop'); redirectAndSelectMode('emergency.html', 4);">
+                <div class="state" id="stop" onclick="redirectAndSelectMode('emergency.html', 4)">
                     <div class="state-name">Emergency Stop</div>
                 </div>
-                <div class="state" id="tracking" onclick="changeState('tracking'); redirectAndSelectMode('tracking.html', 3);">
+                <div class="state" id="tracking" onclick="redirectAndSelectMode('tracking.html', 3)">
                     <div class="state-name">Tracking Mode</div>
                 </div>
-                <div class="state" id="autonomous" onclick="changeState('autonomous'); redirectAndSelectMode('autonomous.html', 2);">
+                <div class="state" id="autonomous" onclick="redirectAndSelectMode('autonomous.html', 2)">
                     <div class="state-name">Autonomous Mode</div>
                 </div>
-                <div class="state" id="manual" onclick="changeState('manual'); redirectAndSelectMode('manual.html', 1);">
+                <div class="state" id="manual" onclick=" redirectAndSelectMode('manual.html', 1)">
                     <div class="state-name">Manual Mode</div>
                 </div>
-                <div class="state" id="security" onclick="changeState('security')">
+                <div class="state" id="security" >
                     <div class="state-name">Security Mode</div>
                 </div>
-                <div class="state active" id="idle" onclick="changeState('idle'); redirectAndSelectMode('home.html', 0);">
+                <div class="state active" id="idle" onclick=" redirectAndSelectMode('home.html', 0)">
                     <div class="state-name">Idle</div>
                 </div>
 
@@ -152,6 +152,10 @@
     </div>
 
     <script>
+
+        let currentState = 'idle';
+        let previousState = null;
+
         function redirectAndSelectMode(page, mode) {
             selectMode(mode);
         }
@@ -185,6 +189,7 @@
                 emergencyDiv.style.display = "none";
                 autoDiv.style.display = "none";
                 trackingDiv.style.display = "none";
+                changeState('idle');
             } else if (state === 1) {
                 securityDiv.style.display = "none";
                 manualDiv.style.display = "block";
@@ -192,6 +197,7 @@
                 emergencyDiv.style.display = "none";
                 autoDiv.style.display = "none";
                 trackingDiv.style.display = "none";
+                changeState('manual');
             } else if (state === 2) {
                 securityDiv.style.display = "none";
                 manualDiv.style.display = "none";
@@ -199,6 +205,7 @@
                 emergencyDiv.style.display = "none";
                 autoDiv.style.display = "block";
                 trackingDiv.style.display = "none";
+                changeState('autonomous');
             }
             else if (state === 3) {
                 securityDiv.style.display = "none";
@@ -207,6 +214,7 @@
                 emergencyDiv.style.display = "none";
                 autoDiv.style.display = "none";
                 trackingDiv.style.display = "block";
+                changeState('tracking');
             }
             else if (state === 4) {
                 securityDiv.style.display = "block";
@@ -215,6 +223,7 @@
                 emergencyDiv.style.display = "none";
                 autoDiv.style.display = "none";
                 trackingDiv.style.display = "none";
+                changeState('security');
             }
             else if (state === 5) {
                 securityDiv.style.display = "none";
@@ -223,75 +232,90 @@
                 emergencyDiv.style.display = "block";
                 autoDiv.style.display = "none";
                 trackingDiv.style.display = "none";
+                changeState('stop');
             }  
         }
 
         showAppropriateDiv();
 
-        let currentState = 'idle';
-        let previousState = null;
-
         if (currentState == 'idle') {
-            document.getElementById('idle').style.left ='25%';
-            document.getElementById('idle').style.top ='30%';
-            document.getElementById('manual').style.left ='75%';
-            document.getElementById('manual').style.top ='30%'; 
-            document.getElementById('tracking').style.left ='35%';
+            document.getElementById('idle').style.left ='10%';
+            document.getElementById('idle').style.top ='25%';
+            document.getElementById('manual').style.left ='60%';
+            document.getElementById('manual').style.top ='20%'; 
+            document.getElementById('tracking').style.left ='17%';
             document.getElementById('tracking').style.top ='-15%'; 
-            document.getElementById('autonomous').style.left ='35%';
-            document.getElementById('autonomous').style.top ='75%'; 
-            document.getElementById('security').style.left ='-25%';
+            document.getElementById('autonomous').style.left ='25%';
+            document.getElementById('autonomous').style.top ='65%'; 
+            document.getElementById('security').style.left ='-40%';
             document.getElementById('security').style.top ='10%'; 
-            document.getElementById('stop').style.left ='-20%';
-            document.getElementById('stop').style.top ='60%';                      
+            document.getElementById('stop').style.left ='-35%';
+            document.getElementById('stop').style.top ='55%';                      
         }
 
         function changeState(newState) {
-
             if (newState !== currentState) {
                 previousState = currentState;
                 currentState = newState;
 
-            if (currentState == 'manual') {
-                document.getElementById(currentState).classList.add('active');
-                document.getElementById('idle').classList.add('available');
-                document.getElementById('tracking').classList.add('available');
-                document.getElementById('autonomous').classList.add('available');
-                document.getElementById('stop').classList.add('available');                   
-            }
+                // Pega todos os elementos com a classe "state"
+                var allStates = document.getElementsByClassName('state');
 
-                // Remove classes from all states and hide all lines
-                document.querySelectorAll('.state').forEach((state) => {
-                    state.classList.remove('active', 'previous');
-                });
-                document.querySelectorAll('.line').forEach((line) => {
-                    line.style.display = 'none';
-                });
+                // Itera sobre todos os elementos encontrados
+                for (var i = 0; i < allStates.length; i++) {
+                    var stateElement = allStates[i];
+                    var stateId = stateElement.id;
 
-                // Adiciona a classe active ao estado atual
-                document.getElementById(currentState).classList.add('active');
+                    // Remove 'active' do elemento currentState
+                    if (stateId === currentState) {
+                        stateElement.classList.add('active');
+                    } else {
+                        stateElement.classList.remove('active');
+                    }
+
+                    // Adiciona 'previous' à classe do elemento previousState (substitui se já existir)
+                    if (stateId === previousState) {
+                        stateElement.classList.add('previous');
+                    } else {
+                        stateElement.classList.remove('previous');
+                    }
+
+                    if(stateId === 'security' && previousState!= 'security' && currentState != 'security'){
+                        stateElement.classList.remove('active', 'previous','available');
+                        stateElement.classList.add('unavailable');
+                    }
+
+                    // Remove 'active' e 'previous' de todos os elementos, exceto currentState e previousState
+                    if (stateId !== currentState && stateId !== previousState && stateId != 'security' && currentState!= 'stop') {
+                        stateElement.classList.remove('active', 'previous','unavailable');
+                        stateElement.classList.add('available');
+                    }
+
+                    if (stateId !== currentState && stateId !== previousState && stateId != 'security' && currentState === 'stop') {
+                        stateElement.classList.remove('active', 'previous','available');
+                        if (stateId === 'idle')
+                            stateElement.classList.add('available');
+                        else 
+                            stateElement.classList.add('unavailable');
+                    }
+                }
 
                 // Adiciona a classe previous ao estado anterior e exibe a linha correspondente
                 if (previousState) {
-                    document.getElementById(previousState).classList.add('previous');
-                    // if (previousState == 'idle') {
-                    //     document.querySelector('.line-idle-' + currentState.toLowerCase()).style.display = 'block';
-                    // } else if (previousState == 'manual') {
-                    //     document.querySelector('.line-manual-' + currentState.toLowerCase()).style.display = 'block';
-                    // }
                     var topValue_n = document.getElementById(previousState).style.top;
                     var leftValue_n = document.getElementById(previousState).style.left;
                     var topValue_a = document.getElementById(currentState).style.top;
                     var leftValue_a = document.getElementById(currentState).style.left;
 
-                    document.getElementById(currentState).style.left =leftValue_n;
-                    document.getElementById(currentState).style.top =topValue_n; 
-                    document.getElementById(previousState).style.left =leftValue_a;
-                    document.getElementById(previousState).style.top =topValue_a;
-
+                    document.getElementById(currentState).style.left = leftValue_n;
+                    document.getElementById(currentState).style.top = topValue_n;
+                    document.getElementById(previousState).style.left = leftValue_a;
+                    document.getElementById(previousState).style.top = topValue_a;
                 }
             }
         }
+
+        
         createJoystick();
     </script>
 

@@ -304,7 +304,7 @@ li a:hover {
 .state-machine {
     position: relative;
     left: 30%;
-    width: 300px;
+    width: 250px;
     height: 300px;
     border-radius: 50%;
     display: flex;
@@ -318,7 +318,7 @@ li a:hover {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background-color: #bdc3c7; /* Cor padrão dos estados */
+    background-color: #3498db; /* Cor padrão dos estados */
     color: white;
     display: flex;
     flex-direction: column;
@@ -336,22 +336,24 @@ li a:hover {
 }
 
 .state.active {
-    background-color: #2ecc71; /* Cor do estado ativo */
+    background-color: #2ecc71 !important;
 }
 
-
 .state.previous {
-    background-color: #2ecc71; /* Cor do estado anterior */
-    opacity: 0.5; /* Opacidade reduzida para diferenciar do estado ativo */
+    background-color: #2ecc71 !important;
+    opacity: 0.5 !important;
+}
+
+.state.unavailable {
+    background-color: #bdc3c7!important;
 }
 
 .state.available {
     background-color: #3498db; /* Cor do estado anterior */
 }
 
-.state#idle.active,
-.state#idle.previous {
-    background-color: #2ecc71; /* Cor de Idle */
+.state#security {
+    background-color: #bdc3c7;
 }
 
 #stop { left: 0; top: 0; }
