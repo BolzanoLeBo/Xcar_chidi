@@ -117,7 +117,6 @@
     </div>
 
     <script>
-        createJoystick()
         function redirectAndSelectMode(page, mode) {
             selectMode(mode);
         }
@@ -158,6 +157,7 @@
                 emergencyDiv.style.display = "none";
                 autoDiv.style.display = "none";
                 trackingDiv.style.display = "none";
+                createJoystick();
             } else if (state === 2) {
                 securityDiv.style.display = "none";
                 manualDiv.style.display = "none";

@@ -53,6 +53,8 @@ function move() {
     publishWebMode(7, throttle, steering, reverse);
 }
 
+var manager;
+
 function createJoystick() {
     var options = {
         zone: document.getElementById('zone_joystick'),
@@ -63,7 +65,7 @@ function createJoystick() {
         color: 'grey',
     };
 
-    var manager = nipplejs.create(options);
+    manager = nipplejs.create(options);
 
     manager.on('move', function (event, nipple) {
         //console.log("Moving");
@@ -108,13 +110,13 @@ function createJoystick() {
         reverse = false;
         move();
     });
-
+    console.log('Oui');
     return manager;
 }
 
-window.onload = function () {
-    var manager = createJoystick();
-}
+//window.onload = function () {
+//     manager = createJoystick();
+//}
 
 window.addEventListener('beforeunload', stopJoystick);
 

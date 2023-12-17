@@ -24,6 +24,7 @@
         </ul>
 
         <div id="menu" class="tab-content container">
+            <div id="zone_joystick" style="position: relative;"></div>
             <div id="idleDiv">
                 <div class="button-container">
                     <div id="batteryIcon">
@@ -118,7 +119,7 @@
                         <div id="batteryText">Not Connection</div>
                         <div id="batteryVisual"></div>
                     </div>
-                    <button onclick="redirectAndSelectMode('home.html', 5)">Everything fine!</button>
+                    <button onclick="redirectAndSelectMode('home.html', 0)">Everything fine!</button>
                 </div>
             </div>
         </div>
@@ -180,7 +181,6 @@
     </div>
 
     <script>
-        createJoystick();
         function redirectAndSelectMode(page, mode) {
             selectMode(mode);
         }
@@ -321,6 +321,7 @@
                 }
             }
         }
+        createJoystick();
     </script>
 
 </body>
