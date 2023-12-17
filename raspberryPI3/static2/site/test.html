@@ -23,14 +23,15 @@
             <li><a href="#" onclick="showTab('terminal')">Terminal</a></li>
         </ul>
 
+        <div id="batteryIcon">
+            <div id="batteryLevel"></div>
+            <div id="batteryText">Not Connection</div>
+            <div id="batteryVisual"></div>
+        </div>
+        
         <div id="menu" class="tab-content container">
             <div id="idleDiv">
                 <div class="button-container">
-                    <div id="batteryIcon">
-                        <div id="batteryLevel"></div>
-                        <div id="batteryText">Not Connection</div>
-                        <div id="batteryVisual"></div>
-                    </div>
                     <h1 class="larger-text">X-Car</h1>
                     <div id="stateData" class="hidden"></div>
                     <h2><em class="italic-text">"Intelligent vehicle designed to support the INSA community."</em></h2>
@@ -62,11 +63,6 @@
                 <img src="./images/joystick.png" alt="Joystick Image" class="controller-image">
                 <div id="zone_joystick" style="position: relative;"></div>
                 <div class="button-container">
-                    <div id="batteryIcon">
-                        <div id="batteryLevel"></div>
-                        <div id="batteryText">Not Connection</div>
-                        <div id="batteryVisual"></div>
-                    </div>
                     <button onclick="redirectAndSelectMode('home.html', 0)">Return</button>
                     <buttonE onclick="redirectAndSelectMode('emergency.html', 4)">Emergency Mode</buttonE>
                 </div>
@@ -79,11 +75,6 @@
                 <h2><em class="italic-text">The vehicle is ready to follow you.</em></h2>
                 <img src="./images/tracking1.png" alt="Tracking Image" class="controller-image">
                 <div class="button-container">
-                    <div id="batteryIcon">
-                        <div id="batteryLevel"></div>
-                        <div id="batteryText">Not Connection</div>
-                        <div id="batteryVisual"></div>
-                    </div>
                     <button onclick="redirectAndSelectMode('home.html', 0)">Return</button>
                     <buttonE onclick="redirectAndSelectMode('emergency.html', 4)">Emergency Mode</buttonE>
                 </div>
@@ -96,11 +87,6 @@
                 <h2><em class="italic-text">Vehicle on the way.</em></h2>
                 <img src="./images/autonomous.png" alt="Autonomous" class="controller-image">
                 <div class="button-container">
-                    <div id="batteryIcon">
-                        <div id="batteryLevel"></div>
-                        <div id="batteryText">Not Connection</div>
-                        <div id="batteryVisual"></div>
-                    </div>
                     <button onclick="redirectAndSelectMode('home.html', 0)">Return</button>
                     <buttonE onclick="redirectAndSelectMode('emergency.html', 4)">Emergency Mode</buttonE>
                 </div>
@@ -113,11 +99,6 @@
                 <h2><em class="text">Please click on</em><em class="italic-text">"everything is fine"</em><p class="text">to return to the home page.</p></h2>
                 <img src="./images/stop.png" alt="Stop Image" class="controller-image">
                 <div class="button-container">
-                    <div id="batteryIcon">
-                        <div id="batteryLevel"></div>
-                        <div id="batteryText">Not Connection</div>
-                        <div id="batteryVisual"></div>
-                    </div>
                     <button onclick="redirectAndSelectMode('home.html', 5)">Everything fine!</button>
                 </div>
             </div>
