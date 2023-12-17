@@ -254,6 +254,20 @@ private:
           current_state = 4;
           RCLCPP_INFO(this->get_logger(), ("manual->security"));
         }
+
+        // -> tracking
+        else if (buttonX || webButtonTracking)
+        {
+          current_state = 3;
+          RCLCPP_INFO(this->get_logger(), ("manual->tracking"));
+        }
+
+        // -> autonomous
+        else if (buttonA || webButtonAutonomous)
+        {
+          current_state = 2;
+          RCLCPP_INFO(this->get_logger(), ("manual->auto"));
+        }
       }
 
       // autonomous -> ?
@@ -265,6 +279,20 @@ private:
           current_state = 0;
           RCLCPP_INFO(this->get_logger(), ("autonomous->idle"));
         }
+
+        // -> manual
+        if (buttonY || webButtonManual)
+        {
+          current_state = 1;
+          RCLCPP_INFO(this->get_logger(), ("auto->manual"));
+        }
+
+        // -> tracking
+        else if (buttonX || webButtonTracking)
+        {
+          current_state = 3;
+          RCLCPP_INFO(this->get_logger(), ("auto->tracking"));
+        }
       }
 
       // tracking -> ?
@@ -275,6 +303,20 @@ private:
         {
           current_state = 0;
           RCLCPP_INFO(this->get_logger(), ("tracking->idle"));
+        }
+
+        // -> autonomous
+        else if (buttonA || webButtonAutonomous)
+        {
+          current_state = 2;
+          RCLCPP_INFO(this->get_logger(), ("tracking->auto"));
+        }
+
+        // -> manual
+        if (buttonY || webButtonManual)
+        {
+          current_state = 1;
+          RCLCPP_INFO(this->get_logger(), ("tracking->manual"));
         }
       }
       // security -> manual
