@@ -209,7 +209,7 @@ private:
     else
     {
       // emergency stop -> idle
-      if (current_state == 5 && (buttonStart || webButtonStart || !(connexion)))
+      if (current_state == 5 && (buttonStart || webButtonReturn || !(connexion)))
       {
         current_state = 0;
         RCLCPP_INFO(this->get_logger(), ("emergency->manual"));
