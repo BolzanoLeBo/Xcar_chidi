@@ -47,7 +47,7 @@ public:
     subscription_web_mode_ = this->create_subscription<interfaces::msg::WebMode>(
         "web_mode", 10, std::bind(&state_machine::webCallback, this, _1));
     subscription_motors_order_ = this->create_subscription<interfaces::msg::MotorsOrder>(
-        "motors_order", 10, std::bind(&state_machine::motorsOrderCallback, this, _1));
+        "motors_order2", 10, std::bind(&state_machine::motorsOrderCallback, this, _1));
     client_count_sub = this->create_subscription<std_msgs::msg::Int32>(
         "client_count", 10, std::bind(&state_machine::clientCountCallback, this, _1));
 
@@ -115,6 +115,7 @@ private:
   std::string state_names[6] = {"idle", "Manual", "Autonomous", "Tracking", "Security", "Emergency"};
   std::string obstacle_detect[2] = {"No obstacle", "Obstacle on the way"};
   int previous_state = -1;
+  int stock_previous_state = -1;
   int current_state = 0;
 
   int obstacle = 0;
@@ -130,9 +131,6 @@ private:
   // General variables
   int mode;
   bool systemCheckPrintRequest;
-  
-  // Motors feedback PWM speed 
-  float motors_pwm_rear;
 
   // Manual mode variables
   float requestedAngle, requestedThrottle;
@@ -185,41 +183,23 @@ private:
       reverse = webReverse;
     }
 
-    // Direction control tracking
-    if(current_state = 3) {
-      if(motors_pwm_rear < 0){
-        dir_av = 0;
-        dir_ar = 1;
-      }
-      else if (motors_pwm_rear > 0)
-      {
-        dir_av = 1;
-        dir_ar = 0;
-      }
-      else
-      {
-        dir_av = 0;
-        dir_ar = 0;
-      }
+    /*// Direction control
+    if (requestedThrottle > 0 && !reverse)
+    {
+      dir_av = 1;
+      dir_ar = 0;
     }
-    // Direction control manual
-    elsif (current_state = 1){
-      if (requestedThrottle > 0 && !reverse)
-      {
-        dir_av = 1;
-        dir_ar = 0;
-      }
-      else if (requestedThrottle > 0 && reverse)
-      {
-        dir_av = 0;
-        dir_ar = 1;
-      }
-      else
-      {
-        dir_av = 0;
-        dir_ar = 0;
-      }
+    else if (requestedThrottle > 0 && reverse)
+    {
+      dir_av = 0;
+      dir_ar = 1;
     }
+    else
+    {
+      dir_av = 0;
+      dir_ar = 0;
+    } */
+    
 
     auto stateMsg = interfaces::msg::State();
     // emergency stop
@@ -333,6 +313,7 @@ private:
         {
           current_state = 4;
           RCLCPP_INFO(this->get_logger(), ("tracking->security"));
+        }
         // -> autonomous
         else if (buttonA || webButtonAutonomous)
         {
@@ -350,11 +331,14 @@ private:
       // security -> manual
       else if (current_state == 4)
       {
-        if (((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar) || (dir_av && !obstacle_av)) && connexion) {
+        if (((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar) || (dir_av && !obstacle_av)) && connexion && (stock_previous_state==1)) {
           current_state = 1;
           RCLCPP_INFO(this->get_logger(), ("sec->man"));
         }
-
+        else if (((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar)) && connexion && (stock_previous_state==3)) {
+          current_state = 3;
+          RCLCPP_INFO(this->get_logger(), ("sec->track"));
+        }
         else if ((!connexion)) {
           current_state = 0;
           RCLCPP_INFO(this->get_logger(), ("security->idle"));
@@ -371,6 +355,8 @@ private:
     {
 
       stateMsg.current_state = current_state;
+      stateMsg.previous_state = previous_state;
+      stock_previous_state = previous_state;
       stateMsg.state_name = state_names[current_state];
       stateMsg.obstacle_detect = obstacle_detect[obstacle];
       publisher_state_->publish(stateMsg);
@@ -430,6 +416,7 @@ private:
     {
       obstacle_ar = 0;
     }
+    //RCLCPP_INFO(this->get_logger(), "Publishing: %d", obstacle_ar);
   }
 
   // Update requestedThrottle, requestedAngle and reverse from the joystick
@@ -499,7 +486,18 @@ private:
   }
 
   void motorsOrderCallback(const interfaces::msg::MotorsOrder &motorsOrder){
-    motors_pwm_rear = (motorsOrder.right_rear_pwm + motorsOrder.left_rear_pwm) / 2;
+    if (((motorsOrder.right_rear_pwm + motorsOrder.left_rear_pwm) / 2) > 50 ) {
+      dir_av = 1;
+      dir_ar = 0;
+    }
+    else if (((motorsOrder.right_rear_pwm + motorsOrder.left_rear_pwm) / 2) < 50 ) {
+      dir_av = 0;
+      dir_ar = 1;
+    }
+    else {
+      dir_av = 0;
+      dir_ar = 0;
+    }
   }
   void clientCountCallback(const std_msgs::msg::Int32 &msg)
   {

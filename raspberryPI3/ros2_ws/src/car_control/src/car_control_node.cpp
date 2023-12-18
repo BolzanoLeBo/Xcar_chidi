@@ -37,6 +37,7 @@ public:
     
 
         publisher_can_= this->create_publisher<interfaces::msg::MotorsOrder>("motors_order", 10);
+        publisher_motors_order_= this->create_publisher<interfaces::msg::MotorsOrder>("motors_order2", 10);
 
         publisher_steeringCalibration_ = this->create_publisher<interfaces::msg::SteeringCalibration>("steering_calibration", 10);
 
@@ -126,7 +127,8 @@ private:
     */
 
     void stateCallback(const interfaces::msg::State & state_msg){
-        state = state_msg.current_state;  
+        state = state_msg.current_state;
+        previous_state = state_msg.previous_state;  
     }
 
     void updateCmd(){
@@ -137,6 +139,47 @@ private:
             leftRearPwmCmd = STOP;
             rightRearPwmCmd = STOP;
             steeringPwmCmd = STOP;
+
+            //Send order to motors
+            motorsOrder.left_rear_pwm = leftRearPwmCmd;
+            motorsOrder.right_rear_pwm = rightRearPwmCmd;
+            motorsOrder.steering_pwm = steeringPwmCmd;
+
+            publisher_can_->publish(motorsOrder);
+
+            if (previous_state == 1) {
+                manualPropulsionCmd(requestedThrottle, reverse, leftRearPwmCmd,rightRearPwmCmd);
+                steeringCmd(requestedSteerAngle,currentAngle, steeringPwmCmd);
+                reinit = 1;
+            }
+
+            //Tracking Mode
+            else if (previous_state==3){
+                compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
+                steeringPwmCmd = 50;
+                reinit = 0;
+            }
+            
+            //Autonomous mode
+            else if (previous_state==2){
+
+                angle_error = desiredAngle/MAX_ANGLE - currentAngle; // [-2; 2]
+                
+                // PWM Command
+                //steeringPwmCmd = steeringPwmCmd_last + 0.9*angle_error + (2*0.001-0.9)*angle_error_last;
+                steeringPwmCmd = steeringPwmCmd*50 + 50;
+                // Saturation
+                if(steeringPwmCmd > 100) steeringPwmCmd = 100;
+                else if(steeringPwmCmd < 0) steeringPwmCmd = 0;
+
+            }
+
+            //Send order to motorsOrder2
+            motorsOrder.left_rear_pwm = leftRearPwmCmd;
+            motorsOrder.right_rear_pwm = rightRearPwmCmd;
+            motorsOrder.steering_pwm = steeringPwmCmd;
+
+            publisher_motors_order_->publish(motorsOrder);
         }
         else{ //Car started
 
@@ -170,13 +213,21 @@ private:
 
             }
 
-        }
         //Send order to motors
         motorsOrder.left_rear_pwm = leftRearPwmCmd;
         motorsOrder.right_rear_pwm = rightRearPwmCmd;
         motorsOrder.steering_pwm = steeringPwmCmd;
 
         publisher_can_->publish(motorsOrder);
+
+        //Send order to motorsOrder2
+        motorsOrder.left_rear_pwm = leftRearPwmCmd;
+        motorsOrder.right_rear_pwm = rightRearPwmCmd;
+        motorsOrder.steering_pwm = steeringPwmCmd;
+
+        publisher_motors_order_->publish(motorsOrder);
+
+        }
     }
 
 
@@ -184,6 +235,7 @@ private:
     // ---- Private variables ----
 
     int state = 0;
+    int previous_state = -1;
     int reinit = 1;
     
     //Motors feedback variables
@@ -214,6 +266,7 @@ private:
 
     //Publishers
     rclcpp::Publisher<interfaces::msg::MotorsOrder>::SharedPtr publisher_can_;
+    rclcpp::Publisher<interfaces::msg::MotorsOrder>::SharedPtr publisher_motors_order_;
     rclcpp::Publisher<interfaces::msg::SteeringCalibration>::SharedPtr publisher_steeringCalibration_;
 
     //Subscribers
