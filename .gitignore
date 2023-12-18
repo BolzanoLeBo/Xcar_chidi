@@ -42,3 +42,5 @@ jetsonNano/ros2_ws/install/
 
 *.vscode
 
+raspberryPI3/static2/site/generatehash.py
+raspberryPI3/static2/site/webserver.py

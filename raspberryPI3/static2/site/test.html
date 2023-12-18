@@ -167,7 +167,7 @@
             for (var i = 0; i < tabs.length; i++) {
                 tabs[i].style.display = 'none';
             }
-
+            window.dispatchEvent(new Event("resize"));
             document.getElementById(tabName).style.display = 'block';
         }
 
@@ -228,6 +228,7 @@
                 autoDiv.style.display = "none";
                 trackingDiv.style.display = "none";
                 zoneJoystick.classList.remove('hidden');
+                window.dispatchEvent(new Event("resize"));
                 changeState('security');
             }
             else if (state === 5) {
