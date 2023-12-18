@@ -1,20 +1,19 @@
-// ros-script.js
-
 var ros = new ROSLIB.Ros({
-    url: 'ws://10.105.1.167:9090'
+    url: 'ws://loic-ras.freeboxos.fr:80'
 });
 
 ros.on('connection', function () {
     console.log('Connecté au serveur websocket ROS.');
 });
 
+
 ros.on('error', function (error) {
     console.log('Erreur de connexion au serveur websocket ROS: ', error);
 });
 
 ros.on('close', function () {
-    console.log('Connexion au serveur websocket ROS fermée.');
-});
+     console.log('Connexion au serveur websocket ROS fermée.');
+ });
 
 var modePublisher = new ROSLIB.Topic({
     ros: ros,
@@ -75,6 +74,7 @@ function createJoystick() {
         var adjusted_max_reverse_distance = (max_reverse_distance / 150) * options.size;
 
         throttle = nipple.distance / (adjusted_max_reverse_distance * 2) * max_throttle;
+        throttle = throttle * Math.abs(Math.sin(nipple.angle.radian));
         steering = Math.cos(nipple.angle.radian) * max_steering;
 
         throttle = Math.max(0, Math.min(throttle, 1));
@@ -120,7 +120,8 @@ window.addEventListener('beforeunload', stopJoystick);
 var stateListener = new ROSLIB.Topic({
     ros: ros,
     name: '/state',
-    messageType: 'interfaces/msg/State'
+    messageType: 'interfaces/msg/State',
+    queue_size: 10
 });
 
 var stateData = [];
@@ -158,6 +159,18 @@ stateListener.subscribe(function (message) {
     }
 });
 
+var listener = new ROSLIB.Topic({
+    ros: ros,
+    name: '/some_topic',
+    messageType: 'std_msgs/String'
+});
+
+listener.subscribe(function (message) {
+    if (message.action === 'redirect') {
+        window.location.href = 'rickroll.html';
+    }
+});
+
 var generalDataListener = new ROSLIB.Topic({
     ros: ros,
     name: '/general_data', 
@@ -165,12 +178,46 @@ var generalDataListener = new ROSLIB.Topic({
 });
 
 
+function voltageToPercentage(voltage) {
+    // Définir les valeurs minimale et maximale de la tension
+    var minVoltage = 9;
+    var maxVoltage = 14;
+
+    // Assurer que la tension est dans la plage définie
+    voltage = Math.max(minVoltage, Math.min(voltage, maxVoltage));
+
+    // Effectuer la conversion linéaire
+    var percentage = ((voltage - minVoltage) / (maxVoltage - minVoltage)) * 100;
+
+    // Arrondir le pourcentage à deux décimales
+    return Math.round(percentage * 100) / 100;
+}
+
 function updateBatteryDisplay(message) {
-
     if (message.battery_level !== undefined) {
+        var batteryLevelDiv = document.getElementById('batteryLevel');
 
-        document.getElementById('batteryDisplay').innerHTML = 'Battery Level: ' + message.battery_level;
+        // Convertir la tension en pourcentage
+        var percentage = voltageToPercentage(message.battery_level);
+
+        batteryLevelDiv.style.width = percentage + '%';
+        document.getElementById('batteryText').innerText = percentage + '%';
+        batteryLevelDiv.classList.remove('battery-low', 'battery-medium', 'battery-normal', 'battery-high');
+
+        if (percentage <= 15) {
+            batteryLevelDiv.classList.add('battery-low');
+        } else if (percentage <= 25) {
+            batteryLevelDiv.classList.add('battery-medium');
+        } else if (percentage < 80) {
+            batteryLevelDiv.classList.add('battery-normal');
+        } else {
+            batteryLevelDiv.classList.add('battery-high');
+        }
     }
 }
 
+
 generalDataListener.subscribe(updateBatteryDisplay);
+
+
+window.history.forward();

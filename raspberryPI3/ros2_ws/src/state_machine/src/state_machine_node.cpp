@@ -10,6 +10,7 @@
 
 // #include "state_machne/srv/StateMemory.hpp"
 #include "sensor_msgs/msg/joy.hpp"
+#include "std_msgs/msg/int32.hpp"
 #include "interfaces/msg/obstacles.hpp"
 #include "interfaces/msg/state.hpp"
 #include "interfaces/msg/system_check.hpp"
@@ -47,8 +48,11 @@ public:
         "web_mode", 10, std::bind(&state_machine::webCallback, this, _1));
     subscription_motors_order_ = this->create_subscription<interfaces::msg::MotorsOrder>(
         "motors_order", 10, std::bind(&state_machine::motorsOrderCallback, this, _1));
+    client_count_sub = this->create_subscription<std_msgs::msg::Int32>(
+        "client_count", 10, std::bind(&state_machine::clientCountCallback, this, _1));
 
     timer_ = this->create_wall_timer(1ms, std::bind(&state_machine::stateChanger, this));
+    //disconnect_timer = this->create_wall_timer(std::chrono::seconds(1), std::bind(&state_machine::changeModeCallback, this));
 
     // file_stream_.open("output.txt", std::ios::out);  // open .txt
 
@@ -80,10 +84,11 @@ public:
     reverse = false;
     requestedThrottle = STOP;
     requestedAngle = CENTER;
-
   }
 
 private:
+  rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr client_count_sub;
+  //rclcpp::TimerBase::SharedPtr disconnect_timer;
   // Publisher
   rclcpp::Publisher<interfaces::msg::State>::SharedPtr publisher_state_;
   rclcpp::Publisher<interfaces::msg::SystemCheck>::SharedPtr publisher_system_check_;
@@ -106,8 +111,6 @@ private:
 
   int connexion = 0;
   int sensor = 0;
-
-  // rclcpp::TimerBase::SharedPtr timer_;
 
   std::string state_names[6] = {"idle", "Manual", "Autonomous", "Tracking", "Security", "Emergency"};
   std::string obstacle_detect[2] = {"No obstacle", "Obstacle on the way"};
@@ -143,7 +146,7 @@ private:
   // rclcpp::Service<state_machine::srv::StateMemory>::SharedPtr service_state_memory_;
   void stateChanger()
   {
-      // ------ Propulsion ------
+    // ------ Propulsion ------
     if (axisLT > DEADZONE_LT_RT && axisRT > DEADZONE_LT_RT)
     { // Incompatible orders : Stop the car
       requestedThrottle = STOP;
@@ -218,7 +221,6 @@ private:
       }
     }
 
-
     auto stateMsg = interfaces::msg::State();
     // emergency stop
     // emergency btn is inversed in case of a shutdown
@@ -231,7 +233,7 @@ private:
     else
     {
       // emergency stop -> idle
-      if (current_state == 5 && (buttonStart || webButtonStart))
+      if (current_state == 5 && (buttonStart || webButtonReturn || !(connexion)))
       {
         current_state = 0;
         RCLCPP_INFO(this->get_logger(), ("emergency->manual"));
@@ -264,7 +266,7 @@ private:
       else if (current_state == 1)
       {
         // -> idle
-        if (buttonDpadBottom || webButtonReturn)
+        if (buttonDpadBottom || webButtonReturn || !(connexion))
         {
           current_state = 0;
           RCLCPP_INFO(this->get_logger(), ("manual->idle"));
@@ -276,16 +278,44 @@ private:
           current_state = 4;
           RCLCPP_INFO(this->get_logger(), ("manual->security"));
         }
+
+        // -> tracking
+        else if (buttonX || webButtonTracking)
+        {
+          current_state = 3;
+          RCLCPP_INFO(this->get_logger(), ("manual->tracking"));
+        }
+
+        // -> autonomous
+        else if (buttonA || webButtonAutonomous)
+        {
+          current_state = 2;
+          RCLCPP_INFO(this->get_logger(), ("manual->auto"));
+        }
       }
 
       // autonomous -> ?
       else if (current_state == 2)
       {
         // -> idle
-        if (buttonDpadBottom || webButtonReturn)
+        if (buttonDpadBottom || webButtonReturn || !(connexion))
         {
           current_state = 0;
           RCLCPP_INFO(this->get_logger(), ("autonomous->idle"));
+        }
+
+        // -> manual
+        if (buttonY || webButtonManual)
+        {
+          current_state = 1;
+          RCLCPP_INFO(this->get_logger(), ("auto->manual"));
+        }
+
+        // -> tracking
+        else if (buttonX || webButtonTracking)
+        {
+          current_state = 3;
+          RCLCPP_INFO(this->get_logger(), ("auto->tracking"));
         }
       }
 
@@ -293,7 +323,7 @@ private:
       else if (current_state == 3)
       {
         // -> idle
-        if (buttonDpadBottom || webButtonReturn)
+        if (buttonDpadBottom || webButtonReturn || !(connexion))
         {
           current_state = 0;
           RCLCPP_INFO(this->get_logger(), ("tracking->idle"));
@@ -303,13 +333,33 @@ private:
         {
           current_state = 4;
           RCLCPP_INFO(this->get_logger(), ("tracking->security"));
+        // -> autonomous
+        else if (buttonA || webButtonAutonomous)
+        {
+          current_state = 2;
+          RCLCPP_INFO(this->get_logger(), ("tracking->auto"));
+        }
+
+        // -> manual
+        if (buttonY || webButtonManual)
+        {
+          current_state = 1;
+          RCLCPP_INFO(this->get_logger(), ("tracking->manual"));
         }
       }
       // security -> manual
-      else if (current_state == 4 && ((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar) || (dir_av && !obstacle_av)))
+      else if (current_state == 4)
       {
-        current_state = 1;
-        RCLCPP_INFO(this->get_logger(), ("sec->man"));
+        if (((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar) || (dir_av && !obstacle_av)) && connexion) {
+          current_state = 1;
+          RCLCPP_INFO(this->get_logger(), ("sec->man"));
+        }
+
+        else if ((!connexion)) {
+          current_state = 0;
+          RCLCPP_INFO(this->get_logger(), ("security->idle"));
+        }
+
       }
       else
       {
@@ -451,6 +501,30 @@ private:
   void motorsOrderCallback(const interfaces::msg::MotorsOrder &motorsOrder){
     motors_pwm_rear = (motorsOrder.right_rear_pwm + motorsOrder.left_rear_pwm) / 2;
   }
+  void clientCountCallback(const std_msgs::msg::Int32 &msg)
+  {
+    // Réinitialiser le timer chaque fois qu'une nouvelle personne se connecte
+    if (msg.data > 0)
+    {
+      //disconnect_timer->cancel();
+      connexion=1;
+    }
+    else
+    {
+      connexion=0;
+      // Démarrer le timer si personne n'est connecté
+      //if (disconnect_timer->is_canceled())
+      //{
+      //  disconnect_timer->reset();
+      //}
+    }
+  }
+
+  //void changeModeCallback()
+  //{
+  //  connexion=0;
+  //  disconnect_timer->cancel();
+  //}
 };
 
 int main(int argc, char *argv[])
