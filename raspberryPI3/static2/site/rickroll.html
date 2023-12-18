@@ -13,6 +13,7 @@
             margin: 0;
             padding: 0;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
@@ -23,8 +24,13 @@
             margin-bottom: 20px;
         }
 
-        iframe {
-            border: 0;
+        video {
+            width: 100%;
+            max-width: 400px; /* Ajustez selon vos besoins */
+        }
+
+        p {
+            margin: 10px 0;
         }
 
         .rickroll-link {
@@ -51,6 +57,5 @@
     <script>
         window.history.forward();
     </script>
-    
 </body>
 </html>
