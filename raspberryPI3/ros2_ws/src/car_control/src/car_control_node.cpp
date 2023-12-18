@@ -159,16 +159,21 @@ private:
             //Autonomous mode
             else if (state==2){
                 angle_error = desiredAngle/MAX_ANGLE - currentAngle; // [-2;2]
+                direction = angle_error >= 0;
 
                 //steeringPwmCmd = steeringPwmCmd_last + 0.9*angle_error + (2*0.001-0.9)*angle_error_last;
-                steeringPwmCmd = 70*angle_error;
+                steeringPwmCmd = abs(angle_error)*25;
                 RCLCPP_INFO(this->get_logger(),(("angle_error" + to_string(angle_error) + " | PWM " + to_string(steeringPwmCmd)).data()));
                 
+
+                steeringPwmCmd = 12*steeringPwmCmd;
                 // Saturation
-                if(steeringPwmCmd > 100) steeringPwmCmd = 100;
+                if(steeringPwmCmd > 100)steeringPwmCmd = 100;
                 else if (steeringPwmCmd < 0) steeringPwmCmd = 0;
 
-                steeringPwmCmd = steeringPwmCmd + 50;
+                if(direction) steeringPwmCmd = steeringPwmCmd + 50;
+                else steeringPwmCmd = 50 - steeringPwmCmd;
+                
             }
 
         }
@@ -186,6 +191,7 @@ private:
 
     int state = 0;
     int reinit = 1;
+    bool direction = false;
     
     //Motors feedback variables
     float currentAngle;
