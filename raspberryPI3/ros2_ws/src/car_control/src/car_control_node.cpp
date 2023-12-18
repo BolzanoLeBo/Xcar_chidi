@@ -161,29 +161,28 @@ private:
                 angle_error = desiredAngle/MAX_ANGLE - currentAngle; // [-2;2]
                 direction = angle_error >= 0;
 
-                //positif => gauche
-                //negatif => droite
-
                 //steeringPwmCmd = steeringPwmCmd_last + 0.9*angle_error + (2*0.001-0.9)*angle_error_last;
                 angle_error = abs(angle_error)*25;
-                if(direction)
-                {
-                    RCLCPP_INFO(this->get_logger(),(("angle_error" + to_string(angle_error) + "| dir = gauche").data()));
-                }
-                else
-                {
-                    RCLCPP_INFO(this->get_logger(),(("angle_error" + to_string(angle_error) + "| dir = droite").data()));
-                }
                 
-                
-
+                // Control law
                 steeringPwmCmd = 12*angle_error;
+
                 // Saturation
-                if(steeringPwmCmd > 100)steeringPwmCmd = 100;
+                if(steeringPwmCmd > 50) steeringPwmCmd = 50;
                 else if (steeringPwmCmd < 0) steeringPwmCmd = 0;
 
-                if(direction) steeringPwmCmd = steeringPwmCmd + 50;
-                else steeringPwmCmd = 50 - steeringPwmCmd;
+                // Direction : true -> left | false -> right
+                if(direction)
+                {
+                    steeringPwmCmd = steeringPwmCmd - 50;
+                    RCLCPP_INFO(this->get_logger(),(("angle_error = " + to_string(angle_error) + "| dir = gauche | PWM").data()));
+                } 
+                else
+                {
+                    steeringPwmCmd = steeringPwmCmd + 50;
+                    RCLCPP_INFO(this->get_logger(),(("angle_error = " + to_string(angle_error) + "| dir = droite").data()));
+                } 
+
                 
             }
 
