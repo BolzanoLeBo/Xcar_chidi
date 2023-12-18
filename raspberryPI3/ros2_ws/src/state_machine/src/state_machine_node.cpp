@@ -15,7 +15,7 @@
 #include "interfaces/msg/system_check.hpp"
 #include "interfaces/msg/joystick_order.hpp"
 #include "interfaces/msg/web_mode.hpp" 
-#include "interfaces/msg/motors_feedback.hpp"
+#include "interfaces/msg/motors_order.hpp"
 
 #define DEADZONE_LT_RT 0.15     // %
 #define DEADZONE_LS_X_LEFT 0.4  // %
@@ -45,8 +45,8 @@ public:
         "obstacles", 10, std::bind(&state_machine::obstacleCallback, this, _1));
     subscription_web_mode_ = this->create_subscription<interfaces::msg::WebMode>(
         "web_mode", 10, std::bind(&state_machine::webCallback, this, _1));
-    subscription_motors_feedback_ = this->create_subscription<interfaces::msg::MotorsFeedback>(
-        "motors_feedback", 10, std::bind(&state_machine::motorsFeedbackCallback, this, _1));
+    subscription_motors_order_ = this->create_subscription<interfaces::msg::MotorsOrder>(
+        "motors_order", 10, std::bind(&state_machine::motorsOrderCallback, this, _1));
 
     timer_ = this->create_wall_timer(1ms, std::bind(&state_machine::stateChanger, this));
 
@@ -93,7 +93,7 @@ private:
   rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr subscription_joy_;
   rclcpp::Subscription<interfaces::msg::Obstacles>::SharedPtr subscription_obstacles_;
   rclcpp::Subscription<interfaces::msg::WebMode>::SharedPtr subscription_web_mode_;
-  rclcpp::Subscription<interfaces::msg::MotorsFeedback>::SharedPtr subscription_motors_feedback_;
+  rclcpp::Subscription<interfaces::msg::MotorsOrder>::SharedPtr subscription_motors_order_;
   // Timer
   rclcpp::TimerBase::SharedPtr timer_;
 
@@ -182,39 +182,41 @@ private:
       reverse = webReverse;
     }
 
-    // Direction control
-    // if (requestedThrottle > 0 && !reverse)
-    // {
-    //   dir_av = 1;
-    //   dir_ar = 0;
-    // }
-    // else if (requestedThrottle > 0 && reverse)
-    // {
-    //   dir_av = 0;
-    //   dir_ar = 1;
-    // }
-    // else
-    // {
-    //   dir_av = 0;
-    //   dir_ar = 0;
-    // }
-    //////////////////////////////////////////////////////////////////////
-    // Direction control
-    if(current_state = 3 && motors_pwm_rear < 0){
-      dir_av = 0;
-      dir_ar = 1;
+    // Direction control tracking
+    if(current_state = 3) {
+      if(motors_pwm_rear < 0){
+        dir_av = 0;
+        dir_ar = 1;
+      }
+      else if (motors_pwm_rear > 0)
+      {
+        dir_av = 1;
+        dir_ar = 0;
+      }
+      else
+      {
+        dir_av = 0;
+        dir_ar = 0;
+      }
     }
-    else if (current_state = 3 && motors_pwm_rear > 0)
-    {
-      dir_av = 1;
-      dir_ar = 0;
+    // Direction control manual
+    elsif (current_state = 1){
+      if (requestedThrottle > 0 && !reverse)
+      {
+        dir_av = 1;
+        dir_ar = 0;
+      }
+      else if (requestedThrottle > 0 && reverse)
+      {
+        dir_av = 0;
+        dir_ar = 1;
+      }
+      else
+      {
+        dir_av = 0;
+        dir_ar = 0;
+      }
     }
-    else
-    {
-      dir_av = 0;
-      dir_ar = 0;
-    }
-    ////////////////////////////////////////////////////////////////////////////
 
 
     auto stateMsg = interfaces::msg::State();
@@ -446,8 +448,8 @@ private:
     webReverse = web.reverse;
   }
 
-  void motorsFeedbackCallback(const interfaces::msg::MotorsFeedback &motorsFeedback){
-    motors_pwm_rear = (motorsFeedback.right_rear_speed + motorsFeedback.left_rear_speed) / 2;
+  void motorsOrderCallback(const interfaces::msg::MotorsOrder &motorsOrder){
+    motors_pwm_rear = (motorsOrder.right_rear_pwm + motorsOrder.left_rear_pwm) / 2;
   }
 };
 
