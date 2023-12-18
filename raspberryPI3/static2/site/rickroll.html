@@ -17,6 +17,7 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
+            overflow: hidden; /* Empêche le défilement sur mobile */
         }
 
         h1 {
@@ -26,7 +27,8 @@
 
         video {
             width: 100%;
-            max-width: 400px; /* Ajustez selon vos besoins */
+            height: 100%;
+            object-fit: cover;
         }
 
         p {
@@ -46,13 +48,10 @@
 </head>
 <body>
     <div>
-        <h1>Vous avez été Rick Rollé !</h1>
-        <video controls autoplay muted>
+        <video controls autoplay muted playsinline>
             <source src="./images/rickroll.mp4" type="video/mp4">
             Votre navigateur ne prend pas en charge la balise vidéo.
         </video>
-        <p>Mais ne vous inquiétez pas, c'est juste pour rire !</p>
-        <p>Si vous voulez voir la vidéo sur YouTube, <a class="rickroll-link" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">cliquez ici</a>.</p>
     </div>
     <script>
         window.history.forward();
