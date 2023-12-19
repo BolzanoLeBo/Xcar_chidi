@@ -159,20 +159,6 @@ private:
                 steeringPwmCmd = 50;
                 reinit = 0;
             }
-            
-            //Autonomous mode
-            else if (previous_state==2){
-
-                angle_error = desiredAngle/MAX_ANGLE - currentAngle; // [-2; 2]
-                
-                // PWM Command
-                //steeringPwmCmd = steeringPwmCmd_last + 0.9*angle_error + (2*0.001-0.9)*angle_error_last;
-                steeringPwmCmd = steeringPwmCmd*50 + 50;
-                // Saturation
-                if(steeringPwmCmd > 100) steeringPwmCmd = 100;
-                else if(steeringPwmCmd < 0) steeringPwmCmd = 0;
-
-            }
 
             //Send order to motorsOrder2
             motorsOrder.left_rear_pwm = leftRearPwmCmd;
@@ -218,12 +204,12 @@ private:
                 if(direction)
                 {
                     steeringPwmCmd = steeringPwmCmd - 50;
-                    RCLCPP_INFO(this->get_logger(),(("angle_error = " + to_string(angle_error) + "| dir = gauche | PWM").data()));
+                    //RCLCPP_INFO(this->get_logger(),(("angle_error = " + to_string(angle_error) + "| dir = gauche | PWM").data()));
                 } 
                 else
                 {
                     steeringPwmCmd = steeringPwmCmd + 50;
-                    RCLCPP_INFO(this->get_logger(),(("angle_error = " + to_string(angle_error) + "| dir = droite").data()));
+                    //RCLCPP_INFO(this->get_logger(),(("angle_error = " + to_string(angle_error) + "| dir = droite").data()));
                 } 
 
                 

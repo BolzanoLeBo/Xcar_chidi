@@ -27,6 +27,12 @@ def generate_launch_description():
         emulate_tty=True
     )
 
+    avoidance_node = Node(
+        package="avoidance",
+        executable="avoidance_node",
+        emulate_tty=True
+    )
+
     car_control_node = Node(
         package="car_control",
         executable="car_control_node",
@@ -75,5 +81,6 @@ def generate_launch_description():
     ld.add_action(state_machine_node)
     ld.add_action(rosbridge_server_node)
     ld.add_action(detection_node)
+    ld.add_action(avoidance_node)
 
     return ld

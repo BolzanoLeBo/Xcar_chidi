@@ -335,7 +335,7 @@ private:
           current_state = 1;
           RCLCPP_INFO(this->get_logger(), ("sec->man"));
         }
-        else if (((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar)) && connexion && (stock_previous_state==3)) {
+        else if (((!obstacle_av && !obstacle_ar) || (dir_av && !obstacle_av)) && connexion && (stock_previous_state==3)) {
           current_state = 3;
           RCLCPP_INFO(this->get_logger(), ("sec->track"));
         }
