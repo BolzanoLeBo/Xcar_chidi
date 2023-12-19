@@ -8,6 +8,8 @@ import numpy as np
 from math import *
 
 from interfaces.msg import TrackingPosAngle
+from interfaces.msg import UserLost
+from interfaces.msg import State
 
 
 from cv_bridge import CvBridge
@@ -159,12 +161,17 @@ class ImgProcessingNode(Node):
 		)
 		self.subscriber_ = self.create_subscription(Image, 'image_raw', self.image_callback,qos_profile = qos_profile)
 		self.tracking_pos_angle_publisher_ = self.create_publisher(TrackingPosAngle,'tracking_pos_angle', 10)
+		self.user_lost_publisher_ = self.create_publisher(UserLost,'user_distance', 10)
+		self.state_subscriber_ = self.create_subscription(State, 'state', self.state_callback, 10)
 		self.cv_image = []
 		self.timer = self.create_timer(1, self.img_ai) #1 second
+		self.state = 0
+		self.lost_counter = 0
 
 
 	#here we define how to update the angle value of the tracking
-
+	def state_callback(self, msg):
+		self.state = msg.current_state
 
 	def image_callback(self,msg):
 		bridge = CvBridge()
@@ -179,6 +186,8 @@ class ImgProcessingNode(Node):
 
 
 	def img_ai(self) : 
+		lost_treshold = 10
+		lost_msg = UserLost()
 		if self.cv_image != [] :
 			tracking = TrackingPosAngle()
 			(human_detected, (a_min, a_max, a_cam), ) = get_tracking_angle(self.cv_image, 60, -90, [0,0])
@@ -190,6 +199,26 @@ class ImgProcessingNode(Node):
 				tracking.max_angle = a_max
 			tracking.cam_angle = a_cam
 			tracking.person_detected = human_detected
+
+			if self.state == 3 : 
+				if not human_detected :
+					self.lost_counter = self.lost_counter + 1 
+				else : 
+					if self.lost_counter > lost_treshold : 
+						lost_msg.lost = False
+						self.user_lost_publisher_.publish(lost_msg)
+					self.lost_counter = 0
+
+
+				if self.lost_counter > lost_treshold : 
+					lost_msg.lost = True
+					self.user_lost_publisher_.publish(lost_msg)
+
+			else : 
+				self.lost_counter = 0 
+			
+
+
 			# Publish the msg for angle
 			self.tracking_pos_angle_publisher_.publish(tracking)
 

@@ -154,7 +154,7 @@ class detection: public rclcpp::Node {
         {
           for (int i = 0; i < size; i++)
           {
-            RCLCPP_INFO(this->get_logger(),((to_string(i) + "  lidar  " + to_string(scan.ranges[i])).data()));
+            //RCLCPP_INFO(this->get_logger(),((to_string(i) + "  lidar  " + to_string(scan.ranges[i])).data()));
           }
           print_list = 1 ;
 

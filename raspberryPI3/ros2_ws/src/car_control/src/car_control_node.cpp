@@ -100,18 +100,18 @@ private:
     }
     
     void angleFromLidar(const interfaces::msg::TrackingPosAngle & trackingPosAngle){
-        if(trackingPosAngle.person_detected){
+        if(trackingPosAngle.person_detected)
+        {
             if (trackingPosAngle.cam_angle >= -30 and trackingPosAngle.cam_angle <= 30)
             {
                 desiredAngle = -trackingPosAngle.cam_angle;
-
             }
-        }else{
-            desiredAngle = lastDesiredAngle;
+        }else
+        {
+            desiredAngle = keepAngle;
         }
 
-        lastDesiredAngle = desiredAngle;
-
+        keepAngle = desiredAngle;
 
         
         
@@ -201,16 +201,32 @@ private:
             
             //Autonomous mode
             else if (state==2){
+                angle_error = desiredAngle/MAX_ANGLE - currentAngle; // [-2;2]
+                direction = angle_error >= 0;
 
-                angle_error = desiredAngle/MAX_ANGLE - currentAngle; // [-2; 2]
-                
-                // PWM Command
                 //steeringPwmCmd = steeringPwmCmd_last + 0.9*angle_error + (2*0.001-0.9)*angle_error_last;
-                steeringPwmCmd = steeringPwmCmd*50 + 50;
-                // Saturation
-                if(steeringPwmCmd > 100) steeringPwmCmd = 100;
-                else if(steeringPwmCmd < 0) steeringPwmCmd = 0;
+                angle_error = abs(angle_error)*25;
+                
+                // Control law
+                steeringPwmCmd = 12*angle_error;
 
+                // Saturation
+                if(steeringPwmCmd > 50) steeringPwmCmd = 50;
+                else if (steeringPwmCmd < 0) steeringPwmCmd = 0;
+
+                // Direction : true -> left | false -> right
+                if(direction)
+                {
+                    steeringPwmCmd = steeringPwmCmd - 50;
+                    RCLCPP_INFO(this->get_logger(),(("angle_error = " + to_string(angle_error) + "| dir = gauche | PWM").data()));
+                } 
+                else
+                {
+                    steeringPwmCmd = steeringPwmCmd + 50;
+                    RCLCPP_INFO(this->get_logger(),(("angle_error = " + to_string(angle_error) + "| dir = droite").data()));
+                } 
+
+                
             }
 
         //Send order to motors
@@ -237,6 +253,7 @@ private:
     int state = 0;
     int previous_state = -1;
     int reinit = 1;
+    bool direction = false;
     
     //Motors feedback variables
     float currentAngle;
@@ -256,6 +273,7 @@ private:
     float throttleValue;
     float angleValue;
     float desiredAngle;
+    float keepAngle = 0;
     float angle_error;
     float lastDesiredAngle = 0;
 
