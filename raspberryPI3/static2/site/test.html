@@ -285,18 +285,18 @@
                         stateElement.classList.remove('previous');
                     }
 
-                    if(stateId === 'security' && previousState!= 'security' && currentState != 'security'){
+                    if(stateId === 'security' && previousState!== 'security' && currentState !== 'security'){
                         stateElement.classList.remove('active', 'previous','available');
                         stateElement.classList.add('unavailable');
                     }
 
                     // Remove 'active' e 'previous' de todos os elementos, exceto currentState e previousState
-                    if (stateId !== currentState && stateId !== previousState && stateId != 'security' && currentState!= 'stop') {
+                    if (stateId !== currentState && stateId !== previousState && stateId !== 'security' && currentState!== 'stop') {
                         stateElement.classList.remove('active', 'previous','unavailable');
                         stateElement.classList.add('available');
                     }
 
-                    if (stateId !== currentState && stateId !== previousState && stateId != 'security' && currentState === 'stop') {
+                    if (stateId !== currentState && stateId !== previousState && stateId !== 'security' && currentState === 'stop') {
                         stateElement.classList.remove('active', 'previous','available');
                         if (stateId === 'idle')
                             stateElement.classList.add('available');
