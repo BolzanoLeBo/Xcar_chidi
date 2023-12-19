@@ -1,5 +1,5 @@
 var ros = new ROSLIB.Ros({
-    url: 'ws://localhost:9090'
+    url: 'ws://loic-ras.freeboxos.fr:80'
 });
 
 ros.on('connection', function () {
@@ -221,6 +221,20 @@ function updateBatteryDisplay(message) {
         }
     }
 }
+
+/*var updateTimeout;
+var updateDelay = 1000; // Délai en millisecondes (1 seconde)
+
+function updateBatteryDisplayDelayed(message) {
+    // Effacer tout timeout précédent (s'il y en a)
+    clearTimeout(updateTimeout);
+
+    // Définir un nouveau timeout pour déclencher la mise à jour après le délai spécifié
+    updateTimeout = setTimeout(function () {
+        // Appeler la fonction de mise à jour de la batterie
+        updateBatteryDisplay(message);
+    }, updateDelay);
+}*/
 
 generalDataListener.subscribe(updateBatteryDisplay);
 

@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="./images/icon.png">
     <title>Login - X-Car</title>
 </head>
-<body style="background-image: url('./images/principal_background.png');">
+<body style="background-image: url('./images/principal_background2.png');">
 
     <div class="container_log">
         <h1 class="larger-text">X-Car</h1>      
@@ -23,7 +23,7 @@
                 <input type="password" id="password" name="password" onkeypress="checkEnter(event)" required>
             </div>
         
-            <button onclick="authenticate()">Login</button>        
+            <button onclick="submitForm()">Login</button>        
         </div>
 
         <div id="login-error" class="alert" style="display: none;">
@@ -32,24 +32,52 @@
     </div>
 
     <script>
-        function authenticate() {
-            var username = document.getElementById('username').value;
-            var password = document.getElementById('password').value;
-
-            if (username === 'user' && password === 'user2') {
-                window.location.href = 'test.html'; 
-            } else if (username === 'user' && password === 'geicar') {
-                window.location.href = 'rickroll.html';
-            }
-            else {
-                document.getElementById('login-error').style.display = 'block'; 
-            }
-        }
 
         function checkEnter(event) {
             if (event.key === "Enter") {
-                authenticate();
+                submitForm();
             }
+        }
+
+        function submitForm() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            // Envoie de la requête au serveur pour vérification
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/login", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        // Réponse du serveur
+                        var response = JSON.parse(xhr.responseText);
+
+                        if (response.success) {
+                            // Effectuer une action différente en fonction de la réponse du serveur
+                            switch (response.action) {
+                                case 'redirect_test':
+                                    window.location.href = 'test.html';
+                                    break;
+                                case 'redirect_rickroll':
+                                    window.location.href = 'rickroll.html';
+                                    break;
+                                default:
+                                    // Action par défaut si aucune action spécifiée
+                                    console.log("Aucune action spécifiée.");
+                            }
+                        } else {
+                            document.getElementById('login-error').style.display = 'block'; 
+                        }
+                    } else {
+                        document.getElementById('login-error').style.display = 'block'; 
+                    }
+                }
+            };
+
+            // Envoie des données JSON au serveur
+            xhr.send(JSON.stringify({ username: username, password: password }));
         }
     </script>
 

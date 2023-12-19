@@ -49,7 +49,7 @@ public:
         "client_count", 10, std::bind(&state_machine::clientCountCallback, this, _1));
 
     timer_ = this->create_wall_timer(1ms, std::bind(&state_machine::stateChanger, this));
-    disconnect_timer = this->create_wall_timer(std::chrono::seconds(3), std::bind(&state_machine::changeModeCallback, this));
+    //disconnect_timer = this->create_wall_timer(std::chrono::seconds(1), std::bind(&state_machine::changeModeCallback, this));
 
     // file_stream_.open("output.txt", std::ios::out);  // open .txt
 
@@ -85,7 +85,7 @@ public:
 
 private:
   rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr client_count_sub;
-  rclcpp::TimerBase::SharedPtr disconnect_timer;
+  //rclcpp::TimerBase::SharedPtr disconnect_timer;
   // Publisher
   rclcpp::Publisher<interfaces::msg::State>::SharedPtr publisher_state_;
   rclcpp::Publisher<interfaces::msg::SystemCheck>::SharedPtr publisher_system_check_;
@@ -107,8 +107,6 @@ private:
 
   int connexion = 0;
   int sensor = 0;
-
-  // rclcpp::TimerBase::SharedPtr timer_;
 
   std::string state_names[6] = {"idle", "Manual", "Autonomous", "Tracking", "Security", "Emergency"};
   std::string obstacle_detect[2] = {"No obstacle", "Obstacle on the way"};
@@ -475,24 +473,25 @@ private:
     // Réinitialiser le timer chaque fois qu'une nouvelle personne se connecte
     if (msg.data > 0)
     {
-      disconnect_timer->cancel();
+      //disconnect_timer->cancel();
       connexion=1;
     }
     else
     {
+      connexion=0;
       // Démarrer le timer si personne n'est connecté
-      if (disconnect_timer->is_canceled())
-      {
-        disconnect_timer->reset();
-      }
+      //if (disconnect_timer->is_canceled())
+      //{
+      //  disconnect_timer->reset();
+      //}
     }
   }
 
-  void changeModeCallback()
-  {
-    connexion=0;
-    disconnect_timer->cancel();
-  }
+  //void changeModeCallback()
+  //{
+  //  connexion=0;
+  //  disconnect_timer->cancel();
+  //}
 };
 
 int main(int argc, char *argv[])
