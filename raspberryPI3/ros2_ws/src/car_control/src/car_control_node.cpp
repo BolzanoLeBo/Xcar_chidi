@@ -194,7 +194,7 @@ private:
                 angle_error = abs(angle_error)*25;
                 
                 // Control law
-                steeringPwmCmd = 12*angle_error;
+                steeringPwmCmd = 5*angle_error;
 
                 // Saturation
                 if(steeringPwmCmd > 50) steeringPwmCmd = 50;
@@ -203,12 +203,12 @@ private:
                 // Direction : true -> left | false -> right
                 if(direction)
                 {
-                    steeringPwmCmd = steeringPwmCmd - 50;
+                    steeringPwmCmd = steeringPwmCmd + 50;
                     //RCLCPP_INFO(this->get_logger(),(("angle_error = " + to_string(angle_error) + "| dir = gauche | PWM").data()));
                 } 
                 else
                 {
-                    steeringPwmCmd = steeringPwmCmd + 50;
+                    steeringPwmCmd = steeringPwmCmd - 50;
                     //RCLCPP_INFO(this->get_logger(),(("angle_error = " + to_string(angle_error) + "| dir = droite").data()));
                 } 
 

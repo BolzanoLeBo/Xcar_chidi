@@ -73,9 +73,9 @@ class detection: public rclcpp::Node {
 
     uint8_t lidar_front =0;
     uint8_t lidar_rear =0;
-    bool left_lidar; 
+    bool left_lidar= false; 
     bool obstacle_avoid = false;
-    bool right_lidar;
+    bool right_lidar =false;
     float right_min=100.0;
     float left_min=100.0;
 
@@ -217,15 +217,11 @@ class detection: public rclcpp::Node {
         
         int size = (int)scan.ranges.size();
         int delta = size/8;
-<<<<<<< HEAD
-        /*if (!print_list)
-=======
         float right_distance =0.0; 
         float left_distance =0.0;
         float left_count =0.0;
         float right_count = 0.0;
         /* if (!print_list)
->>>>>>> origin/XCAR-83-Start-implementing-obstable-avoidance
         {
           for (int i = 0; i < size; i++)
           {
@@ -233,11 +229,7 @@ class detection: public rclcpp::Node {
           }
           print_list = 1 ;
 
-<<<<<<< HEAD
-        }*/
-=======
         } */
->>>>>>> origin/XCAR-83-Start-implementing-obstable-avoidance
         float front_min = 12.0; 
         float rear_min = 12.0;
         right_min=100.0;
