@@ -222,7 +222,7 @@ function updateBatteryDisplay(message) {
     }
 }
 
-var updateTimeout;
+/*var updateTimeout;
 var updateDelay = 1000; // Délai en millisecondes (1 seconde)
 
 function updateBatteryDisplayDelayed(message) {
@@ -234,8 +234,8 @@ function updateBatteryDisplayDelayed(message) {
         // Appeler la fonction de mise à jour de la batterie
         updateBatteryDisplay(message);
     }, updateDelay);
-}
+}*/
 
-generalDataListener.subscribe(updateBatteryDisplayDelayed);
+generalDataListener.subscribe(updateBatteryDisplay);
 
 window.history.forward();
