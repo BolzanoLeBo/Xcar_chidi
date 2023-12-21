@@ -2,13 +2,15 @@ import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image, CameraInfo
 from rclpy.qos import QoSProfile, QoSReliabilityPolicy, QoSHistoryPolicy
-
+import time
+import websockets.client
+import asyncio
 import cv2
 import numpy as np
 from math import *
 
-from interfaces.msg import TrackingPosAngle
 from interfaces.msg import UserLost
+from interfaces.msg import TrackingPosAngle
 from interfaces.msg import State
 
 
@@ -16,50 +18,10 @@ from cv_bridge import CvBridge
 import cv2
 
 
-
-def detect_human(frame, net, layer_names, confidence_threshold=0.5):
-	height, width = frame.shape[:2]
-
-	# Create a blob from the frame and perform a forward pass
-	blob = cv2.dnn.blobFromImage(frame, 1/255.0, (416, 416), swapRB=True, crop=False)
-	net.setInput(blob)
-	outputs = net.forward(layer_names)
-
-	boxes = []
-	confidences = []
-	class_ids = []
-
-	for output in outputs:
-		for detection in output:
-			scores = detection[5:]
-			class_id = np.argmax(scores)
-			confidence = scores[class_id]
-
-			if confidence > confidence_threshold and class_id == 0:  # Class 0 corresponds to 'person' in the COCO dataset
-				center_x, center_y = int(detection[0] * width), int(detection[1] * height)
-				w, h = int(detection[2] * width), int(detection[3] * height)
-				x, y = int(center_x - w / 2), int(center_y - h / 2)
-
-				boxes.append([x, y, w, h])
-				confidences.append(float(confidence))
-				class_ids.append(class_id)
-
-	# Apply non-maximum suppression to eliminate redundant overlapping boxes
-	indices = cv2.dnn.NMSBoxes(boxes, confidences, confidence_threshold, 0.3)
-	best_rect = (0,0,0,0)
-	max_confidence = 0
-	for i in indices:
-		#i = i[0]
-		x, y, w, h = boxes[i]
-		cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-		cv2.putText(frame, 'Person', (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
-		if confidences[i] > max_confidence : 
-			best_rect = (x,y,w,h)
-			max_confidence = confidences[i]
-
-	xmax, ymax, wmax, hmax = best_rect
-	cv2.rectangle(frame, (xmax, ymax), (xmax+ wmax, ymax + hmax), (255, 0, 0), 2)		
-	return (frame, best_rect, len(indices)>0)
+def img_to_bytes(img) : 
+	_, bts = cv2.imencode('.jpg', img)
+	bts = bts.tobytes()
+	return bts
 
 def vector_rotation(v, theta): 
 	x = v[0]
@@ -71,7 +33,7 @@ def translation(v1,v2) :
 
 def get_angle(rect, sc, a, phi, d) :
 	#with :
-	#a the angle between the middle of the screen and the left side in the camera basis 
+	#a the angle between the right side of the screen and the left side in the camera basis 
 	#sc the screen_width
 	#phi the angle between the 0 degree of the lidar (right side of the car) and the 0 degree of the camera (front of the car) => ~ -pi/2
 	#v the translation vector between the lidar and the camera for us v = (0, d)
@@ -121,57 +83,53 @@ def get_angle(rect, sc, a, phi, d) :
 
 	return (theta1, theta2, theta_mid)
 
-def get_tracking_angle(frame, camera_angle, lidar_rotation, lidar_translation) : 
-	# Load YOLOv3 model
-	crop = 0
-	yolo_weights = "/root/Xcar_chidi/jetsonNano/ros2_ws/src/img_processing/img_processing/yolo/yolov3-tiny.weights"
-	yolo_config = "/root/Xcar_chidi/jetsonNano/ros2_ws/src/img_processing/img_processing/yolo/yolov3-tiny.cfg"
-	yolo_classes = "/root/Xcar_chidi/jetsonNano/ros2_ws/src/img_processing/img_processing/yolo/coco.names"
-
-	height, width = frame.shape[:2]
-	net	 = cv2.dnn.readNet(yolo_weights, yolo_config)
-	layer_names = net.getUnconnectedOutLayersNames()
-	if crop :
-		center_x, center_y = frame.shape[1] // 2, frame.shape[0] // 2
-		cropped_frame = cv2.getRectSubPix(frame, (height, height), (center_x, center_y))
-		target = ""
-		# Detect humans in the current frame
-		(new_frame, rect, person_detected) = detect_human(cropped_frame, net, layer_names)
-		screen_size = height
-	else : 
-		(new_frame, rect, person_detected) = detect_human(frame, net, layer_names)
-		screen_size = width
-	cv2.imwrite("/root/Xcar_chidi/img.png", new_frame)
-	#take the angle in the frame
-	if person_detected :
-		#we use height because the frame is a square
-		return (person_detected, get_angle(rect, screen_size, radians(camera_angle), radians(lidar_rotation), lidar_translation))
-	else : 
-		return (person_detected, (inf, inf, inf))
-
 class ImgProcessingNode(Node):
 	
 	def __init__(self):
 		super().__init__('img_processing_node')
-        
+        # Run the test code
 		qos_profile = QoSProfile(
 			reliability=QoSReliabilityPolicy.RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT,
 			history=QoSHistoryPolicy.RMW_QOS_POLICY_HISTORY_KEEP_LAST,
 			depth=1
 		)
 		self.subscriber_ = self.create_subscription(Image, 'image_raw', self.image_callback,qos_profile = qos_profile)
-		self.tracking_pos_angle_publisher_ = self.create_publisher(TrackingPosAngle,'tracking_pos_angle', 10)
 		self.user_lost_publisher_ = self.create_publisher(UserLost,'user_distance', 10)
 		self.state_subscriber_ = self.create_subscription(State, 'state', self.state_callback, 10)
+		self.tracking_pos_angle_publisher_ = self.create_publisher(TrackingPosAngle,'tracking_pos_angle', 10)
 		self.cv_image = []
-		self.timer = self.create_timer(1, self.img_ai) #1 second
+		self.timer = self.create_timer(0.5, self.img_ai) #1 seconds
+		self.rectangle = []
+		self.image_processed = False
+		self.websocket_init = False
 		self.state = 0
 		self.lost_counter = 0
 
 
 	#here we define how to update the angle value of the tracking
-	def state_callback(self, msg):
-		self.state = msg.current_state
+	async def send_message(self):
+		uri = "ws://localhost:9090"  # WebSocket server URI 
+		self.image_processed = False
+		bts = img_to_bytes(self.cv_image)
+
+		async with websockets.client.connect(uri) as websocket:
+			await websocket.send(bts)
+
+			# Wait for a response from the server
+			response = await websocket.recv()
+			#self.get_logger().info("resp : {} {} {}".format(response, type(response), response[0]))
+			self.rectangle = list(response)
+			# Removing brackets and splitting by comma
+			numbers_str = response.strip("[]").split(",")
+
+			# Converting each substring to an integer
+			self.rectangle = [int(num.strip()) for num in numbers_str]
+			#self.get_logger().info("rect : {}".format(self.rectangle))
+
+			self.image_processed = True
+				
+
+
 
 	def image_callback(self,msg):
 		bridge = CvBridge()
@@ -186,19 +144,34 @@ class ImgProcessingNode(Node):
 
 
 	def img_ai(self) : 
-		lost_treshold = 10
+		lost_treshold = 5 
 		lost_msg = UserLost()
 		if self.cv_image != [] :
+			asyncio.run(self.send_message())
 			tracking = TrackingPosAngle()
-			(human_detected, (a_min, a_max, a_cam), ) = get_tracking_angle(self.cv_image, 60, -90, [0,0])
-			if a_min >= a_max :
-				tracking.min_angle = a_max
-				tracking.max_angle = a_min
-			else :
-				tracking.min_angle = a_min
-				tracking.max_angle = a_max
-			tracking.cam_angle = a_cam
-			tracking.person_detected = human_detected
+			while not self.image_processed : 
+				time.sleep(0.0001)
+			
+			[x1,y1,x2,y2] = self.rectangle
+			if self.rectangle != [0,0,0,0] : 
+				height, width = self.cv_image.shape[:2]
+				(a_min, a_max, a_cam) = get_angle([x1,y1, x2-x1, y2-y1], width, radians(60), radians(-90), [0,0])
+				#self.get_logger().info("angle : {}".format(a_cam))
+				if a_min >= a_max :
+					tracking.min_angle = a_max
+					tracking.max_angle = a_min
+				else :
+					tracking.min_angle = a_min
+					tracking.max_angle = a_max
+				tracking.cam_angle = float(round(a_cam))
+				tracking.person_detected = True
+				human_detected = True
+			else : 
+				tracking.person_detected = False 
+				tracking.min_angle = float('inf') 
+				tracking.max_angle = float('inf') 
+				tracking.cam_angle = float('inf') 
+				human_detected = False
 
 			if self.state == 3 : 
 				if not human_detected :

@@ -17,11 +17,11 @@
 #include "interfaces/msg/userdistance.hpp"
 #include "interfaces/msg/tracking_pos_angle.hpp"
 #define LIM_US 70
-#define LIM_AVOID_US 70
-#define LIM_NON_AVOID_US 60
+#define LIM_AVOID_US 60
+#define LIM_NON_AVOID_US 50
 #define LIM_LIDAR_FRONT 1.70
 #define LIM_LIDAR_REAR 0.70
-#define LIM_LIDAR_AVOID 2.50
+#define LIM_LIDAR_AVOID 1.50
 #include "../include/detection/detection_node.h"
 
 using namespace std;
@@ -165,14 +165,14 @@ class detection: public rclcpp::Node {
         us_front_big = 0;
         us_front_left = 0;
         us_front_center = 0 ;
-        }else if (!us_front_center && !us_front_right && !us_front_left){
+        } else if( (!us_front_center && !us_front_right && !us_front_left) || (obstacle_avoid  ==false)){
         us_front_right= 0;
         us_front_big = 0;
         us_front_left = 0;
         us_front_center = 0 ;
         }
 
-        if ((ultrasonic.front_center <= LIM_NON_AVOID_US)){
+        if ((ultrasonic.front_center <= LIM_NON_AVOID_US && (obstacle_avoid == true))){
         us_front_big= 1;
         } 
         
@@ -366,7 +366,7 @@ class detection: public rclcpp::Node {
       auto obstacleMsg = interfaces::msg::Obstacles();
       auto sideMsg = interfaces::msg::SideObstacles();
       auto obstacleId = interfaces::msg::ObstaclesId();
-
+  
       obstacleId.obstacle_left = us_front_left;
       obstacleId.obstacle_right = us_front_right;
       obstacleId.obstacle_middle = us_front_center;
