@@ -11,6 +11,7 @@
 #include "interfaces/msg/joystick_order.hpp"
 #include "interfaces/msg/state.hpp"
 #include "interfaces/msg/ultrasonic.hpp"
+#include "interfaces/msg/userdistance.hpp"
 #include "interfaces/msg/tracking_pos_angle.hpp"
 
 
@@ -52,8 +53,12 @@ public:
         subscription_motors_feedback_ = this->create_subscription<interfaces::msg::MotorsFeedback>(
         "motors_feedback", 10, std::bind(&car_control::motorsFeedbackCallback, this, _1));        
 
-        subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
-        "us_data", 10, std::bind(&car_control::distanceCallback, this, _1));
+        /*subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
+        "us_data", 10, std::bind(&car_control::distanceCallback, this, _1));*/
+
+        subscription_user_distance_ = this->create_subscription<interfaces::msg::Userdistance>(
+        "userdistance", 10, std::bind(&car_control::distanceCallback, this, _1));
+
 
         subscription_tracking_angle_ = this->create_subscription<interfaces::msg::TrackingPosAngle>(
         "tracking_pos_angle", 10, std::bind(&car_control::angleFromLidar, this, _1));
@@ -94,8 +99,13 @@ private:
         currentLeftSpeed = motorsFeedback.left_rear_speed;
     }
 
-    void distanceCallback(const interfaces::msg::Ultrasonic & ultrasonic) {
+    /*void distanceCallback(const interfaces::msg::Ultrasonic & ultrasonic) {
         currentRightDistance = ultrasonic.front_center;
+        currentLeftDistance = currentRightDistance;
+    }*/
+
+    void distanceCallback(const interfaces::msg::Userdistance & lidar) {
+        currentRightDistance = (lidar.distance_tracking -1) * 100;
         currentLeftDistance = currentRightDistance;
     }
     
@@ -156,8 +166,33 @@ private:
             //Tracking Mode
             else if (previous_state==3){
                 compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
-                steeringPwmCmd = 50;
+                //steeringPwmCmd = 50;
                 reinit = 0;
+
+                angle_error = desiredAngle/MAX_ANGLE - currentAngle; // [-2;2]
+                direction = angle_error >= 0;
+
+                //steeringPwmCmd = steeringPwmCmd_last + 0.9*angle_error + (2*0.001-0.9)*angle_error_last;
+                angle_error = abs(angle_error)*25;
+                
+                // Control law
+                steeringPwmCmd = 5*angle_error;
+
+                // Saturation
+                if(steeringPwmCmd > 50) steeringPwmCmd = 50;
+                else if (steeringPwmCmd < 0) steeringPwmCmd = 0;
+
+                // Direction : true -> left | false -> right
+                if(direction)
+                {
+                    steeringPwmCmd = steeringPwmCmd + 50;
+                    //RCLCPP_INFO(this->get_logger(),(("angle_error = " + to_string(angle_error) + "| dir = gauche | PWM").data()));
+                } 
+                else
+                {
+                    steeringPwmCmd = steeringPwmCmd - 50;
+                    //RCLCPP_INFO(this->get_logger(),(("angle_error = " + to_string(angle_error) + "| dir = droite").data()));
+                }
             }
 
             //Send order to motorsOrder2
@@ -181,8 +216,33 @@ private:
             //Tracking Mode
             else if (state==3){
                 compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
-                steeringPwmCmd = 50;
+                //steeringPwmCmd = 50;
                 reinit = 0;
+
+                angle_error = desiredAngle/MAX_ANGLE - currentAngle; // [-2;2]
+                direction = angle_error >= 0;
+
+                //steeringPwmCmd = steeringPwmCmd_last + 0.9*angle_error + (2*0.001-0.9)*angle_error_last;
+                angle_error = abs(angle_error)*25;
+                
+                // Control law
+                steeringPwmCmd = 5*angle_error;
+
+                // Saturation
+                if(steeringPwmCmd > 50) steeringPwmCmd = 50;
+                else if (steeringPwmCmd < 0) steeringPwmCmd = 0;
+
+                // Direction : true -> left | false -> right
+                if(direction)
+                {
+                    steeringPwmCmd = steeringPwmCmd + 50;
+                    //RCLCPP_INFO(this->get_logger(),(("angle_error = " + to_string(angle_error) + "| dir = gauche | PWM").data()));
+                } 
+                else
+                {
+                    steeringPwmCmd = steeringPwmCmd - 50;
+                    //RCLCPP_INFO(this->get_logger(),(("angle_error = " + to_string(angle_error) + "| dir = droite").data()));
+                }
             }
             
             //Autonomous mode
@@ -275,11 +335,12 @@ private:
 
     //Subscribers
     rclcpp::Subscription<interfaces::msg::JoystickOrder>::SharedPtr subscription_joystick_order_;
-    rclcpp::Subscription<interfaces::msg::Ultrasonic>::SharedPtr subscription_ultrasonic_sensor_;
+    //rclcpp::Subscription<interfaces::msg::Ultrasonic>::SharedPtr subscription_ultrasonic_sensor_;
     rclcpp::Subscription<interfaces::msg::MotorsFeedback>::SharedPtr subscription_motors_feedback_;
     rclcpp::Subscription<interfaces::msg::SteeringCalibration>::SharedPtr subscription_steering_calibration_;
     rclcpp::Subscription<interfaces::msg::State>::SharedPtr subscription_state_;
     rclcpp::Subscription<interfaces::msg::TrackingPosAngle>::SharedPtr subscription_tracking_angle_;
+    rclcpp::Subscription<interfaces::msg::Userdistance>::SharedPtr subscription_user_distance_ ;
 
 
     //Timer
