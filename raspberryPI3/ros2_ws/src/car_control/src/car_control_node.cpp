@@ -258,7 +258,7 @@ private:
                     
                     // Control law
                     //steeringPwmCmd = 5*angle_error;
-                    steeringPwmCmd = ((1.8+2*Ts)*angle_error+(2*Ts-1.8)*angle_error_last+2*Ts*steeringPwmCmd_last)/(2*Ts)
+                    steeringPwmCmd = ((1.8+2*Ts)*angle_error+(2*Ts-1.8)*angle_error_last+2*Ts*steeringPwmCmd_last)/(2*Ts);
 
                     // Saturation
                     if(steeringPwmCmd > 50) steeringPwmCmd = 50;
