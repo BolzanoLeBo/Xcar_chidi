@@ -254,11 +254,15 @@ private:
                 angle_error = abs(angle_error)*25;
                 
                 // Control law
-                steeringPwmCmd = 5*angle_error;
+                //steeringPwmCmd = 5*angle_error;
+                steeringPwmCmd = ((1.8+2*Ts)*angle_error+(2*Ts-1.8)*angle_error_last+2*Ts*steeringPwmCmd_last)/(2*Ts)
 
                 // Saturation
                 if(steeringPwmCmd > 50) steeringPwmCmd = 50;
                 else if (steeringPwmCmd < 0) steeringPwmCmd = 0;
+
+                angle_error_last = angle_error;
+                steeringPwmCmd_last = steeringPwmCmd;
 
                 // Direction : true -> left | false -> right
                 if(direction)
@@ -321,12 +325,14 @@ private:
     float desiredAngle;
     float keepAngle = 0;
     float angle_error;
+    float angle_error_last = 0;
     float lastDesiredAngle = 0;
 
     //Control variables
     uint8_t leftRearPwmCmd;
     uint8_t rightRearPwmCmd;
     uint8_t steeringPwmCmd;
+    uint8_t steeringPwmCmd_last = 0;
 
     //Publishers
     rclcpp::Publisher<interfaces::msg::MotorsOrder>::SharedPtr publisher_can_;
