@@ -20,6 +20,7 @@
 #include "../include/car_control/propulsionCmd.h"
 #include "../include/car_control/control_loop.h"
 #include "../include/car_control/car_control_node.h"
+#include "../include/car_control/avoidance_control.h"
 
 using namespace std;
 using placeholders::_1;
@@ -50,7 +51,10 @@ public:
         "state", 10, std::bind(&car_control::stateCallback, this, _1));
 
         subscription_motors_feedback_ = this->create_subscription<interfaces::msg::MotorsFeedback>(
-        "motors_feedback", 10, std::bind(&car_control::motorsFeedbackCallback, this, _1));        
+        "motors_feedback", 10, std::bind(&car_control::motorsFeedbackCallback, this, _1)); 
+
+        subscription_avoidance_parameters_ = this->create_subscription<interfaces::msg::AvoidanceParameters>( // 
+        "avoidance_parameters", 10, std::bind(&motion_planning::avoidanceParametersCallback, this, _1));
 
         subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
         "us_data", 10, std::bind(&car_control::distanceCallback, this, _1));
@@ -125,6 +129,12 @@ private:
     * - requestedThrottle, reverse, requestedSteerAngle [from joystick orders]
     * - currentAngle [from motors feedback]
     */
+    void avoidanceParametersCallback(const interfaces::msg::AvoidanceParameters & avoidanceParamMsg)
+    {
+        big = avoidanceParamMsg.big ;
+        left = avoidanceParamMsg.left;
+        obstacle = avoidanceParam.obstacle;
+    }
 
     void stateCallback(const interfaces::msg::State & state_msg){
         state = state_msg.current_state;
@@ -158,6 +168,7 @@ private:
                 compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
                 steeringPwmCmd = 50;
                 reinit = 0;
+                avoidTurn( left,  big,, obstacle,rightRearPwmCmd, leftRearPwmCmd)
             }
 
             //Send order to motorsOrder2
