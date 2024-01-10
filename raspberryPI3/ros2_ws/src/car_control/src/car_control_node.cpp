@@ -268,7 +268,7 @@ private:
                     } 
 
                     if(leftRearPwmCmd < 0 || rightRearPwmCmd < 0){
-                        tmp uint8_t = leftRearPwmCmd;
+                        uint8_t tmp = leftRearPwmCmd;
                         leftRearPwmCmd = rightRearPwmCmd;
                         rightRearPwmCmd = tmp;
 
@@ -285,7 +285,6 @@ private:
                 if(abs(desiredAngle - currentAngle*MAX_ANGLE) > 2)
                 {
                     direction = angle_error >= 0; // Gauche - Droite
-                    forward = PWM_order < 0;
 
                     //steeringPwmCmd = steeringPwmCmd_last + 0.9*angle_error + (2*0.001-0.9)*angle_error_last;
                     angle_error = abs(angle_error)*25;
