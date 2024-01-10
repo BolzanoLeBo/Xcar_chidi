@@ -1,28 +1,60 @@
-#include "../include/car_control/avoidance_control.h"
+#include <stdint.h>
+#include <unistd.h> // Include the necessary library for sleep function
 
-
-void avoidTurn(bool left, bool big,, bool obstacle, uint8_t& rightRearPwmCmd, uint8_t& leftRearPwmCmd) {
+void avoidTurn(bool left, bool big, bool avoidance, uint8_t &steeringPwmCmd) {
     const uint8_t maxPWM = 100;
     const uint8_t stopPWM = 50;
+    const int turnTime = 3; // Time to turn in seconds
 
-    if (obstacle)
-    {
+    if (avoidance) {
         if (left && !big) {
-            // Trajectoire qui tourne à gauche
-            rightRearPwmCmd = maxPWM;
-            leftRearPwmCmd = stopPWM + 10;
+            // Short Right
+            steeringPwmCmd = 25;
+
+            // Implement the timer to turn for 3 seconds
+            sleep(turnTime);
+
+            // Set the steering back to straight
+            steeringPwmCmd = stopPWM;
+
+            // Implement the timer to go straight for 3 seconds
+            sleep(turnTime);
         } else if (!left && !big) {
-            // Trajectoire qui tourne à droite
-            rightRearPwmCmd = 0;
-            leftRearPwmCmd = maxPWM;
+            // Short Left
+            steeringPwmCmd = 75;
+            
+            // Implement the timer to turn for 3 seconds
+            sleep(turnTime);
+
+            // Set the steering back to straight
+            steeringPwmCmd = stopPWM;
+
+            // Implement the timer to go straight for 3 seconds
+            sleep(turnTime);
         } else if (big && left) {
-            // Commande pour reculer et ensuite aller à gauche
-            rightRearPwmCmd = stopPWM / 2;  // Exemple : demi-vitesse en marche arrière
-            leftRearPwmCmd = 0;
+            // Big Right
+            steeringPwmCmd = 0;
+
+            // Implement the timer to turn for 3 seconds
+            sleep(turnTime);
+
+            // Set the steering back to straight
+            steeringPwmCmd = stopPWM;
+
+            // Implement the timer to go straight for 3 seconds
+            sleep(turnTime);
         } else if (big && !left) {
-            // Commande pour reculer et ensuite aller à droite
-            rightRearPwmCmd = 0;
-            leftRearPwmCmd = stopPWM / 2;  // Exemple : demi-vitesse en marche arrière
+            // Big Left
+            steeringPwmCmd = 100;
+
+            // Implement the timer to turn for 3 seconds
+            sleep(turnTime);
+
+            // Set the steering back to straight
+            steeringPwmCmd = stopPWM;
+
+            // Implement the timer to go straight for 3 seconds
+            sleep(turnTime);
         }
     }
 }

@@ -144,6 +144,7 @@ private:
     void updateCmd(){
 
         auto motorsOrder = interfaces::msg::MotorsOrder();
+        bool avoidance;
         //emergency idle or security
         if (state == 5 or state == 0 or state == 4){    //Car stopped
             leftRearPwmCmd = STOP;
@@ -168,7 +169,12 @@ private:
                 compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
                 steeringPwmCmd = 50;
                 reinit = 0;
-                avoidTurn( left,  big,, obstacle,rightRearPwmCmd, leftRearPwmCmd)
+                if (obstacle)
+                {
+                    avoidance = True;
+                    avoidTurn(left,  big, avoidance,steeringPwmCmd);
+                }
+                
             }
 
             //Send order to motorsOrder2
@@ -194,6 +200,11 @@ private:
                 compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
                 steeringPwmCmd = 50;
                 reinit = 0;
+                if (obstacle)
+                {
+                    avoidance = True;
+                    avoidTurn(left,  big, avoidance,steeringPwmCmd);
+                }
             }
             
             //Autonomous mode

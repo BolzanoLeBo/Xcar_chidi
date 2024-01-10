@@ -5,6 +5,6 @@
 #include <stdint.h>
 
 
-void avoidTurn(bool left, bool big, uint8_t& rightRearPwmCmd, uint8_t& leftRearPwmCmd);
+void avoidTurn(bool left, bool big, bool avoidance, uint8_t& steeringPwmCmd);
 
 #endif /*__avoidance_control_H */
