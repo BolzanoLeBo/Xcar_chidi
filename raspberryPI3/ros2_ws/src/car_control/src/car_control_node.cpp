@@ -334,10 +334,10 @@ private:
     int previous_state = -1;
     int reinit = 1;
     bool direction = false;
-    bool forward = false;
     
     //Motors feedback variables
     float currentAngle;
+    float coeff_attenuation = 0;
     float currentLeftSpeed;
     float currentRightSpeed;
 
