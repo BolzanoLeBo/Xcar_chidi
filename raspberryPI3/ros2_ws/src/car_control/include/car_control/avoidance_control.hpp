@@ -1,6 +1,6 @@
 // your_class.hpp
-#ifndef YOUR_CLASS_HPP
-#define YOUR_CLASS_HPP
+#ifndef AVOIDANCE_CONTROL_HPP
+#define AVOIDANCE_CONTROL_HPP
 
 #include <rclcpp/rclcpp.hpp>
 #include <chrono>
