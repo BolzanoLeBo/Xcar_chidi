@@ -12,6 +12,7 @@
 #include "interfaces/msg/state.hpp"
 #include "interfaces/msg/ultrasonic.hpp"
 #include "interfaces/msg/tracking_pos_angle.hpp"
+#include "interfaces/msg/avoidance_parameters.hpp"
 
 
 #include "std_srvs/srv/empty.hpp"
@@ -53,8 +54,8 @@ public:
         subscription_motors_feedback_ = this->create_subscription<interfaces::msg::MotorsFeedback>(
         "motors_feedback", 10, std::bind(&car_control::motorsFeedbackCallback, this, _1)); 
 
-        subscription_avoidance_parameters_ = this->create_subscription<interfaces::msg::AvoidanceParameters>( // 
-        "avoidance_parameters", 10, std::bind(&motion_planning::avoidanceParametersCallback, this, _1));
+        subscription_avoidance_parameters_ = this->create_subscription<interfaces::msg::AvoidanceParameters>(  
+        "avoidance_parameters", 10, std::bind(&car_control::avoidanceParametersCallback, this, _1));
 
         subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
         "us_data", 10, std::bind(&car_control::distanceCallback, this, _1));
@@ -133,7 +134,7 @@ private:
     {
         big = avoidanceParamMsg.big ;
         left = avoidanceParamMsg.left;
-        obstacle = avoidanceParam.obstacle;
+        obstacle = avoidanceParamMsg.obstacle;
     }
 
     void stateCallback(const interfaces::msg::State & state_msg){
@@ -171,7 +172,7 @@ private:
                 reinit = 0;
                 if (obstacle)
                 {
-                    avoidance = True;
+                    avoidance = true;
                     avoidTurn(left,  big, avoidance,steeringPwmCmd);
                 }
                 
@@ -202,7 +203,7 @@ private:
                 reinit = 0;
                 if (obstacle)
                 {
-                    avoidance = True;
+                    avoidance = true;
                     avoidTurn(left,  big, avoidance,steeringPwmCmd);
                 }
             }
@@ -276,6 +277,9 @@ private:
     float requestedThrottle;
     float requestedSteerAngle;
     bool reverse;
+    bool left;
+    bool big;
+    bool obstacle;
     
     bool reverseValue;
     float throttleValue;
@@ -302,6 +306,7 @@ private:
     rclcpp::Subscription<interfaces::msg::SteeringCalibration>::SharedPtr subscription_steering_calibration_;
     rclcpp::Subscription<interfaces::msg::State>::SharedPtr subscription_state_;
     rclcpp::Subscription<interfaces::msg::TrackingPosAngle>::SharedPtr subscription_tracking_angle_;
+    rclcpp::Subscription<interfaces::msg::AvoidanceParameters>::SharedPtr subscription_avoidance_parameters_;
 
 
     //Timer
