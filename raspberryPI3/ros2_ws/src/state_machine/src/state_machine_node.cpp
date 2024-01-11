@@ -285,7 +285,7 @@ private:
         }
 
         // -> manual
-        if (buttonY || webButtonManual)
+        else if (buttonY || webButtonManual)
         {
           current_state = 1;
           RCLCPP_INFO(this->get_logger(), ("auto->manual"));
@@ -309,7 +309,7 @@ private:
           RCLCPP_INFO(this->get_logger(), ("tracking->idle"));
         }
 
-        if (obstacle_ar && dir_ar)
+        else if ((dir_av && obstacle_av) || (dir_ar && obstacle_ar))
         {
           current_state = 4;
           RCLCPP_INFO(this->get_logger(), ("tracking->security"));
@@ -322,7 +322,7 @@ private:
         }
 
         // -> manual
-        if (buttonY || webButtonManual)
+        else if (buttonY || webButtonManual)
         {
           current_state = 1;
           RCLCPP_INFO(this->get_logger(), ("tracking->manual"));
@@ -335,7 +335,7 @@ private:
           current_state = 1;
           RCLCPP_INFO(this->get_logger(), ("sec->man"));
         }
-        else if (((!obstacle_av && !obstacle_ar) || (dir_av && !obstacle_av)) && connexion && (stock_previous_state==3)) {
+        else if (((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar) || (dir_av && !obstacle_av)) && connexion &&  (stock_previous_state==3)) {
           current_state = 3;
           RCLCPP_INFO(this->get_logger(), ("sec->track"));
         }

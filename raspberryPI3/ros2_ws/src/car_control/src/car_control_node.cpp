@@ -166,7 +166,6 @@ private:
             //Tracking Mode
             else if (previous_state==3){
                 compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
-                //steeringPwmCmd = 50;
                 reinit = 0;
 
                 angle_error = desiredAngle/MAX_ANGLE - currentAngle; // [-2;2]
@@ -179,7 +178,7 @@ private:
                     
                     // Control law
                     //steeringPwmCmd = 5*angle_error;
-                    steeringPwmCmd = ((1.8+2*Ts)*angle_error+(2*Ts-1.8)*angle_error_last+2*Ts*steeringPwmCmd_last)/(2*Ts);
+                    steeringPwmCmd = ((1.8+2*Ts)*angle_error+(2*Ts-1.8)*angle_error_last+2*Ts*steeringPwmCmd_last)/(2*Ts);                 
 
                     // Saturation
                     if(steeringPwmCmd > 50) steeringPwmCmd = 50;
@@ -189,17 +188,29 @@ private:
                     angle_error_last = angle_error;
                     steeringPwmCmd_last = steeringPwmCmd;
 
+                    // Decoupling wheels
+                    coeff_attenuation = abs(currentAngle*20);
+
                     // Direction : true -> left | false -> right
                     if(direction)
                     {
                         steeringPwmCmd = steeringPwmCmd + 50;
+                        //leftRearPwmCmd = leftRearPwmCmd - coeff_attenuation;
+                        //if(leftRearPwmCmd < 50) leftRearPwmCmd = 50;
                         //RCLCPP_INFO(this->get_logger(),(("angle_error = " + to_string(angle_error) + "| dir = gauche | PWM").data()));
                     } 
                     else
                     {
-                        steeringPwmCmd = steeringPwmCmd - 50;
+                        steeringPwmCmd =  50 - steeringPwmCmd;
+                        //rightRearPwmCmd = rightRearPwmCmd - coeff_attenuation;
+                        //if(rightRearPwmCmd < 50) rightRearPwmCmd = 50;
                         //RCLCPP_INFO(this->get_logger(),(("angle_error = " + to_string(angle_error) + "| dir = droite").data()));
                     } 
+
+                    if(leftRearPwmCmd < 50 || rightRearPwmCmd < 50){
+                        steeringPwmCmd = 100 - steeringPwmCmd;
+
+                    }
                 }else{
                     steeringPwmCmd = steeringPwmCmd_last;
                 }  
@@ -255,22 +266,20 @@ private:
                     if(direction)
                     {
                         steeringPwmCmd = steeringPwmCmd + 50;
-                        leftRearPwmCmd = leftRearPwmCmd - coeff_attenuation;
-                        if(leftRearPwmCmd < 50) leftRearPwmCmd = 50;
+                        //leftRearPwmCmd = leftRearPwmCmd - coeff_attenuation;
+                        //if(leftRearPwmCmd < 50) leftRearPwmCmd = 50;
                         //RCLCPP_INFO(this->get_logger(),(("angle_error = " + to_string(angle_error) + "| dir = gauche | PWM").data()));
                     } 
                     else
                     {
-                        steeringPwmCmd = steeringPwmCmd - 50;
-                        rightRearPwmCmd = rightRearPwmCmd - coeff_attenuation;
-                        if(rightRearPwmCmd < 50) rightRearPwmCmd = 50;
+                        steeringPwmCmd =  50 - steeringPwmCmd;
+                        //rightRearPwmCmd = rightRearPwmCmd - coeff_attenuation;
+                        //if(rightRearPwmCmd < 50) rightRearPwmCmd = 50;
                         //RCLCPP_INFO(this->get_logger(),(("angle_error = " + to_string(angle_error) + "| dir = droite").data()));
                     } 
 
-                    if(leftRearPwmCmd < 0 || rightRearPwmCmd < 0){
-                        uint8_t tmp = leftRearPwmCmd;
-                        leftRearPwmCmd = rightRearPwmCmd;
-                        rightRearPwmCmd = tmp;
+                    if(leftRearPwmCmd < 50 || rightRearPwmCmd < 50){
+                            steeringPwmCmd = 100 - steeringPwmCmd;
 
                     }
                 }else{
@@ -322,6 +331,9 @@ private:
         motorsOrder.steering_pwm = steeringPwmCmd;
 
         publisher_can_->publish(motorsOrder);
+
+        //Send order to motorsOrder2
+        publisher_motors_order_->publish(motorsOrder);
         }
     }
 
