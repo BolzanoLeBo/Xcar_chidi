@@ -148,7 +148,6 @@ private:
         if (state == 5 or state == 0 or state == 4){    //Car stopped
             leftRearPwmCmd = STOP;
             rightRearPwmCmd = STOP;
-            steeringPwmCmd = STOP;
 
             //Send order to motors
             motorsOrder.left_rear_pwm = leftRearPwmCmd;
@@ -376,7 +375,7 @@ private:
     //Control variables
     uint8_t leftRearPwmCmd;
     uint8_t rightRearPwmCmd;
-    uint8_t steeringPwmCmd;
+    uint8_t steeringPwmCmd = STOP;
     uint8_t steeringPwmCmd_last = 0;
 
     //Publishers
