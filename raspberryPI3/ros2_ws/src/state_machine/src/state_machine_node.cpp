@@ -17,6 +17,7 @@
 #include "interfaces/msg/joystick_order.hpp"
 #include "interfaces/msg/web_mode.hpp" 
 #include "interfaces/msg/motors_order.hpp"
+#include "interfaces/msg/user_lost.hpp"
 
 #define DEADZONE_LT_RT 0.15     // %
 #define DEADZONE_LS_X_LEFT 0.4  // %
@@ -24,6 +25,27 @@
 
 #define STOP 0
 #define CENTER 0
+
+const std::string state_names[6] = {"idle", "Manual", "Autonomous", "Tracking", "Security", "Emergency"};
+const std::string obstacle_detect[2] = {"No obstacle", "Obstacle on the way"};
+
+int dir_av = 0;
+int dir_ar = 0;
+int obstacle_av = 0;
+int obstacle_ar = 0;
+int unavoidable = 0;
+int emergency_btn = 1;
+int connexion = 0;
+int sensor = 0;
+//int tab[1] = {0};
+
+
+int previous_state = -1;
+int stock_previous_state = -1;
+int current_state = 0;
+
+int obstacle = 0;
+bool human_lost = false;
 
 using namespace std;
 using placeholders::_1;
@@ -48,6 +70,8 @@ public:
         "web_mode", 10, std::bind(&state_machine::webCallback, this, _1));
     subscription_motors_order_ = this->create_subscription<interfaces::msg::MotorsOrder>(
         "motors_order2", 10, std::bind(&state_machine::motorsOrderCallback, this, _1));
+    subscription_user_lost_ = this->create_subscription<interfaces::msg::UserLost>(
+        "user_lost", 10, std::bind(&state_machine::userLostCallback, this, _1));
     client_count_sub = this->create_subscription<std_msgs::msg::Int32>(
         "client_count", 10, std::bind(&state_machine::clientCountCallback, this, _1));
 
@@ -99,26 +123,9 @@ private:
   rclcpp::Subscription<interfaces::msg::Obstacles>::SharedPtr subscription_obstacles_;
   rclcpp::Subscription<interfaces::msg::WebMode>::SharedPtr subscription_web_mode_;
   rclcpp::Subscription<interfaces::msg::MotorsOrder>::SharedPtr subscription_motors_order_;
+  rclcpp::Subscription<interfaces::msg::UserLost>::SharedPtr subscription_user_lost_;
   // Timer
   rclcpp::TimerBase::SharedPtr timer_;
-
-  int dir_av = 0;
-  int dir_ar = 0;
-  int obstacle_av = 0;
-  int obstacle_ar = 0;
-  int unavoidable = 0;
-  int emergency_btn = 1;
-
-  int connexion = 0;
-  int sensor = 0;
-
-  std::string state_names[6] = {"idle", "Manual", "Autonomous", "Tracking", "Security", "Emergency"};
-  std::string obstacle_detect[2] = {"No obstacle", "Obstacle on the way"};
-  int previous_state = -1;
-  int stock_previous_state = -1;
-  int current_state = 0;
-
-  int obstacle = 0;
 
   // Joystick variables
   map<string, int> axisMap;
@@ -309,7 +316,7 @@ private:
           RCLCPP_INFO(this->get_logger(), ("tracking->idle"));
         }
 
-        else if ((dir_av && obstacle_av) || (dir_ar && obstacle_ar))
+        else if ((dir_av && obstacle_av) || (dir_ar && obstacle_ar) || (human_lost))
         {
           current_state = 4;
           RCLCPP_INFO(this->get_logger(), ("tracking->security"));
@@ -335,7 +342,7 @@ private:
           current_state = 1;
           RCLCPP_INFO(this->get_logger(), ("sec->man"));
         }
-        else if (((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar) || (dir_av && !obstacle_av)) && connexion &&  (stock_previous_state==3)) {
+        else if (((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar) || (dir_av && !obstacle_av)) && connexion &&  (stock_previous_state==3) && !(human_lost)) {
           current_state = 3;
           RCLCPP_INFO(this->get_logger(), ("sec->track"));
         }
@@ -518,6 +525,10 @@ private:
     }
   }
 
+  void userLostCallback(const interfaces::msg::UserLost &userLost)
+  {
+    human_lost = userLost.lost;
+  } 
   //void changeModeCallback()
   //{
   //  connexion=0;
