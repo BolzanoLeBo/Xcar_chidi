@@ -7,6 +7,8 @@
 #include <stdint.h>
 #include <string.h>
 #include <map>
+#include <vector>
+#include <string>
 
 // #include "state_machne/srv/StateMemory.hpp"
 #include "sensor_msgs/msg/joy.hpp"
@@ -28,11 +30,22 @@
 
 const std::string state_names[6] = {"idle", "Manual", "Autonomous", "Tracking", "Security", "Emergency"};
 const std::string obstacle_detect[2] = {"No obstacle", "Obstacle on the way"};
+std::vector<bool> conditions;
+const std::vector<std::string> reasons = {
+        "Sensor dead",
+        "Sensor dead + Human lost",
+        "Nothing",
+        "Human lost ",
+        "Obstacle detected and sensor dead",
+        "Obstacle detected and sensor dead and Human lost",
+        "Obstacle detected",
+        "Obstacle detected and Human Lost"
+};
 
 int dir_av = 0;
 int dir_ar = 0;
-int obstacle_av = 0;
-int obstacle_ar = 0;
+bool obstacle_av = false;
+bool obstacle_ar = false;
 int unavoidable = 0;
 int emergency_btn = 1;
 int connexion = 0;
@@ -43,8 +56,10 @@ int previous_state = -1;
 int stock_previous_state = -1;
 int current_state = 0;
 
-int obstacle = 0;
+bool obstacle = false;
 bool human_lost = false;
+
+int message_index = 0;
 
 using namespace std;
 using placeholders::_1;
@@ -378,11 +393,18 @@ private:
       stateMsg.current_state = current_state;
       stateMsg.previous_state = previous_state;
       stock_previous_state = previous_state;
-      stateMsg.state_name = state_names[current_state];
-      stateMsg.obstacle_detect = obstacle_detect[obstacle];
-      publisher_state_->publish(stateMsg);
       RCLCPP_INFO(this->get_logger(), ("From : " + state_names[previous_state] + "Switching to another state : " + state_names[current_state]).data());
-      RCLCPP_INFO(this->get_logger(), ("change because obstacle ? " + obstacle_detect[obstacle]).data());
+      if (previous_state == 4) {
+
+        conditions = {obstacle, sensor, human_lost};
+        message_index = 0;
+        for (size_t i = 0; i < conditions.size(); ++i) {
+            message_index = 2 * message_index + (conditions[i] ? 1 : 0);
+        }
+        RCLCPP_INFO(this->get_logger(), ("change because ? " + reasons[message_index]).data());
+      }
+      stateMsg.message_index = message_index;
+      publisher_state_->publish(stateMsg);
       previous_state = current_state;
 
       // Save file
@@ -422,7 +444,6 @@ private:
     if (obstacle_msg.front)
     {
       obstacle_av = 1;
-      obstacle = 1;
     }
     else
     {
@@ -431,12 +452,12 @@ private:
     if (obstacle_msg.rear)
     {
       obstacle_ar = 1;
-      obstacle = 1;
     }
     else
     {
       obstacle_ar = 0;
     }
+    obstacle = (obstacle_av || obstacle_ar);
     //RCLCPP_INFO(this->get_logger(), "Publishing: %d", obstacle_ar);
   }
 

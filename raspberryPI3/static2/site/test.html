@@ -46,9 +46,9 @@
             <div id="securityDiv">
                 <h1 class="larger-text">X-Car</h1>
                 <h2>Security Mode</h2>
-                <h2 class="blinking alarm">Obstacle detected</h2>
+                <h2 class="blinking alarm" id="securityMessage">Obstacle detected</h2>
                 <div id="stateData" class="hidden"></div>
-                <h2><em class="italic-text">Obstacles have been detected, please check around the vehicle.</em></h2>
+                <h2><em class="italic-text" id="securityDescription">Obstacles have been detected, please check around the vehicle.</em></h2>
                 <img src="./images/obstacle.png" alt="Obstacle" class="controller-image">
                 <div class="button-container">
                     <buttonE onclick="redirectAndSelectMode('emergency.html', 4)">Emergency Mode</buttonE>
@@ -154,6 +154,59 @@
         let currentState = 'idle';
         let previousState = null;
 
+        var securityMessages = [
+            {
+                message: 'Sensor dead',
+                description: 'Sensor failure, please check sensors.'
+            },
+            {
+                message: 'Sensor dead + Human lost',
+                description: 'Sensor failure and human lost, please check sensors and search for the person.'
+            },
+            {
+                message: 'Nothing',
+                description: 'No issues reported.'
+            },
+            {
+                message: 'Human lost',
+                description: 'Human lost, please search for the person.'
+            },
+            {
+                message: 'Obstacle detected and sensor dead',
+                description: 'Obstacles and sensor failure detected, please check sensors.'
+            },
+            {
+                message: 'Obstacle detected and sensor dead and Human lost',
+                description: 'Obstacles, sensor failure, and human lost detected, please check sensors and search for the person.'
+            },
+            {
+                message: 'Obstacle detected',
+                description: 'Obstacles have been detected, please check around the vehicle.'
+            },
+            {
+                message: 'Obstacle detected and Human Lost',
+                description: 'Obstacles detected and human lost, please check around the vehicle and search for the person.'
+            }
+        ];
+
+    function updateSecurityMessage(message_index) {
+        var securityMessageElement = document.getElementById('securityMessage');
+        var securityDescriptionElement = document.getElementById('securityDescription');
+
+        // Assurez-vous que message_index est valide
+        if (message_index >= 0 && message_index < securityMessages.length) {
+            var selectedMessage = securityMessages[message_index];
+
+            // Mettez à jour les éléments avec les valeurs du tableau
+            securityMessageElement.innerText = selectedMessage.message;
+            securityDescriptionElement.innerText = selectedMessage.description;
+        } else {
+            // Cas par défaut si message_index n'est pas valide
+            securityMessageElement.innerText = 'Unknown message';
+            securityDescriptionElement.innerText = 'Unknown message description';
+        }
+    }
+
         function redirectAndSelectMode(page, mode) {
             selectMode(mode);
         }
@@ -229,6 +282,7 @@
                 trackingDiv.style.display = "none";
                 zoneJoystick.classList.remove('hidden');
                 window.dispatchEvent(new Event("resize"));
+                updateSecurityMessage(message_index);
                 changeState('security');
             }
             else if (state === 5) {
