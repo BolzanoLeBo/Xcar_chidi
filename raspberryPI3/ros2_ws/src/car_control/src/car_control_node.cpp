@@ -65,6 +65,7 @@ public:
 
         timer_ = this->create_wall_timer(PERIOD_UPDATE_CMD, std::bind(&car_control::updateCmd, this));
 
+        init_timer();
         
         RCLCPP_INFO(this->get_logger(), "car_control_node READY");
     }
@@ -167,15 +168,18 @@ private:
 
             //Tracking Mode
             else if (previous_state==3){
+                if (!obstacle and pas_fini == 0){
                 compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
                 steeringPwmCmd = 50;
                 reinit = 0;
-                if (obstacle)
-                {
-                    avoidance = true;
-                    avoidTurn(left,  big, avoidance,steeringPwmCmd);
                 }
-                
+                else {
+                    avoidance = true;
+                    avoidTurn(left,  big, avoidance, &steeringPwmCmd, &rightRearPwmCmd, &pas_fini, &avoid);
+                    leftRearPwmCmd = rightRearPwmCmd;
+                    RCLCPP_INFO(this->get_logger(), "Avoid=%d",avoid);
+                    RCLCPP_INFO(this->get_logger(), "Direction=%d",steeringPwmCmd);
+                }
             }
 
             //Send order to motorsOrder2
@@ -197,14 +201,19 @@ private:
             } 
 
             //Tracking Mode
+            
             else if (state==3){
+                if (!obstacle and pas_fini == 0){
                 compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
                 steeringPwmCmd = 50;
                 reinit = 0;
-                if (obstacle)
-                {
+                }
+                else {
                     avoidance = true;
-                    avoidTurn(left,  big, avoidance,steeringPwmCmd);
+                    avoidTurn(left,  big, avoidance, &steeringPwmCmd, &rightRearPwmCmd, &pas_fini, &avoid);
+                    leftRearPwmCmd = rightRearPwmCmd;
+                    RCLCPP_INFO(this->get_logger(), "Avoid=%d",avoid);
+                    RCLCPP_INFO(this->get_logger(), "Direction=%d",steeringPwmCmd);
                 }
             }
             
@@ -262,6 +271,7 @@ private:
     int state = 0;
     int previous_state = -1;
     int reinit = 1;
+    int pas_fini = 0;
     bool direction = false;
     
     //Motors feedback variables
@@ -280,6 +290,7 @@ private:
     bool left;
     bool big;
     bool obstacle;
+    int avoid;
     
     bool reverseValue;
     float throttleValue;

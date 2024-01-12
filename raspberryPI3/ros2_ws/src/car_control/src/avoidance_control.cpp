@@ -1,74 +1,80 @@
 #include <rclcpp/rclcpp.hpp>
 #include <chrono>
-#include "../include/car_control/avoidance_control.hpp"
+#include <iostream>
 
-class YourClass : public rclcpp::Node {
-public:
-    YourClass() : Node("your_node_name") {
-        // Create a timer with a callback to handle turning and going straight
-        timer_ = this->create_wall_timer(std::chrono::seconds(turnTime), std::bind(&YourClass::timerCallback, this));
+// Variáveis globais
+rclcpp::Node::SharedPtr node;
+rclcpp::TimerBase::SharedPtr timer;
+const uint8_t maxPWM = 100;
+const uint8_t stopPWM = 50;
+const int turnTime = 3; // Temp
+bool turning = false;
+uint8_t steeringPwmCmd = stopPWM;
+uint8_t rightRearPwmCmd = 50;
+uint8_t leftRearPwmCmd = 50;
+int pas_fini = 1;
 
-        // Set initial steering value
-        steeringPwmCmd_ = stopPWM;
+void timerCallback() {
+    //if (turning) {
+        // etat initiale
+        steeringPwmCmd = 50;
+        rightRearPwmCmd = 50;
+        leftRearPwmCmd = rightRearPwmCmd;
+        //turning = false;
+        pas_fini = 0;
+    //}
+}
 
-        // Your other setup code here
-    }
+void init_timer() {
+    node = std::make_shared<rclcpp::Node>("node_timer");
+    timer = node->create_wall_timer(std::chrono::seconds(turnTime), timerCallback);
+}
 
-    void avoidTurn(bool left, bool big, bool avoidance, uint8_t &steeringPwmCmd) {
-        if (avoidance) {
-            if (left && !big) {
-                // Short Right
-                steeringPwmCmd_ = 25;
-                rightRearPwmCmd = 75;
-                leftRearPwmCmd = rightRearPwmCmd;
-                turning = true;
-                // Reset the timer for the next state change
-                timer_->reset();
-                avoidance = false;
-            } else if (!left && !big) {
-                // Short Left
-                steeringPwmCmd_ = 75;
-                turning = true;
-                // Reset the timer for the next state change
-                timer_->reset();
-            } else if (big && left) {
-                // Big Right
-                steeringPwmCmd_ = 0;
-                turning = true;
-                // Reset the timer for the next state change
-                timer_->reset();
-            } else if (big && !left) {
-                // Big Left
-                steeringPwmCmd_ = 100;
-                turning = true;
-                // Reset the timer for the next state change
-                timer_->reset();
-            }
-        }
-    }
+void avoidTurn(bool left, bool big, bool avoidance, uint8_t *steeringPwmCmd_, uint8_t *rightRearPwmCmd_, int *pas_fini_, int *var) {
+    *var = 0;
+    *pas_fini_ = pas_fini; 
+    *rightRearPwmCmd_ = rightRearPwmCmd;
+    *steeringPwmCmd_ = steeringPwmCmd;
+    
+    if (avoidance) {
+        *var = 1;
+        if (left && !big) {
+            *var = 2;
+            //if ( 0<timer<6)
+            // petit curve droit
+            *steeringPwmCmd_ = 25;
+            *rightRearPwmCmd_ = 75;
+            //turning = true;
 
-    void timerCallback() {
-        if (turning) {
-            // Set the steering back to straight
-            steeringPwmCmd_ = 50;
-            rightRearPwmCmd = 50;
+            //else if (6<timer<12)
+            /* steeringPwmCmd = 25;
+            rightRearPwmCmd = 75;
             leftRearPwmCmd = rightRearPwmCmd;
-            turning = false;
-        }
+            turning = true; */
+
+            // Reinitialiser le timer
+            timer->reset();
+        } /* else if (!left && !big) {
+            // petit curve gauche
+            *steeringPwmCmd = 75;
+            *rightRearPwmCmd = 75;
+            *leftRearPwmCmd = *rightRearPwmCmd;
+            turning = true;
+            timer->reset();
+        } else if (big && left) {
+            // gros cruve droit
+            *steeringPwmCmd = 0;
+            *rightRearPwmCmd = 75;
+            *leftRearPwmCmd = *rightRearPwmCmd;
+            turning = true;
+            timer->reset();
+        } else if (big && !left) {
+            // gros curve gauche
+            *steeringPwmCmd = 100;
+            *rightRearPwmCmd = 75;
+            *leftRearPwmCmd = *rightRearPwmCmd;
+            turning = true;
+            timer->reset();
+        } */
     }
-
-private:
-    rclcpp::TimerBase::SharedPtr timer_;
-    const uint8_t maxPWM = 100;
-    const uint8_t stopPWM = 50;
-    const int turnTime = 2; // Time to turn in seconds
-    bool turning = false;
-    uint8_t steeringPwmCmd_;
-};
-
-int main(int argc, char **argv) {
-    rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<YourClass>());
-    rclcpp::shutdown();
-    return 0;
 }
