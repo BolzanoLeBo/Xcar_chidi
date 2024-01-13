@@ -15,7 +15,9 @@ void playWav(const char* filename) {
         system("amixer cset numid=3 1");  // Assurez-vous que le son est dirigé vers la sortie audio de la Raspberry Pi
 
         std::cout << "Lecture du fichier WAV : " << filename << std::endl;
-        system("aplay -r 44100 -c 2 -f S16_LE -D hw:UACDemoV10,0");
+        system("aplay -r 44100 -c 2 -f S16_LE -D hw:UACDemoV10,0 -v 0.5 obst_10db.wav");
+        //system("aplay -r 44100 -c 2 -f S16_LE -D hw:UACDemoV10,0 -V -30 obst_10db.wav");
+        //system("aplay -r 44100 -c 2 -f S16_LE -D hw:UACDemoV10,0");
         //system("aplay -r 44100 -c 2 -f S16_LE -D hw:5,0");  // Joue le son
         sf_close(file);
     } else {
