@@ -189,23 +189,23 @@
             }
         ];
 
-    function updateSecurityMessage(message_index) {
-        var securityMessageElement = document.getElementById('securityMessage');
-        var securityDescriptionElement = document.getElementById('securityDescription');
+        function updateSecurityMessage(message_index) {
+            var securityMessageElement = document.getElementById('securityMessage');
+            var securityDescriptionElement = document.getElementById('securityDescription');
 
-        // Assurez-vous que message_index est valide
-        if (message_index >= 0 && message_index < securityMessages.length) {
-            var selectedMessage = securityMessages[message_index];
+            // Assurez-vous que message_index est valide
+            if (message_index >= 0 && message_index < securityMessages.length) {
+                var selectedMessage = securityMessages[message_index];
 
-            // Mettez à jour les éléments avec les valeurs du tableau
-            securityMessageElement.innerText = selectedMessage.message;
-            securityDescriptionElement.innerText = selectedMessage.description;
-        } else {
-            // Cas par défaut si message_index n'est pas valide
-            securityMessageElement.innerText = 'Unknown message';
-            securityDescriptionElement.innerText = 'Unknown message description';
+                // Mettez à jour les éléments avec les valeurs du tableau
+                securityMessageElement.innerText = selectedMessage.message;
+                securityDescriptionElement.innerText = selectedMessage.description;
+            } else {
+                // Cas par défaut si message_index n'est pas valide
+                securityMessageElement.innerText = 'Unknown message';
+                securityDescriptionElement.innerText = 'Unknown message description';
+            }
         }
-    }
 
         function redirectAndSelectMode(page, mode) {
             selectMode(mode);

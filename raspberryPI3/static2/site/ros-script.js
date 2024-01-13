@@ -42,6 +42,7 @@ var reverse = false;
 var steering = 0;
 var timer;
 var state = 0;
+var message_index = 2;
 
 function stopJoystick() {
     if (manager) {
@@ -169,7 +170,6 @@ stateListener.subscribe(function (message) {
             break;
         case 1:
             message_index=1;
-            publishWebMode(7, 0, 0, false);
             break;
         case 2:
             message_index=2;
