@@ -172,12 +172,14 @@ private:
                 compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
                 steeringPwmCmd = 50;
                 reinit = 0;
+                RCLCPP_INFO(this->get_logger(), "pasfini=%d",pas_fini);
                 }
                 else {
                     avoidance = true;
-                    avoidTurn(left,  big, avoidance, &steeringPwmCmd, &rightRearPwmCmd, &pas_fini, &avoid);
+                    avoidTurn(left,  big, avoidance, steeringPwmCmd, rightRearPwmCmd, pas_fini, &avoid);
                     leftRearPwmCmd = rightRearPwmCmd;
-                    RCLCPP_INFO(this->get_logger(), "Avoid=%d",avoid);
+                    RCLCPP_INFO(this->get_logger(), "pasfini=%d",pas_fini);
+                    //RCLCPP_INFO(this->get_logger(), "pasfini=%d",avoid);
                     RCLCPP_INFO(this->get_logger(), "Direction=%d",steeringPwmCmd);
                 }
             }
@@ -207,12 +209,14 @@ private:
                 compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
                 steeringPwmCmd = 50;
                 reinit = 0;
+                RCLCPP_INFO(this->get_logger(), "pasfini=%d",pas_fini);
                 }
                 else {
                     avoidance = true;
-                    avoidTurn(left,  big, avoidance, &steeringPwmCmd, &rightRearPwmCmd, &pas_fini, &avoid);
+                    avoidTurn(left,  big, avoidance, steeringPwmCmd, rightRearPwmCmd, pas_fini, &avoid);
                     leftRearPwmCmd = rightRearPwmCmd;
-                    RCLCPP_INFO(this->get_logger(), "Avoid=%d",avoid);
+                    RCLCPP_INFO(this->get_logger(), "pasfini=%d",pas_fini);
+                    //RCLCPP_INFO(this->get_logger(), "pasfini=%d",avoid);
                     RCLCPP_INFO(this->get_logger(), "Direction=%d",steeringPwmCmd);
                 }
             }
@@ -271,7 +275,6 @@ private:
     int state = 0;
     int previous_state = -1;
     int reinit = 1;
-    int pas_fini = 0;
     bool direction = false;
     
     //Motors feedback variables
@@ -322,6 +325,7 @@ private:
 
     //Timer
     rclcpp::TimerBase::SharedPtr timer_;
+    uint8_t pas_fini = 0;
 
     //Steering calibration Service
     rclcpp::Service<std_srvs::srv::Empty>::SharedPtr server_calibration_;
