@@ -46,11 +46,11 @@ app.post('/login', (req, res) => {
     }
 });
 
-app.get('/test.html', (req, res) => {
+app.get('/home.html', (req, res) => {
     // Vérifiez si l'utilisateur est connecté avant d'autoriser l'accès
     if (req.session.user) {
         // Utilisez path.join pour construire le chemin du fichier dans le répertoire 'private'
-        const privateFilePath = path.join(__dirname, 'private', 'test.html');
+        const privateFilePath = path.join(__dirname, 'private', 'home.html');
         res.sendFile(privateFilePath);
     } else {
         res.redirect('/');
