@@ -392,9 +392,10 @@ private:
 
       stateMsg.current_state = current_state;
       stateMsg.previous_state = previous_state;
+      stateMsg.state_name = state_names[current_state];
       stock_previous_state = previous_state;
       RCLCPP_INFO(this->get_logger(), ("From : " + state_names[previous_state] + "Switching to another state : " + state_names[current_state]).data());
-      if (previous_state == 4) {
+      if (current_state == 4) {
 
         conditions = {obstacle, sensor, human_lost};
         message_index = 0;
@@ -587,7 +588,7 @@ private:
   imu = (systemCheck.imu == "OK") ? true : false; 
   lidar = (systemCheck.lidar == "OK") ? true : false; 
   camera = (systemCheck.camera == "OK") ? true : false; 
-  sensor = comm_jetson && comm_l476 && comm_f103 && ultrasonics && lidar && camera;  
+  sensor = ultrasonics && lidar && camera;  
 
 
 }

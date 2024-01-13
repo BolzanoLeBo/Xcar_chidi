@@ -180,6 +180,9 @@ stateListener.subscribe(function (message) {
         case 4:
             message_index=4;
             break;        
+        case 5:
+            message_index=5;
+            break;
         case 6:
             message_index=6;
             break;
