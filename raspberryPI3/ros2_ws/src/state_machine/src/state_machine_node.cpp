@@ -29,7 +29,6 @@
 #define CENTER 0
 
 const std::string state_names[6] = {"idle", "Manual", "Autonomous", "Tracking", "Security", "Emergency"};
-const std::string obstacle_detect[2] = {"No obstacle", "Obstacle on the way"};
 std::vector<bool> conditions;
 const std::vector<std::string> reasons = {
         "Sensor dead",
@@ -394,10 +393,16 @@ private:
       stateMsg.previous_state = previous_state;
       stateMsg.state_name = state_names[current_state];
       stock_previous_state = previous_state;
+      obstacle = (dir_av && obstacle_av) || (dir_ar && obstacle_ar);
       RCLCPP_INFO(this->get_logger(), ("From : " + state_names[previous_state] + "Switching to another state : " + state_names[current_state]).data());
       if (current_state == 4) {
-
-        conditions = {obstacle, sensor, human_lost};
+        if (previous_state == 3) {
+          conditions = {obstacle, sensor, human_lost};
+        }
+        else {
+          conditions = {obstacle, sensor, 0};
+        }
+        
         message_index = 0;
         for (size_t i = 0; i < conditions.size(); ++i) {
             message_index = 2 * message_index + (conditions[i] ? 1 : 0);
@@ -458,8 +463,6 @@ private:
     {
       obstacle_ar = 0;
     }
-    obstacle = (obstacle_av || obstacle_ar);
-    //RCLCPP_INFO(this->get_logger(), "Publishing: %d", obstacle_ar);
   }
 
   // Update requestedThrottle, requestedAngle and reverse from the joystick
