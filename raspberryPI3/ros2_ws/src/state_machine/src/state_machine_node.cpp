@@ -371,7 +371,7 @@ private:
       previous_state = current_state;
       vocalMsg.vocal_feedback_message =  "obst.mp3"; //Test publisher vocalMsg
       //vocalMsg.vocal_feedback_message =  vocal_mode_names[current_state];
-      publisher_state_->publish(vocalMsg);
+      publisher_vocal_->publish(vocalMsg);
 
       // Save file
       // file_stream_ << "\n\nMode: " << state_names[current_state] << ", Obstacle: " << obstacle_detect[obstacle] << "\n\n" << std::endl;
