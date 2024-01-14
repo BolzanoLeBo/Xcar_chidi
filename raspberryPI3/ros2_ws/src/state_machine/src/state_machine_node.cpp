@@ -124,7 +124,7 @@ private:
   int obstacle = 0;
 
   // vocal feednack 
-  std::string vocal_mode_names[6] = {"IDLE_return_to_home.mp3", "manual", "Autonomous", "Tracking", "Security", "Emergency"};
+  std::string vocal_mode_names[6] = {"IDLE_return_to_home.mp3", "manual_mode.mp3", "autonomous_mode.mp3", "tracking_mode.mp3", "security_mode.mp3", "emergency_mode.mp3"};
 
   // Joystick variables
   map<string, int> axisMap;
@@ -207,7 +207,6 @@ private:
     } */
     
     auto vocalMsg = interfaces::msg::Vocal();
-    vocalMsg.vocal_feedback_message = "".....
     auto stateMsg = interfaces::msg::State();
     // emergency stop
     // emergency btn is inversed in case of a shutdown
@@ -370,6 +369,9 @@ private:
       RCLCPP_INFO(this->get_logger(), ("From : " + state_names[previous_state] + "Switching to another state : " + state_names[current_state]).data());
       RCLCPP_INFO(this->get_logger(), ("change because obstacle ? " + obstacle_detect[obstacle]).data());
       previous_state = current_state;
+      vocalMsg.vocal_feedback_message =  "obst.mp3"; //Test publisher vocalMsg
+      //vocalMsg.vocal_feedback_message =  vocal_mode_names[current_state];
+      publisher_state_->publish(vocalMsg);
 
       // Save file
       // file_stream_ << "\n\nMode: " << state_names[current_state] << ", Obstacle: " << obstacle_detect[obstacle] << "\n\n" << std::endl;
