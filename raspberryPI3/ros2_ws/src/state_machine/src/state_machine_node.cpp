@@ -95,7 +95,7 @@ private:
   rclcpp::Publisher<interfaces::msg::State>::SharedPtr publisher_state_;
   rclcpp::Publisher<interfaces::msg::SystemCheck>::SharedPtr publisher_system_check_;
   rclcpp::Publisher<interfaces::msg::JoystickOrder>::SharedPtr publisher_joystick_order_;
-  rclcpp::Publisher<interfaces::msg::Vocal::SharedPtr publisher_vocal_;
+  rclcpp::Publisher<interfaces::msg::Vocal>::SharedPtr publisher_vocal_;
 
   // Subscriber
   rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr subscription_joy_;
