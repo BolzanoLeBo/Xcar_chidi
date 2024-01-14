@@ -18,8 +18,9 @@ class VocalFeedbackNode(Node):
         self.subscription  # prevent unused variable warning
 
     def listener_callback(self, msg):
-        mp3_file = "~/arthur/Xcar_chidi/raspberryPI3/ros2_ws/src/audio/" # modify for last version ~/Xcar_chidi ...
-        mp3_name = msg.vocal_feedback_message
+        mp3_file = "~/arthur/Xcar_chidi/raspberryPI3/ros2_ws/src/audio/" #
+        # si non fonctionnel 
+        #mp3_file = os.path.expanduser("~/arthur/Xcar_chidi/raspberryPI3/ros2_ws/src/audio/")
         self.play_audio_mp3(mp3_file,mp3_name)
 
 
