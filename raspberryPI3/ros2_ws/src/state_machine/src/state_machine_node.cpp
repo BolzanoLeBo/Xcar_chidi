@@ -17,6 +17,7 @@
 #include "interfaces/msg/joystick_order.hpp"
 #include "interfaces/msg/web_mode.hpp" 
 #include "interfaces/msg/motors_order.hpp"
+#include "interfaces/msg/vocal.hpp"
 
 #define DEADZONE_LT_RT 0.15     // %
 #define DEADZONE_LS_X_LEFT 0.4  // %
@@ -39,6 +40,7 @@ public:
     publisher_state_ = this->create_publisher<interfaces::msg::State>("state", 10);
     publisher_system_check_ = this->create_publisher<interfaces::msg::SystemCheck>("system_check", 10);
     publisher_joystick_order_ = this->create_publisher<interfaces::msg::JoystickOrder>("joystick_order", 10);
+    publisher_vocal_ = this->create_publisher<interfaces::msg::Vocal>("vocal", 10);
 
     subscription_joy_ = this->create_subscription<sensor_msgs::msg::Joy>(
         "joy", 10, std::bind(&state_machine::joyCallback, this, _1));
@@ -93,6 +95,7 @@ private:
   rclcpp::Publisher<interfaces::msg::State>::SharedPtr publisher_state_;
   rclcpp::Publisher<interfaces::msg::SystemCheck>::SharedPtr publisher_system_check_;
   rclcpp::Publisher<interfaces::msg::JoystickOrder>::SharedPtr publisher_joystick_order_;
+  rclcpp::Publisher<interfaces::msg::Vocal::SharedPtr publisher_vocal_;
 
   // Subscriber
   rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr subscription_joy_;
@@ -119,6 +122,9 @@ private:
   int current_state = 0;
 
   int obstacle = 0;
+
+  // vocal feednack 
+  std::string vocal_mode_names[6] = {"IDLE_return_to_home.mp3", "manual", "Autonomous", "Tracking", "Security", "Emergency"};
 
   // Joystick variables
   map<string, int> axisMap;
@@ -200,7 +206,8 @@ private:
       dir_ar = 0;
     } */
     
-
+    auto vocalMsg = interfaces::msg::Vocal();
+    vocalMsg.vocal_feedback_message = "".....
     auto stateMsg = interfaces::msg::State();
     // emergency stop
     // emergency btn is inversed in case of a shutdown
