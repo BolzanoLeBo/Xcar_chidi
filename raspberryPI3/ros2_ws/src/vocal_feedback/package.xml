@@ -4,7 +4,7 @@
   <name>vocal_feedback</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="“a.pierreditlambert@gmail.com”">pi</maintainer>
+  <maintainer email="a.pierreditlambert@gmail.com">pi</maintainer>
   <license>Apache-2.0</license>
 
   <test_depend>ament_copyright</test_depend>

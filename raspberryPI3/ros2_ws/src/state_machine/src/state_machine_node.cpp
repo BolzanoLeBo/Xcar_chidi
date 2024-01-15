@@ -369,8 +369,8 @@ private:
       RCLCPP_INFO(this->get_logger(), ("From : " + state_names[previous_state] + "Switching to another state : " + state_names[current_state]).data());
       RCLCPP_INFO(this->get_logger(), ("change because obstacle ? " + obstacle_detect[obstacle]).data());
       previous_state = current_state;
-      vocalMsg.vocal_feedback_message =  "obst.mp3"; //Test publisher vocalMsg
-      //vocalMsg.vocal_feedback_message =  vocal_mode_names[current_state];
+      //vocalMsg.vocal_feedback_message =  "obst_10db.mp3"; //Test publisher vocalMsg
+      vocalMsg.vocal_feedback_message =  vocal_mode_names[current_state];
       publisher_vocal_->publish(vocalMsg);
 
       // Save file
