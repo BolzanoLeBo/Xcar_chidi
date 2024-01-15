@@ -42,7 +42,7 @@ const std::vector<std::string> reasons = {
         "Obstacle detected",
         "Obstacle detected and Human Lost"
 };
-const std::vector<std::string> vocal_reasons = {"Sensor dead","Sensor dead + Human lost","Nothing","Human lost ","Obstacle detected and sensor dead","Obstacle detected and sensor dead and Human lost","Obstacle detected","Obstacle detected and Human Lost"};
+const std::vector<std::string> vocal_reasons = {"sensor_failure.mp3","sensor_failure.mp3","Nothing","user_lost.mp3","sensor_failure.mp3","sensor_failure.mp3","obstacle_detected.mp3","user_lost.mp3"};
 
 int dir_av = 0;
 int dir_ar = 0;
@@ -62,6 +62,18 @@ bool obstacle = false;
 bool human_lost = false;
 
 int message_index = 0;
+
+//System check
+bool comm_jetson = false;
+bool comm_l476 = false;  
+bool comm_f103 = false;   
+bool battery = false;      
+bool ultrasonics = false;
+bool gps = false ;
+bool imu = false;
+bool lidar = false;
+bool camera = false;
+bool sensor = false;
 
 using namespace std;
 using placeholders::_1;
@@ -167,18 +179,6 @@ private:
   bool webReverse;
 
   // std::ofstream file_stream_;
-
-  //System check
-  bool comm_jetson = false;
-  bool comm_l476 = false;  
-  bool comm_f103 = false;   
-  bool battery = false;      
-  bool ultrasonics = false;
-  bool gps = false ;
-  bool imu = false;
-  bool lidar = false;
-  bool camera = false;
-  bool sensor = false;
 
   // Service
   // rclcpp::Service<state_machine::srv::StateMemory>::SharedPtr service_state_memory_;
@@ -400,6 +400,7 @@ private:
       stock_previous_state = previous_state;
       obstacle = (dir_av && obstacle_av) || (dir_ar && obstacle_ar);
       RCLCPP_INFO(this->get_logger(), ("From : " + state_names[previous_state] + "Switching to another state : " + state_names[current_state]).data());
+      vocalMsg.vocal_feedback_message =  vocal_mode_names[current_state];
       if (current_state == 4) {
         if (previous_state == 3) {
           conditions = {obstacle, sensor, human_lost};
@@ -413,11 +414,11 @@ private:
             message_index = 2 * message_index + (conditions[i] ? 1 : 0);
         }
         RCLCPP_INFO(this->get_logger(), ("change because ? " + reasons[message_index]).data());
+        vocalMsg.vocal_feedback_message = vocal_reasons[message_index];
       }
       stateMsg.message_index = message_index;
       publisher_state_->publish(stateMsg);
       previous_state = current_state;
-      vocalMsg.vocal_feedback_message =  vocal_mode_names[current_state];
       publisher_vocal_->publish(vocalMsg);
 
       // Save file
