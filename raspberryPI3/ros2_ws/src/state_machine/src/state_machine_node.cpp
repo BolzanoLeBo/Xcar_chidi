@@ -20,6 +20,7 @@
 #include "interfaces/msg/web_mode.hpp" 
 #include "interfaces/msg/motors_order.hpp"
 #include "interfaces/msg/user_lost.hpp"
+#include "interfaces/msg/vocal.hpp"
 
 #define DEADZONE_LT_RT 0.15     // %
 #define DEADZONE_LS_X_LEFT 0.4  // %
@@ -28,6 +29,7 @@
 #define STOP 0
 #define CENTER 0
 
+const std::string vocal_mode_names[6] = {"IDLE_return_to_home.mp3", "manual_mode.mp3", "autonomous_mode.mp3", "tracking_mode.mp3", "security_mode.mp3", "emergency_mode.mp3"};
 const std::string state_names[6] = {"idle", "Manual", "Autonomous", "Tracking", "Security", "Emergency"};
 std::vector<bool> conditions;
 const std::vector<std::string> reasons = {
@@ -40,6 +42,7 @@ const std::vector<std::string> reasons = {
         "Obstacle detected",
         "Obstacle detected and Human Lost"
 };
+const std::vector<std::string> vocal_reasons = {"Sensor dead","Sensor dead + Human lost","Nothing","Human lost ","Obstacle detected and sensor dead","Obstacle detected and sensor dead and Human lost","Obstacle detected","Obstacle detected and Human Lost"};
 
 int dir_av = 0;
 int dir_ar = 0;
@@ -74,6 +77,7 @@ public:
     publisher_state_ = this->create_publisher<interfaces::msg::State>("state", 10);
     publisher_system_check_ = this->create_publisher<interfaces::msg::SystemCheck>("system_check", 10);
     publisher_joystick_order_ = this->create_publisher<interfaces::msg::JoystickOrder>("joystick_order", 10);
+    publisher_vocal_ = this->create_publisher<interfaces::msg::Vocal>("vocal", 10);
 
     subscription_joy_ = this->create_subscription<sensor_msgs::msg::Joy>(
         "joy", 10, std::bind(&state_machine::joyCallback, this, _1));
@@ -132,6 +136,7 @@ private:
   rclcpp::Publisher<interfaces::msg::State>::SharedPtr publisher_state_;
   rclcpp::Publisher<interfaces::msg::SystemCheck>::SharedPtr publisher_system_check_;
   rclcpp::Publisher<interfaces::msg::JoystickOrder>::SharedPtr publisher_joystick_order_;
+  rclcpp::Publisher<interfaces::msg::Vocal>::SharedPtr publisher_vocal_;
 
   // Subscriber
   rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr subscription_joy_;
@@ -235,7 +240,7 @@ private:
       dir_ar = 0;
     } */
     
-
+    auto vocalMsg = interfaces::msg::Vocal();
     auto stateMsg = interfaces::msg::State();
     // emergency stop
     // emergency btn is inversed in case of a shutdown
@@ -412,6 +417,8 @@ private:
       stateMsg.message_index = message_index;
       publisher_state_->publish(stateMsg);
       previous_state = current_state;
+      vocalMsg.vocal_feedback_message =  vocal_mode_names[current_state];
+      publisher_vocal_->publish(vocalMsg);
 
       // Save file
       // file_stream_ << "\n\nMode: " << state_names[current_state] << ", Obstacle: " << obstacle_detect[obstacle] << "\n\n" << std::endl;
