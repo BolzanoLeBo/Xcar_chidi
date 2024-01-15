@@ -18,7 +18,7 @@ class VocalFeedbackNode(Node):
 
     def listener_callback(self, msg):
         mp3_name = msg.vocal_feedback_message
-        mp3_file = "~/Xcar_chidi/raspberryPI3/ros2_ws/src/audio/"
+        mp3_file = "~/arthur/Xcar_chidi/raspberryPI3/ros2_ws/src/audio/"
         play_audio_mp3(mp3_file,mp3_name)
 
 

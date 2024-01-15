@@ -73,7 +73,6 @@ bool gps = false ;
 bool imu = false;
 bool lidar = false;
 bool camera = false;
-bool sensor = false;
 
 using namespace std;
 using placeholders::_1;
