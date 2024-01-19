@@ -11,6 +11,7 @@
 #include "interfaces/msg/joystick_order.hpp"
 #include "interfaces/msg/state.hpp"
 #include "interfaces/msg/ultrasonic.hpp"
+#include "interfaces/msg/userdistance.hpp"
 #include "interfaces/msg/tracking_pos_angle.hpp"
 #include "interfaces/msg/avoidance_parameters.hpp"
 
@@ -57,15 +58,15 @@ public:
         subscription_avoidance_parameters_ = this->create_subscription<interfaces::msg::AvoidanceParameters>(  
         "avoidance_parameters", 10, std::bind(&car_control::avoidanceParametersCallback, this, _1));
 
-        subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
-        "us_data", 10, std::bind(&car_control::distanceCallback, this, _1));
+        subscription_userdistance_ = this->create_subscription<interfaces::msg::Userdistance>(
+        "userdistance", 10, std::bind(&car_control::distanceCallback, this, _1));
 
         subscription_tracking_angle_ = this->create_subscription<interfaces::msg::TrackingPosAngle>(
         "tracking_pos_angle", 10, std::bind(&car_control::angleFromLidar, this, _1));
 
         timer_ = this->create_wall_timer(PERIOD_UPDATE_CMD, std::bind(&car_control::updateCmd, this));
 
-        init_timer();
+        // init_timer();
         
         RCLCPP_INFO(this->get_logger(), "car_control_node READY");
     }
@@ -100,8 +101,8 @@ private:
         currentLeftSpeed = motorsFeedback.left_rear_speed;
     }
 
-    void distanceCallback(const interfaces::msg::Ultrasonic & ultrasonic) {
-        currentRightDistance = ultrasonic.front_center;
+    void distanceCallback(const interfaces::msg::Userdistance & userDist) {
+        currentRightDistance = (userDist.distance_tracking -1) *100 ;
         currentLeftDistance = currentRightDistance;
     }
     
@@ -168,20 +169,10 @@ private:
 
             //Tracking Mode
             else if (previous_state==3){
-                if (!obstacle and pas_fini == 0){
+                //if (!obstacle and pas_fini == 0){
                 compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
                 steeringPwmCmd = 50;
                 reinit = 0;
-                RCLCPP_INFO(this->get_logger(), "pasfini=%d",pas_fini);
-                }
-                else {
-                    avoidance = true;
-                    avoidTurn(left,  big, avoidance, steeringPwmCmd, rightRearPwmCmd, pas_fini, &avoid);
-                    leftRearPwmCmd = rightRearPwmCmd;
-                    RCLCPP_INFO(this->get_logger(), "pasfini=%d",pas_fini);
-                    //RCLCPP_INFO(this->get_logger(), "pasfini=%d",avoid);
-                    RCLCPP_INFO(this->get_logger(), "Direction=%d",steeringPwmCmd);
-                }
             }
 
             //Send order to motorsOrder2
@@ -209,15 +200,15 @@ private:
                 compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
                 steeringPwmCmd = 50;
                 reinit = 0;
-                RCLCPP_INFO(this->get_logger(), "pasfini=%d",pas_fini);
+                //RCLCPP_INFO(this->get_logger(), "pasfini=%d",pas_fini);
                 }
                 else {
-                    avoidance = true;
-                    avoidTurn(left,  big, avoidance, steeringPwmCmd, rightRearPwmCmd, pas_fini, &avoid);
+                    pas_fini=1;
+                    avoidTurn(left,  big, steeringPwmCmd, rightRearPwmCmd, pas_fini);
                     leftRearPwmCmd = rightRearPwmCmd;
-                    RCLCPP_INFO(this->get_logger(), "pasfini=%d",pas_fini);
+                    //RCLCPP_INFO(this->get_logger(), "pasfini=%d",pas_fini);
                     //RCLCPP_INFO(this->get_logger(), "pasfini=%d",avoid);
-                    RCLCPP_INFO(this->get_logger(), "Direction=%d",steeringPwmCmd);
+                    //RCLCPP_INFO(this->get_logger(), "Direction=%d",steeringPwmCmd);
                 }
             }
             
@@ -315,7 +306,7 @@ private:
 
     //Subscribers
     rclcpp::Subscription<interfaces::msg::JoystickOrder>::SharedPtr subscription_joystick_order_;
-    rclcpp::Subscription<interfaces::msg::Ultrasonic>::SharedPtr subscription_ultrasonic_sensor_;
+    rclcpp::Subscription<interfaces::msg::Userdistance>::SharedPtr subscription_userdistance_;
     rclcpp::Subscription<interfaces::msg::MotorsFeedback>::SharedPtr subscription_motors_feedback_;
     rclcpp::Subscription<interfaces::msg::SteeringCalibration>::SharedPtr subscription_steering_calibration_;
     rclcpp::Subscription<interfaces::msg::State>::SharedPtr subscription_state_;

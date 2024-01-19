@@ -1,67 +1,103 @@
 #include <rclcpp/rclcpp.hpp>
 #include <chrono>
 #include <iostream>
+#include <time.h> 
 
 // Variáveis globais
 rclcpp::Node::SharedPtr node;
 rclcpp::TimerBase::SharedPtr timer;
-const uint8_t maxPWM = 100;
-const uint8_t stopPWM = 50;
-const int turnTime = 3; // Temp
-bool turning = false;
-uint8_t steeringPwmCmd =50;
-uint8_t rightRearPwmCmd =50;
-uint8_t leftRearPwmCmd =50;
-int pas_fini = 1;
-int count = 0;
 
-void timerCallback() {
-    //if (turning) {
-        // etat initiale
-    steeringPwmCmd = 75;
-    rightRearPwmCmd = 50;
-    leftRearPwmCmd = rightRearPwmCmd;
-    //turning = false;
-    pas_fini = 0;
-    //}
-}
+int step = 0;
+int sequence = 0;
+/******Définition du Timer**********/
+/*rclcpp::Time start_time;
+rclcpp::Duration ti = 3;
+rclcpp::Duration ti2 = 6;*/
+time_t start_time;
 
-void init_timer() {
-    node = std::make_shared<rclcpp::Node>("node_timer");
-    timer = node->create_wall_timer(std::chrono::seconds(turnTime), timerCallback);
-}
 
-void avoidTurn(bool left, bool big, bool avoidance, uint8_t& steeringPwmCmd_, uint8_t& rightRearPwmCmd_, uint8_t& pas_fini_, int *var) {
-    *var = 0;
+// void timerCallback() {
+//     //if (turning) {
+//         // etat initiale
+//     steeringPwmCmd = 75;
+//     rightRearPwmCmd = 50;
+//     leftRearPwmCmd = rightRearPwmCmd;
+//     //turning = false;
+//     pas_fini = 0;
+//     //}
+// }
+
+// void init_timer() {
+//     node = std::make_shared<rclcpp::Node>("node_timer");
+//     timer = node->create_wall_timer(std::chrono::seconds(turnTime), timerCallback);
+// }
+
+void avoidTurn(bool left, bool big, uint8_t& steeringPwmCmd, uint8_t& rightRearPwmCmd, uint8_t& pas_fini) {
     // Associar rightRearPwmCmd_ à variável global x
-    rightRearPwmCmd_ = static_cast<uint8_t>(rightRearPwmCmd);
-    steeringPwmCmd_ = static_cast<uint8_t>(steeringPwmCmd);
-    pas_fini_ = static_cast<uint8_t>(pas_fini);
+    //rightRearPwmCmd_ = static_cast<uint8_t>(rightRearPwmCmd);
+    //steeringPwmCmd_ = static_cast<uint8_t>(steeringPwmCmd);
+    //pas_fini_ = static_cast<uint8_t>(pas_fini);
     // rightRearPwmCmd_ = &rightRearPwmCmd;
     // steeringPwmCmd_ = &steeringPwmCmd;
     
-    if (avoidance) {
-        *var = 1;
+    //rclcpp::Time current_time = rclcpp::Clock().now();
+    time_t timer;
+
+    if (pas_fini==1) {
         if (left && !big) {
-            *var = 2;
-            //if ( 0<timer<6)
-            // petit curve droit
-            steeringPwmCmd = 25;
-            rightRearPwmCmd = 75;
-            count = count + 1;
-            //turning = true;
+            sequence = 1;
+        } 
 
-            //else if (6<timer<12)
-            /* steeringPwmCmd = 25;
-            rightRearPwmCmd = 75;
-            leftRearPwmCmd = rightRearPwmCmd;
-            turning = true; */
-
+        if(sequence == 1)
+        {
             // Reinitialiser le timer
-            if(count == 1){
-                timer->reset();
+            if(step == 0)
+            {
+                time(&start_time);
+                step = 1;
             }
-        } /* else if (!left && !big) {
+            // on se décale sur la droite
+            if(step == 1)
+            {
+                if((time(&timer)-start_time) < 3)
+                {
+                    steeringPwmCmd = 0;
+                    rightRearPwmCmd = 75;
+                }
+                else
+                {                
+                    step = 2;
+                }
+            }
+            // On se remet dans l'axe
+            if(step == 2)
+            {
+                if((time(&timer)-start_time) < 6)
+                {
+                    steeringPwmCmd = 100;
+                    rightRearPwmCmd = 75;
+                }
+                else
+                {                
+                    step = 3;
+                }
+            }
+            // On stop la voiture
+            if(step == 3)
+            {
+                steeringPwmCmd = 50;
+                rightRearPwmCmd = 50;
+                pas_fini = 0;
+                step = 0;
+            }
+        }
+        
+        
+        
+        
+        
+        
+        /* else if (!left && !big) {
             // petit curve gauche
             *steeringPwmCmd = 75;
             *rightRearPwmCmd = 75;

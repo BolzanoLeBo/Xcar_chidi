@@ -6,8 +6,7 @@
 #include <string.h>  
 
 void init_timer();
-void avoidTurn(bool left, bool big, bool avoidance, uint8_t& steeringPwmCmd_, uint8_t& rightRearPwmCmd_, uint8_t& pas_fini_, int *var);
-void timerCallback(void);
+void avoidTurn(bool left, bool big, uint8_t& steeringPwmCmd_, uint8_t& rightRearPwmCmd_, uint8_t& pas_fini_);
 
 
 #endif // __avoidance_control_H
