@@ -2,7 +2,7 @@
 #define __system_check_node_HPP
 
 #define TIME_BEFORE_REPORT 8 //Waiting time before all nodes start [s]
-#define PERIOD_UPDATE_CHECKING 2s
+#define PERIOD_UPDATE_CHECKING 1s
 #define CHECK_TIMEOUT 5 //Checking timeout [s]
 
 #define GPS_NO_FIX 0

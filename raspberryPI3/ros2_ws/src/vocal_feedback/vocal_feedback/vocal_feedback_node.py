@@ -15,6 +15,8 @@ class VocalFeedbackNode(Node):
         super().__init__('vocal_feedback_node')
         self.subscription = self.create_subscription(Vocal,'vocal',self.listener_callback,10)
         self.subscription  # prevent unused variable warning
+        os.system("pacmd set-default-sink \"alsa_output.usb-Jieli_Technology_UACDemoV1.0_4150333236393504-00.analog-stereo\"")
+        os.system("pacmd set-sink-volume \"alsa_output.usb-Jieli_Technology_UACDemoV1.0_4150333236393504-00.analog-stereo\" 55000")
 
     def listener_callback(self, msg):
         mp3_name = msg.vocal_feedback_message
