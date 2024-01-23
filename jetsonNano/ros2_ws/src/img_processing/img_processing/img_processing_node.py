@@ -7,20 +7,42 @@ import asyncio
 import cv2
 import numpy as np
 from math import *
+import base64
 
 from interfaces.msg import UserLost
 from interfaces.msg import TrackingPosAngle
 from interfaces.msg import State
+from interfaces.msg import InitButton
 
 
 from cv_bridge import CvBridge
 import cv2
-
+import json 
 
 def img_to_bytes(img) : 
-	_, bts = cv2.imencode('.jpg', img)
-	bts = bts.tobytes()
-	return bts
+    _, buffer = cv2.imencode('.jpg', img)
+    image_encoded = base64.b64encode(buffer).decode('utf-8')
+    return image_encoded
+
+def msg_to_info(msg) : 
+    (info, data) = json.loads(msg)
+    if data == "" : 
+        rect = []
+    else : 
+        numbers_str = data.split(",")
+        # Converting each substring to an integer
+        rect = [int(num.strip()) for num in numbers_str]
+    return (info, rect)
+
+
+def info_to_msg(info, img) : 
+	if info != "RESET" :
+		bts = img_to_bytes(img)
+	else : 
+		bts = ""
+	msg = (info, bts)
+	json_message = json.dumps(msg)
+	return json_message
 
 def vector_rotation(v, theta): 
 	x = v[0]
@@ -43,12 +65,6 @@ def get_angle(rect, sc, a, phi, d) :
 	#width of the human
 	w = rect[2]
 	#coords in the camera basis of the human left and right
-	'''if dh > sc/2 : 
-		h2 = [a_min[0], a_min[1] - dh]
-		h1 = [a_min[0], a_min[1] - dh - w]
-	else : 
-		h1 = [a_min[0], a_min[1] - dh]
-		h2 = [a_min[0], a_min[1] - dh - w]	'''
 	h1 = [a_min[0], a_min[1] - dh]
 	h2 = [a_min[0], a_min[1] - dh - w]
 	h_middle = [a_min[0], a_min[1] - dh - w/2]
@@ -95,105 +111,140 @@ class ImgProcessingNode(Node):
 		self.subscriber_ = self.create_subscription(Image, 'image_raw', self.image_callback,qos_profile = qos_profile)
 		self.user_lost_publisher_ = self.create_publisher(UserLost,'user_lost', 10)
 		self.state_subscriber_ = self.create_subscription(State, 'state', self.state_callback, 10)
+		self.init_button_subscriber_ = self.create_subscription(InitButton, 'init_button', self.init_button_callback, 10)
 		self.tracking_pos_angle_publisher_ = self.create_publisher(TrackingPosAngle,'tracking_pos_angle', 10)
-		self.cv_image = []
+
+		
 		self.timer = self.create_timer(0.5, self.img_ai) 
+
+
+
+		self.cv_image = []
 		self.rectangle = []
 		self.image_processed = False
 		self.websocket_init = False
 		self.state = 0
 		self.lost_counter = 0
+		self.init_target = False
+		self.init_button = False 
 
 
-	#here we define how to update the angle value of the tracking
-	async def send_message(self):
-		uri = "ws://localhost:9090"  # WebSocket server URI 
-		self.image_processed = False
-		bts = img_to_bytes(self.cv_image)
 
-		async with websockets.client.connect(uri) as websocket:
-			await websocket.send(bts)
+		#asyncio.run(self.send_info("RESET"))
 
-			# Wait for a response from the server
-			response = await websocket.recv()
-			#self.get_logger().info("resp : {} {} {}".format(response, type(response), response[0]))
-			self.rectangle = list(response)
-			# Removing brackets and splitting by comma
-			numbers_str = response.strip("[]").split(",")
+	def calcul_pos(self) : 
+		#CALCUL POSTION 
+		tracking = TrackingPosAngle()
+		[x1,y1,x2,y2] = self.rectangle
+		if self.rectangle != [0,0,0,0] : 
+			height, width = self.cv_image.shape[:2]
+			(a_min, a_max, a_cam) = get_angle([x1,y1, x2-x1, y2-y1], width, radians(55), radians(-90), [0,0])
+			if a_min >= a_max :
+				tracking.min_angle = a_max
+				tracking.max_angle = a_min
+			else :
+				tracking.min_angle = a_min
+				tracking.max_angle = a_max
+			tracking.cam_angle = float(round(a_cam))
+			tracking.person_detected = True
+			human_detected = True
+		else : 
+			tracking.person_detected = False 
+			tracking.min_angle = float('inf') 
+			tracking.max_angle = float('inf') 
+			tracking.cam_angle = float('inf') 
+			human_detected = False
+		return (human_detected, tracking) 
+	
 
-			# Converting each substring to an integer
-			self.rectangle = [int(num.strip()) for num in numbers_str]
-			#self.get_logger().info("rect : {}".format(self.rectangle))
-
-			self.image_processed = True
 				
 	def state_callback(self,msg) : 
 		self.state = msg.current_state
-
 
 	def image_callback(self,msg):
 		bridge = CvBridge()
 		self.cv_image = bridge.imgmsg_to_cv2(msg, desired_encoding="bgr8")
 
-		#self.get_logger().info("img_h : {}".format(rect[0]))
-			
+	def init_button_callback(self, msg): 
+		self.init_button = msg.button
 
-		# Your image processing or display logic here
-		#cv2.imshow("Received Image", cv_image)
-		
+	async def send_info(self, info):
+		uri = "ws://localhost:9090"  # WebSocket server URI 
+		async with websockets.client.connect(uri) as websocket:
+			self.get_logger().info(f"send a {info} msg")
+			img = self.cv_image
+			msg = info_to_msg(info, img)
+			await websocket.send(msg)
+
+			response = await websocket.recv()
+			(info_r, rect) = msg_to_info(response)
+			self.get_logger().info(f"reiceive response {info_r}, {rect}")
+			if info == "INIT" :  
+				if info_r == "INIT" : 
+					#the target is correctly initialized 
+					self.init_button = False
+					self.init_target = True
+					self.rectangle = rect
+
+				elif info_r == "NOT_INIT" : 
+					self.init_target = False 
+
+
+				self.image_processed = True
+
+			elif info == "IMG" :
+				
+				
+				if info_r == "IMG_ACK" : 
+					self.rectangle = rect
+					
+				elif info_r == "NOT_INIT" : 
+					self.init_target = False
+				
+				self.image_processed = True
+	
 
 
 	def img_ai(self) : 
 		lost_treshold = 2 
 		lost_msg = UserLost()
+
+		#if we have an image comming from the camera 
 		if self.cv_image != [] :
-			asyncio.run(self.send_message())
-			tracking = TrackingPosAngle()
+			#We want to reinitialize the target 
+			if self.init_button : 
+				self.get_logger().info("Init button activated or init not resolved")
+				asyncio.run(self.send_info("INIT"))
+
+			#Otherwise we send an image
+			else : 
+				asyncio.run(self.send_info("IMG"))
+			
+			#wait the response and the processing 
 			while not self.image_processed : 
-				pass
+				pass 
 			
-			[x1,y1,x2,y2] = self.rectangle
-			if self.rectangle != [0,0,0,0] : 
-				height, width = self.cv_image.shape[:2]
-				(a_min, a_max, a_cam) = get_angle([x1,y1, x2-x1, y2-y1], width, radians(55), radians(-90), [0,0])
-				#self.get_logger().info("angle : {}".format(a_cam))
-				if a_min >= a_max :
-					tracking.min_angle = a_max
-					tracking.max_angle = a_min
-				else :
-					tracking.min_angle = a_min
-					tracking.max_angle = a_max
-				tracking.cam_angle = float(round(a_cam))
-				tracking.person_detected = True
-				human_detected = True
-			else : 
-				tracking.person_detected = False 
-				tracking.min_angle = float('inf') 
-				tracking.max_angle = float('inf') 
-				tracking.cam_angle = float('inf') 
-				human_detected = False
+			#we take only rectangles where the target is initialized 
+			if self.init_target : 
+				human_detected, tracking = self.calcul_pos()
+				#CHECK LOST COUNTER 
+				if (True or self.state == 3 or self.state == 4) : 
+					if not human_detected :
+						self.lost_counter = self.lost_counter + 1 
+					else : 
+						if self.lost_counter > lost_treshold : 
+							lost_msg.lost = False
+							self.user_lost_publisher_.publish(lost_msg)
+						self.lost_counter = 0
 
-			if (self.state == 3 or self.state == 4) : 
-				if not human_detected :
-					self.lost_counter = self.lost_counter + 1 
-				else : 
+
 					if self.lost_counter > lost_treshold : 
-						lost_msg.lost = False
+						lost_msg.lost = True
 						self.user_lost_publisher_.publish(lost_msg)
-					self.lost_counter = 0
-
-
-				if self.lost_counter > lost_treshold : 
-					lost_msg.lost = True
-					self.user_lost_publisher_.publish(lost_msg)
-
-			else : 
-				self.lost_counter = 0 
-			
-
-
-			# Publish the msg for angle
-			self.tracking_pos_angle_publisher_.publish(tracking)
+				else : 
+					self.lost_counter = 0 	
+				# Publish the msg for angle
+				self.tracking_pos_angle_publisher_.publish(tracking)	
 
 
 def main(args=None):

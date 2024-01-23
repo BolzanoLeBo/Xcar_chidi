@@ -31,6 +31,7 @@ set(msg_files
   "msg/Userdistance.msg"
   "msg/TrackingPosAngle.msg"
   "msg/UserLost.msg"
+  "msg/InitButton.msg"
 )
 
 rosidl_generate_interfaces(${PROJECT_NAME}

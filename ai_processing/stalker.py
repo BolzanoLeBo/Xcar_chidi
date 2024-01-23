@@ -5,7 +5,7 @@ from ultralytics import YOLO
 from torchreid import models
 from torchvision import transforms
 from PIL import Image
-import numpy
+import numpy as np 
 
 
 def init_models() : 
@@ -44,15 +44,21 @@ def euclidean_distance(a, b):
 def init_target(frame, model) :
     #Capture the first person detected
     results = model.track(frame, persist=True, classes=0)
-    for box in results:
-        coords = box.boxes.xyxy[0].tolist()
-        x_min, y_min, x_max, y_max = map(int, coords)
+    if results[0] != None and results[0].boxes.id != None:
+        if len(results[0].boxes) == 1 :     
+            coords = results[0].boxes.xyxy[0].tolist()
+            x_min, y_min, x_max, y_max = map(int, coords)
 
-        # Crop the image of the first detected person
-        img_target = frame[y_min:y_max, x_min:x_max]
-        cv2.imwrite("target1.jpg", img_target)
-        break  # Exit after capturing the first person
-
+            # Crop the image of the first detected person
+            img_target = frame[y_min:y_max, x_min:x_max]
+            cv2.imwrite("target1.jpg", img_target)
+            print("target initiated")
+            return True  # Exit after capturing the first person
+        else : 
+            print("cannot initiate the target, more than one person in front of the camera")
+    else : 
+        print("cannot initiate the target, no person in front of the camera")
+        return False 
 def detect_human(frame, device, model, model2, preprocess, track_id) : 
     print("detecting humans ...")
     #Extract features from target1.jpg
@@ -125,4 +131,4 @@ def detect_human(frame, device, model, model2, preprocess, track_id) :
 
     # Display the frame
     cv2.putText(frame, f"track ID: {track_id}", (10, 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,255,255), 2)
-    return(frame,best_rect, track_id)
+    return(frame,np.array(best_rect).flatten(), track_id)

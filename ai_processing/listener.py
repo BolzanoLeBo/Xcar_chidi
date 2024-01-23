@@ -5,12 +5,12 @@ import websockets
 from img_converter import *
 from stalker import *
 
-init = False
+init_good = False
 (device, model, model2, preprocess) = init_models()
 track_id = 1
 
 async def handle_websocket(websocket, path):
-	global init
+	global init_good
 	global device, model, model2, preprocess
 	global track_id
 	# This function will be called whenever a new WebSocket connection is established
@@ -19,16 +19,33 @@ async def handle_websocket(websocket, path):
 	try:
 		while True:
 			# Receive data from the client
-			data = await websocket.recv()
-			img = bytes_to_img(data)
-			if not init : 
-				print("initialize the target")
-				init_target(img, model)
-				init = True 
-			(new_img, rect, track_id) = detect_human(img, device, model, model2, preprocess, track_id)
-			print(rect)
-			await websocket.send(str(rect))
-			cv2.imwrite("results.jpg", new_img)
+			msg = await websocket.recv()
+			(info, img) = msg_to_info(msg)
+			if info == "RESET" : 
+				print("reset the target")
+				init_good = False
+			else : 
+				if info == "INIT" : 
+					print("initialize the target")
+					init_good = init_target(img, model)
+
+				if not init_good :
+					response = info_to_msg("NOT_INIT", [])
+					await websocket.send(response)
+				else : 
+					(new_img, rect, track_id) = detect_human(img, device, model, model2, preprocess, track_id)
+					if rect.size == 0 : 
+						rect = np.array([0,0,0,0])
+
+					if info == "INIT" : 
+						response = info_to_msg("INIT", rect)
+					elif info == "IMG" : 
+						response = info_to_msg("IMG_ACK", rect)
+					else : 
+						response = info_to_msg("BAD_MSG", [])
+
+					await websocket.send(response)
+					cv2.imwrite("results.jpg", new_img)
 
 	except websockets.exceptions.ConnectionClosed:
 		print(f"Client disconnected from {path}")

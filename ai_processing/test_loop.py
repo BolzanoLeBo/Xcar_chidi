@@ -1,7 +1,31 @@
 import asyncio
 import websockets.client
-from img_converter import *
 import time
+import cv2 
+import json 
+
+
+def img_to_bytes(img) : 
+	_, bts = cv2.imencode('.jpg', img)
+	bts = bts.tobytes()
+	return bts
+
+def msg_to_info(msg) : 
+	message_tuple = json.loads(msg)
+	(info, data) = message_tuple
+	# Removing brackets and splitting by comma
+	numbers_str = data.strip("[]").split(",")
+	# Converting each substring to an integer
+	rectangle = [int(num.strip()) for num in numbers_str]
+	return (info, data)
+
+def info_to_msg(info, img) : 
+	bts = img_to_bytes(img)
+	msg = (info, bts)
+	json_message = json.dumps(msg)
+	return json_message
+
+
 
 async def send_message(frame):
 
