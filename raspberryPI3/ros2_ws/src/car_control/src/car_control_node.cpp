@@ -203,7 +203,7 @@ private:
                     else{steeringPwmCmd =  50 - steeringPwmCmd;}            // Right turn
 
                     // If we are goig backward, inverse the steering dynamic
-                     if((leftRearPwmCmd < 50 || rightRearPwmCmd < 50) && (currentLeftDistance > (DISTANCE_COMMAND - 5))){steeringPwmCmd = 100 - steeringPwmCmd;}
+                     if((leftRearPwmCmd < 50 || rightRearPwmCmd < 50) && (currentLeftDistance < (DISTANCE_COMMAND - 5))){steeringPwmCmd = 100 - steeringPwmCmd;}
 
                 }
                 else
@@ -270,7 +270,7 @@ private:
                     else{steeringPwmCmd =  50 - steeringPwmCmd;}            // Right turn
 
                     // If we are goig backward, inverse the steering dynamic
-                    if((leftRearPwmCmd < 50 || rightRearPwmCmd < 50) && (currentLeftDistance > (DISTANCE_COMMAND - 5))){steeringPwmCmd = 100 - steeringPwmCmd;}
+                    if((leftRearPwmCmd < 50 || rightRearPwmCmd < 50) && (currentLeftDistance < (DISTANCE_COMMAND - 5))){steeringPwmCmd = 100 - steeringPwmCmd;}
 
                 }
                 else
