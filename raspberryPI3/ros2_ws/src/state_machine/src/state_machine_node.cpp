@@ -175,7 +175,7 @@ private:
   float requestedAngle, requestedThrottle;
   bool reverse;
   float webSteering, webThrottle;
-  bool webReverse;
+  bool webReverse, webMute;
 
   // std::ofstream file_stream_;
 
@@ -418,8 +418,10 @@ private:
       stateMsg.message_index = message_index;
       publisher_state_->publish(stateMsg);
       previous_state = current_state;
-      publisher_vocal_->publish(vocalMsg);
-
+      if (!webMute) {
+        publisher_vocal_->publish(vocalMsg);
+      }
+      
       // Save file
       // file_stream_ << "\n\nMode: " << state_names[current_state] << ", Obstacle: " << obstacle_detect[obstacle] << "\n\n" << std::endl;
     }
@@ -536,6 +538,7 @@ private:
     webSteering = web.steering;
     webThrottle = web.throttle;
     webReverse = web.reverse;
+    webMute = web.mute;
   }
 
   void motorsOrderCallback(const interfaces::msg::MotorsOrder &motorsOrder){
@@ -582,26 +585,26 @@ private:
   //}
 
   void systemCheckCallback(const interfaces::msg::SystemCheck &systemCheck){
-
-  comm_jetson = (systemCheck.comm_jetson == "OK") ? true : false;
-  comm_l476 = (systemCheck.comm_l476 == "OK") ? true : false;
-  comm_f103 = (systemCheck.comm_f103 == "OK") ? true : false;
-  battery = (systemCheck.battery == "OK") ? true : false; 
-  ultrasonics = true;
-  for (int i = 0; i < 6; ++i) {
-        if (systemCheck.ultrasonics[i] != "OK") {
-            ultrasonics = false;
-            break; 
-        }
+  
+    if (systemCheck.report){
+      comm_jetson = (systemCheck.comm_jetson == "OK") ? true : false;
+      comm_l476 = (systemCheck.comm_l476 == "OK") ? true : false;
+      comm_f103 = (systemCheck.comm_f103 == "OK") ? true : false;
+      battery = (systemCheck.battery == "OK") ? true : false; 
+      ultrasonics = true;
+      for (int i = 0; i < 6; ++i) {
+            if (systemCheck.ultrasonics[i] != "OK") {
+                ultrasonics = false;
+                break; 
+            }
+      }
+      gps = (systemCheck.gps != "No Fix") ? true : false; 
+      imu = (systemCheck.imu == "OK") ? true : false; 
+      lidar = (systemCheck.lidar == "OK") ? true : false; 
+      camera = (systemCheck.camera == "OK") ? true : false; 
+      sensor = ultrasonics && lidar && camera;  
+    }
   }
-  gps = (systemCheck.gps != "No Fix") ? true : false; 
-  imu = (systemCheck.imu == "OK") ? true : false; 
-  lidar = (systemCheck.lidar == "OK") ? true : false; 
-  camera = (systemCheck.camera == "OK") ? true : false; 
-  sensor = ultrasonics && lidar && camera;  
-
-
-}
 };
 
 

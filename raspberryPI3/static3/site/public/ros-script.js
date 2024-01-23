@@ -21,12 +21,13 @@ var modePublisher = new ROSLIB.Topic({
     messageType: 'interfaces/msg/WebMode'
 });
 
-function publishWebMode(button, throttle, steering, reverse) {
+function publishWebMode(button, throttle, steering, reverse, mute) {
     var modeMsg = new ROSLIB.Message({
         button: button,
         throttle: throttle,
         steering: steering,
-        reverse: reverse
+        reverse: reverse,
+        mute : mute
     });
 
     modePublisher.publish(modeMsg);
@@ -34,9 +35,10 @@ function publishWebMode(button, throttle, steering, reverse) {
 }
 
 function selectMode(mode) {
-    publishWebMode(mode, 0, 0, false);
+    publishWebMode(mode, 0, 0, false, mute);
 }
 
+var mute = false;
 var throttle = 0;
 var reverse = false;
 var steering = 0;
@@ -51,7 +53,7 @@ function stopJoystick() {
 }
 
 function move() {
-    publishWebMode(7, throttle, steering, reverse);
+    publishWebMode(7, throttle, steering, reverse,mute);
 }
 
 var manager;
@@ -134,7 +136,7 @@ var stateData = [];
 stateListener.subscribe(function (message) {
     stateData.push('Current State: ' + message.current_state +
         '<br>State Name: ' + message.state_name +
-        '<br>Obstacle Detection: ' + message.message_index);
+        '<br>Reason: ' + securityMessages[message.message_index].message);
 
     // Mettre à jour les informations d'état dans le DOM
     document.getElementById('stateInfo').innerHTML = stateData.join('<br><br>');
@@ -145,7 +147,7 @@ stateListener.subscribe(function (message) {
             break;
         case 1:
             state=1;
-            publishWebMode(7, 0, 0, false);
+            publishWebMode(7, 0, 0, false, mute);
             break;
         case 2:
             state=2;
@@ -154,7 +156,7 @@ stateListener.subscribe(function (message) {
             state=3;
             break;
         case 4:
-            publishWebMode(7, 0, 0, false);
+            publishWebMode(7, 0, 0, false, mute);
             state=4;
             break;        
         case 5:
@@ -267,5 +269,76 @@ function updateBatteryDisplayDelayed(message) {
 }*/
 
 generalDataListener.subscribe(updateBatteryDisplay);
+
+function toggleMute() {
+    mute = !mute; // Inverser la valeur de mute à chaque clic sur le bouton
+    publishWebMode(7, 0, 0, false, mute); // Mettre à jour le topic web_mode avec la nouvelle valeur de mute
+}
+
+function toggleMute() {
+    mute = !mute;
+    var muteIcon = document.getElementById('muteIcon');
+    if (!mute) {
+        muteIcon.classList.remove('fa-volume-mute');
+        muteIcon.classList.add('fa-volume-up');
+    } else {
+        muteIcon.classList.remove('fa-volume-up');
+        muteIcon.classList.add('fa-volume-mute');
+    }
+    publishWebMode(7, 0, 0, false, mute);
+}
+
+var securityMessages = [
+    {
+        message: 'Sensor failure',
+        description: 'Sensor failure, please check sensors.'
+    },
+    {
+        message: 'Sensor failure + Human lost',
+        description: 'Sensor failure and human lost, please check sensors and search for the person.'
+    },
+    {
+        message: 'Nothing',
+        description: 'No issues reported.'
+    },
+    {
+        message: 'Human lost',
+        description: 'Human lost, please search for the person.'
+    },
+    {
+        message: 'Obstacle detected and sensor failure',
+        description: 'Obstacles and sensor failure detected, please check sensors.'
+    },
+    {
+        message: 'Obstacle detected and sensor failure and Human lost',
+        description: 'Obstacles, sensor failure, and human lost detected, please check sensors and search for the person.'
+    },
+    {
+        message: 'Obstacle detected',
+        description: 'Obstacles have been detected, please check around the vehicle.'
+    },
+    {
+        message: 'Obstacle detected and Human Lost',
+        description: 'Obstacles detected and human lost, please check around the vehicle and search for the person.'
+    }
+];
+
+function updateSecurityMessage(message_index) {
+    var securityMessageElement = document.getElementById('securityMessage');
+    var securityDescriptionElement = document.getElementById('securityDescription');
+
+    // Assurez-vous que message_index est valide
+    if (message_index >= 0 && message_index < securityMessages.length) {
+        var selectedMessage = securityMessages[message_index];
+
+        // Mettez à jour les éléments avec les valeurs du tableau
+        securityMessageElement.innerText = selectedMessage.message;
+        securityDescriptionElement.innerText = selectedMessage.description;
+    } else {
+        // Cas par défaut si message_index n'est pas valide
+        securityMessageElement.innerText = 'Unknown message';
+        securityDescriptionElement.innerText = 'Unknown message description';
+    }
+}
 
 window.history.forward();

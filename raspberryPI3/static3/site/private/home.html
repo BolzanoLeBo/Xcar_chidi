@@ -12,6 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/eventemitter2@6.4.9/lib/eventemitter2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/roslib@1/build/roslib.min.js"></script>
     <script src="ros-script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body style="background-image: url('./images/principal_background.png');">
@@ -28,6 +29,10 @@
             <div id="batteryText">Not Connection</div>
             <div id="batteryVisual"></div>
         </div>
+
+        <button id="muteButton" onclick="toggleMute()">
+            <i id="muteIcon" class="fas fa-volume-up mute-icon"></i>
+        </button>
         
         <div id="menu" class="tab-content container">
             <div id="idleDiv">
@@ -153,59 +158,6 @@
 
         let currentState = 'idle';
         let previousState = null;
-
-        var securityMessages = [
-            {
-                message: 'Sensor failure',
-                description: 'Sensor failure, please check sensors.'
-            },
-            {
-                message: 'Sensor failure + Human lost',
-                description: 'Sensor failure and human lost, please check sensors and search for the person.'
-            },
-            {
-                message: 'Nothing',
-                description: 'No issues reported.'
-            },
-            {
-                message: 'Human lost',
-                description: 'Human lost, please search for the person.'
-            },
-            {
-                message: 'Obstacle detected and sensor failure',
-                description: 'Obstacles and sensor failure detected, please check sensors.'
-            },
-            {
-                message: 'Obstacle detected and sensor failure and Human lost',
-                description: 'Obstacles, sensor failure, and human lost detected, please check sensors and search for the person.'
-            },
-            {
-                message: 'Obstacle detected',
-                description: 'Obstacles have been detected, please check around the vehicle.'
-            },
-            {
-                message: 'Obstacle detected and Human Lost',
-                description: 'Obstacles detected and human lost, please check around the vehicle and search for the person.'
-            }
-        ];
-
-        function updateSecurityMessage(message_index) {
-            var securityMessageElement = document.getElementById('securityMessage');
-            var securityDescriptionElement = document.getElementById('securityDescription');
-
-            // Assurez-vous que message_index est valide
-            if (message_index >= 0 && message_index < securityMessages.length) {
-                var selectedMessage = securityMessages[message_index];
-
-                // Mettez à jour les éléments avec les valeurs du tableau
-                securityMessageElement.innerText = selectedMessage.message;
-                securityDescriptionElement.innerText = selectedMessage.description;
-            } else {
-                // Cas par défaut si message_index n'est pas valide
-                securityMessageElement.innerText = 'Unknown message';
-                securityDescriptionElement.innerText = 'Unknown message description';
-            }
-        }
 
         function redirectAndSelectMode(page, mode) {
             selectMode(mode);

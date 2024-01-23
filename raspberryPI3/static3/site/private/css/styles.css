@@ -404,3 +404,9 @@ li a:hover {
 }
 
 /* state machine end */
+
+#muteButton {
+    position: fixed;
+    top: 10px;
+    left: 10px; 
+}
