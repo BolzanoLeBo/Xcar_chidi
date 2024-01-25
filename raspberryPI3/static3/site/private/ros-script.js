@@ -21,6 +21,20 @@ var modePublisher = new ROSLIB.Topic({
     messageType: 'interfaces/msg/WebMode'
 });
 
+var initButton = new ROSLIB.Topic({
+    ros: ros,
+    name: '/init_button',
+    messageType: 'interfaces/msg/InitButton'
+});
+
+function publishInitButton(initButton) {
+    var buttonMsg = new ROSLIB.Message({
+        button: initButton,
+    });
+    
+    initButton.publish(buttonMsg);
+}
+
 function publishWebMode(button, throttle, steering, reverse, mute) {
     var modeMsg = new ROSLIB.Message({
         button: button,
@@ -129,6 +143,22 @@ var stateListener = new ROSLIB.Topic({
     messageType: 'interfaces/msg/State',
     queue_size: 10
 });
+
+var targetListener = new ROSLIB.Topic({
+    ros: ros,
+    name: '/target_image',
+    messageType: 'interfaces/msg/TargetImage',
+    queue_size: 10
+});
+
+targetListener.subscribe(function (message){
+    var imageBase64 = message.image; // Suppose que message.image contient la base64 de l'image
+
+    // Mettre à jour la source de l'élément img avec l'ID 'monImage'
+    var imgElement = document.getElementById('targetImage');
+    imgElement.src = 'data:image/png;base64,' + imageBase64; // Remplacez 'image/png' par le type d'image correct si nécessaire
+});
+
 
 var stateInfoDiv = document.getElementById('stateInfo');
 var stateData = [];
