@@ -27,9 +27,9 @@ var initButton = new ROSLIB.Topic({
     messageType: 'interfaces/msg/InitButton'
 });
 
-function publishInitButton(initButton) {
+function publishInitButton(button) {
     var buttonMsg = new ROSLIB.Message({
-        button: initButton,
+        button: button,
     });
     
     initButton.publish(buttonMsg);
