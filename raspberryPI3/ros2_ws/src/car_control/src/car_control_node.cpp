@@ -149,7 +149,25 @@ private:
         auto motorsOrder = interfaces::msg::MotorsOrder();
         bool avoidance;
         //emergency idle or security
-        if (state == 5 or state == 0 or state == 4){    //Car stopped
+        if (state == 5 or state == 0) {
+            leftRearPwmCmd = STOP;
+            rightRearPwmCmd = STOP;
+            steeringPwmCmd = STOP;
+
+            //Send order to motors
+            motorsOrder.left_rear_pwm = leftRearPwmCmd;
+            motorsOrder.right_rear_pwm = rightRearPwmCmd;
+            motorsOrder.steering_pwm = steeringPwmCmd;
+
+            publisher_can_->publish(motorsOrder);
+            
+            pas_fini = 0;
+            step = 0;
+            sequence =0;  
+            
+        }
+
+        else if (state == 4){    //Car stopped
             leftRearPwmCmd = STOP;
             rightRearPwmCmd = STOP;
 
@@ -206,7 +224,7 @@ private:
                     else{steeringPwmCmd =  50 - steeringPwmCmd;}            // Right turn
 
                     // If we are goig backward, inverse the steering dynamic
-                    if(leftRearPwmCmd < 50 || rightRearPwmCmd < 50){steeringPwmCmd = 100 - steeringPwmCmd;}
+                    if((leftRearPwmCmd < 50 || rightRearPwmCmd < 50) && (currentLeftDistance < (DISTANCE_COMMAND - 5))){steeringPwmCmd = 100 - steeringPwmCmd;}
 
                 }
                 else
@@ -222,6 +240,10 @@ private:
             motorsOrder.steering_pwm = steeringPwmCmd;
 
             publisher_motors_order_->publish(motorsOrder);
+
+            pas_fini = 0;
+            step = 0;
+            sequence =0;  
         }
         else{ //Car started
 
@@ -230,12 +252,17 @@ private:
                 manualPropulsionCmd(requestedThrottle, reverse, leftRearPwmCmd,rightRearPwmCmd);
                 steeringCmd(requestedSteerAngle,currentAngle, steeringPwmCmd);
                 reinit = 1;
+
+                pas_fini = 0;
+                step = 0;
+                sequence =0;  
             } 
 
             //Tracking Mode
             
             else if (state==3){
                 if (!obstacle and pas_fini == 0){
+                    RCLCPP_INFO(this->get_logger(), "je suis dans tracking");
                     compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
                     reinit = 0;
                     
@@ -274,7 +301,7 @@ private:
                         else{steeringPwmCmd =  50 - steeringPwmCmd;}            // Right turn
 
                         // If we are goig backward, inverse the steering dynamic
-                        if((leftRearPwmCmd < 50 || rightRearPwmCmd < 50) && (currentLeftDistance > (DISTANCE_COMMAND - 20))){steeringPwmCmd = 100 - steeringPwmCmd;}
+                        if((leftRearPwmCmd < 50 || rightRearPwmCmd < 50) && (currentLeftDistance < (DISTANCE_COMMAND - 5))){steeringPwmCmd = 100 - steeringPwmCmd;}
 
                     }
                     else
@@ -286,9 +313,9 @@ private:
                 }
                 else {
                     pas_fini=1;
-                    avoidTurn(left,  big, steeringPwmCmd, rightRearPwmCmd, pas_fini);
+                    avoidTurn(left,  big, steeringPwmCmd, rightRearPwmCmd, pas_fini, step, sequence);
                     leftRearPwmCmd = rightRearPwmCmd;
-                    //RCLCPP_INFO(this->get_logger(), "pasfini=%d",pas_fini);
+                    RCLCPP_INFO(this->get_logger(), "pasfini=%d",pas_fini);
                     //RCLCPP_INFO(this->get_logger(), "pasfini=%d",avoid);
                     //RCLCPP_INFO(this->get_logger(), "Direction=%d",steeringPwmCmd);
                 } 
@@ -329,7 +356,11 @@ private:
                     } 
                 }else{
                     steeringPwmCmd = steeringPwmCmd_last;
-                }  
+                }
+
+                pas_fini = 0;
+                step = 0;
+                sequence =0;  
             }
 
         //Send order to motors
@@ -408,6 +439,8 @@ private:
     //Timer
     rclcpp::TimerBase::SharedPtr timer_;
     uint8_t pas_fini = 0;
+    uint8_t step = 0;
+    uint8_t sequence = 0;
 
     //Steering calibration Service
     rclcpp::Service<std_srvs::srv::Empty>::SharedPtr server_calibration_;

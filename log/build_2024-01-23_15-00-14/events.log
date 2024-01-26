@@ -1,0 +1,49 @@
+[0.000000] (-) TimerEvent: {}
+[0.006161] (-) JobUnselected: {'identifier': 'avoidance'}
+[0.007408] (-) JobUnselected: {'identifier': 'can'}
+[0.009195] (-) JobUnselected: {'identifier': 'carla_msgs'}
+[0.010609] (-) JobUnselected: {'identifier': 'detection'}
+[0.011824] (-) JobUnselected: {'identifier': 'geicar_start'}
+[0.013105] (-) JobUnselected: {'identifier': 'geicar_start_jetson'}
+[0.016409] (-) JobUnselected: {'identifier': 'img_processing'}
+[0.017732] (-) JobUnselected: {'identifier': 'imu_complementary_filter'}
+[0.019171] (-) JobUnselected: {'identifier': 'imu_filter_madgwick'}
+[0.020389] (-) JobUnselected: {'identifier': 'imu_tools'}
+[0.022243] (-) JobUnselected: {'identifier': 'interfaces'}
+[0.023540] (-) JobUnselected: {'identifier': 'interfaces'}
+[0.024660] (-) JobUnselected: {'identifier': 'joystick'}
+[0.025956] (-) JobUnselected: {'identifier': 'rosapi'}
+[0.027153] (-) JobUnselected: {'identifier': 'rosapi_msgs'}
+[0.030625] (-) JobUnselected: {'identifier': 'rosbridge_library'}
+[0.032617] (-) JobUnselected: {'identifier': 'rosbridge_msgs'}
+[0.034089] (-) JobUnselected: {'identifier': 'rosbridge_server'}
+[0.041186] (-) JobUnselected: {'identifier': 'rosbridge_suite'}
+[0.041497] (-) JobUnselected: {'identifier': 'rosbridge_test_msgs'}
+[0.041746] (-) JobUnselected: {'identifier': 'rplidar_ros'}
+[0.041916] (-) JobUnselected: {'identifier': 'rviz_imu_plugin'}
+[0.042381] (-) JobUnselected: {'identifier': 'simulation'}
+[0.042592] (-) JobUnselected: {'identifier': 'state_machine'}
+[0.042726] (-) JobUnselected: {'identifier': 'system_check'}
+[0.042843] (-) JobUnselected: {'identifier': 'system_check_ack'}
+[0.042950] (-) JobUnselected: {'identifier': 'usb_cam'}
+[0.043064] (-) JobUnselected: {'identifier': 'vocal_feedback'}
+[0.043206] (car_control) JobQueued: {'identifier': 'car_control', 'dependencies': OrderedDict([('interfaces', '/home/pi/avoidance/Xcar_chidi/install/interfaces')])}
+[0.043350] (car_control) JobStarted: {'identifier': 'car_control'}
+[0.081079] (-) TimerEvent: {}
+[0.183845] (-) TimerEvent: {}
+[0.285070] (-) TimerEvent: {}
+[0.402287] (-) TimerEvent: {}
+[0.505058] (-) TimerEvent: {}
+[0.611807] (-) TimerEvent: {}
+[0.713675] (-) TimerEvent: {}
+[0.815507] (-) TimerEvent: {}
+[0.919860] (-) TimerEvent: {}
+[1.023184] (-) TimerEvent: {}
+[1.124690] (-) TimerEvent: {}
+[1.225889] (-) TimerEvent: {}
+[1.327763] (-) TimerEvent: {}
+[1.429956] (-) TimerEvent: {}
+[1.530830] (-) TimerEvent: {}
+[1.635038] (-) TimerEvent: {}
+[1.705089] (car_control) JobEnded: {'identifier': 'car_control', 'rc': 1}
+[1.718220] (-) EventReactorShutdown: {}

@@ -292,7 +292,7 @@ private:
         }
 
         // -> security
-        else if ((dir_av && obstacle_av) || (dir_ar && obstacle_ar) || !(sensor) )
+        else if ((dir_av && obstacle_av) || (dir_ar && obstacle_ar))
         {
           current_state = 4;
           RCLCPP_INFO(this->get_logger(), ("manual->security"));
@@ -348,7 +348,7 @@ private:
           RCLCPP_INFO(this->get_logger(), ("tracking->idle"));
         }
         // -> security
-        else if ((dir_av && obstacle_av) || (dir_ar && obstacle_ar) || (human_lost) || !(sensor))
+        else if ((dir_av && obstacle_av) || (dir_ar && obstacle_ar) || (human_lost))
         {
           current_state = 4;
           RCLCPP_INFO(this->get_logger(), ("tracking->security"));
@@ -370,11 +370,11 @@ private:
       // security -> manual
       else if (current_state == 4)
       {
-        if (((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar) || (dir_av && !obstacle_av)) && connexion && (stock_previous_state==1) && sensor) {
+        if (((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar) || (dir_av && !obstacle_av)) && connexion && (stock_previous_state==1)) {
           current_state = 1;
           RCLCPP_INFO(this->get_logger(), ("sec->man"));
         }
-        else if (((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar) || (dir_av && !obstacle_av)) && connexion &&  (stock_previous_state==3) && !(human_lost) && sensor) {
+        else if (((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar) || (dir_av && !obstacle_av)) && connexion &&  (stock_previous_state==3) && !(human_lost)) {
           current_state = 3;
           RCLCPP_INFO(this->get_logger(), ("sec->track"));
         }

@@ -18,12 +18,12 @@
 #include "interfaces/msg/tracking_pos_angle.hpp"
 #include "interfaces/msg/motors_feedback.hpp"
 
-#define LIM_US 70
-#define LIM_AVOID_US 60
+#define LIM_US 50
+#define LIM_AVOID_US 130
 #define LIM_NON_AVOID_US 50
-#define LIM_LIDAR_FRONT 1.70
+#define LIM_LIDAR_FRONT 1.50
 #define LIM_LIDAR_REAR 0.70
-#define LIM_LIDAR_AVOID 1.50
+#define LIM_LIDAR_AVOID 2.30
 #define LIM_US_COTE 20
 #include "../include/detection/detection_node.h"
 
@@ -135,15 +135,15 @@ class detection: public rclcpp::Node {
         }
 
 
-        if ((ultrasonic.front_center <= LIM_AVOID_US)){
+        if ((ultrasonic.front_center <= LIM_AVOID_US) && (ultrasonic.front_center>=LIM_US)){
         us_front_center = 1;
         } 
         // Message of obstacle if there is one in at the left of the car at less than 20 cm
-        if((ultrasonic.front_left <= LIM_AVOID_US)){
+        if((ultrasonic.front_left <= LIM_AVOID_US)&& (ultrasonic.front_left>=LIM_US)){
           us_front_left = 1;
         } 
         // Message of obstacle if there is one in at the right of the car at less than 20 cm
-        if((ultrasonic.front_right <= LIM_AVOID_US)){
+        if((ultrasonic.front_right <= LIM_AVOID_US)&& (ultrasonic.front_right>=LIM_US)){
           us_front_right = 1; 
         }
 
@@ -191,7 +191,7 @@ class detection: public rclcpp::Node {
         }
 
  
-      // } else if(nb_warning >= 5){
+      // } else if(nb_warning >= 5){16
       //   //ERROR if strange value of the us_data (too far or negative value) 5 times in a row
       //   RCLCPP_ERROR(this->get_logger(), "Error : wrong us data for too long");
       //   // Adding the message when there is a problem with the us sensors
@@ -235,7 +235,7 @@ class detection: public rclcpp::Node {
         lidar_data.clear();
         for (int i = 0;i<size;i++){
           lidar_data.push_back(scan.ranges[i]);
-          if (i>=3*size/16 && i<(5*size)/16){
+          if (i>=7*size/32 && i<(9*size)/32){
             if (scan.ranges[i]<front_min){
                 front_min=scan.ranges[i];
             }
