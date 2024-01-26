@@ -54,7 +54,10 @@
                 <h2 class="blinking alarm" id="securityMessage">Obstacle detected</h2>
                 <div id="stateData" class="hidden"></div>
                 <h2><em class="italic-text" id="securityDescription">Obstacles have been detected, please check around the vehicle.</em></h2>
-                <img src="./images/obstacle.png" alt="Obstacle" class="controller-image">
+                <div class="image-container">
+                    <img src="./images/tracking1.png" alt="Tracking Image" class="controller-image">
+                    <img id="targetImage">
+                </div>
                 <div class="button-container">
                     <button onclick="publishInitButton(true)">Init target</button>
                     <buttonE onclick="redirectAndSelectMode('emergency.html', 4)">Emergency Mode</buttonE>
@@ -77,8 +80,10 @@
                 <h2 class="blinking">Tracking Mode</h2>
                 <div id="stateData" class="hidden"></div>
                 <h2><em class="italic-text">The vehicle is ready to follow you.</em></h2>
-                <img src="./images/tracking1.png" alt="Tracking Image" class="controller-image">
-                <img id="targetImage" alt="Image cible">
+                <div class="image-container">
+                    <img src="./images/tracking1.png" alt="Tracking Image" class="controller-image">
+                    <img id="targetImage" alt="Target Image">
+                </div>
                 <div class="button-container">
                     <button onclick="publishInitButton(true)">Init target</button>
                     <button onclick="redirectAndSelectMode('home.html', 0)">Return</button>
