@@ -31,6 +31,8 @@ set(msg_files
   "msg/TrackingPosAngle.msg"
   "msg/UserLost.msg"
   "msg/Vocal.msg"
+  "msg/InitButton.msg"
+  "msg/TargetImage.msg"
 )
 
 rosidl_generate_interfaces(${PROJECT_NAME}

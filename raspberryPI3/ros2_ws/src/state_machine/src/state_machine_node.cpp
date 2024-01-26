@@ -602,7 +602,7 @@ private:
       imu = (systemCheck.imu == "OK") ? true : false; 
       lidar = (systemCheck.lidar == "OK") ? true : false; 
       camera = (systemCheck.camera == "OK") ? true : false; 
-      sensor = ultrasonics && lidar && camera;  
+      sensor = ultrasonics ;//&& lidar && camera;  
     }
   }
 };

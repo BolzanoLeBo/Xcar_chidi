@@ -464,7 +464,6 @@ private:
     * 
     */
     void lidarCallback([[maybe_unused]] const sensor_msgs::msg::LaserScan & lidarMsg){
-
         if (checkingInProgress && !lidarDetect){
             lidarDetect = true;
         }
