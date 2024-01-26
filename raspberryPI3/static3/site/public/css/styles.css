@@ -144,12 +144,23 @@ buttonE:hover {
     color: whitesmoke;
 }
 
+.image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 250px;
+    overflow: hidden;
+}
 
 .controller-image {
-    text-align: center; 
-    max-width: 100%; 
-    height: auto; 
-    max-height: 250px; 
+    max-width: 100%;
+    height: auto;
+    max-height: 250px;
+}
+
+#targetImage {
+    max-width: 100%;
+    height: auto;
 }
 
 .controller-image-sm {
@@ -158,6 +169,8 @@ buttonE:hover {
     height: auto; 
     max-height: 400px; 
 }
+
+
 
 @keyframes blink {
     0% {
@@ -404,3 +417,9 @@ li a:hover {
 }
 
 /* state machine end */
+
+#muteButton {
+    position: fixed;
+    top: 10px;
+    left: 10px; 
+}
