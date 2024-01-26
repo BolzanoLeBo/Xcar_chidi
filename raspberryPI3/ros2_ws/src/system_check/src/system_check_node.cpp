@@ -344,7 +344,7 @@ private:
 
             auto commMsg = interfaces::msg::SystemCheck();
             commMsg.request = true;
-            publisher_system_check_ -> publish(commMsg);
+            //publisher_system_check_ -> publish(commMsg);
 
             
             checkingInProgress = true;
