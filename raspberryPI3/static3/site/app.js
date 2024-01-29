@@ -9,7 +9,7 @@ const port = 9443;
 
 // Utilisez un tableau pour stocker les informations d'authentification
 const userCredentials = {
-    'user': { 'passwordHash': '$2b$12$Tggq1FZNpUbErzdhvb4VD.assGGPFWc9kBCYgL0VkjVMn9e2ZYD12', 'action': 'redirect_test' },
+    'user': { 'passwordHash': '$2b$12$Q3phXvHh0kSug.guGvM1TehqKSYsqcn1GDgSgOpkLC87rJQLEhrXS', 'action': 'redirect_test' },
     'admin': { 'passwordHash': '$2b$12$OfwWVcrigEGBXuFW8zTwxeHJNzN1p5ijWgwGe/6j8awZ02Uz5Vpvi', 'action': 'redirect_rickroll' },
 };
 

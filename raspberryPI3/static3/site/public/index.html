@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="icon" type="image/png" href="./images/icon.png">
     <title>Login - X-Car</title>
+    <script src="animation.js"></script>
 </head>
 <body style="background-image: url('./images/principal_background.png');">
 
@@ -22,8 +23,10 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" onkeypress="checkEnter(event)" required>
             </div>
-        
-            <button onclick="submitForm()">Login</button>        
+            <div class="button-container">
+                <button onclick="submitForm()">Login</button> 
+                <button onclick="redirect('demo.html')">How does it work ?</button>     
+            </div>   
         </div>
 
         <div id="login-error" class="alert" style="display: none;">
