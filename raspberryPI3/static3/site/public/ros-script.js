@@ -27,21 +27,34 @@ var initButton = new ROSLIB.Topic({
     messageType: 'interfaces/msg/InitButton'
 });
 
+var muteButton = new ROSLIB.Topic({
+    ros: ros,
+    name: '/mute',
+    messageType: 'interfaces/msg/Mute'
+});
+
 function publishInitButton(button) {
-    var buttonMsg = new ROSLIB.Message({
+    var initButtonMsg = new ROSLIB.Message({
         button: button,
     });
     
-    initButton.publish(buttonMsg);
+    initButton.publish(initButtonMsg);
 }
 
-function publishWebMode(button, throttle, steering, reverse, mute) {
+function publishMuteButton(button) {
+    var muteButtonMsg = new ROSLIB.Message({
+        button: button,
+    });
+    
+    muteButton.publish(muteButtonMsg);
+}
+
+function publishWebMode(button, throttle, steering, reverse) {
     var modeMsg = new ROSLIB.Message({
         button: button,
         throttle: throttle,
         steering: steering,
         reverse: reverse,
-        mute : mute
     });
 
     modePublisher.publish(modeMsg);
@@ -49,7 +62,7 @@ function publishWebMode(button, throttle, steering, reverse, mute) {
 }
 
 function selectMode(mode) {
-    publishWebMode(mode, 0, 0, false, mute);
+    publishWebMode(mode, 0, 0, false);
 }
 
 var mute = false;
@@ -67,7 +80,7 @@ function stopJoystick() {
 }
 
 function move() {
-    publishWebMode(7, throttle, steering, reverse,mute);
+    publishWebMode(7, throttle, steering, reverse);
 }
 
 var manager;
@@ -177,7 +190,7 @@ stateListener.subscribe(function (message) {
             break;
         case 1:
             state=1;
-            publishWebMode(7, 0, 0, false, mute);
+            publishWebMode(7, 0, 0, false);
             break;
         case 2:
             state=2;
@@ -186,7 +199,7 @@ stateListener.subscribe(function (message) {
             state=3;
             break;
         case 4:
-            publishWebMode(7, 0, 0, false, mute);
+            publishWebMode(7, 0, 0, false);
             state=4;
             break;        
         case 5:
@@ -301,11 +314,6 @@ function updateBatteryDisplayDelayed(message) {
 generalDataListener.subscribe(updateBatteryDisplay);
 
 function toggleMute() {
-    mute = !mute; // Inverser la valeur de mute à chaque clic sur le bouton
-    publishWebMode(7, 0, 0, false, mute); // Mettre à jour le topic web_mode avec la nouvelle valeur de mute
-}
-
-function toggleMute() {
     mute = !mute;
     var muteIcon = document.getElementById('muteIcon');
     if (!mute) {
@@ -315,7 +323,7 @@ function toggleMute() {
         muteIcon.classList.remove('fa-volume-up');
         muteIcon.classList.add('fa-volume-mute');
     }
-    publishWebMode(7, 0, 0, false, mute);
+    publishMuteButton(mute);
 }
 
 var securityMessages = [
