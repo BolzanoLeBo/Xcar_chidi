@@ -33,6 +33,7 @@ set(msg_files
   "msg/Vocal.msg"
   "msg/InitButton.msg"
   "msg/TargetImage.msg"
+  "msg/Mute.msg"
 )
 
 rosidl_generate_interfaces(${PROJECT_NAME}

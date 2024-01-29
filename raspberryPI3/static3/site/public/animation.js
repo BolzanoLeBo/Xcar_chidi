@@ -1,7 +1,4 @@
-console.log("hello world")
-
 titles = document.getElementsByClassName("subtitle");
-console.log(titles);
 for(var i = 0; i < titles.length; i++){
     titles[i].addEventListener("click", function(e){
         id = this.getAttribute("data-bloc")

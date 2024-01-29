@@ -3,7 +3,7 @@ var ros = new ROSLIB.Ros({
 });
 
 ros.on('connection', function () {
-    console.log('Connecté au serveur websocket ROS2.');
+    console.log('Connecté au serveur websocket ROS.');
 });
 
 
@@ -41,9 +41,9 @@ function publishInitButton(button) {
     initButton.publish(initButtonMsg);
 }
 
-function publishMuteButton(button) {
+function publishMuteButton(mute) {
     var muteButtonMsg = new ROSLIB.Message({
-        button: button,
+        mute: mute,
     });
     
     muteButton.publish(muteButtonMsg);
@@ -58,7 +58,6 @@ function publishWebMode(button, throttle, steering, reverse) {
     });
 
     modePublisher.publish(modeMsg);
-    //console.log('Commande envoyée - Button:', button, 'Throttle:', throttle, 'Steering:', steering, 'Reverse:', reverse);
 }
 
 function selectMode(mode) {
@@ -98,7 +97,6 @@ function createJoystick() {
     manager = nipplejs.create(options);
 
     manager.on('move', function (event, nipple) {
-        //console.log("Moving");
         var max_throttle = 1.0;
         var max_reverse_distance = 37.5; // pixels;
         var max_steering = 1.0;
@@ -123,14 +121,12 @@ function createJoystick() {
     });
 
     manager.on('start', function () {
-        //console.log("Movement start");
         if (!timer) {
             timer = setInterval(move, 25);
         }
     });
 
     manager.on('end', function () {
-        //console.log("Movement end");
         if (timer) {
             clearInterval(timer);
             timer = null;
@@ -140,7 +136,6 @@ function createJoystick() {
         reverse = false;
         move();
     });
-    console.log('Oui');
     return manager;
 }
 

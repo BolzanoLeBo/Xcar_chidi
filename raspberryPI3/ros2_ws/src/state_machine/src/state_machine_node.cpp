@@ -21,6 +21,7 @@
 #include "interfaces/msg/motors_order.hpp"
 #include "interfaces/msg/user_lost.hpp"
 #include "interfaces/msg/vocal.hpp"
+#include "interfaces/msg/mute.hpp"
 
 #define DEADZONE_LT_RT 0.15     // %
 #define DEADZONE_LS_X_LEFT 0.4  // %
@@ -103,7 +104,9 @@ public:
     client_count_sub = this->create_subscription<std_msgs::msg::Int32>(
         "client_count", 10, std::bind(&state_machine::clientCountCallback, this, _1));
     subscription_system_check_ = this->create_subscription<interfaces::msg::SystemCheck>(
-        "system_check", 10, std::bind(&state_machine::systemCheckCallback, this, _1));    
+        "system_check", 10, std::bind(&state_machine::systemCheckCallback, this, _1));
+    subscription_mute_button_ = this->create_subscription<interfaces::msg::Mute>(
+        "mute", 10, std::bind(&state_machine::muteCallback, this, _1));   
 
     timer_ = this->create_wall_timer(1ms, std::bind(&state_machine::stateChanger, this));
     //disconnect_timer = this->create_wall_timer(std::chrono::seconds(1), std::bind(&state_machine::changeModeCallback, this));
@@ -155,6 +158,7 @@ private:
   rclcpp::Subscription<interfaces::msg::WebMode>::SharedPtr subscription_web_mode_;
   rclcpp::Subscription<interfaces::msg::MotorsOrder>::SharedPtr subscription_motors_order_;
   rclcpp::Subscription<interfaces::msg::SystemCheck>::SharedPtr subscription_system_check_;
+  rclcpp::Subscription<interfaces::msg::Mute>::SharedPtr subscription_mute_button_;
   // Timer
   rclcpp::TimerBase::SharedPtr timer_;
   rclcpp::Subscription<interfaces::msg::UserLost>::SharedPtr subscription_user_lost_;
@@ -175,7 +179,8 @@ private:
   float requestedAngle, requestedThrottle;
   bool reverse;
   float webSteering, webThrottle;
-  bool webReverse, webMute;
+  bool webReverse;
+  bool webMute = false;
 
   // std::ofstream file_stream_;
 
@@ -538,7 +543,6 @@ private:
     webSteering = web.steering;
     webThrottle = web.throttle;
     webReverse = web.reverse;
-    webMute = web.mute;
   }
 
   void motorsOrderCallback(const interfaces::msg::MotorsOrder &motorsOrder){
@@ -605,6 +609,11 @@ private:
       sensor = ultrasonics ;//&& lidar && camera;  
     }
   }
+
+  void muteCallback(const interfaces::msg::Mute &muteButton)
+  {
+    webMute = muteButton.mute;
+  } 
 };
 
 
