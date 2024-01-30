@@ -28,14 +28,18 @@ class VocalFeedbackNode(Node):
         os.system("pacmd set-default-sink \"alsa_output.usb-Jieli_Technology_UACDemoV1.0_4150333236393504-00.analog-stereo\"")
         os.system("pacmd set-sink-volume \"alsa_output.usb-Jieli_Technology_UACDemoV1.0_4150333236393504-00.analog-stereo\" 55000")
 
+    def mute_callback(self, msg):
+        volume_level = 0 if msg.mute else 55000
+        self.get_logger().info(f"Level set at {volume_level}")
+        os.system(f"pacmd set-sink-volume \"alsa_output.usb-Jieli_Technology_UACDemoV1.0_4150333236393504-00.analog-stereo\" {volume_level}")
+        
+
     def listener_callback(self, msg):
         mp3_name = msg.vocal_feedback_message
         mp3_file = "~/arthur/Xcar_chidi/raspberryPI3/ros2_ws/src/audio/"
         play_audio_mp3(mp3_file, mp3_name)
 
-    def mute_callback(self, msg):
-        volume_level = 0 if msg.mute else 55000
-        os.system(f"pacmd set-sink-volume \"alsa_output.usb-Jieli_Technology_UACDemoV1.0_4150333236393504-00.analog-stereo\" {volume_level}")
+
 
 def main(args=None):
     rclpy.init(args=args)

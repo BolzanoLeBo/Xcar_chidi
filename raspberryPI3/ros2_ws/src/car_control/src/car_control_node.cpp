@@ -145,7 +145,22 @@ private:
 
         auto motorsOrder = interfaces::msg::MotorsOrder();
         //emergency idle or security
-        if (state == 5 or state == 0 or state == 4){    //Car stopped
+        if (state == 5 or state == 0){    //Car stopped
+            leftRearPwmCmd = STOP;
+            rightRearPwmCmd = STOP;
+            steeringPwmCmd = STOP;
+
+            //Send order to motors
+            motorsOrder.left_rear_pwm = leftRearPwmCmd;
+            motorsOrder.right_rear_pwm = rightRearPwmCmd;
+            motorsOrder.steering_pwm = steeringPwmCmd;
+
+            publisher_can_->publish(motorsOrder);
+        
+        }
+
+        else if (state == 4) {
+
             leftRearPwmCmd = STOP;
             rightRearPwmCmd = STOP;
 
@@ -350,8 +365,8 @@ private:
     float Ts = 0.01;
 
 
-    double currentRightDistance;
-    double currentLeftDistance;
+    double currentRightDistance = DISTANCE_COMMAND;
+    double currentLeftDistance = DISTANCE_COMMAND;
 
     //Manual Mode variables (with joystick control)
     float requestedThrottle;
