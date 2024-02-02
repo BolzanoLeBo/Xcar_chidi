@@ -107,7 +107,7 @@ void avoidTurn(bool left, bool big, uint8_t& steeringPwmCmd, uint8_t& rightRearP
             {
                 if((time(&timer)-start_time) < 10)
                 {
-                    steeringPwmCmd = 100;
+                    steeringPwmCmd = 75;
                     rightRearPwmCmd = 50;
                 }
                 else
@@ -121,7 +121,7 @@ void avoidTurn(bool left, bool big, uint8_t& steeringPwmCmd, uint8_t& rightRearP
             {
                 if((time(&timer)-start_time) < 12)
                 {
-                    steeringPwmCmd = 100;
+                    steeringPwmCmd = 75;
                     rightRearPwmCmd = 75;
                 }
                 else
@@ -205,7 +205,7 @@ void avoidTurn(bool left, bool big, uint8_t& steeringPwmCmd, uint8_t& rightRearP
             {
                 if((time(&timer)-start_time) < 10)
                 {
-                    steeringPwmCmd = 0;
+                    steeringPwmCmd = 25;
                     rightRearPwmCmd = 50;
                 }
                 else
@@ -218,7 +218,7 @@ void avoidTurn(bool left, bool big, uint8_t& steeringPwmCmd, uint8_t& rightRearP
             {
                 if((time(&timer)-start_time) < 12)
                 {
-                    steeringPwmCmd = 0;
+                    steeringPwmCmd = 25;
                     rightRearPwmCmd = 75;
                 }
                 else

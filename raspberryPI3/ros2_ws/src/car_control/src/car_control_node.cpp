@@ -234,6 +234,55 @@ private:
                 }  
             }
 
+            else if (previous_state==2){
+                //if (!obstacle and pas_fini == 0){
+                compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
+                reinit = 0;
+
+                // Compute the angle error between the front of the car and the user
+                angle_error = desiredAngle/MAX_ANGLE - currentAngle; // [-2;2]
+
+                // Run the dynamic model if the angle is over 2 degree, otherwise keep the same dynamic
+                // Avoid instabilities when angle_error is close to zero 
+                // (because the steering hardware is not good enought to prevent oscilations close to the desired angle)
+                if(abs(desiredAngle - currentAngle*MAX_ANGLE) > 2)
+                {
+                    // Right or Left 
+                    direction = angle_error >= 0;
+
+                    // Get the absolute value of the angle error 
+                    angle_error = abs(angle_error)*25;
+                    
+                    // Control law
+                    steeringPwmCmd = ((1.8+2*Ts)*angle_error+(2*Ts-1.8)*angle_error_last+2*Ts*steeringPwmCmd_last)/(2*Ts);                 
+
+                    // Saturation
+                    if(steeringPwmCmd > 50) steeringPwmCmd = 50;
+                    else if (steeringPwmCmd < 0) steeringPwmCmd = 0;
+
+                    // Updating values
+                    angle_error_last = angle_error;
+                    steeringPwmCmd_last = steeringPwmCmd;
+
+                    // Decoupling wheels to allow sharper turns -- not implemented yet
+                    coeff_attenuation = abs(currentAngle*2);
+
+                    // Direction : true -> left | false -> right
+                    // Shifting from 0 center to 50 center
+                    if(direction){steeringPwmCmd = steeringPwmCmd + 50;}    // Left turn 
+                    else{steeringPwmCmd =  50 - steeringPwmCmd;}            // Right turn
+
+                    // If we are goig backward, inverse the steering dynamic
+                    if((leftRearPwmCmd < 50 || rightRearPwmCmd < 50) && (currentLeftDistance < (DISTANCE_COMMAND - 5))){steeringPwmCmd = 100 - steeringPwmCmd;}
+
+                }
+                else
+                {
+                    // if we are under the steering tolerance treshold then keep the same angle
+                    steeringPwmCmd = steeringPwmCmd_last;
+                }  
+            }
+
             //Send order to motorsOrder2
             motorsOrder.left_rear_pwm = leftRearPwmCmd;
             motorsOrder.right_rear_pwm = rightRearPwmCmd;
@@ -261,7 +310,63 @@ private:
             //Tracking Mode
             
             else if (state==3){
-                if (!obstacle and pas_fini == 0){
+
+                // Calculate the wheel speed according to the distance error between the user and the car
+                compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
+                reinit = 0;
+
+                // Compute the angle error between the front of the car and the user
+                angle_error = desiredAngle/MAX_ANGLE - currentAngle; // [-2;2]
+
+                // Run the dynamic model if the angle is over 2 degree, otherwise keep the same dynamic
+                // Avoid instabilities when angle_error is close to zero 
+                // (because the steering hardware is not good enought to prevent oscilations close to the desired angle)
+                if(abs(desiredAngle - currentAngle*MAX_ANGLE) > 2)
+                {
+                    // Right or Left 
+                    direction = angle_error >= 0;
+
+                    // Get the absolute value of the angle error 
+                    angle_error = abs(angle_error)*25;
+                    
+                    // Control law
+                    steeringPwmCmd = ((1.8+2*Ts)*angle_error+(2*Ts-1.8)*angle_error_last+2*Ts*steeringPwmCmd_last)/(2*Ts);                 
+
+                    // Saturation
+                    if(steeringPwmCmd > 50) steeringPwmCmd = 50;
+                    else if (steeringPwmCmd < 0) steeringPwmCmd = 0;
+
+                    // Updating values
+                    angle_error_last = angle_error;
+                    steeringPwmCmd_last = steeringPwmCmd;
+
+                    // Decoupling wheels to allow sharper turns -- not implemented yet
+                    coeff_attenuation = abs(currentAngle*2);
+
+                    // Direction : true -> left | false -> right
+                    // Shifting from 0 center to 50 center
+                    if(direction){steeringPwmCmd = steeringPwmCmd + 50;}    // Left turn 
+                    else{steeringPwmCmd =  50 - steeringPwmCmd;}            // Right turn
+
+                    // If we are goig backward, inverse the steering dynamic
+                    if((leftRearPwmCmd < 50 || rightRearPwmCmd < 50) && (currentLeftDistance < (DISTANCE_COMMAND - 5))){steeringPwmCmd = 100 - steeringPwmCmd;}
+
+                }
+                else
+                {
+                    // if we are under the steering tolerance treshold then keep the same angle
+                    // Otherwise it oscilates
+                    steeringPwmCmd = steeringPwmCmd_last;
+                }
+
+                pas_fini = 0;
+                step = 0;
+                sequence =0;    
+            }
+            
+            //Autonomous mode
+            else if (state==2){
+                 if (!obstacle and pas_fini == 0){
                     RCLCPP_INFO(this->get_logger(), "je suis dans tracking");
                     compensator_recurrence(reinit, currentRightDistance, currentLeftDistance, rightRearPwmCmd, leftRearPwmCmd);
                     reinit = 0;
@@ -320,48 +425,6 @@ private:
                     //RCLCPP_INFO(this->get_logger(), "Direction=%d",steeringPwmCmd);
                 } 
             }
-            
-            //Autonomous mode
-            else if (state==2){
-                angle_error = desiredAngle/MAX_ANGLE - currentAngle; // [-2;2]
-
-                if(abs(desiredAngle - currentAngle*MAX_ANGLE) > 2)
-                {
-                    direction = angle_error >= 0; // Gauche - Droite
-
-                    //steeringPwmCmd = steeringPwmCmd_last + 0.9*angle_error + (2*0.001-0.9)*angle_error_last;
-                    angle_error = abs(angle_error)*25;
-                    
-                    // Control law
-                    steeringPwmCmd = ((1.8+2*Ts)*angle_error+(2*Ts-1.8)*angle_error_last+2*Ts*steeringPwmCmd_last)/(2*Ts);
-
-                    // Saturation
-                    if(steeringPwmCmd > 50) steeringPwmCmd = 50;
-                    else if (steeringPwmCmd < 0) steeringPwmCmd = 0;
-
-                    // Updating values
-                    angle_error_last = angle_error;
-                    steeringPwmCmd_last = steeringPwmCmd;
-
-                    // Direction : true -> left | false -> right
-                    if(direction)
-                    {
-                        steeringPwmCmd = steeringPwmCmd + 50;
-                        //RCLCPP_INFO(this->get_logger(),(("angle_error = " + to_string(angle_error) + "| dir = gauche | PWM").data()));
-                    } 
-                    else
-                    {
-                        steeringPwmCmd = steeringPwmCmd - 50;
-                        //RCLCPP_INFO(this->get_logger(),(("angle_error = " + to_string(angle_error) + "| dir = droite").data()));
-                    } 
-                }else{
-                    steeringPwmCmd = steeringPwmCmd_last;
-                }
-
-                pas_fini = 0;
-                step = 0;
-                sequence =0;  
-            }
 
         //Send order to motors
         motorsOrder.left_rear_pwm = leftRearPwmCmd;
@@ -394,7 +457,7 @@ private:
     float Ts = 0.01;
 
 
-    double currentRightDistance;
+    double currentRightDistance = DISTANCE_COMMAND;
     double currentLeftDistance;
 
     //Manual Mode variables (with joystick control)
