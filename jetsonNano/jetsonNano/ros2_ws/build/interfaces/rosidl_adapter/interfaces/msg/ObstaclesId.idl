@@ -1,0 +1,26 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from interfaces/msg/ObstaclesId.msg
+// generated code does not contain a copyright notice
+
+
+module interfaces {
+  module msg {
+    struct ObstaclesId {
+      @verbatim (language="comment", text=
+        "there is an obstacle on the left")
+      boolean obstacle_left;
+
+      @verbatim (language="comment", text=
+        "there is an obstacle on the middle")
+      boolean obstacle_middle;
+
+      @verbatim (language="comment", text=
+        "there is an obstacle on the rigth")
+      boolean obstacle_right;
+
+      @verbatim (language="comment", text=
+        "there is a big obstacle")
+      boolean big_obstacle;
+    };
+  };
+};

@@ -1,0 +1,35 @@
+running egg_info
+creating ../../build/img_processing/img_processing.egg-info
+writing ../../build/img_processing/img_processing.egg-info/PKG-INFO
+writing dependency_links to ../../build/img_processing/img_processing.egg-info/dependency_links.txt
+writing entry points to ../../build/img_processing/img_processing.egg-info/entry_points.txt
+writing requirements to ../../build/img_processing/img_processing.egg-info/requires.txt
+writing top-level names to ../../build/img_processing/img_processing.egg-info/top_level.txt
+writing manifest file '../../build/img_processing/img_processing.egg-info/SOURCES.txt'
+reading manifest file '../../build/img_processing/img_processing.egg-info/SOURCES.txt'
+writing manifest file '../../build/img_processing/img_processing.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /root/Xcar_chidi/jetsonNano/ros2_ws/build/img_processing/build
+creating /root/Xcar_chidi/jetsonNano/ros2_ws/build/img_processing/build/lib
+creating /root/Xcar_chidi/jetsonNano/ros2_ws/build/img_processing/build/lib/img_processing
+copying img_processing/__init__.py -> /root/Xcar_chidi/jetsonNano/ros2_ws/build/img_processing/build/lib/img_processing
+copying img_processing/img_processing_node.py -> /root/Xcar_chidi/jetsonNano/ros2_ws/build/img_processing/build/lib/img_processing
+running install
+running install_lib
+creating /root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/lib/python3.10/site-packages/img_processing
+copying /root/Xcar_chidi/jetsonNano/ros2_ws/build/img_processing/build/lib/img_processing/__init__.py -> /root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/lib/python3.10/site-packages/img_processing
+copying /root/Xcar_chidi/jetsonNano/ros2_ws/build/img_processing/build/lib/img_processing/img_processing_node.py -> /root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/lib/python3.10/site-packages/img_processing
+byte-compiling /root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/lib/python3.10/site-packages/img_processing/__init__.py to __init__.cpython-310.pyc
+byte-compiling /root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/lib/python3.10/site-packages/img_processing/img_processing_node.py to img_processing_node.cpython-310.pyc
+running install_data
+creating /root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/share/ament_index
+creating /root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/share/ament_index/resource_index
+creating /root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/share/ament_index/resource_index/packages
+copying resource/img_processing -> /root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/share/ament_index/resource_index/packages
+copying package.xml -> /root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/share/img_processing
+running install_egg_info
+Copying ../../build/img_processing/img_processing.egg-info to /root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/lib/python3.10/site-packages/img_processing-0.0.0-py3.10.egg-info
+running install_scripts
+Installing img_processing_node script to /root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/lib/img_processing
+writing list of installed files to '/root/Xcar_chidi/jetsonNano/ros2_ws/build/img_processing/install.log'

@@ -1,0 +1,478 @@
+[5.897s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[5.898s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=4, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x7f7eebe440>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7f7f1cb460>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7f7f1cb460>>, mixin_verb=('build',))
+[6.136s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[6.142s] INFO:colcon.colcon_metadata.package_discovery.colcon_meta:Using configuration from '/root/.colcon/metadata/default/Gazebo.meta'
+[6.145s] INFO:colcon.colcon_metadata.package_discovery.colcon_meta:Using configuration from '/root/.colcon/metadata/default/fastrtps.meta'
+[6.145s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[6.145s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[6.146s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[6.146s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[6.146s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[6.146s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/root/Xcar_chidi/jetsonNano/ros2_ws'
+[6.146s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[6.147s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[6.147s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[6.147s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[6.148s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[6.148s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[6.148s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[6.148s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[6.148s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[6.212s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[6.212s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[6.212s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[6.213s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[6.213s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[6.213s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[6.214s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[6.214s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[6.214s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[6.215s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[6.215s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[6.215s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[6.216s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[6.216s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[6.216s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[6.216s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[6.217s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[6.217s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[6.217s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[6.217s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[6.217s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[6.218s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[6.218s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[6.218s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[6.218s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[6.218s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[6.219s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[6.219s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[6.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/geicar_start_jetson) by extensions ['ignore', 'ignore_ament_install']
+[6.219s] Level 1:colcon.colcon_core.package_identification:_identify(src/geicar_start_jetson) by extension 'ignore'
+[6.220s] Level 1:colcon.colcon_core.package_identification:_identify(src/geicar_start_jetson) by extension 'ignore_ament_install'
+[6.220s] Level 1:colcon.colcon_core.package_identification:_identify(src/geicar_start_jetson) by extensions ['colcon_pkg']
+[6.220s] Level 1:colcon.colcon_core.package_identification:_identify(src/geicar_start_jetson) by extension 'colcon_pkg'
+[6.220s] Level 1:colcon.colcon_core.package_identification:_identify(src/geicar_start_jetson) by extensions ['colcon_meta']
+[6.220s] Level 1:colcon.colcon_core.package_identification:_identify(src/geicar_start_jetson) by extension 'colcon_meta'
+[6.221s] Level 1:colcon.colcon_core.package_identification:_identify(src/geicar_start_jetson) by extensions ['ros']
+[6.221s] Level 1:colcon.colcon_core.package_identification:_identify(src/geicar_start_jetson) by extension 'ros'
+[6.233s] DEBUG:colcon.colcon_core.package_identification:Package 'src/geicar_start_jetson' with type 'ros.ament_cmake' and name 'geicar_start_jetson'
+[6.234s] Level 1:colcon.colcon_core.package_identification:_identify(src/img_processing) by extensions ['ignore', 'ignore_ament_install']
+[6.234s] Level 1:colcon.colcon_core.package_identification:_identify(src/img_processing) by extension 'ignore'
+[6.234s] Level 1:colcon.colcon_core.package_identification:_identify(src/img_processing) by extension 'ignore_ament_install'
+[6.235s] Level 1:colcon.colcon_core.package_identification:_identify(src/img_processing) by extensions ['colcon_pkg']
+[6.235s] Level 1:colcon.colcon_core.package_identification:_identify(src/img_processing) by extension 'colcon_pkg'
+[6.235s] Level 1:colcon.colcon_core.package_identification:_identify(src/img_processing) by extensions ['colcon_meta']
+[6.235s] Level 1:colcon.colcon_core.package_identification:_identify(src/img_processing) by extension 'colcon_meta'
+[6.235s] Level 1:colcon.colcon_core.package_identification:_identify(src/img_processing) by extensions ['ros']
+[6.235s] Level 1:colcon.colcon_core.package_identification:_identify(src/img_processing) by extension 'ros'
+[6.238s] DEBUG:colcon.colcon_core.package_identification:Package 'src/img_processing' with type 'ros.ament_python' and name 'img_processing'
+[6.238s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces) by extensions ['ignore', 'ignore_ament_install']
+[6.239s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces) by extension 'ignore'
+[6.239s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces) by extension 'ignore_ament_install'
+[6.239s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces) by extensions ['colcon_pkg']
+[6.239s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces) by extension 'colcon_pkg'
+[6.239s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces) by extensions ['colcon_meta']
+[6.240s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces) by extension 'colcon_meta'
+[6.240s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces) by extensions ['ros']
+[6.240s] Level 1:colcon.colcon_core.package_identification:_identify(src/interfaces) by extension 'ros'
+[6.243s] DEBUG:colcon.colcon_core.package_identification:Package 'src/interfaces' with type 'ros.ament_cmake' and name 'interfaces'
+[6.244s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros2) by extensions ['ignore', 'ignore_ament_install']
+[6.244s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros2) by extension 'ignore'
+[6.244s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros2) by extension 'ignore_ament_install'
+[6.245s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros2) by extensions ['colcon_pkg']
+[6.245s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros2) by extension 'colcon_pkg'
+[6.245s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros2) by extensions ['colcon_meta']
+[6.245s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros2) by extension 'colcon_meta'
+[6.245s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros2) by extensions ['ros']
+[6.246s] Level 1:colcon.colcon_core.package_identification:_identify(src/rplidar_ros2) by extension 'ros'
+[6.248s] DEBUG:colcon.colcon_core.package_identification:Package 'src/rplidar_ros2' with type 'ros.ament_cmake' and name 'rplidar_ros'
+[6.249s] Level 1:colcon.colcon_core.package_identification:_identify(src/system_check_ack) by extensions ['ignore', 'ignore_ament_install']
+[6.249s] Level 1:colcon.colcon_core.package_identification:_identify(src/system_check_ack) by extension 'ignore'
+[6.249s] Level 1:colcon.colcon_core.package_identification:_identify(src/system_check_ack) by extension 'ignore_ament_install'
+[6.250s] Level 1:colcon.colcon_core.package_identification:_identify(src/system_check_ack) by extensions ['colcon_pkg']
+[6.250s] Level 1:colcon.colcon_core.package_identification:_identify(src/system_check_ack) by extension 'colcon_pkg'
+[6.250s] Level 1:colcon.colcon_core.package_identification:_identify(src/system_check_ack) by extensions ['colcon_meta']
+[6.250s] Level 1:colcon.colcon_core.package_identification:_identify(src/system_check_ack) by extension 'colcon_meta'
+[6.250s] Level 1:colcon.colcon_core.package_identification:_identify(src/system_check_ack) by extensions ['ros']
+[6.251s] Level 1:colcon.colcon_core.package_identification:_identify(src/system_check_ack) by extension 'ros'
+[6.254s] DEBUG:colcon.colcon_core.package_identification:Package 'src/system_check_ack' with type 'ros.ament_cmake' and name 'system_check_ack'
+[6.254s] Level 1:colcon.colcon_core.package_identification:_identify(src/usb_cam) by extensions ['ignore', 'ignore_ament_install']
+[6.254s] Level 1:colcon.colcon_core.package_identification:_identify(src/usb_cam) by extension 'ignore'
+[6.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/usb_cam) by extension 'ignore_ament_install'
+[6.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/usb_cam) by extensions ['colcon_pkg']
+[6.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/usb_cam) by extension 'colcon_pkg'
+[6.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/usb_cam) by extensions ['colcon_meta']
+[6.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/usb_cam) by extension 'colcon_meta'
+[6.255s] Level 1:colcon.colcon_core.package_identification:_identify(src/usb_cam) by extensions ['ros']
+[6.256s] Level 1:colcon.colcon_core.package_identification:_identify(src/usb_cam) by extension 'ros'
+[6.263s] DEBUG:colcon.colcon_core.package_identification:Package 'src/usb_cam' with type 'ros.ament_cmake' and name 'usb_cam'
+[6.263s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[6.263s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[6.263s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[6.263s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[6.264s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[6.595s] Level 5:colcon.colcon_core.verb:set package 'img_processing' build argument 'cmake_args' from command line to 'None'
+[6.596s] Level 5:colcon.colcon_core.verb:set package 'img_processing' build argument 'cmake_target' from command line to 'None'
+[6.596s] Level 5:colcon.colcon_core.verb:set package 'img_processing' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[6.596s] Level 5:colcon.colcon_core.verb:set package 'img_processing' build argument 'cmake_clean_cache' from command line to 'False'
+[6.596s] Level 5:colcon.colcon_core.verb:set package 'img_processing' build argument 'cmake_clean_first' from command line to 'False'
+[6.596s] Level 5:colcon.colcon_core.verb:set package 'img_processing' build argument 'cmake_force_configure' from command line to 'False'
+[6.596s] Level 5:colcon.colcon_core.verb:set package 'img_processing' build argument 'ament_cmake_args' from command line to 'None'
+[6.596s] Level 5:colcon.colcon_core.verb:set package 'img_processing' build argument 'catkin_cmake_args' from command line to 'None'
+[6.597s] Level 5:colcon.colcon_core.verb:set package 'img_processing' build argument 'catkin_skip_building_tests' from command line to 'False'
+[6.597s] DEBUG:colcon.colcon_core.verb:Building package 'img_processing' with the following arguments: {'ament_cmake_args': None, 'build_base': '/root/Xcar_chidi/jetsonNano/ros2_ws/build/img_processing', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing', 'merge_install': False, 'path': '/root/Xcar_chidi/jetsonNano/ros2_ws/src/img_processing', 'symlink_install': False, 'test_result_base': None}
+[6.648s] Level 5:colcon.colcon_core.verb:set package 'interfaces' build argument 'cmake_args' from command line to 'None'
+[6.649s] Level 5:colcon.colcon_core.verb:set package 'interfaces' build argument 'cmake_target' from command line to 'None'
+[6.649s] Level 5:colcon.colcon_core.verb:set package 'interfaces' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[6.649s] Level 5:colcon.colcon_core.verb:set package 'interfaces' build argument 'cmake_clean_cache' from command line to 'False'
+[6.649s] Level 5:colcon.colcon_core.verb:set package 'interfaces' build argument 'cmake_clean_first' from command line to 'False'
+[6.649s] Level 5:colcon.colcon_core.verb:set package 'interfaces' build argument 'cmake_force_configure' from command line to 'False'
+[6.649s] Level 5:colcon.colcon_core.verb:set package 'interfaces' build argument 'ament_cmake_args' from command line to 'None'
+[6.649s] Level 5:colcon.colcon_core.verb:set package 'interfaces' build argument 'catkin_cmake_args' from command line to 'None'
+[6.650s] Level 5:colcon.colcon_core.verb:set package 'interfaces' build argument 'catkin_skip_building_tests' from command line to 'False'
+[6.650s] DEBUG:colcon.colcon_core.verb:Building package 'interfaces' with the following arguments: {'ament_cmake_args': None, 'build_base': '/root/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces', 'merge_install': False, 'path': '/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces', 'symlink_install': False, 'test_result_base': None}
+[6.702s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_args' from command line to 'None'
+[6.702s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_target' from command line to 'None'
+[6.703s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[6.703s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_clean_cache' from command line to 'False'
+[6.703s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_clean_first' from command line to 'False'
+[6.703s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'cmake_force_configure' from command line to 'False'
+[6.703s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'ament_cmake_args' from command line to 'None'
+[6.703s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'catkin_cmake_args' from command line to 'None'
+[6.703s] Level 5:colcon.colcon_core.verb:set package 'rplidar_ros' build argument 'catkin_skip_building_tests' from command line to 'False'
+[6.703s] DEBUG:colcon.colcon_core.verb:Building package 'rplidar_ros' with the following arguments: {'ament_cmake_args': None, 'build_base': '/root/Xcar_chidi/jetsonNano/ros2_ws/build/rplidar_ros', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros', 'merge_install': False, 'path': '/root/Xcar_chidi/jetsonNano/ros2_ws/src/rplidar_ros2', 'symlink_install': False, 'test_result_base': None}
+[6.756s] Level 5:colcon.colcon_core.verb:set package 'usb_cam' build argument 'cmake_args' from command line to 'None'
+[6.756s] Level 5:colcon.colcon_core.verb:set package 'usb_cam' build argument 'cmake_target' from command line to 'None'
+[6.756s] Level 5:colcon.colcon_core.verb:set package 'usb_cam' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[6.756s] Level 5:colcon.colcon_core.verb:set package 'usb_cam' build argument 'cmake_clean_cache' from command line to 'False'
+[6.756s] Level 5:colcon.colcon_core.verb:set package 'usb_cam' build argument 'cmake_clean_first' from command line to 'False'
+[6.756s] Level 5:colcon.colcon_core.verb:set package 'usb_cam' build argument 'cmake_force_configure' from command line to 'False'
+[6.757s] Level 5:colcon.colcon_core.verb:set package 'usb_cam' build argument 'ament_cmake_args' from command line to 'None'
+[6.757s] Level 5:colcon.colcon_core.verb:set package 'usb_cam' build argument 'catkin_cmake_args' from command line to 'None'
+[6.757s] Level 5:colcon.colcon_core.verb:set package 'usb_cam' build argument 'catkin_skip_building_tests' from command line to 'False'
+[6.757s] DEBUG:colcon.colcon_core.verb:Building package 'usb_cam' with the following arguments: {'ament_cmake_args': None, 'build_base': '/root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam', 'merge_install': False, 'path': '/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam', 'symlink_install': False, 'test_result_base': None}
+[6.812s] Level 5:colcon.colcon_core.verb:set package 'geicar_start_jetson' build argument 'cmake_args' from command line to 'None'
+[6.812s] Level 5:colcon.colcon_core.verb:set package 'geicar_start_jetson' build argument 'cmake_target' from command line to 'None'
+[6.812s] Level 5:colcon.colcon_core.verb:set package 'geicar_start_jetson' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[6.812s] Level 5:colcon.colcon_core.verb:set package 'geicar_start_jetson' build argument 'cmake_clean_cache' from command line to 'False'
+[6.812s] Level 5:colcon.colcon_core.verb:set package 'geicar_start_jetson' build argument 'cmake_clean_first' from command line to 'False'
+[6.812s] Level 5:colcon.colcon_core.verb:set package 'geicar_start_jetson' build argument 'cmake_force_configure' from command line to 'False'
+[6.813s] Level 5:colcon.colcon_core.verb:set package 'geicar_start_jetson' build argument 'ament_cmake_args' from command line to 'None'
+[6.813s] Level 5:colcon.colcon_core.verb:set package 'geicar_start_jetson' build argument 'catkin_cmake_args' from command line to 'None'
+[6.813s] Level 5:colcon.colcon_core.verb:set package 'geicar_start_jetson' build argument 'catkin_skip_building_tests' from command line to 'False'
+[6.813s] DEBUG:colcon.colcon_core.verb:Building package 'geicar_start_jetson' with the following arguments: {'ament_cmake_args': None, 'build_base': '/root/Xcar_chidi/jetsonNano/ros2_ws/build/geicar_start_jetson', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson', 'merge_install': False, 'path': '/root/Xcar_chidi/jetsonNano/ros2_ws/src/geicar_start_jetson', 'symlink_install': False, 'test_result_base': None}
+[6.865s] Level 5:colcon.colcon_core.verb:set package 'system_check_ack' build argument 'cmake_args' from command line to 'None'
+[6.865s] Level 5:colcon.colcon_core.verb:set package 'system_check_ack' build argument 'cmake_target' from command line to 'None'
+[6.865s] Level 5:colcon.colcon_core.verb:set package 'system_check_ack' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[6.865s] Level 5:colcon.colcon_core.verb:set package 'system_check_ack' build argument 'cmake_clean_cache' from command line to 'False'
+[6.865s] Level 5:colcon.colcon_core.verb:set package 'system_check_ack' build argument 'cmake_clean_first' from command line to 'False'
+[6.866s] Level 5:colcon.colcon_core.verb:set package 'system_check_ack' build argument 'cmake_force_configure' from command line to 'False'
+[6.866s] Level 5:colcon.colcon_core.verb:set package 'system_check_ack' build argument 'ament_cmake_args' from command line to 'None'
+[6.866s] Level 5:colcon.colcon_core.verb:set package 'system_check_ack' build argument 'catkin_cmake_args' from command line to 'None'
+[6.866s] Level 5:colcon.colcon_core.verb:set package 'system_check_ack' build argument 'catkin_skip_building_tests' from command line to 'False'
+[6.866s] DEBUG:colcon.colcon_core.verb:Building package 'system_check_ack' with the following arguments: {'ament_cmake_args': None, 'build_base': '/root/Xcar_chidi/jetsonNano/ros2_ws/build/system_check_ack', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack', 'merge_install': False, 'path': '/root/Xcar_chidi/jetsonNano/ros2_ws/src/system_check_ack', 'symlink_install': False, 'test_result_base': None}
+[6.916s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[6.970s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[6.971s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces' with build type 'ament_cmake'
+[6.971s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces'
+[7.046s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[7.046s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[7.047s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[7.198s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/root/Xcar_chidi/jetsonNano/ros2_ws/src/rplidar_ros2' with build type 'ament_cmake'
+[7.199s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/root/Xcar_chidi/jetsonNano/ros2_ws/src/rplidar_ros2'
+[7.259s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[7.259s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[7.386s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam' with build type 'ament_cmake'
+[7.389s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam'
+[7.447s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[7.448s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[7.567s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/root/Xcar_chidi/jetsonNano/ros2_ws/src/img_processing' with build type 'ament_python'
+[7.567s] Level 1:colcon.colcon_core.shell:create_environment_hook('img_processing', 'ament_prefix_path')
+[7.623s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/share/img_processing/hook/ament_prefix_path.ps1'
+[7.629s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/share/img_processing/hook/ament_prefix_path.dsv'
+[7.631s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/share/img_processing/hook/ament_prefix_path.sh'
+[7.689s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[7.690s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[7.825s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces -DCMAKE_INSTALL_PREFIX=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces
+[7.843s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/rplidar_ros': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /root/Xcar_chidi/jetsonNano/ros2_ws/src/rplidar_ros2 -DCMAKE_INSTALL_PREFIX=/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros
+[7.846s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam -DCMAKE_INSTALL_PREFIX=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam
+[8.975s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/root/Xcar_chidi/jetsonNano/ros2_ws/src/img_processing'
+[9.041s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[9.041s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[10.946s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/src/img_processing': PYTHONPATH=/root/Xcar_chidi/jetsonNano/ros2_ws/build/img_processing/prefix_override:/root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/img_processing build --build-base /root/Xcar_chidi/jetsonNano/ros2_ws/build/img_processing/build install --record /root/Xcar_chidi/jetsonNano/ros2_ws/build/img_processing/install.log --single-version-externally-managed
+[12.327s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/src/img_processing' returned '0': PYTHONPATH=/root/Xcar_chidi/jetsonNano/ros2_ws/build/img_processing/prefix_override:/root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/img_processing build --build-base /root/Xcar_chidi/jetsonNano/ros2_ws/build/img_processing/build install --record /root/Xcar_chidi/jetsonNano/ros2_ws/build/img_processing/install.log --single-version-externally-managed
+[12.430s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing' for CMake module files
+[12.432s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing' for CMake config files
+[12.435s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/lib'
+[12.437s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/bin'
+[12.437s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/lib/pkgconfig/img_processing.pc'
+[12.438s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/lib/python3.10/site-packages'
+[12.439s] Level 1:colcon.colcon_core.shell:create_environment_hook('img_processing', 'pythonpath')
+[12.503s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/share/img_processing/hook/pythonpath.ps1'
+[12.505s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/share/img_processing/hook/pythonpath.dsv'
+[12.506s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/share/img_processing/hook/pythonpath.sh'
+[12.508s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/bin'
+[12.508s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(img_processing)
+[12.574s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/share/img_processing/package.ps1'
+[12.579s] INFO:colcon.colcon_core.shell:Creating package descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/share/img_processing/package.dsv'
+[12.582s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/share/img_processing/package.sh'
+[12.586s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/share/img_processing/package.bash'
+[12.591s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/share/img_processing/package.zsh'
+[12.596s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/root/Xcar_chidi/jetsonNano/ros2_ws/install/img_processing/share/colcon-core/packages/img_processing)
+[16.969s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/rplidar_ros' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /root/Xcar_chidi/jetsonNano/ros2_ws/src/rplidar_ros2 -DCMAKE_INSTALL_PREFIX=/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros
+[16.975s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/rplidar_ros': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /root/Xcar_chidi/jetsonNano/ros2_ws/build/rplidar_ros -- -j4 -l4
+[18.567s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam -DCMAKE_INSTALL_PREFIX=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam
+[18.568s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam -- -j4 -l4
+[23.408s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces -DCMAKE_INSTALL_PREFIX=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces
+[23.410s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /root/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces -- -j4 -l4
+[74.769s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam -- -j4 -l4
+[75.406s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam
+[75.560s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(usb_cam)
+[75.570s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam
+[75.714s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam' for CMake module files
+[75.729s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam' for CMake config files
+[75.731s] Level 1:colcon.colcon_core.shell:create_environment_hook('usb_cam', 'cmake_prefix_path')
+[75.876s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/hook/cmake_prefix_path.ps1'
+[75.879s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/hook/cmake_prefix_path.dsv'
+[75.881s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/hook/cmake_prefix_path.sh'
+[75.883s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/lib'
+[75.884s] Level 1:colcon.colcon_core.shell:create_environment_hook('usb_cam', 'ld_library_path_lib')
+[75.981s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/hook/ld_library_path_lib.ps1'
+[75.996s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/hook/ld_library_path_lib.dsv'
+[75.997s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/hook/ld_library_path_lib.sh'
+[75.999s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/bin'
+[76.001s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/lib/pkgconfig/usb_cam.pc'
+[76.002s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/lib/python3.10/site-packages'
+[76.003s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/bin'
+[76.166s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/package.ps1'
+[76.168s] INFO:colcon.colcon_core.shell:Creating package descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/package.dsv'
+[76.170s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/package.sh'
+[76.172s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/package.bash'
+[76.174s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/package.zsh'
+[76.176s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/colcon-core/packages/usb_cam)
+[76.891s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(usb_cam)
+[77.008s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam' for CMake module files
+[77.011s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam' for CMake config files
+[77.013s] Level 1:colcon.colcon_core.shell:create_environment_hook('usb_cam', 'cmake_prefix_path')
+[77.096s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/hook/cmake_prefix_path.ps1'
+[77.098s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/hook/cmake_prefix_path.dsv'
+[77.100s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/hook/cmake_prefix_path.sh'
+[77.103s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/lib'
+[77.103s] Level 1:colcon.colcon_core.shell:create_environment_hook('usb_cam', 'ld_library_path_lib')
+[77.186s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/hook/ld_library_path_lib.ps1'
+[77.188s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/hook/ld_library_path_lib.dsv'
+[77.189s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/hook/ld_library_path_lib.sh'
+[77.191s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/bin'
+[77.192s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/lib/pkgconfig/usb_cam.pc'
+[77.193s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/lib/python3.10/site-packages'
+[77.194s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/bin'
+[77.278s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/package.ps1'
+[77.281s] INFO:colcon.colcon_core.shell:Creating package descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/package.dsv'
+[77.284s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/package.sh'
+[77.286s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/package.bash'
+[77.289s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/package.zsh'
+[77.291s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/colcon-core/packages/usb_cam)
+[77.320s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/rplidar_ros' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /root/Xcar_chidi/jetsonNano/ros2_ws/build/rplidar_ros -- -j4 -l4
+[77.914s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/rplidar_ros': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /root/Xcar_chidi/jetsonNano/ros2_ws/build/rplidar_ros
+[78.056s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(rplidar_ros)
+[78.062s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/rplidar_ros' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /root/Xcar_chidi/jetsonNano/ros2_ws/build/rplidar_ros
+[78.214s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros' for CMake module files
+[78.217s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros' for CMake config files
+[78.219s] Level 1:colcon.colcon_core.shell:create_environment_hook('rplidar_ros', 'cmake_prefix_path')
+[78.312s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.ps1'
+[78.327s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.dsv'
+[78.329s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.sh'
+[78.333s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/lib'
+[78.334s] Level 1:colcon.colcon_core.shell:create_environment_hook('rplidar_ros', 'ld_library_path_lib')
+[78.477s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/rplidar_ros/hook/ld_library_path_lib.ps1'
+[78.479s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/rplidar_ros/hook/ld_library_path_lib.dsv'
+[78.481s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/rplidar_ros/hook/ld_library_path_lib.sh'
+[78.482s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/bin'
+[78.483s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/lib/pkgconfig/rplidar_ros.pc'
+[78.484s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/lib/python3.10/site-packages'
+[78.486s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/bin'
+[78.595s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/rplidar_ros/package.ps1'
+[78.597s] INFO:colcon.colcon_core.shell:Creating package descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/rplidar_ros/package.dsv'
+[78.599s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/rplidar_ros/package.sh'
+[78.601s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/rplidar_ros/package.bash'
+[78.603s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/rplidar_ros/package.zsh'
+[78.604s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/colcon-core/packages/rplidar_ros)
+[79.376s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(rplidar_ros)
+[79.508s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros' for CMake module files
+[79.512s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros' for CMake config files
+[79.521s] Level 1:colcon.colcon_core.shell:create_environment_hook('rplidar_ros', 'cmake_prefix_path')
+[79.672s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.ps1'
+[79.675s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.dsv'
+[79.690s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/rplidar_ros/hook/cmake_prefix_path.sh'
+[79.695s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/lib'
+[79.695s] Level 1:colcon.colcon_core.shell:create_environment_hook('rplidar_ros', 'ld_library_path_lib')
+[79.850s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/rplidar_ros/hook/ld_library_path_lib.ps1'
+[79.852s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/rplidar_ros/hook/ld_library_path_lib.dsv'
+[79.854s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/rplidar_ros/hook/ld_library_path_lib.sh'
+[79.856s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/bin'
+[79.857s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/lib/pkgconfig/rplidar_ros.pc'
+[79.858s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/lib/python3.10/site-packages'
+[79.859s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/bin'
+[80.017s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/rplidar_ros/package.ps1'
+[80.032s] INFO:colcon.colcon_core.shell:Creating package descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/rplidar_ros/package.dsv'
+[80.034s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/rplidar_ros/package.sh'
+[80.037s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/rplidar_ros/package.bash'
+[80.039s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/rplidar_ros/package.zsh'
+[80.053s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/share/colcon-core/packages/rplidar_ros)
+[80.056s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/root/Xcar_chidi/jetsonNano/ros2_ws/src/geicar_start_jetson' with build type 'ament_cmake'
+[80.058s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/root/Xcar_chidi/jetsonNano/ros2_ws/src/geicar_start_jetson'
+[80.235s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[80.236s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[80.626s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/geicar_start_jetson': AMENT_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam:/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam:/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros:/opt/ros/humble LD_LIBRARY_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/lib:/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/lib:${LD_LIBRARY_PATH} /usr/bin/cmake /root/Xcar_chidi/jetsonNano/ros2_ws/src/geicar_start_jetson -DCMAKE_INSTALL_PREFIX=/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson
+[85.955s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/geicar_start_jetson' returned '0': AMENT_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam:/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam:/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros:/opt/ros/humble LD_LIBRARY_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/lib:/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/lib:${LD_LIBRARY_PATH} /usr/bin/cmake /root/Xcar_chidi/jetsonNano/ros2_ws/src/geicar_start_jetson -DCMAKE_INSTALL_PREFIX=/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson
+[85.956s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/geicar_start_jetson': AMENT_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam:/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam:/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros:/opt/ros/humble LD_LIBRARY_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/lib:/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --build /root/Xcar_chidi/jetsonNano/ros2_ws/build/geicar_start_jetson -- -j4 -l4
+[86.308s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/geicar_start_jetson' returned '0': AMENT_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam:/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam:/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros:/opt/ros/humble LD_LIBRARY_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/lib:/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --build /root/Xcar_chidi/jetsonNano/ros2_ws/build/geicar_start_jetson -- -j4 -l4
+[86.518s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/geicar_start_jetson': AMENT_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam:/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam:/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros:/opt/ros/humble LD_LIBRARY_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/lib:/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --install /root/Xcar_chidi/jetsonNano/ros2_ws/build/geicar_start_jetson
+[86.656s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(geicar_start_jetson)
+[86.671s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/geicar_start_jetson' returned '0': AMENT_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam:/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam:/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros:/opt/ros/humble LD_LIBRARY_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/lib:/root/Xcar_chidi/jetsonNano/ros2_ws/install/rplidar_ros/lib:${LD_LIBRARY_PATH} /usr/bin/cmake --install /root/Xcar_chidi/jetsonNano/ros2_ws/build/geicar_start_jetson
+[86.820s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson' for CMake module files
+[86.823s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson' for CMake config files
+[86.824s] Level 1:colcon.colcon_core.shell:create_environment_hook('geicar_start_jetson', 'cmake_prefix_path')
+[86.949s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/share/geicar_start_jetson/hook/cmake_prefix_path.ps1'
+[86.952s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/share/geicar_start_jetson/hook/cmake_prefix_path.dsv'
+[86.955s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/share/geicar_start_jetson/hook/cmake_prefix_path.sh'
+[86.959s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/bin'
+[86.960s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/lib/pkgconfig/geicar_start_jetson.pc'
+[86.961s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/lib/python3.10/site-packages'
+[86.963s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/bin'
+[87.047s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/share/geicar_start_jetson/package.ps1'
+[87.050s] INFO:colcon.colcon_core.shell:Creating package descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/share/geicar_start_jetson/package.dsv'
+[87.054s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/share/geicar_start_jetson/package.sh'
+[87.057s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/share/geicar_start_jetson/package.bash'
+[87.060s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/share/geicar_start_jetson/package.zsh'
+[87.063s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/share/colcon-core/packages/geicar_start_jetson)
+[87.450s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(geicar_start_jetson)
+[87.598s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson' for CMake module files
+[87.614s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson' for CMake config files
+[87.615s] Level 1:colcon.colcon_core.shell:create_environment_hook('geicar_start_jetson', 'cmake_prefix_path')
+[87.782s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/share/geicar_start_jetson/hook/cmake_prefix_path.ps1'
+[87.784s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/share/geicar_start_jetson/hook/cmake_prefix_path.dsv'
+[87.785s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/share/geicar_start_jetson/hook/cmake_prefix_path.sh'
+[87.788s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/bin'
+[87.789s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/lib/pkgconfig/geicar_start_jetson.pc'
+[87.790s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/lib/python3.10/site-packages'
+[87.791s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/bin'
+[87.888s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/share/geicar_start_jetson/package.ps1'
+[87.891s] INFO:colcon.colcon_core.shell:Creating package descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/share/geicar_start_jetson/package.dsv'
+[87.893s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/share/geicar_start_jetson/package.sh'
+[87.897s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/share/geicar_start_jetson/package.bash'
+[87.900s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/share/geicar_start_jetson/package.zsh'
+[87.903s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/root/Xcar_chidi/jetsonNano/ros2_ws/install/geicar_start_jetson/share/colcon-core/packages/geicar_start_jetson)
+[151.763s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /root/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces -- -j4 -l4
+[153.036s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /root/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces
+[153.596s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(interfaces)
+[153.597s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /root/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces
+[153.652s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces' for CMake module files
+[153.656s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces' for CMake config files
+[153.659s] Level 1:colcon.colcon_core.shell:create_environment_hook('interfaces', 'cmake_prefix_path')
+[153.713s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/hook/cmake_prefix_path.ps1'
+[153.715s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/hook/cmake_prefix_path.dsv'
+[153.716s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/hook/cmake_prefix_path.sh'
+[153.718s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib'
+[153.718s] Level 1:colcon.colcon_core.shell:create_environment_hook('interfaces', 'ld_library_path_lib')
+[153.772s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/hook/ld_library_path_lib.ps1'
+[153.774s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/hook/ld_library_path_lib.dsv'
+[153.775s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/hook/ld_library_path_lib.sh'
+[153.776s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/bin'
+[153.776s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib/pkgconfig/interfaces.pc'
+[153.778s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib/python3.10/site-packages'
+[153.778s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/bin'
+[153.831s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/package.ps1'
+[153.833s] INFO:colcon.colcon_core.shell:Creating package descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/package.dsv'
+[153.835s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/package.sh'
+[153.837s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/package.bash'
+[153.839s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/package.zsh'
+[153.840s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/colcon-core/packages/interfaces)
+[155.217s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(interfaces)
+[155.272s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces' for CMake module files
+[155.314s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces' for CMake config files
+[155.330s] Level 1:colcon.colcon_core.shell:create_environment_hook('interfaces', 'cmake_prefix_path')
+[155.385s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/hook/cmake_prefix_path.ps1'
+[155.387s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/hook/cmake_prefix_path.dsv'
+[155.389s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/hook/cmake_prefix_path.sh'
+[155.391s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib'
+[155.391s] Level 1:colcon.colcon_core.shell:create_environment_hook('interfaces', 'ld_library_path_lib')
+[155.444s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/hook/ld_library_path_lib.ps1'
+[155.446s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/hook/ld_library_path_lib.dsv'
+[155.447s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/hook/ld_library_path_lib.sh'
+[155.448s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/bin'
+[155.449s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib/pkgconfig/interfaces.pc'
+[155.450s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib/python3.10/site-packages'
+[155.454s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/bin'
+[155.507s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/package.ps1'
+[155.509s] INFO:colcon.colcon_core.shell:Creating package descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/package.dsv'
+[155.511s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/package.sh'
+[155.513s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/package.bash'
+[155.515s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/package.zsh'
+[155.516s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/colcon-core/packages/interfaces)
+[155.517s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/root/Xcar_chidi/jetsonNano/ros2_ws/src/system_check_ack' with build type 'ament_cmake'
+[155.518s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/root/Xcar_chidi/jetsonNano/ros2_ws/src/system_check_ack'
+[155.577s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[155.578s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[155.711s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/system_check_ack': AMENT_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:/opt/ros/humble LD_LIBRARY_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /root/Xcar_chidi/jetsonNano/ros2_ws/src/system_check_ack -DCMAKE_INSTALL_PREFIX=/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack
+[161.650s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/system_check_ack' returned '0': AMENT_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:/opt/ros/humble LD_LIBRARY_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /root/Xcar_chidi/jetsonNano/ros2_ws/src/system_check_ack -DCMAKE_INSTALL_PREFIX=/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack
+[161.652s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/system_check_ack': AMENT_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:/opt/ros/humble LD_LIBRARY_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /root/Xcar_chidi/jetsonNano/ros2_ws/build/system_check_ack -- -j4 -l4
+[196.739s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/system_check_ack' returned '0': AMENT_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:/opt/ros/humble LD_LIBRARY_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /root/Xcar_chidi/jetsonNano/ros2_ws/build/system_check_ack -- -j4 -l4
+[196.811s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/system_check_ack': AMENT_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:/opt/ros/humble LD_LIBRARY_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /root/Xcar_chidi/jetsonNano/ros2_ws/build/system_check_ack
+[196.862s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(system_check_ack)
+[196.870s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/system_check_ack' returned '0': AMENT_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:/opt/ros/humble LD_LIBRARY_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /root/Xcar_chidi/jetsonNano/ros2_ws/build/system_check_ack
+[196.920s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack' for CMake module files
+[196.923s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack' for CMake config files
+[196.923s] Level 1:colcon.colcon_core.shell:create_environment_hook('system_check_ack', 'cmake_prefix_path')
+[196.977s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/hook/cmake_prefix_path.ps1'
+[196.979s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/hook/cmake_prefix_path.dsv'
+[196.980s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/hook/cmake_prefix_path.sh'
+[196.982s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/lib'
+[196.982s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/bin'
+[196.982s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/lib/pkgconfig/system_check_ack.pc'
+[196.983s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/lib/python3.10/site-packages'
+[196.984s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/bin'
+[197.041s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/package.ps1'
+[197.043s] INFO:colcon.colcon_core.shell:Creating package descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/package.dsv'
+[197.044s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/package.sh'
+[197.046s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/package.bash'
+[197.047s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/package.zsh'
+[197.048s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/colcon-core/packages/system_check_ack)
+[197.172s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(system_check_ack)
+[197.224s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack' for CMake module files
+[197.227s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack' for CMake config files
+[197.232s] Level 1:colcon.colcon_core.shell:create_environment_hook('system_check_ack', 'cmake_prefix_path')
+[197.285s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/hook/cmake_prefix_path.ps1'
+[197.287s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/hook/cmake_prefix_path.dsv'
+[197.288s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/hook/cmake_prefix_path.sh'
+[197.290s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/lib'
+[197.290s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/bin'
+[197.290s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/lib/pkgconfig/system_check_ack.pc'
+[197.291s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/lib/python3.10/site-packages'
+[197.292s] Level 1:colcon.colcon_core.environment:checking '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/bin'
+[197.347s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/package.ps1'
+[197.350s] INFO:colcon.colcon_core.shell:Creating package descriptor '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/package.dsv'
+[197.352s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/package.sh'
+[197.354s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/package.bash'
+[197.355s] INFO:colcon.colcon_core.shell:Creating package script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/package.zsh'
+[197.357s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/colcon-core/packages/system_check_ack)
+[197.358s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[197.359s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[197.360s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[197.361s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[197.482s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.notify_send': Could not find 'notify-send'
+[197.483s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[197.483s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[197.483s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[197.484s] DEBUG:colcon.colcon_notification.desktop_notification.notify2:Failed to initialize notify2: org.freedesktop.DBus.Error.NotSupported: Unable to autolaunch a dbus-daemon without a $DISPLAY for X11
+[197.484s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[197.541s] INFO:colcon.colcon_core.shell:Creating prefix script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/local_setup.ps1'
+[197.547s] INFO:colcon.colcon_core.shell:Creating prefix util module '/root/Xcar_chidi/jetsonNano/ros2_ws/install/_local_setup_util_ps1.py'
+[197.555s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/setup.ps1'
+[197.616s] INFO:colcon.colcon_core.shell:Creating prefix script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/local_setup.sh'
+[197.618s] INFO:colcon.colcon_core.shell:Creating prefix util module '/root/Xcar_chidi/jetsonNano/ros2_ws/install/_local_setup_util_sh.py'
+[197.620s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/setup.sh'
+[197.679s] INFO:colcon.colcon_core.shell:Creating prefix script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/local_setup.bash'
+[197.682s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/setup.bash'
+[197.744s] INFO:colcon.colcon_core.shell:Creating prefix script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/local_setup.zsh'
+[197.749s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/root/Xcar_chidi/jetsonNano/ros2_ws/install/setup.zsh'

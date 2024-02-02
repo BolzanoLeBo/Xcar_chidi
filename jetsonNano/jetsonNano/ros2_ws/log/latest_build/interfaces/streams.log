@@ -1,0 +1,770 @@
+[0.850s] Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces -DCMAKE_INSTALL_PREFIX=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces
+[1.933s] -- The C compiler identification is GNU 11.4.0
+[2.452s] -- The CXX compiler identification is GNU 11.4.0
+[2.493s] -- Detecting C compiler ABI info
+[2.836s] -- Detecting C compiler ABI info - done
+[2.872s] -- Check for working C compiler: /usr/bin/cc - skipped
+[2.876s] -- Detecting C compile features
+[2.880s] -- Detecting C compile features - done
+[2.900s] -- Detecting CXX compiler ABI info
+[3.322s] -- Detecting CXX compiler ABI info - done
+[3.397s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[3.399s] -- Detecting CXX compile features
+[3.404s] -- Detecting CXX compile features - done
+[3.444s] -- Found ament_cmake: 1.3.5 (/opt/ros/humble/share/ament_cmake/cmake)
+[4.197s] -- Found Python3: /usr/bin/python3.10 (found version "3.10.12") found components: Interpreter 
+[4.807s] -- Found rclcpp: 16.0.6 (/opt/ros/humble/share/rclcpp/cmake)
+[5.190s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[5.235s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[5.335s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[5.454s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[5.587s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[6.027s] -- Found rmw_implementation_cmake: 6.1.1 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[6.050s] -- Found rmw_fastrtps_cpp: 6.2.4 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[6.607s] -- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[6.801s] -- Found FastRTPS: /opt/ros/humble/include  
+[7.141s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[7.209s] -- Looking for pthread.h
+[7.527s] -- Looking for pthread.h - found
+[7.529s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[7.840s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[7.845s] -- Found Threads: TRUE  
+[8.730s] -- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+[10.405s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[12.395s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[13.337s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[13.487s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") 
+[13.525s] -- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+[13.682s] -- Found PythonLibs: /usr/lib/aarch64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") 
+[13.683s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[13.684s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+[13.684s] -- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.10.so
+[13.845s] -- Found PythonExtra: .so  
+[14.493s] -- Found ament_lint_auto: 0.12.8 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[15.607s] -- Added test 'lint_cmake' to check CMake code style
+[15.628s] -- Added test 'xmllint' to check XML markup files
+[15.654s] -- Configuring done
+[16.266s] -- Generating done
+[16.291s] -- Build files have been written to: /root/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces
+[16.433s] Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces -DCMAKE_INSTALL_PREFIX=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces
+[16.435s] Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /root/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces -- -j4 -l4
+[16.904s] [  0%] [34m[1mGenerating C code for ROS interfaces[0m
+[17.038s] [  0%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[17.132s] [  0%] Built target ament_cmake_python_copy_interfaces
+[19.891s] running egg_info
+[19.894s] creating interfaces.egg-info
+[19.894s] writing interfaces.egg-info/PKG-INFO
+[19.907s] writing dependency_links to interfaces.egg-info/dependency_links.txt
+[19.908s] writing top-level names to interfaces.egg-info/top_level.txt
+[19.909s] writing manifest file 'interfaces.egg-info/SOURCES.txt'
+[19.935s] reading manifest file 'interfaces.egg-info/SOURCES.txt'
+[19.938s] writing manifest file 'interfaces.egg-info/SOURCES.txt'
+[20.244s] [  0%] Built target ament_cmake_python_build_interfaces_egg
+[35.329s] [  0%] Built target interfaces__cpp
+[35.421s] [  1%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[37.000s] [  2%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/joystick_order__functions.c.o[0m
+[37.221s] [  2%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/avoidance_parameters__functions.c.o[0m
+[37.447s] [  3%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/motors_order__functions.c.o[0m
+[37.653s] [  3%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/motors_feedback__functions.c.o[0m
+[37.859s] [  4%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/general_data__functions.c.o[0m
+[38.063s] [  4%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/steering_calibration__functions.c.o[0m
+[38.274s] [  5%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/ultrasonic__functions.c.o[0m
+[38.484s] [  6%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/gnss__functions.c.o[0m
+[38.692s] [  6%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/obstacles__functions.c.o[0m
+[38.899s] [  7%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/system_check__functions.c.o[0m
+[39.148s] [  7%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/state__functions.c.o[0m
+[39.361s] [  8%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/lidar__functions.c.o[0m
+[39.567s] [  8%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/web_mode__functions.c.o[0m
+[39.768s] [  9%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/obstacles_id__functions.c.o[0m
+[39.972s] [  9%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/side_obstacles__functions.c.o[0m
+[40.177s] [ 10%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/userdistance__functions.c.o[0m
+[40.379s] [ 10%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/tracking_pos_angle__functions.c.o[0m
+[40.578s] [ 11%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/user_lost__functions.c.o[0m
+[40.779s] [ 12%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/init_button__functions.c.o[0m
+[40.981s] [ 12%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/target_image__functions.c.o[0m
+[41.229s] [ 13%] [32m[1mLinking C shared library libinterfaces__rosidl_generator_c.so[0m
+[41.392s] [ 13%] Built target interfaces__rosidl_generator_c
+[41.430s] [ 14%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[42.496s] [ 15%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[43.521s] [ 16%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[45.537s] [ 16%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/joystick_order__type_support.cpp.o[0m
+[47.359s] [ 17%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/avoidance_parameters__type_support.cpp.o[0m
+[49.074s] [ 17%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/motors_order__type_support.cpp.o[0m
+[51.032s] [ 18%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/motors_feedback__type_support.cpp.o[0m
+[52.974s] [ 18%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/general_data__type_support.cpp.o[0m
+[54.735s] [ 19%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/steering_calibration__type_support.cpp.o[0m
+[56.813s] [ 20%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/joystick_order__type_support.cpp.o[0m
+[56.827s] [ 21%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/ultrasonic__type_support.cpp.o[0m
+[58.389s] [ 21%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/gnss__type_support.cpp.o[0m
+[58.955s] [ 21%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/avoidance_parameters__type_support.cpp.o[0m
+[60.092s] [ 21%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/joystick_order__type_support_c.cpp.o[0m
+[60.117s] [ 22%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/obstacles__type_support.cpp.o[0m
+[60.445s] [ 22%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/joystick_order__type_support.cpp.o[0m
+[62.239s] [ 23%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/motors_order__type_support.cpp.o[0m
+[62.339s] [ 23%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/system_check__type_support.cpp.o[0m
+[62.620s] [ 24%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/avoidance_parameters__type_support_c.cpp.o[0m
+[63.368s] [ 25%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/avoidance_parameters__type_support.cpp.o[0m
+[64.584s] [ 26%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/state__type_support.cpp.o[0m
+[64.881s] [ 26%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/motors_feedback__type_support.cpp.o[0m
+[65.364s] [ 26%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/motors_order__type_support_c.cpp.o[0m
+[66.117s] [ 26%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/lidar__type_support.cpp.o[0m
+[66.357s] [ 27%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/motors_order__type_support.cpp.o[0m
+[67.808s] [ 28%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/general_data__type_support.cpp.o[0m
+[67.994s] [ 29%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/motors_feedback__type_support_c.cpp.o[0m
+[68.492s] [ 30%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/web_mode__type_support.cpp.o[0m
+[68.865s] [ 30%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/motors_feedback__type_support.cpp.o[0m
+[70.191s] [ 31%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/general_data__type_support_c.cpp.o[0m
+[70.291s] [ 31%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/steering_calibration__type_support.cpp.o[0m
+[70.627s] [ 31%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/obstacles_id__type_support.cpp.o[0m
+[71.352s] [ 32%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/general_data__type_support.cpp.o[0m
+[72.112s] [ 32%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/steering_calibration__type_support_c.cpp.o[0m
+[72.158s] [ 33%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/side_obstacles__type_support.cpp.o[0m
+[72.412s] [ 34%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/ultrasonic__type_support.cpp.o[0m
+[73.592s] [ 34%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/steering_calibration__type_support.cpp.o[0m
+[73.623s] [ 34%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/userdistance__type_support.cpp.o[0m
+[74.167s] [ 35%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/ultrasonic__type_support_c.cpp.o[0m
+[74.394s] [ 35%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/gnss__type_support.cpp.o[0m
+[75.144s] [ 36%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/tracking_pos_angle__type_support.cpp.o[0m
+[75.836s] [ 37%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/ultrasonic__type_support.cpp.o[0m
+[75.906s] [ 37%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/gnss__type_support_c.cpp.o[0m
+[76.656s] [ 38%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/obstacles__type_support.cpp.o[0m
+[76.820s] [ 39%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/user_lost__type_support.cpp.o[0m
+[77.626s] [ 40%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/obstacles__type_support_c.cpp.o[0m
+[78.187s] [ 40%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/gnss__type_support.cpp.o[0m
+[78.432s] [ 40%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/init_button__type_support.cpp.o[0m
+[78.469s] [ 40%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/system_check__type_support.cpp.o[0m
+[79.396s] [ 40%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/system_check__type_support_c.cpp.o[0m
+[80.214s] [ 41%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/obstacles__type_support.cpp.o[0m
+[80.293s] [ 42%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/target_image__type_support.cpp.o[0m
+[80.563s] [ 43%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/state__type_support.cpp.o[0m
+[81.554s] [ 44%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/state__type_support_c.cpp.o[0m
+[81.661s] [ 44%] [32m[1mLinking CXX shared library libinterfaces__rosidl_typesupport_cpp.so[0m
+[81.828s] [ 44%] Built target interfaces__rosidl_typesupport_cpp
+[82.361s] [ 44%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/system_check__type_support.cpp.o[0m
+[82.373s] [ 45%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/lidar__type_support.cpp.o[0m
+[83.035s] [ 45%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/lidar__type_support_c.cpp.o[0m
+[84.015s] [ 45%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/web_mode__type_support.cpp.o[0m
+[84.149s] [ 46%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/state__type_support.cpp.o[0m
+[84.491s] [ 47%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/web_mode__type_support_c.cpp.o[0m
+[85.635s] [ 48%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/obstacles_id__type_support.cpp.o[0m
+[85.846s] [ 48%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/lidar__type_support.cpp.o[0m
+[85.933s] [ 48%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/obstacles_id__type_support_c.cpp.o[0m
+[87.262s] [ 48%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/side_obstacles__type_support.cpp.o[0m
+[87.359s] [ 49%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/side_obstacles__type_support_c.cpp.o[0m
+[87.552s] [ 50%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/web_mode__type_support.cpp.o[0m
+[88.793s] [ 51%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/userdistance__type_support_c.cpp.o[0m
+[88.891s] [ 52%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/userdistance__type_support.cpp.o[0m
+[89.283s] [ 53%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/obstacles_id__type_support.cpp.o[0m
+[90.211s] [ 53%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/tracking_pos_angle__type_support_c.cpp.o[0m
+[90.509s] [ 53%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/tracking_pos_angle__type_support.cpp.o[0m
+[90.966s] [ 53%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/side_obstacles__type_support.cpp.o[0m
+[91.654s] [ 54%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/user_lost__type_support_c.cpp.o[0m
+[92.147s] [ 55%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/user_lost__type_support.cpp.o[0m
+[92.673s] [ 56%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/userdistance__type_support.cpp.o[0m
+[93.094s] [ 56%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/init_button__type_support_c.cpp.o[0m
+[93.769s] [ 56%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/init_button__type_support.cpp.o[0m
+[94.362s] [ 56%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/tracking_pos_angle__type_support.cpp.o[0m
+[94.549s] [ 57%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/target_image__type_support_c.cpp.o[0m
+[95.429s] [ 58%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/target_image__type_support.cpp.o[0m
+[96.008s] [ 58%] [32m[1mLinking CXX shared library libinterfaces__rosidl_typesupport_fastrtps_c.so[0m
+[96.051s] [ 59%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/user_lost__type_support.cpp.o[0m
+[96.290s] [ 59%] Built target interfaces__rosidl_typesupport_fastrtps_c
+[97.040s] [ 60%] [32m[1mLinking CXX shared library libinterfaces__rosidl_typesupport_introspection_cpp.so[0m
+[97.316s] [ 60%] Built target interfaces__rosidl_typesupport_introspection_cpp
+[97.673s] [ 60%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/init_button__type_support.cpp.o[0m
+[99.181s] [ 61%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/target_image__type_support.cpp.o[0m
+[100.692s] [ 61%] [32m[1mLinking CXX shared library libinterfaces__rosidl_typesupport_fastrtps_cpp.so[0m
+[100.952s] [ 61%] Built target interfaces__rosidl_typesupport_fastrtps_cpp
+[100.983s] [ 62%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[108.507s] [ 62%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/joystick_order__type_support.cpp.o[0m
+[108.615s] [ 62%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/motors_order__type_support.cpp.o[0m
+[108.719s] [ 63%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/motors_feedback__type_support.cpp.o[0m
+[108.825s] [ 63%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/general_data__type_support.cpp.o[0m
+[108.930s] [ 64%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/steering_calibration__type_support.cpp.o[0m
+[109.036s] [ 64%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/ultrasonic__type_support.cpp.o[0m
+[109.141s] [ 65%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/gnss__type_support.cpp.o[0m
+[109.247s] [ 66%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/obstacles__type_support.cpp.o[0m
+[109.355s] [ 66%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/system_check__type_support.cpp.o[0m
+[109.463s] [ 67%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/state__type_support.cpp.o[0m
+[109.575s] [ 67%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/lidar__type_support.cpp.o[0m
+[109.676s] [ 68%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/web_mode__type_support.cpp.o[0m
+[109.781s] [ 68%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/obstacles_id__type_support.cpp.o[0m
+[109.886s] [ 69%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/side_obstacles__type_support.cpp.o[0m
+[109.992s] [ 69%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/userdistance__type_support.cpp.o[0m
+[110.098s] [ 70%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/tracking_pos_angle__type_support.cpp.o[0m
+[110.204s] [ 70%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/user_lost__type_support.cpp.o[0m
+[110.309s] [ 71%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/init_button__type_support.cpp.o[0m
+[110.415s] [ 72%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/target_image__type_support.cpp.o[0m
+[110.521s] [ 73%] [32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/avoidance_parameters__type_support.cpp.o[0m
+[110.627s] [ 73%] [32m[1mLinking CXX shared library libinterfaces__rosidl_typesupport_c.so[0m
+[110.771s] [ 73%] Built target interfaces__rosidl_typesupport_c
+[110.805s] [ 74%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[120.154s] [ 75%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/joystick_order__type_support.c.o[0m
+[120.154s] [ 75%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/avoidance_parameters__type_support.c.o[0m
+[120.201s] [ 75%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/motors_feedback__type_support.c.o[0m
+[120.287s] [ 76%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/motors_order__type_support.c.o[0m
+[120.316s] [ 77%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/general_data__type_support.c.o[0m
+[120.345s] [ 77%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/steering_calibration__type_support.c.o[0m
+[120.444s] [ 78%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/ultrasonic__type_support.c.o[0m
+[120.466s] [ 79%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/gnss__type_support.c.o[0m
+[120.467s] [ 79%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/obstacles__type_support.c.o[0m
+[120.587s] [ 80%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/state__type_support.c.o[0m
+[120.588s] [ 80%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/system_check__type_support.c.o[0m
+[120.602s] [ 80%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/lidar__type_support.c.o[0m
+[120.736s] [ 81%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/web_mode__type_support.c.o[0m
+[120.741s] [ 82%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/obstacles_id__type_support.c.o[0m
+[120.757s] [ 82%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/side_obstacles__type_support.c.o[0m
+[120.871s] [ 83%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/userdistance__type_support.c.o[0m
+[120.872s] [ 82%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/tracking_pos_angle__type_support.c.o[0m
+[120.950s] [ 84%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/user_lost__type_support.c.o[0m
+[121.058s] [ 84%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/init_button__type_support.c.o[0m
+[121.105s] [ 85%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/target_image__type_support.c.o[0m
+[121.227s] [ 85%] [32m[1mLinking C shared library libinterfaces__rosidl_typesupport_introspection_c.so[0m
+[121.343s] [ 85%] Built target interfaces__rosidl_typesupport_introspection_c
+[121.400s] [ 85%] Built target interfaces
+[121.465s] [ 86%] [34m[1mGenerating Python code for ROS interfaces[0m
+[140.468s] [ 86%] Built target interfaces__py
+[140.532s] [ 87%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_avoidance_parameters_s.c.o[0m
+[140.543s] [ 88%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_motors_feedback_s.c.o[0m
+[140.558s] [ 88%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_joystick_order_s.c.o[0m
+[140.570s] [ 88%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_motors_order_s.c.o[0m
+[141.159s] [ 88%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_general_data_s.c.o[0m
+[141.166s] [ 89%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_steering_calibration_s.c.o[0m
+[141.169s] [ 89%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_ultrasonic_s.c.o[0m
+[141.197s] [ 90%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_gnss_s.c.o[0m
+[141.705s] [ 91%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_obstacles_s.c.o[0m
+[141.752s] [ 91%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_system_check_s.c.o[0m
+[141.789s] [ 92%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_state_s.c.o[0m
+[141.873s] [ 92%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_lidar_s.c.o[0m
+[142.243s] [ 93%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_web_mode_s.c.o[0m
+[142.350s] [ 93%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_obstacles_id_s.c.o[0m
+[142.421s] [ 93%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_userdistance_s.c.o[0m
+[142.438s] [ 94%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_side_obstacles_s.c.o[0m
+[142.777s] [ 95%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_tracking_pos_angle_s.c.o[0m
+[142.841s] [ 95%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_user_lost_s.c.o[0m
+[143.049s] [ 96%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_init_button_s.c.o[0m
+[143.140s] [ 97%] [32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_target_image_s.c.o[0m
+[143.622s] [ 97%] [32m[1mLinking C shared library rosidl_generator_py/interfaces/libinterfaces__rosidl_generator_py.so[0m
+[143.768s] [ 97%] Built target interfaces__rosidl_generator_py
+[143.831s] [ 98%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/interfaces/_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[143.883s] [ 99%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/interfaces/_interfaces_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[143.889s] [100%] [32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/interfaces/_interfaces_s.ep.rosidl_typesupport_c.c.o[0m
+[144.565s] [100%] [32m[1mLinking C shared library rosidl_generator_py/interfaces/interfaces_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so[0m
+[144.596s] [100%] [32m[1mLinking C shared library rosidl_generator_py/interfaces/interfaces_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so[0m
+[144.611s] [100%] [32m[1mLinking C shared library rosidl_generator_py/interfaces/interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so[0m
+[144.684s] [100%] Built target interfaces__rosidl_typesupport_introspection_c__pyext
+[144.716s] [100%] Built target interfaces__rosidl_typesupport_c__pyext
+[144.749s] [100%] Built target interfaces__rosidl_typesupport_fastrtps_c__pyext
+[144.788s] Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /root/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces -- -j4 -l4
+[146.061s] Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /root/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces
+[146.087s] -- Install configuration: ""
+[146.088s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/ament_index/resource_index/rosidl_interfaces/interfaces
+[146.089s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces
+[146.089s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg
+[146.090s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/userdistance.h
+[146.090s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail
+[146.091s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__type_support.h
+[146.092s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__functions.c
+[146.092s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__struct.h
+[146.093s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/web_mode__struct.h
+[146.094s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/side_obstacles__functions.h
+[146.095s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__struct.h
+[146.095s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/web_mode__type_support.h
+[146.095s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/side_obstacles__struct.h
+[146.096s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__functions.h
+[146.096s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__type_support.h
+[146.097s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__functions.c
+[146.097s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/web_mode__functions.h
+[146.097s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__type_support.h
+[146.098s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles__functions.c
+[146.098s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/side_obstacles__functions.c
+[146.099s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__functions.c
+[146.099s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/avoidance_parameters__struct.h
+[146.100s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/target_image__struct.h
+[146.100s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__struct.h
+[146.100s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/lidar__struct.h
+[146.101s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__struct.h
+[146.101s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/init_button__functions.c
+[146.102s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/tracking_pos_angle__type_support.h
+[146.102s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles_id__functions.h
+[146.103s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/userdistance__functions.c
+[146.103s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles_id__struct.h
+[146.104s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/lidar__functions.h
+[146.104s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles__type_support.h
+[146.105s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/state__type_support.h
+[146.105s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__type_support.h
+[146.106s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__type_support.h
+[146.106s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/user_lost__functions.c
+[146.107s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/target_image__functions.c
+[146.107s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/side_obstacles__type_support.h
+[146.108s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/avoidance_parameters__type_support.h
+[146.108s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__functions.h
+[146.109s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__struct.h
+[146.109s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/lidar__functions.c
+[146.110s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__functions.h
+[146.110s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__functions.c
+[146.111s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/user_lost__type_support.h
+[146.111s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__functions.c
+[146.112s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/avoidance_parameters__functions.h
+[146.113s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/state__functions.h
+[146.113s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__functions.h
+[146.114s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__type_support.h
+[146.114s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/lidar__type_support.h
+[146.115s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/user_lost__struct.h
+[146.115s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/state__struct.h
+[146.116s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/web_mode__functions.c
+[146.116s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/init_button__functions.h
+[146.117s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__functions.c
+[146.117s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/tracking_pos_angle__struct.h
+[146.118s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/state__functions.c
+[146.119s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/userdistance__type_support.h
+[146.119s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/target_image__functions.h
+[146.120s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__struct.h
+[146.120s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles__functions.h
+[146.121s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__functions.h
+[146.121s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles_id__type_support.h
+[146.122s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles_id__functions.c
+[146.122s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__functions.h
+[146.123s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/init_button__type_support.h
+[146.123s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/userdistance__functions.h
+[146.124s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__functions.h
+[146.124s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__functions.h
+[146.125s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/userdistance__struct.h
+[146.125s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles__struct.h
+[146.126s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/target_image__type_support.h
+[146.126s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__functions.c
+[146.127s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__struct.h
+[146.127s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/tracking_pos_angle__functions.h
+[146.128s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/tracking_pos_angle__functions.c
+[146.128s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__struct.h
+[146.129s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__type_support.h
+[146.129s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/avoidance_parameters__functions.c
+[146.130s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__functions.c
+[146.130s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/init_button__struct.h
+[146.131s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/user_lost__functions.h
+[146.131s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__type_support.h
+[146.132s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/state.h
+[146.132s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/web_mode.h
+[146.133s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/lidar.h
+[146.133s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/general_data.h
+[146.134s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/user_lost.h
+[146.134s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/side_obstacles.h
+[146.135s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/ultrasonic.h
+[146.135s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/gnss.h
+[146.135s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/joystick_order.h
+[146.136s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/init_button.h
+[146.136s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/obstacles_id.h
+[146.137s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/motors_feedback.h
+[146.137s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_generator_c__visibility_control.h
+[146.138s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/system_check.h
+[146.138s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/motors_order.h
+[146.139s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/obstacles.h
+[146.139s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/target_image.h
+[146.140s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/steering_calibration.h
+[146.140s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/tracking_pos_angle.h
+[146.141s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/avoidance_parameters.h
+[146.141s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/environment/library_path.sh
+[146.142s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/environment/library_path.dsv
+[146.143s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_generator_c.so
+[146.145s] -- Set runtime path of "/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_generator_c.so" to ""
+[146.146s] -- Up-to-date: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces
+[146.146s] -- Up-to-date: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg
+[146.147s] -- Up-to-date: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail
+[146.147s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles_id__rosidl_typesupport_fastrtps_c.h
+[146.148s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/user_lost__rosidl_typesupport_fastrtps_c.h
+[146.148s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/side_obstacles__rosidl_typesupport_fastrtps_c.h
+[146.148s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/lidar__rosidl_typesupport_fastrtps_c.h
+[146.149s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__rosidl_typesupport_fastrtps_c.h
+[146.149s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/init_button__rosidl_typesupport_fastrtps_c.h
+[146.149s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__rosidl_typesupport_fastrtps_c.h
+[146.150s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles__rosidl_typesupport_fastrtps_c.h
+[146.150s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__rosidl_typesupport_fastrtps_c.h
+[146.151s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/target_image__rosidl_typesupport_fastrtps_c.h
+[146.151s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__rosidl_typesupport_fastrtps_c.h
+[146.152s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/userdistance__rosidl_typesupport_fastrtps_c.h
+[146.152s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__rosidl_typesupport_fastrtps_c.h
+[146.153s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__rosidl_typesupport_fastrtps_c.h
+[146.153s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/web_mode__rosidl_typesupport_fastrtps_c.h
+[146.154s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__rosidl_typesupport_fastrtps_c.h
+[146.155s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/avoidance_parameters__rosidl_typesupport_fastrtps_c.h
+[146.155s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__rosidl_typesupport_fastrtps_c.h
+[146.156s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/tracking_pos_angle__rosidl_typesupport_fastrtps_c.h
+[146.156s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/state__rosidl_typesupport_fastrtps_c.h
+[146.157s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[146.161s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_fastrtps_c.so
+[146.161s] -- Set runtime path of "/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_fastrtps_c.so" to ""
+[146.162s] -- Up-to-date: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces
+[146.162s] -- Up-to-date: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg
+[146.163s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/init_button.hpp
+[146.163s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/userdistance.hpp
+[146.163s] -- Up-to-date: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail
+[146.164s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/target_image__struct.hpp
+[146.164s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/tracking_pos_angle__builder.hpp
+[146.165s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/init_button__builder.hpp
+[146.165s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__struct.hpp
+[146.166s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__builder.hpp
+[146.166s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/lidar__struct.hpp
+[146.167s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/state__struct.hpp
+[146.167s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__traits.hpp
+[146.167s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__traits.hpp
+[146.168s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/state__traits.hpp
+[146.168s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__builder.hpp
+[146.168s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/tracking_pos_angle__struct.hpp
+[146.169s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/avoidance_parameters__traits.hpp
+[146.169s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/target_image__builder.hpp
+[146.170s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__builder.hpp
+[146.170s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__struct.hpp
+[146.171s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/init_button__traits.hpp
+[146.171s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/side_obstacles__traits.hpp
+[146.172s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles_id__struct.hpp
+[146.172s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__builder.hpp
+[146.173s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/target_image__traits.hpp
+[146.173s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles__traits.hpp
+[146.174s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__builder.hpp
+[146.174s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/lidar__builder.hpp
+[146.175s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/user_lost__traits.hpp
+[146.175s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__builder.hpp
+[146.176s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/side_obstacles__builder.hpp
+[146.176s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__builder.hpp
+[146.177s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/avoidance_parameters__builder.hpp
+[146.177s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/userdistance__traits.hpp
+[146.178s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__builder.hpp
+[146.178s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__traits.hpp
+[146.179s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__struct.hpp
+[146.179s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/state__builder.hpp
+[146.180s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__traits.hpp
+[146.180s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/side_obstacles__struct.hpp
+[146.181s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__traits.hpp
+[146.181s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__traits.hpp
+[146.182s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles__builder.hpp
+[146.182s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/avoidance_parameters__struct.hpp
+[146.183s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles__struct.hpp
+[146.183s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__traits.hpp
+[146.184s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/user_lost__struct.hpp
+[146.184s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/user_lost__builder.hpp
+[146.185s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/userdistance__builder.hpp
+[146.185s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/tracking_pos_angle__traits.hpp
+[146.186s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__traits.hpp
+[146.186s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/web_mode__traits.hpp
+[146.187s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__struct.hpp
+[146.188s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__struct.hpp
+[146.188s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/web_mode__builder.hpp
+[146.189s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__struct.hpp
+[146.189s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__struct.hpp
+[146.190s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/userdistance__struct.hpp
+[146.190s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__struct.hpp
+[146.191s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles_id__traits.hpp
+[146.191s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/lidar__traits.hpp
+[146.192s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/init_button__struct.hpp
+[146.192s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/web_mode__struct.hpp
+[146.193s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles_id__builder.hpp
+[146.193s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/avoidance_parameters.hpp
+[146.194s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/user_lost.hpp
+[146.194s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/state.hpp
+[146.195s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/lidar.hpp
+[146.195s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/obstacles.hpp
+[146.195s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/gnss.hpp
+[146.196s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/system_check.hpp
+[146.196s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/tracking_pos_angle.hpp
+[146.197s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/motors_feedback.hpp
+[146.197s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/general_data.hpp
+[146.198s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/web_mode.hpp
+[146.198s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/motors_order.hpp
+[146.199s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/joystick_order.hpp
+[146.199s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/target_image.hpp
+[146.200s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/steering_calibration.hpp
+[146.200s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/ultrasonic.hpp
+[146.201s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/obstacles_id.hpp
+[146.201s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/side_obstacles.hpp
+[146.202s] -- Up-to-date: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces
+[146.202s] -- Up-to-date: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg
+[146.203s] -- Up-to-date: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail
+[146.203s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__rosidl_typesupport_fastrtps_cpp.hpp
+[146.204s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__rosidl_typesupport_fastrtps_cpp.hpp
+[146.204s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__rosidl_typesupport_fastrtps_cpp.hpp
+[146.204s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/web_mode__rosidl_typesupport_fastrtps_cpp.hpp
+[146.205s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/user_lost__rosidl_typesupport_fastrtps_cpp.hpp
+[146.205s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/lidar__rosidl_typesupport_fastrtps_cpp.hpp
+[146.206s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__rosidl_typesupport_fastrtps_cpp.hpp
+[146.206s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__rosidl_typesupport_fastrtps_cpp.hpp
+[146.207s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles_id__rosidl_typesupport_fastrtps_cpp.hpp
+[146.207s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/side_obstacles__rosidl_typesupport_fastrtps_cpp.hpp
+[146.208s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/avoidance_parameters__rosidl_typesupport_fastrtps_cpp.hpp
+[146.208s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/target_image__rosidl_typesupport_fastrtps_cpp.hpp
+[146.209s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/userdistance__rosidl_typesupport_fastrtps_cpp.hpp
+[146.210s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles__rosidl_typesupport_fastrtps_cpp.hpp
+[146.210s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__rosidl_typesupport_fastrtps_cpp.hpp
+[146.211s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/tracking_pos_angle__rosidl_typesupport_fastrtps_cpp.hpp
+[146.211s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/state__rosidl_typesupport_fastrtps_cpp.hpp
+[146.212s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/dds_fastrtps
+[146.212s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__rosidl_typesupport_fastrtps_cpp.hpp
+[146.213s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/init_button__rosidl_typesupport_fastrtps_cpp.hpp
+[146.214s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__rosidl_typesupport_fastrtps_cpp.hpp
+[146.214s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[146.215s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_fastrtps_cpp.so
+[146.218s] -- Set runtime path of "/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_fastrtps_cpp.so" to ""
+[146.219s] -- Up-to-date: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces
+[146.219s] -- Up-to-date: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg
+[146.220s] -- Up-to-date: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail
+[146.220s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__type_support.c
+[146.220s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__type_support.c
+[146.221s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/user_lost__rosidl_typesupport_introspection_c.h
+[146.221s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__rosidl_typesupport_introspection_c.h
+[146.221s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__rosidl_typesupport_introspection_c.h
+[146.222s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/tracking_pos_angle__type_support.c
+[146.222s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/lidar__type_support.c
+[146.222s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/web_mode__type_support.c
+[146.223s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles__rosidl_typesupport_introspection_c.h
+[146.223s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/web_mode__rosidl_typesupport_introspection_c.h
+[146.224s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/side_obstacles__rosidl_typesupport_introspection_c.h
+[146.225s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/state__type_support.c
+[146.225s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/target_image__type_support.c
+[146.226s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/state__rosidl_typesupport_introspection_c.h
+[146.227s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__type_support.c
+[146.227s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__rosidl_typesupport_introspection_c.h
+[146.228s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__type_support.c
+[146.228s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__type_support.c
+[146.229s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/init_button__type_support.c
+[146.230s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles__type_support.c
+[146.230s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__type_support.c
+[146.231s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/side_obstacles__type_support.c
+[146.231s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__rosidl_typesupport_introspection_c.h
+[146.232s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles_id__type_support.c
+[146.232s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__rosidl_typesupport_introspection_c.h
+[146.233s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__type_support.c
+[146.234s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/init_button__rosidl_typesupport_introspection_c.h
+[146.234s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/lidar__rosidl_typesupport_introspection_c.h
+[146.235s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/user_lost__type_support.c
+[146.235s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__rosidl_typesupport_introspection_c.h
+[146.236s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__rosidl_typesupport_introspection_c.h
+[146.236s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/userdistance__type_support.c
+[146.237s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/target_image__rosidl_typesupport_introspection_c.h
+[146.237s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/avoidance_parameters__type_support.c
+[146.238s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__rosidl_typesupport_introspection_c.h
+[146.238s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles_id__rosidl_typesupport_introspection_c.h
+[146.239s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/userdistance__rosidl_typesupport_introspection_c.h
+[146.239s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/tracking_pos_angle__rosidl_typesupport_introspection_c.h
+[146.240s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/avoidance_parameters__rosidl_typesupport_introspection_c.h
+[146.240s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__type_support.c
+[146.241s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[146.242s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_introspection_c.so
+[146.248s] -- Set runtime path of "/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_introspection_c.so" to ""
+[146.248s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_c.so
+[146.249s] -- Set runtime path of "/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_c.so" to ""
+[146.249s] -- Up-to-date: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces
+[146.250s] -- Up-to-date: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg
+[146.250s] -- Up-to-date: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail
+[146.250s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/tracking_pos_angle__type_support.cpp
+[146.251s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__rosidl_typesupport_introspection_cpp.hpp
+[146.251s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__rosidl_typesupport_introspection_cpp.hpp
+[146.251s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/web_mode__type_support.cpp
+[146.252s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/tracking_pos_angle__rosidl_typesupport_introspection_cpp.hpp
+[146.252s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles__type_support.cpp
+[146.252s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/target_image__rosidl_typesupport_introspection_cpp.hpp
+[146.253s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles_id__type_support.cpp
+[146.253s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/init_button__type_support.cpp
+[146.253s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__type_support.cpp
+[146.254s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/state__type_support.cpp
+[146.254s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/avoidance_parameters__rosidl_typesupport_introspection_cpp.hpp
+[146.255s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/lidar__rosidl_typesupport_introspection_cpp.hpp
+[146.255s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/web_mode__rosidl_typesupport_introspection_cpp.hpp
+[146.255s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/user_lost__rosidl_typesupport_introspection_cpp.hpp
+[146.256s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/side_obstacles__rosidl_typesupport_introspection_cpp.hpp
+[146.256s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__rosidl_typesupport_introspection_cpp.hpp
+[146.256s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/init_button__rosidl_typesupport_introspection_cpp.hpp
+[146.257s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__rosidl_typesupport_introspection_cpp.hpp
+[146.257s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/user_lost__type_support.cpp
+[146.258s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__type_support.cpp
+[146.259s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/side_obstacles__type_support.cpp
+[146.259s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__type_support.cpp
+[146.260s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/lidar__type_support.cpp
+[146.260s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__type_support.cpp
+[146.261s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/avoidance_parameters__type_support.cpp
+[146.261s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__rosidl_typesupport_introspection_cpp.hpp
+[146.262s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__type_support.cpp
+[146.262s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__rosidl_typesupport_introspection_cpp.hpp
+[146.263s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles__rosidl_typesupport_introspection_cpp.hpp
+[146.264s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__rosidl_typesupport_introspection_cpp.hpp
+[146.264s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__type_support.cpp
+[146.265s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__rosidl_typesupport_introspection_cpp.hpp
+[146.265s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/userdistance__rosidl_typesupport_introspection_cpp.hpp
+[146.266s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/obstacles_id__rosidl_typesupport_introspection_cpp.hpp
+[146.267s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/userdistance__type_support.cpp
+[146.267s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/target_image__type_support.cpp
+[146.268s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__type_support.cpp
+[146.269s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/state__rosidl_typesupport_introspection_cpp.hpp
+[146.272s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__type_support.cpp
+[146.272s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_introspection_cpp.so
+[146.273s] -- Set runtime path of "/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_introspection_cpp.so" to ""
+[146.273s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_cpp.so
+[146.276s] -- Set runtime path of "/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_cpp.so" to ""
+[146.276s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/environment/pythonpath.sh
+[146.277s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/environment/pythonpath.dsv
+[146.277s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces-0.0.0-py3.10.egg-info
+[146.278s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces-0.0.0-py3.10.egg-info/top_level.txt
+[146.278s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces-0.0.0-py3.10.egg-info/dependency_links.txt
+[146.279s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces-0.0.0-py3.10.egg-info/SOURCES.txt
+[146.279s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces-0.0.0-py3.10.egg-info/PKG-INFO
+[146.281s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces
+[146.281s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+[146.282s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg
+[146.282s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_gnss_s.c
+[146.283s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motors_order_s.c
+[146.283s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_avoidance_parameters.py
+[146.284s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_user_lost.py
+[146.284s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motors_feedback_s.c
+[146.285s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_general_data_s.c
+[146.285s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_lidar_s.c
+[146.286s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_target_image_s.c
+[146.286s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_obstacles_id_s.c
+[146.287s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_side_obstacles.py
+[146.287s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_tracking_pos_angle_s.c
+[146.288s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_general_data.py
+[146.288s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_tracking_pos_angle.py
+[146.289s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_user_lost_s.c
+[146.289s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_side_obstacles_s.c
+[146.290s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_init_button_s.c
+[146.290s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_steering_calibration.py
+[146.291s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motors_feedback.py
+[146.291s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_gnss.py
+[146.292s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_ultrasonic.py
+[146.292s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_obstacles.py
+[146.293s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_system_check.py
+[146.293s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_steering_calibration_s.c
+[146.294s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_web_mode_s.c
+[146.294s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_web_mode.py
+[146.295s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motors_order.py
+[146.295s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_lidar.py
+[146.296s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_userdistance_s.c
+[146.296s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_system_check_s.c
+[146.297s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_init_button.py
+[146.297s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_state.py
+[146.298s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_userdistance.py
+[146.298s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_ultrasonic_s.c
+[146.299s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_avoidance_parameters_s.c
+[146.299s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/__init__.py
+[146.300s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_state_s.c
+[146.300s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_obstacles_s.c
+[146.301s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_obstacles_id.py
+[146.301s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_joystick_order_s.c
+[146.302s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_joystick_order.py
+[146.303s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_target_image.py
+[146.303s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/_interfaces_s.ep.rosidl_typesupport_c.c
+[146.304s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+[146.305s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/libinterfaces__rosidl_generator_py.so
+[146.306s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c
+[146.307s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/_interfaces_s.ep.rosidl_typesupport_introspection_c.c
+[146.308s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/__init__.py
+[146.308s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+[146.528s] Listing '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces'...
+[146.529s] Compiling '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/__init__.py'...
+[146.530s] Listing '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg'...
+[146.530s] Compiling '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/__init__.py'...
+[146.531s] Compiling '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_avoidance_parameters.py'...
+[146.531s] Compiling '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_general_data.py'...
+[146.532s] Compiling '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_gnss.py'...
+[146.532s] Compiling '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_init_button.py'...
+[146.532s] Compiling '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_joystick_order.py'...
+[146.533s] Compiling '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_lidar.py'...
+[146.534s] Compiling '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motors_feedback.py'...
+[146.534s] Compiling '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motors_order.py'...
+[146.534s] Compiling '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_obstacles.py'...
+[146.535s] Compiling '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_obstacles_id.py'...
+[146.535s] Compiling '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_side_obstacles.py'...
+[146.536s] Compiling '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_state.py'...
+[146.536s] Compiling '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_steering_calibration.py'...
+[146.536s] Compiling '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_system_check.py'...
+[146.537s] Compiling '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_target_image.py'...
+[146.537s] Compiling '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_tracking_pos_angle.py'...
+[146.538s] Compiling '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_ultrasonic.py'...
+[146.538s] Compiling '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_user_lost.py'...
+[146.538s] Compiling '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_userdistance.py'...
+[146.539s] Compiling '/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_web_mode.py'...
+[146.552s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so
+[146.554s] -- Set runtime path of "/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-aarch64-linux-gnu.so" to ""
+[146.555s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so
+[146.556s] -- Set runtime path of "/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_introspection_c.cpython-310-aarch64-linux-gnu.so" to ""
+[146.557s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so
+[146.559s] -- Set runtime path of "/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_c.cpython-310-aarch64-linux-gnu.so" to ""
+[146.563s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_generator_py.so
+[146.563s] -- Set runtime path of "/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_generator_py.so" to ""
+[146.564s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/JoystickOrder.idl
+[146.564s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/AvoidanceParameters.idl
+[146.565s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/MotorsOrder.idl
+[146.565s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/MotorsFeedback.idl
+[146.566s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/GeneralData.idl
+[146.566s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/SteeringCalibration.idl
+[146.567s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/Ultrasonic.idl
+[146.567s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/Gnss.idl
+[146.568s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/Obstacles.idl
+[146.569s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/SystemCheck.idl
+[146.569s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/State.idl
+[146.570s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/Lidar.idl
+[146.571s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/WebMode.idl
+[146.571s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/ObstaclesId.idl
+[146.572s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/SideObstacles.idl
+[146.572s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/Userdistance.idl
+[146.573s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/TrackingPosAngle.idl
+[146.574s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/UserLost.idl
+[146.574s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/InitButton.idl
+[146.575s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/TargetImage.idl
+[146.575s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/JoystickOrder.msg
+[146.576s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/AvoidanceParameters.msg
+[146.577s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/MotorsOrder.msg
+[146.577s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/MotorsFeedback.msg
+[146.578s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/GeneralData.msg
+[146.578s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/SteeringCalibration.msg
+[146.579s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/Ultrasonic.msg
+[146.580s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/Gnss.msg
+[146.580s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/Obstacles.msg
+[146.581s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/SystemCheck.msg
+[146.581s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/State.msg
+[146.582s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/Lidar.msg
+[146.583s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/WebMode.msg
+[146.583s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/ObstaclesId.msg
+[146.584s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/SideObstacles.msg
+[146.584s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/Userdistance.msg
+[146.585s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/TrackingPosAngle.msg
+[146.585s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/UserLost.msg
+[146.586s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/InitButton.msg
+[146.587s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/msg/TargetImage.msg
+[146.588s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/ament_index/resource_index/package_run_dependencies/interfaces
+[146.588s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/ament_index/resource_index/parent_prefix_path/interfaces
+[146.589s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/environment/ament_prefix_path.sh
+[146.590s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/environment/ament_prefix_path.dsv
+[146.590s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/environment/path.sh
+[146.591s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/environment/path.dsv
+[146.592s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/local_setup.bash
+[146.592s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/local_setup.sh
+[146.593s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/local_setup.zsh
+[146.593s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/local_setup.dsv
+[146.594s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/package.dsv
+[146.595s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/ament_index/resource_index/packages/interfaces
+[146.596s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_cExport.cmake
+[146.596s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_cExport-noconfig.cmake
+[146.597s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_typesupport_fastrtps_cExport.cmake
+[146.598s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[146.599s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_cppExport.cmake
+[146.599s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_typesupport_fastrtps_cppExport.cmake
+[146.600s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[146.601s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cExport.cmake
+[146.602s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[146.602s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cExport.cmake
+[146.603s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cExport-noconfig.cmake
+[146.604s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cppExport.cmake
+[146.605s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[146.605s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cppExport.cmake
+[146.606s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cppExport-noconfig.cmake
+[146.607s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_pyExport.cmake
+[146.608s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_pyExport-noconfig.cmake
+[146.608s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/rosidl_cmake-extras.cmake
+[146.609s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_include_directories-extras.cmake
+[146.610s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_libraries-extras.cmake
+[146.611s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_targets-extras.cmake
+[146.611s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[146.612s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_dependencies-extras.cmake
+[146.613s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[146.613s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/interfacesConfig.cmake
+[146.614s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake/interfacesConfig-version.cmake
+[146.615s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/package.xml
+[146.622s] Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /root/Xcar_chidi/jetsonNano/ros2_ws/build/interfaces

@@ -1,0 +1,25 @@
+{
+  "package_name": "interfaces",
+  "non_idl_tuples": [
+    "/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/JoystickOrder.msg",
+    "/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/AvoidanceParameters.msg",
+    "/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/MotorsOrder.msg",
+    "/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/MotorsFeedback.msg",
+    "/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/GeneralData.msg",
+    "/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/SteeringCalibration.msg",
+    "/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/Ultrasonic.msg",
+    "/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/Gnss.msg",
+    "/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/Obstacles.msg",
+    "/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/SystemCheck.msg",
+    "/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/State.msg",
+    "/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/Lidar.msg",
+    "/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/WebMode.msg",
+    "/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/ObstaclesId.msg",
+    "/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/SideObstacles.msg",
+    "/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/Userdistance.msg",
+    "/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/TrackingPosAngle.msg",
+    "/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/UserLost.msg",
+    "/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/InitButton.msg",
+    "/root/Xcar_chidi/jetsonNano/ros2_ws/src/interfaces:msg/TargetImage.msg"
+  ]
+}

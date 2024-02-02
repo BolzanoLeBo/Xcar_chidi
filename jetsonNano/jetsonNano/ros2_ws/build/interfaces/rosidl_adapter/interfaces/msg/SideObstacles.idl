@@ -1,0 +1,28 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from interfaces/msg/SideObstacles.msg
+// generated code does not contain a copyright notice
+
+
+module interfaces {
+  module msg {
+    struct SideObstacles {
+      @verbatim (language="comment", text=
+        "true when there is a high intensity on the left")
+      @default (value=FALSE)
+      boolean left_lidar;
+
+      @verbatim (language="comment", text=
+        "same as \"left\"")
+      @default (value=FALSE)
+      boolean right_lidar;
+
+      @verbatim (language="comment", text=
+        "minimum distance with an obstacle on the left")
+      float left_min;
+
+      @verbatim (language="comment", text=
+        "same as \"left\"")
+      float right_min;
+    };
+  };
+};

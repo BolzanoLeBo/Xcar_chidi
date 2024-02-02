@@ -1,0 +1,173 @@
+[0.458s] Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam -DCMAKE_INSTALL_PREFIX=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam
+[1.526s] -- The C compiler identification is GNU 11.4.0
+[2.024s] -- The CXX compiler identification is GNU 11.4.0
+[2.074s] -- Detecting C compiler ABI info
+[2.398s] -- Detecting C compiler ABI info - done
+[2.474s] -- Check for working C compiler: /usr/bin/cc - skipped
+[2.475s] -- Detecting C compile features
+[2.481s] -- Detecting C compile features - done
+[2.489s] -- Detecting CXX compiler ABI info
+[2.918s] -- Detecting CXX compiler ABI info - done
+[2.967s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[2.969s] -- Detecting CXX compile features
+[2.972s] -- Detecting CXX compile features - done
+[2.994s] -- Found ament_cmake_auto: 1.3.5 (/opt/ros/humble/share/ament_cmake_auto/cmake)
+[3.769s] -- Found Python3: /usr/bin/python3.10 (found version "3.10.12") found components: Interpreter 
+[5.007s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[5.041s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[5.094s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[5.173s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[5.284s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[5.658s] -- Found rmw_implementation_cmake: 6.1.1 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[5.673s] -- Found rmw_fastrtps_cpp: 6.2.4 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[6.200s] -- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[6.387s] -- Found FastRTPS: /opt/ros/humble/include  
+[6.698s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[6.772s] -- Looking for pthread.h
+[7.123s] -- Looking for pthread.h - found
+[7.124s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[7.432s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[7.433s] -- Found Threads: TRUE  
+[10.193s] -- Found PkgConfig: /usr/bin/pkg-config (found version "0.29.2") 
+[10.197s] -- Checking for module 'libavcodec'
+[10.305s] --   Found libavcodec, version 58.134.100
+[10.573s] -- Checking for module 'libswscale'
+[10.635s] --   Found libswscale, version 5.9.100
+[10.906s] -- Configuring done
+[11.104s] -- Generating done
+[11.123s] -- Build files have been written to: /root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam
+[11.180s] Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam -DCMAKE_INSTALL_PREFIX=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam
+[11.182s] Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam -- -j4 -l4
+[11.646s] [ 16%] [32mBuilding CXX object CMakeFiles/usb_cam_node_exe.dir/rclcpp_components/node_main_usb_cam_node_exe.cpp.o[0m
+[11.681s] [ 33%] [32mBuilding CXX object CMakeFiles/usb_cam.dir/src/usb_cam.cpp.o[0m
+[30.142s] [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/src/usb_cam.cpp:[m[K In member function ‘[01m[Kint usb_cam::UsbCam::init_decoder(int, int, usb_cam::UsbCam::color_format, AVCodecID, const char*)[m[K’:
+[30.142s] [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/src/usb_cam.cpp:75:23:[m[K [01;35m[Kwarning: [m[K‘[01m[Kvoid avcodec_register_all()[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[30.142s]    75 |   [01;35m[Kavcodec_register_all()[m[K;
+[30.143s]       |   [01;35m[K~~~~~~~~~~~~~~~~~~~~^~[m[K
+[30.144s] In file included from [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/include/usb_cam/usb_cam.hpp:39[m[K,
+[30.144s]                  from [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/src/usb_cam.cpp:31[m[K:
+[30.145s] [01m[K/usr/include/aarch64-linux-gnu/libavcodec/avcodec.h:2767:6:[m[K [01;36m[Knote: [m[Kdeclared here
+[30.145s]  2767 | void [01;36m[Kavcodec_register_all[m[K(void);
+[30.146s]       |      [01;36m[K^~~~~~~~~~~~~~~~~~~~[m[K
+[30.146s] [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/src/usb_cam.cpp:104:18:[m[K [01;35m[Kwarning: [m[K‘[01m[Kint avpicture_alloc(AVPicture*, AVPixelFormat, int, int)[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[30.147s]   104 |   [01;35m[Kavpicture_alloc([m[K
+[30.148s]       |   [01;35m[K~~~~~~~~~~~~~~~^[m[K
+[30.148s]   105 | [01;35m[K    reinterpret_cast<AVPicture *>(avframe_rgb_), AV_PIX_FMT_RGB24, image_width, image_height)[m[K;
+[30.149s]       |     [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[30.150s] In file included from [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/include/usb_cam/usb_cam.hpp:39[m[K,
+[30.151s]                  from [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/src/usb_cam.cpp:31[m[K:
+[30.152s] [01m[K/usr/include/aarch64-linux-gnu/libavcodec/avcodec.h:3751:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[30.152s]  3751 | int [01;36m[Kavpicture_alloc[m[K(AVPicture *picture, enum AVPixelFormat pix_fmt, int width, int height);
+[30.155s]       |     [01;36m[K^~~~~~~~~~~~~~~[m[K
+[30.165s] [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/src/usb_cam.cpp:129:46:[m[K [01;35m[Kwarning: [m[K‘[01m[Kint avpicture_get_size(AVPixelFormat, int, int)[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[30.166s]   129 |     avframe_camera_size_ = [01;35m[Kavpicture_get_size(AV_PIX_FMT_YUV420P, image_width, image_height)[m[K;
+[30.166s]       |                            [01;35m[K~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[30.167s] In file included from [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/include/usb_cam/usb_cam.hpp:39[m[K,
+[30.167s]                  from [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/src/usb_cam.cpp:31[m[K:
+[30.168s] [01m[K/usr/include/aarch64-linux-gnu/libavcodec/avcodec.h:3778:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[30.168s]  3778 | int [01;36m[Kavpicture_get_size[m[K(enum AVPixelFormat pix_fmt, int width, int height);
+[30.169s]       |     [01;36m[K^~~~~~~~~~~~~~~~~~[m[K
+[30.169s] [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/src/usb_cam.cpp:131:46:[m[K [01;35m[Kwarning: [m[K‘[01m[Kint avpicture_get_size(AVPixelFormat, int, int)[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[30.169s]   131 |     avframe_camera_size_ = [01;35m[Kavpicture_get_size(AV_PIX_FMT_YUV422P, image_width, image_height)[m[K;
+[30.170s]       |                            [01;35m[K~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[30.170s] In file included from [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/include/usb_cam/usb_cam.hpp:39[m[K,
+[30.171s]                  from [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/src/usb_cam.cpp:31[m[K:
+[30.171s] [01m[K/usr/include/aarch64-linux-gnu/libavcodec/avcodec.h:3778:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[30.171s]  3778 | int [01;36m[Kavpicture_get_size[m[K(enum AVPixelFormat pix_fmt, int width, int height);
+[30.172s]       |     [01;36m[K^~~~~~~~~~~~~~~~~~[m[K
+[30.172s] [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/src/usb_cam.cpp:132:41:[m[K [01;35m[Kwarning: [m[K‘[01m[Kint avpicture_get_size(AVPixelFormat, int, int)[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[30.173s]   132 |   avframe_rgb_size_ = [01;35m[Kavpicture_get_size(AV_PIX_FMT_RGB24, image_width, image_height)[m[K;
+[30.173s]       |                       [01;35m[K~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[30.179s] In file included from [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/include/usb_cam/usb_cam.hpp:39[m[K,
+[30.180s]                  from [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/src/usb_cam.cpp:31[m[K:
+[30.180s] [01m[K/usr/include/aarch64-linux-gnu/libavcodec/avcodec.h:3778:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[30.181s]  3778 | int [01;36m[Kavpicture_get_size[m[K(enum AVPixelFormat pix_fmt, int width, int height);
+[30.181s]       |     [01;36m[K^~~~~~~~~~~~~~~~~~[m[K
+[30.182s] [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/src/usb_cam.cpp:[m[K In member function ‘[01m[Kbool usb_cam::UsbCam::mjpeg2rgb(char*, int, char*, int)[m[K’:
+[30.182s] [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/src/usb_cam.cpp:167:17:[m[K [01;35m[Kwarning: [m[K‘[01m[Kvoid av_init_packet(AVPacket*)[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[30.183s]   167 |   [01;35m[Kav_init_packet(&avpkt)[m[K;
+[30.183s]       |   [01;35m[K~~~~~~~~~~~~~~^~~~~~~~[m[K
+[30.184s] In file included from [01m[K/usr/include/aarch64-linux-gnu/libavcodec/bsf.h:30[m[K,
+[30.184s]                  from [01m[K/usr/include/aarch64-linux-gnu/libavcodec/avcodec.h:44[m[K,
+[30.185s]                  from [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/include/usb_cam/usb_cam.hpp:39[m[K,
+[30.185s]                  from [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/src/usb_cam.cpp:31[m[K:
+[30.185s] [01m[K/usr/include/aarch64-linux-gnu/libavcodec/packet.h:488:6:[m[K [01;36m[Knote: [m[Kdeclared here
+[30.186s]   488 | void [01;36m[Kav_init_packet[m[K(AVPacket *pkt);
+[30.186s]       |      [01;36m[K^~~~~~~~~~~~~~[m[K
+[30.187s] [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/src/usb_cam.cpp:173:38:[m[K [01;35m[Kwarning: [m[K‘[01m[Kint avcodec_decode_video2(AVCodecContext*, AVFrame*, int*, const AVPacket*)[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[30.187s]   173 |   decoded_len = [01;35m[Kavcodec_decode_video2(avcodec_context_, avframe_camera_, &got_picture, &avpkt)[m[K;
+[30.187s]       |                 [01;35m[K~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[30.188s] In file included from [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/include/usb_cam/usb_cam.hpp:39[m[K,
+[30.188s]                  from [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/src/usb_cam.cpp:31[m[K:
+[30.189s] [01m[K/usr/include/aarch64-linux-gnu/libavcodec/avcodec.h:3096:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[30.189s]  3096 | int [01;36m[Kavcodec_decode_video2[m[K(AVCodecContext *avctx, AVFrame *picture,
+[30.190s]       |     [01;36m[K^~~~~~~~~~~~~~~~~~~~~[m[K
+[30.190s] [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/src/usb_cam.cpp:192:36:[m[K [01;35m[Kwarning: [m[K‘[01m[Kint avpicture_get_size(AVPixelFormat, int, int)[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[30.190s]   192 |   int pic_size = [01;35m[Kavpicture_get_size(avcodec_context_->pix_fmt, xsize, ysize)[m[K;
+[30.191s]       |                  [01;35m[K~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[30.191s] In file included from [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/include/usb_cam/usb_cam.hpp:39[m[K,
+[30.192s]                  from [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/src/usb_cam.cpp:31[m[K:
+[30.192s] [01m[K/usr/include/aarch64-linux-gnu/libavcodec/avcodec.h:3778:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[30.192s]  3778 | int [01;36m[Kavpicture_get_size[m[K(enum AVPixelFormat pix_fmt, int width, int height);
+[30.193s]       |     [01;36m[K^~~~~~~~~~~~~~~~~~[m[K
+[30.193s] [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/src/usb_cam.cpp:218:30:[m[K [01;35m[Kwarning: [m[K‘[01m[Kint avpicture_layout(const AVPicture*, AVPixelFormat, int, int, unsigned char*, int)[m[K’ is deprecated [[01;35m[K-Wdeprecated-declarations[m[K]
+[30.194s]   218 |   int size = [01;35m[Kavpicture_layout([m[K
+[30.194s]       |              [01;35m[K~~~~~~~~~~~~~~~~^[m[K
+[30.195s]   219 | [01;35m[K    reinterpret_cast<AVPicture *>(avframe_rgb_), AV_PIX_FMT_RGB24,[m[K
+[30.211s]       |     [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[30.212s]   220 | [01;35m[K    xsize, ysize, reinterpret_cast<uint8_t *>(RGB), avframe_rgb_size_)[m[K;
+[30.212s]       |     [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[30.213s] In file included from [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/include/usb_cam/usb_cam.hpp:39[m[K,
+[30.213s]                  from [01m[K/root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam/src/usb_cam.cpp:31[m[K:
+[30.213s] [01m[K/usr/include/aarch64-linux-gnu/libavcodec/avcodec.h:3770:5:[m[K [01;36m[Knote: [m[Kdeclared here
+[30.214s]  3770 | int [01;36m[Kavpicture_layout[m[K(const AVPicture *src, enum AVPixelFormat pix_fmt,
+[30.214s]       |     [01;36m[K^~~~~~~~~~~~~~~~[m[K
+[33.722s] [ 50%] [32m[1mLinking CXX executable usb_cam_node_exe[0m
+[34.632s] [ 50%] Built target usb_cam_node_exe
+[34.721s] [ 66%] [32m[1mLinking CXX shared library libusb_cam.so[0m
+[35.363s] [ 66%] Built target usb_cam
+[35.444s] [ 83%] [32mBuilding CXX object CMakeFiles/usb_cam_node.dir/src/usb_cam_node.cpp.o[0m
+[65.777s] [100%] [32m[1mLinking CXX shared library libusb_cam_node.so[0m
+[67.289s] [100%] Built target usb_cam_node
+[67.383s] Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam -- -j4 -l4
+[68.020s] Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam
+[68.076s] -- Install configuration: ""
+[68.077s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/lib/usb_cam/usb_cam_node_exe
+[68.080s] -- Set runtime path of "/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/lib/usb_cam/usb_cam_node_exe" to ""
+[68.091s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/lib/usb_cam/show_image.py
+[68.093s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/include
+[68.094s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/include/usb_cam
+[68.107s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/include/usb_cam/usb_cam_utils.hpp
+[68.108s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/include/usb_cam/usb_cam.hpp
+[68.108s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/include/usb_cam/usb_cam_node.hpp
+[68.109s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/environment/library_path.sh
+[68.109s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/environment/library_path.dsv
+[68.110s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/lib/libusb_cam.so
+[68.110s] -- Set runtime path of "/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/lib/libusb_cam.so" to ""
+[68.111s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/lib/libusb_cam_node.so
+[68.128s] -- Set runtime path of "/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/lib/libusb_cam_node.so" to ""
+[68.129s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/launch
+[68.130s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/launch/demo_launch.py
+[68.130s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/config
+[68.131s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/config/params.yaml
+[68.133s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/config/camera_info.yaml
+[68.135s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/ament_index/resource_index/package_run_dependencies/usb_cam
+[68.136s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/ament_index/resource_index/parent_prefix_path/usb_cam
+[68.136s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/environment/ament_prefix_path.sh
+[68.137s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/environment/ament_prefix_path.dsv
+[68.138s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/environment/path.sh
+[68.138s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/environment/path.dsv
+[68.139s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/local_setup.bash
+[68.140s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/local_setup.sh
+[68.141s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/local_setup.zsh
+[68.141s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/local_setup.dsv
+[68.142s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/package.dsv
+[68.143s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/ament_index/resource_index/packages/usb_cam
+[68.156s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/ament_index/resource_index/rclcpp_components/usb_cam
+[68.157s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/cmake/ament_cmake_export_dependencies-extras.cmake
+[68.158s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/cmake/ament_cmake_export_include_directories-extras.cmake
+[68.158s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/cmake/ament_cmake_export_libraries-extras.cmake
+[68.160s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/cmake/usb_camConfig.cmake
+[68.172s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/cmake/usb_camConfig-version.cmake
+[68.173s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam/share/usb_cam/package.xml
+[68.183s] Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam

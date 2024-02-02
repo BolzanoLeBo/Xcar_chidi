@@ -1,0 +1,70 @@
+[0.189s] Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/system_check_ack': AMENT_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:/opt/ros/humble LD_LIBRARY_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /root/Xcar_chidi/jetsonNano/ros2_ws/src/system_check_ack -DCMAKE_INSTALL_PREFIX=/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack
+[0.370s] -- The C compiler identification is GNU 11.4.0
+[0.562s] -- The CXX compiler identification is GNU 11.4.0
+[0.587s] -- Detecting C compiler ABI info
+[0.824s] -- Detecting C compiler ABI info - done
+[0.857s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.858s] -- Detecting C compile features
+[0.859s] -- Detecting C compile features - done
+[0.870s] -- Detecting CXX compiler ABI info
+[1.123s] -- Detecting CXX compiler ABI info - done
+[1.156s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[1.157s] -- Detecting CXX compile features
+[1.159s] -- Detecting CXX compile features - done
+[1.176s] -- Found ament_cmake: 1.3.5 (/opt/ros/humble/share/ament_cmake/cmake)
+[1.723s] -- Found Python3: /usr/bin/python3.10 (found version "3.10.12") found components: Interpreter 
+[2.134s] -- Found rclcpp: 16.0.6 (/opt/ros/humble/share/rclcpp/cmake)
+[2.353s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[2.384s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[2.427s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[2.505s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[2.609s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[2.954s] -- Found rmw_implementation_cmake: 6.1.1 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[2.969s] -- Found rmw_fastrtps_cpp: 6.2.4 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[3.364s] -- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[3.499s] -- Found FastRTPS: /opt/ros/humble/include  
+[3.745s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[3.797s] -- Looking for pthread.h
+[4.032s] -- Looking for pthread.h - found
+[4.033s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[4.280s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[4.284s] -- Found Threads: TRUE  
+[5.029s] -- Found sensor_msgs: 4.2.3 (/opt/ros/humble/share/sensor_msgs/cmake)
+[5.603s] -- Found interfaces: 0.0.0 (/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/share/interfaces/cmake)
+[5.689s] -- Found ament_lint_auto: 0.12.8 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[6.032s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[6.032s] -- Configured cppcheck include dirs: $<BUILD_INTERFACE:/root/Xcar_chidi/jetsonNano/ros2_ws/src/system_check_ack/include>
+[6.032s] -- Configured cppcheck exclude dirs and/or files: 
+[6.035s] -- Added test 'lint_cmake' to check CMake code style
+[6.038s] -- Added test 'uncrustify' to check C / C++ code style
+[6.038s] -- Configured uncrustify additional arguments: 
+[6.040s] -- Added test 'xmllint' to check XML markup files
+[6.044s] -- Configuring done
+[6.085s] -- Generating done
+[6.092s] -- Build files have been written to: /root/Xcar_chidi/jetsonNano/ros2_ws/build/system_check_ack
+[6.128s] Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/system_check_ack' returned '0': AMENT_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:/opt/ros/humble LD_LIBRARY_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake /root/Xcar_chidi/jetsonNano/ros2_ws/src/system_check_ack -DCMAKE_INSTALL_PREFIX=/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack
+[6.130s] Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/system_check_ack': AMENT_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:/opt/ros/humble LD_LIBRARY_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /root/Xcar_chidi/jetsonNano/ros2_ws/build/system_check_ack -- -j4 -l4
+[6.283s] [ 50%] [32mBuilding CXX object CMakeFiles/system_check_ack_node.dir/src/system_check_ack_node.cpp.o[0m
+[39.422s] [100%] [32m[1mLinking CXX executable system_check_ack_node[0m
+[41.182s] [100%] Built target system_check_ack_node
+[41.216s] Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/system_check_ack' returned '0': AMENT_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:/opt/ros/humble LD_LIBRARY_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --build /root/Xcar_chidi/jetsonNano/ros2_ws/build/system_check_ack -- -j4 -l4
+[41.288s] Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/system_check_ack': AMENT_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:/opt/ros/humble LD_LIBRARY_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /root/Xcar_chidi/jetsonNano/ros2_ws/build/system_check_ack
+[41.310s] -- Install configuration: ""
+[41.310s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/lib/system_check_ack/system_check_ack_node
+[41.326s] -- Set runtime path of "/root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/lib/system_check_ack/system_check_ack_node" to ""
+[41.327s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/ament_index/resource_index/package_run_dependencies/system_check_ack
+[41.327s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/ament_index/resource_index/parent_prefix_path/system_check_ack
+[41.328s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/environment/ament_prefix_path.sh
+[41.329s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/environment/ament_prefix_path.dsv
+[41.330s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/environment/path.sh
+[41.330s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/environment/path.dsv
+[41.330s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/local_setup.bash
+[41.331s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/local_setup.sh
+[41.332s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/local_setup.zsh
+[41.332s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/local_setup.dsv
+[41.333s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/package.dsv
+[41.334s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/ament_index/resource_index/packages/system_check_ack
+[41.334s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/cmake/system_check_ackConfig.cmake
+[41.335s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/cmake/system_check_ackConfig-version.cmake
+[41.335s] -- Installing: /root/Xcar_chidi/jetsonNano/ros2_ws/install/system_check_ack/share/system_check_ack/package.xml
+[41.348s] Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/system_check_ack' returned '0': AMENT_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces:/opt/ros/humble LD_LIBRARY_PATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/root/Xcar_chidi/jetsonNano/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/cmake --install /root/Xcar_chidi/jetsonNano/ros2_ws/build/system_check_ack

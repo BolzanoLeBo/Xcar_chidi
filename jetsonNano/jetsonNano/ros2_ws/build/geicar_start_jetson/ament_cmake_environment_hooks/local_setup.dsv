@@ -1,0 +1,2 @@
+source;share/geicar_start_jetson/environment/ament_prefix_path.sh
+source;share/geicar_start_jetson/environment/path.sh
