@@ -4,6 +4,6 @@
 #include <stdint.h>
 #include <string.h>  
 
-#define PERIOD_UPDATE_CMD 1ms 
+#define PERIOD_UPDATE_CMD 10ms 
 
 #endif /*__detection_node_H */
