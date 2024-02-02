@@ -1,1 +1,1 @@
-bool lost
+bool lost False

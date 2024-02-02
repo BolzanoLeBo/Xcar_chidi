@@ -23,6 +23,7 @@ set(msg_files
   "msg/Gnss.msg"
   "msg/Obstacles.msg"
   "msg/SystemCheck.msg"
+  "msg/State.msg"
   "msg/Lidar.msg"
   "msg/WebMode.msg"
   "msg/ObstaclesId.msg"
@@ -30,6 +31,8 @@ set(msg_files
   "msg/Userdistance.msg"
   "msg/TrackingPosAngle.msg"
   "msg/UserLost.msg"
+  "msg/InitButton.msg"
+  "msg/TargetImage.msg"
 )
 
 rosidl_generate_interfaces(${PROJECT_NAME}

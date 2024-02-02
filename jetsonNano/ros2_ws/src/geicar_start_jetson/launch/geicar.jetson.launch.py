@@ -24,6 +24,8 @@ def generate_launch_description():
     camera_node = Node(
         package="usb_cam",
         executable="usb_cam_node_exe",
+        parameters=[{"--ros-args" : True, 
+                     '--params-file' : "./install/usb_cam/config/params.yaml"}],
         emulate_tty=True
     )
 
