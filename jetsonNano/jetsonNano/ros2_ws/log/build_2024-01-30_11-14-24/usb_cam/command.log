@@ -1,6 +1,0 @@
-Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam -DCMAKE_INSTALL_PREFIX=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam
-Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /root/Xcar_chidi/jetsonNano/ros2_ws/src/usb_cam -DCMAKE_INSTALL_PREFIX=/root/Xcar_chidi/jetsonNano/ros2_ws/install/usb_cam
-Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam -- -j4 -l4
-Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam -- -j4 -l4
-Invoking command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam
-Invoked command in '/root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /root/Xcar_chidi/jetsonNano/ros2_ws/build/usb_cam

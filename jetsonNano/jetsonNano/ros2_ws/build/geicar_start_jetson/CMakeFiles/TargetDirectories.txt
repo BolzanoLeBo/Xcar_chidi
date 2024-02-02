@@ -1,9 +1,0 @@
-/root/Xcar_chidi/jetsonNano/ros2_ws/build/geicar_start_jetson/CMakeFiles/uninstall.dir
-/root/Xcar_chidi/jetsonNano/ros2_ws/build/geicar_start_jetson/CMakeFiles/geicar_start_jetson_uninstall.dir
-/root/Xcar_chidi/jetsonNano/ros2_ws/build/geicar_start_jetson/CMakeFiles/test.dir
-/root/Xcar_chidi/jetsonNano/ros2_ws/build/geicar_start_jetson/CMakeFiles/edit_cache.dir
-/root/Xcar_chidi/jetsonNano/ros2_ws/build/geicar_start_jetson/CMakeFiles/rebuild_cache.dir
-/root/Xcar_chidi/jetsonNano/ros2_ws/build/geicar_start_jetson/CMakeFiles/list_install_components.dir
-/root/Xcar_chidi/jetsonNano/ros2_ws/build/geicar_start_jetson/CMakeFiles/install.dir
-/root/Xcar_chidi/jetsonNano/ros2_ws/build/geicar_start_jetson/CMakeFiles/install/local.dir
-/root/Xcar_chidi/jetsonNano/ros2_ws/build/geicar_start_jetson/CMakeFiles/install/strip.dir
