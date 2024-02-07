@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="./images/icon.png">
+    <title>Login - X-Car</title>
+</head>
+<body style="background-image: url('./images/principal_background2.png');">
+
+    <div class="container_log">
+        <h1 class="larger-text">X-Car</h1>      
+        <div id="login-form">
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+        
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" onkeypress="checkEnter(event)" required>
+            </div>
+        
+            <button onclick="submitForm()">Login</button>        
+        </div>
+
+        <div id="login-error" class="alert" style="display: none;">
+            Invalid username or password. Please try again.
+        </div>
+    </div>
+
+    <script>
+
+        function checkEnter(event) {
+            if (event.key === "Enter") {
+                submitForm();
+            }
+        }
+
+        function submitForm() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            // Envoie de la requête au serveur pour vérification
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/login", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        // Réponse du serveur
+                        var response = JSON.parse(xhr.responseText);
+
+                        if (response.success) {
+                            // Effectuer une action différente en fonction de la réponse du serveur
+                            switch (response.action) {
+                                case 'redirect_test':
+                                    window.location.href = 'test.html';
+                                    break;
+                                case 'redirect_rickroll':
+                                    window.location.href = 'rickroll.html';
+                                    break;
+                                default:
+                                    // Action par défaut si aucune action spécifiée
+                                    console.log("Aucune action spécifiée.");
+                            }
+                        } else {
+                            document.getElementById('login-error').style.display = 'block'; 
+                        }
+                    } else {
+                        document.getElementById('login-error').style.display = 'block'; 
+                    }
+                }
+            };
+
+            // Envoie des données JSON au serveur
+            xhr.send(JSON.stringify({ username: username, password: password }));
+        }
+    </script>
+
+</body>
+</html>

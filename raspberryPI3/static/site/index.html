@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="./images/icon.png">
+    <title>Login - X-Car</title>
+</head>
+<body style="background-image: url('./images/principal_background.png');">
+
+    <div class="container_log">
+        <h1 class="larger-text">X-Car</h1>      
+        <div id="login-form">
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+        
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" onkeypress="checkEnter(event)" required>
+            </div>
+        
+            <button onclick="authenticate()">Login</button>        
+        </div>
+
+        <div id="login-error" class="alert" style="display: none;">
+            Invalid username or password. Please try again.
+        </div>
+    </div>
+
+    <script>
+        function authenticate() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            if (username === 'user' && password === 'user2') {
+                window.location.href = 'home.html'; 
+            } else if (username === 'user' && password === 'geicar') {
+                window.location.href = 'rickroll.html';
+            }
+            else {
+                document.getElementById('login-error').style.display = 'block'; 
+            }
+        }
+
+        function checkEnter(event) {
+            if (event.key === "Enter") {
+                authenticate();
+            }
+        }
+    </script>
+
+</body>
+</html>

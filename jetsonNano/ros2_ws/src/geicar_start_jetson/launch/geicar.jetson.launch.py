@@ -24,6 +24,8 @@ def generate_launch_description():
     camera_node = Node(
         package="usb_cam",
         executable="usb_cam_node_exe",
+        parameters=[{"--ros-args" : True, 
+                     '--params-file' : "./install/usb_cam/config/params.yaml"}],
         emulate_tty=True
     )
 
@@ -33,9 +35,16 @@ def generate_launch_description():
         emulate_tty=True
     )
 
+    img_processing_node = Node(
+        package="img_processing", 
+        executable="img_processing_node", 
+        emulate_tty=True
+    )
+
 
     ld.add_action(lidar_node)
     ld.add_action(camera_node)
     ld.add_action(system_check_ack_node)
+    ld.add_action(img_processing_node)
 
     return ld
