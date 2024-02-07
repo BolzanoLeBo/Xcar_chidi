@@ -7,12 +7,14 @@ import asyncio
 import cv2
 import numpy as np
 from math import *
+import os
 import base64
 
 from interfaces.msg import UserLost
 from interfaces.msg import TrackingPosAngle
 from interfaces.msg import State
 from interfaces.msg import InitButton
+from interfaces.msg import TargetImage
 
 
 from cv_bridge import CvBridge
@@ -20,19 +22,19 @@ import cv2
 import json 
 
 def img_to_bytes(img) : 
-    _, buffer = cv2.imencode('.jpg', img)
-    image_encoded = base64.b64encode(buffer).decode('utf-8')
-    return image_encoded
+	_, buffer = cv2.imencode('.jpg', img)
+	image_encoded = base64.b64encode(buffer).decode('utf-8')
+	return image_encoded
 
 def msg_to_info(msg) : 
-    (info, data) = json.loads(msg)
-    if data == "" : 
-        rect = []
-    else : 
-        numbers_str = data.split(",")
-        # Converting each substring to an integer
-        rect = [int(num.strip()) for num in numbers_str]
-    return (info, rect)
+	(info, data) = json.loads(msg)
+	if data == "" : 
+		rect = []
+	else : 
+		numbers_str = data.split(",")
+		# Converting each substring to an integer
+		rect = [int(num.strip()) for num in numbers_str]
+	return (info, rect)
 
 
 def info_to_msg(info, img) : 
@@ -109,13 +111,14 @@ class ImgProcessingNode(Node):
 			depth=1
 		)
 		self.subscriber_ = self.create_subscription(Image, 'image_raw', self.image_callback,qos_profile = qos_profile)
-		self.user_lost_publisher_ = self.create_publisher(UserLost,'user_lost', 10)
 		self.state_subscriber_ = self.create_subscription(State, 'state', self.state_callback, 10)
 		self.init_button_subscriber_ = self.create_subscription(InitButton, 'init_button', self.init_button_callback, 10)
-		self.tracking_pos_angle_publisher_ = self.create_publisher(TrackingPosAngle,'tracking_pos_angle', 10)
 
-		
-		self.timer = self.create_timer(0.5, self.img_ai) 
+		self.tracking_pos_angle_publisher_ = self.create_publisher(TrackingPosAngle,'tracking_pos_angle', 10)
+		self.user_lost_publisher_ = self.create_publisher(UserLost,'user_lost', 10)
+		self.target_image_publisher_ = self.create_publisher(TargetImage,'target_image', 10)
+
+		self.timer = self.create_timer(1, self.img_ai) 
 
 
 
@@ -126,11 +129,11 @@ class ImgProcessingNode(Node):
 		self.state = 0
 		self.lost_counter = 0
 		self.init_target = False
-		self.init_button = False 
+		self.reset_ia = False
+		self.init_button = False
+		self.new_target = False
 
-
-
-		#asyncio.run(self.send_info("RESET"))
+		
 
 	def calcul_pos(self) : 
 		#CALCUL POSTION 
@@ -170,47 +173,70 @@ class ImgProcessingNode(Node):
 
 	async def send_info(self, info):
 		uri = "ws://localhost:9090"  # WebSocket server URI 
+		
 		async with websockets.client.connect(uri) as websocket:
 			self.get_logger().info(f"send a {info} msg")
 			img = self.cv_image
 			msg = info_to_msg(info, img)
 			await websocket.send(msg)
+			
+			if info != "RESET" : 
+				response = await websocket.recv()
+				(info_r, rect) = msg_to_info(response)
+				self.get_logger().info(f"reiceive response {info_r}, {rect}")
+				if info == "INIT" :  
+					if info_r == "INIT" : 
+						#the target is correctly initialized 
+						self.new_target = True
+						self.init_button = False
+						self.init_target = True
+						self.rectangle = rect
 
-			response = await websocket.recv()
-			(info_r, rect) = msg_to_info(response)
-			self.get_logger().info(f"reiceive response {info_r}, {rect}")
-			if info == "INIT" :  
-				if info_r == "INIT" : 
-					#the target is correctly initialized 
-					self.init_button = False
-					self.init_target = True
-					self.rectangle = rect
-
-				elif info_r == "NOT_INIT" : 
-					self.init_target = False 
+					elif info_r == "NOT_INIT" : 
+						self.init_target = False 
 
 
-				self.image_processed = True
+					self.image_processed = True
 
-			elif info == "IMG" :
-				
-				
-				if info_r == "IMG_ACK" : 
-					self.rectangle = rect
+				elif info == "IMG" :
 					
-				elif info_r == "NOT_INIT" : 
-					self.init_target = False
-				
-				self.image_processed = True
+					
+					if info_r == "IMG_ACK" : 
+						self.rectangle = rect
+						
+					elif info_r == "NOT_INIT" : 
+						self.init_target = False
+					
+					self.image_processed = True
+
 	
 
 
 	def img_ai(self) : 
 		lost_treshold = 2 
 		lost_msg = UserLost()
+		if self.new_target : 
+			img_target = cv2.imread("target1.jpg")
+			if not (img_target is None) :
+				new_width = int(img_target.shape[1] * 0.5)
+				new_height = int(img_target.shape[0] * 0.5)
+				new_size = (new_width, new_height)
+				# Resize the image
+				img_target = cv2.resize(img_target, new_size, interpolation=cv2.INTER_AREA)
 
+				target_msg = TargetImage() 
+				target = img_to_bytes(img_target)
+				target_msg.image = target
+				self.target_image_publisher_.publish(target_msg)
+				self.new_target = False
+			else : 
+				self.get_logger().info("Target image empty")
+
+		if not self.reset_ia : 
+			asyncio.run(self.send_info("RESET"))
+			self.reset_ia = True
 		#if we have an image comming from the camera 
-		if self.cv_image != [] :
+		elif self.cv_image != [] :
 			#We want to reinitialize the target 
 			if self.init_button : 
 				self.get_logger().info("Init button activated or init not resolved")

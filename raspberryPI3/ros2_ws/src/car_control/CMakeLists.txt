@@ -17,6 +17,7 @@ add_executable(car_control_node
   src/steeringCmd.cpp
   src/propulsionCmd.cpp
   src/control_loop.cpp
+  src/avoidance_control.cpp
 )
 
 

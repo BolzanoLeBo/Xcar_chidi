@@ -16,12 +16,15 @@
 #include "interfaces/msg/obstacles_id.hpp"
 #include "interfaces/msg/userdistance.hpp"
 #include "interfaces/msg/tracking_pos_angle.hpp"
-#define LIM_US 70
-#define LIM_AVOID_US 60
+#include "interfaces/msg/motors_feedback.hpp"
+
+#define LIM_US 50
+#define LIM_AVOID_US 130
 #define LIM_NON_AVOID_US 50
-#define LIM_LIDAR_FRONT 1.70
+#define LIM_LIDAR_FRONT 1.50
 #define LIM_LIDAR_REAR 0.70
-#define LIM_LIDAR_AVOID 1.50
+#define LIM_LIDAR_AVOID 2.30
+#define LIM_US_COTE 20
 #include "../include/detection/detection_node.h"
 
 using namespace std;
@@ -36,21 +39,19 @@ class detection: public rclcpp::Node {
     : Node("detection_node")
     {
       publisher_obstacle_ = this->create_publisher<interfaces::msg::Obstacles>("obstacles", 10);
-
       publisher_side_ = this->create_publisher<interfaces::msg::SideObstacles>("side_obstacles", 10);
-
       publisher_id_ = this->create_publisher<interfaces::msg::ObstaclesId>("obstacles_id", 10);
-
       publisher_userdistance_ = this->create_publisher<interfaces::msg::Userdistance>("userdistance", 10);
 
       subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
        "us_data", 10, std::bind(&detection::usDataCallback, this, _1));
-
       subscription_lidar_ = this->create_subscription<sensor_msgs::msg::LaserScan>(
         "scan", 10, std::bind(&detection::lidarDataCallback, this, _1));
-
       subscription_tracking_pos_ = this->create_subscription<interfaces::msg::TrackingPosAngle>(
         "tracking_pos_angle", 10, std::bind(&detection::cameraDataCallback, this, _1));
+      subscription_motors_feedback_ = this->create_subscription<interfaces::msg::MotorsFeedback>(
+        "motors_feedback", 10, std::bind(&detection::motorsFeedbackCallback, this, _1));
+
 
       timer_ = this->create_wall_timer(PERIOD_UPDATE_CMD, std::bind(&detection::DetectCom, this));
     
@@ -78,6 +79,7 @@ class detection: public rclcpp::Node {
     bool right_lidar =false;
     float right_min=100.0;
     float left_min=100.0;
+    float steer = 0;
 
 
     uint8_t us_front =0;
@@ -93,21 +95,17 @@ class detection: public rclcpp::Node {
 
 
     int print_list = 0;
+
     //Publisher
     rclcpp::Publisher<interfaces::msg::Obstacles>::SharedPtr publisher_obstacle_;
-
     rclcpp::Publisher<interfaces::msg::SideObstacles>::SharedPtr publisher_side_;
-
     rclcpp::Publisher<interfaces::msg::ObstaclesId>::SharedPtr publisher_id_;
-
     rclcpp::Publisher<interfaces::msg::Userdistance>::SharedPtr publisher_userdistance_;
 
     //Subscriber
     rclcpp::Subscription<interfaces::msg::Ultrasonic>::SharedPtr subscription_ultrasonic_sensor_;
-
-    //Subscriber
+    rclcpp::Subscription<interfaces::msg::MotorsFeedback>::SharedPtr subscription_motors_feedback_;
     rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr subscription_lidar_;
-
     rclcpp::Subscription<interfaces::msg::TrackingPosAngle>::SharedPtr subscription_tracking_pos_;
 
     rclcpp::TimerBase::SharedPtr timer_;
@@ -124,11 +122,11 @@ class detection: public rclcpp::Node {
         us_front = 1;
         } 
         // Message of obstacle if there is one in at the left of the car at less than 20 cm
-        else if((ultrasonic.front_left <= LIM_US)){
+        else if((ultrasonic.front_left <= LIM_US - steer * LIM_US_COTE)){
           us_front = 1;
         } 
         // Message of obstacle if there is one in at the right of the car at less than 20 cm
-        else if((ultrasonic.front_right <= LIM_US)){
+        else if((ultrasonic.front_right <= LIM_US + steer * LIM_US_COTE)){
           us_front = 1; 
         }
         // No message of obstacle if none of those cases
@@ -137,15 +135,15 @@ class detection: public rclcpp::Node {
         }
 
 
-        if ((ultrasonic.front_center <= LIM_AVOID_US)){
+        if ((ultrasonic.front_center <= LIM_AVOID_US) && (ultrasonic.front_center>=LIM_US)){
         us_front_center = 1;
         } 
         // Message of obstacle if there is one in at the left of the car at less than 20 cm
-        if((ultrasonic.front_left <= LIM_AVOID_US)){
+        if((ultrasonic.front_left <= LIM_AVOID_US)&& (ultrasonic.front_left>=LIM_US)){
           us_front_left = 1;
         } 
         // Message of obstacle if there is one in at the right of the car at less than 20 cm
-        if((ultrasonic.front_right <= LIM_AVOID_US)){
+        if((ultrasonic.front_right <= LIM_AVOID_US)&& (ultrasonic.front_right>=LIM_US)){
           us_front_right = 1; 
         }
 
@@ -193,7 +191,7 @@ class detection: public rclcpp::Node {
         }
 
  
-      // } else if(nb_warning >= 5){
+      // } else if(nb_warning >= 5){16
       //   //ERROR if strange value of the us_data (too far or negative value) 5 times in a row
       //   RCLCPP_ERROR(this->get_logger(), "Error : wrong us data for too long");
       //   // Adding the message when there is a problem with the us sensors
@@ -237,7 +235,7 @@ class detection: public rclcpp::Node {
         lidar_data.clear();
         for (int i = 0;i<size;i++){
           lidar_data.push_back(scan.ranges[i]);
-          if (i>=3*size/16 && i<(5*size)/16){
+          if (i>=7*size/32 && i<(9*size)/32){
             if (scan.ranges[i]<front_min){
                 front_min=scan.ranges[i];
             }
@@ -393,6 +391,10 @@ class detection: public rclcpp::Node {
       publisher_obstacle_->publish(obstacleMsg);
       publisher_side_->publish(sideMsg);
       publisher_id_->publish(obstacleId);
+    }
+
+    void motorsFeedbackCallback(const interfaces::msg::MotorsFeedback & motorsFeedback){
+        steer = motorsFeedback.steering_angle;
     }
   
 };

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/8a56efe43c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="demo_style.css">
+    <title>Final Review</title>
+</head>
+<body>
+    <div class="container">
+        <button class="logout-b" onclick="redirect('index.html')">Logout</button>
+        <h1 class="title">X-Car</h1>
+    <section id="context">
+        <div class="content" id="1">
+            <p style="padding: 10px;">
+                At the <span class="strong">X-Car Project</span>, our mission is to make life more accessible for visitors and students at INSA who face mobility challenges or need assistance with heavy items on campus.
+                Our core mission is simple: providing <span class="strong">transparent</span>  and  <span class="strong">safe transportation </span>support.
+                Therefore, we made a car that can <span class="strong">follow a user</span> and that <span class="strong">explains</span> each decision it makes.
+            </p>
+        </div>
+        
+    </section>
+    <section id="description">
+        <h4 class="subtitle border_round" data-bloc="2">Components <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus"></i></h4>
+        <div class="content hide" id="2">
+            <p style="padding: 10px;">
+                X-CAR is a small car in the one a lot of electronic devices have been added. We can find the following equipment:
+                <ul>
+
+                    <li>6 <span class="strong" style="color: #007400;">Ultrasonic</span> sensors: 3 at the rear and 3 at the back of the car</li>
+                    <li>A <span class="strong" style="color: #2587ea;">Lidar</span> in the back</li>
+                    <li>A <span class="strong" style="color: #da5b00;">Camera</span> just next to the Lidar</li>
+                    <li>2 <span class="strong" style="color: #ff9393;">STM32</span> Bords, a <span class="strong" style="color: #24b66d;">RasberryPi</span> and a <span class="strong" style="color: #ff58ff;">JetsonNano</span> to process all the different values from the sensors</li>
+                </ul>
+            </p>
+            <img src="car.png" alt="">
+        </div>
+
+        
+    </section>
+    <section id="hmi">
+        <h4 class="subtitle border_round" data-bloc="3">Human Machine Interface (HMI) <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus"></i></h4>
+        <div class="content hide" id="3">
+            <p style="padding: 10px 20px;">In addition, we have built a web-application in order to use the vehicle. It has three diffenrent menus:</p>
+                
+                <ul class="interface_big_list">
+                    <li class="interface_list">
+                        <div class="interface_subtitle">Home</div>
+                        <div class="interface_content">
+                            <img src="home.png" alt="">
+                            <p class="interface_p" style="padding: 10px;">
+                                Enables the user to choose between the different modes available, as well as providing visual feedback during the execution of the modes.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="interface_list">
+
+                        <div class="interface_subtitle">State Machine</div>
+                        <div class="interface_content">
+                            <img src="state.png" alt="">
+                            <p class="interface_p">
+                                The user will find all the available modes represented in blue, the mode they are in represented in green and the previous state in light green in the figure.<br> <strong>Note</strong> that unavailable states are shown in gray
+                            </p>
+                        </div>
+                    </li>
+                    <li class="interface_list">
+
+                        <div class="interface_subtitle">Terminal</div>
+                            <p class="interface_p">
+                                The terminal tab gives the user access to the vehicle's entire history, detailing the modes the user has been in and the current mode followed by the actions that activated the mode change.
+                            </p>
+                    </li>
+                </ul>
+        </div>
+            
+    </section>
+    <section id="modes">
+        <h4 class="subtitle border_round" data-bloc="4">What are the different modes ? <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus"></i></h4>
+        <div class="content hide" id="4">
+            <ol>
+
+                <li class="link">
+                    <h5 class="link_title">Emergency Mode</h5>
+                    <p class="sub-p">This mode is reachable from the HMI. The car is stopped and cannot acces to the other modes until the user allows it.</p>
+                </li>
+                <li class="link">
+                    <h5 class="link_title">Security Mode</h5>
+                    <p class="sub-p">When the car encounter obstacles or a faillure the system goes in this mode. Then the car will be able to jump back the the original mode if the situation is resolved.</p>
+                </li>
+                <li class="link">
+                    <h5 class="link_title">Manual Mode</h5>
+                    <p class="sub-p">Through the HMI, the user can drive the car with the joystick.</p>
+                </li>
+                <li class="link">
+                    <h5 class="link_title">Tracking Mode</h5>
+                    <p class="sub-p">This is the bigger mode of our system. In this mode, the car will follow the user at a 2 meters distance The following steps describe how to use this mode:</p>
+                    <ul>
+                        <li>Step 1: Take a picture of the user</li>
+                        <li>Step 2: Strart the tracking</li>
+                    </ul>
+                    <p>In this mode the car is able to detect obstacles (humans or material) and to track the user at a fixed distance.
+                    The car is olso able to avoid obstacles.
+                </p>
+                </li>
+                <li class="link">
+                    <h5 class="link_title">Idle Mode</h5>
+                    <p class="sub-p">This mode is a home menu from the HMI point of view where the car is not moving. The systeme is waiting for a mode instruction.</p>
+                </li>
+            </ol>
+        </div>
+        
+    </section>
+    <section id="demo">
+        <h4 class="subtitle border_round" data-bloc="5">Demonstration <i class="fa-solid fa-plus"></i><i class="fa-solid fa-minus"></i></h4>
+        <div class="content hide" id="5">
+            <ol class="demo_list">
+                <li class="link">
+                    <h5 class="link_title">Manual Mode</h5>
+                    <p class="sub_p">
+                        This mode allows the user to control the car using the joystick from the web interface.
+                        It also incorporates various features developed just below.
+                    </p>
+                </li>
+                <ol class="sub_ol">
+                    <li class="link">
+                        <h5 class="link_title">Obstacle Detection</h5>
+                        <p class="sub_p">
+                            The car is capable of detecting obstacles at 0.7m and enters a safety mode, visible on the interface.
+                            In this safety mode, the interface indicates the reason, such as obstacle detection in this demonstration.
+                            The vehicle is no longer able to move in the direction of the obstacle within the detection distance.
+                        </p>
+                    </li>
+                    <li class="link">
+                        <h5 class="link_title">System Checking</h5>
+                        <p class="sub_p">
+                            A system integrity check program determines if a sensor is faulty.
+                            In this case, the system enters a security mode until the issue is resolved.
+                        </p>
+                    </li>
+                    <li class="link">
+                        <h5 class="link_title">Connection Loss</h5>
+                        <p class="sub_p">
+                            When the connection is lost, the car returns to Idle Mode and waits for a new connection.
+                        </p>
+                    </li>
+                </ol>
+            
+                <li class="link">
+                    <h5 class="link_title">Tracking Mode</h5>
+                    <p class="sub_p">
+                        This mode allows the user to be followed by the X-Car at a distance of 1.7m.
+                        Several features have been implemented in this mode, including those mentioned earlier.
+                    </p>
+                </li>
+                <ol class="sub_ol">
+                    <li class="link">
+                        <h5 class="link_title">User Initialization</h5>
+                        <p class="sub_p">
+                            To track only the user, an initialization is required.
+                            This is done by taking a photo by pressing the init button on the interface.
+                        </p>
+                    </li>
+                    <li class="link">
+                        <h5 class="link_title">User Tracking + Emergency Stop</h5>
+                        <p class="sub_p">
+                            Once initialized, tracking can begin. The car then follows the user at a distance of approximately 1.70m.
+                            <br> If the user wants to stop the car due to incorrect behavior, the emergency stop button on the interface can be used to halt the vehicle.
+                        </p>
+                    </li>
+                    <li class="link">
+                        <h5 class="link_title">User Tracking in an Environment with Multiple People</h5>
+                        <p class="sub_p">
+                            Thanks to the initialization, the car is able to recognize the user and therefore only follows them.
+                            If a person is in the field of view but does not match the user, they will be treated as an obstacle and not as a potential user.
+                        </p>
+                    </li>
+                </ol>
+            </ol>
+            
+
+        </div>
+    </section>
+    </div>
+    
+    <script src="animation.js"></script>
+</body>
+</html>

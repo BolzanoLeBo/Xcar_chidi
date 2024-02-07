@@ -48,3 +48,6 @@ raspberryPI3/static2/site/webserver.py
 ai_processing/*.pt
 ai_processing/*.jpg
 ai_processing/__pycache__/*
+raspberryPI3/static3/site/node_modules/
+raspberryPI3/static3/site/package.json
+raspberryPI3/static3/site/package-lock.json

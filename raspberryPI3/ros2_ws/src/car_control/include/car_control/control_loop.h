@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <stdint.h>
 
-#define DISTANCE_COMMAND 150    //centimeters
+#define DISTANCE_COMMAND 175    //centimeters
 
 
 void recurrence_equation(double Error, double& Error_last, double& PWM_order, double& PWM_order_last, double Distance_to_target);  

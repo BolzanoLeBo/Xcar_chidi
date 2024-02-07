@@ -67,6 +67,12 @@ def generate_launch_description():
         emulate_tty=True
     )
 
+    vocal_feedback_node = Node(
+        package="vocal_feedback",
+        executable="vocal_feedback_node",
+        emulate_tty=True
+    )
+
     rosbridge_server_node = IncludeLaunchDescription(
         AnyLaunchDescriptionSource([get_package_share_directory('rosbridge_server'), '/launch/rosbridge_websocket_launch.xml']),
     )
@@ -82,5 +88,6 @@ def generate_launch_description():
     ld.add_action(rosbridge_server_node)
     ld.add_action(detection_node)
     ld.add_action(avoidance_node)
+    ld.add_action(vocal_feedback_node)
 
     return ld

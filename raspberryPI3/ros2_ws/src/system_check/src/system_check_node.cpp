@@ -352,7 +352,7 @@ private:
 
         }else if (checkingInProgress){
 
-            if (timeout || (commF103 && commJetson && commL476 && usDetect && (gpsQuality==RTK_FIX) && lidarDetect && cameraDetect && batteryDetect)){
+            if (timeout || (commF103 && commJetson && commL476 && usDetect && lidarDetect && cameraDetect && batteryDetect)){ //&& (gpsQuality==RTK_FIX)
 
                 checkBattery();
 
@@ -464,7 +464,6 @@ private:
     * 
     */
     void lidarCallback([[maybe_unused]] const sensor_msgs::msg::LaserScan & lidarMsg){
-
         if (checkingInProgress && !lidarDetect){
             lidarDetect = true;
         }

@@ -42,6 +42,7 @@ var reverse = false;
 var steering = 0;
 var timer;
 var state = 0;
+var message_index = 2;
 
 function stopJoystick() {
     if (manager) {
@@ -133,7 +134,7 @@ var stateData = [];
 stateListener.subscribe(function (message) {
     stateData.push('Current State: ' + message.current_state +
         '<br>State Name: ' + message.state_name +
-        '<br>Obstacle Detection: ' + message.obstacle_detect);
+        '<br>Obstacle Detection: ' + message.message_index);
 
     // Mettre à jour les informations d'état dans le DOM
     document.getElementById('stateInfo').innerHTML = stateData.join('<br><br>');
@@ -161,6 +162,35 @@ stateListener.subscribe(function (message) {
             break;
         default:
             console.log('Unknown State');
+    }
+
+    switch (message.message_index) {
+        case 0:
+            message_index=0;
+            break;
+        case 1:
+            message_index=1;
+            break;
+        case 2:
+            message_index=2;
+            break;
+        case 3:
+            message_index=3;
+            break;
+        case 4:
+            message_index=4;
+            break;        
+        case 5:
+            message_index=5;
+            break;
+        case 6:
+            message_index=6;
+            break;
+        case 7:
+            message_index=7;
+            break;
+        default:
+            console.log('Unknown Index');
     }
     showAppropriateDiv();
 });
