@@ -17,6 +17,7 @@ from interfaces.msg import InitButton
 from interfaces.msg import TargetImage
 
 
+
 from cv_bridge import CvBridge
 import cv2
 import json 
@@ -208,7 +209,6 @@ class ImgProcessingNode(Node):
 						self.init_target = False
 					
 					self.image_processed = True
-
 	
 
 
