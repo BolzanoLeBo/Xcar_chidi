@@ -16,12 +16,15 @@
 #include "interfaces/msg/obstacles_id.hpp"
 #include "interfaces/msg/userdistance.hpp"
 #include "interfaces/msg/tracking_pos_angle.hpp"
+#include "interfaces/msg/motors_feedback.hpp"
+
 #define LIM_US 70
 #define LIM_AVOID_US 60
 #define LIM_NON_AVOID_US 50
 #define LIM_LIDAR_FRONT 1.70
 #define LIM_LIDAR_REAR 0.70
 #define LIM_LIDAR_AVOID 1.50
+#define LIM_US_COTE 20
 #include "../include/detection/detection_node.h"
 
 using namespace std;
@@ -36,23 +39,23 @@ class detection: public rclcpp::Node {
     : Node("detection_node")
     {
       publisher_obstacle_ = this->create_publisher<interfaces::msg::Obstacles>("obstacles", 10);
-
       publisher_side_ = this->create_publisher<interfaces::msg::SideObstacles>("side_obstacles", 10);
-
       publisher_id_ = this->create_publisher<interfaces::msg::ObstaclesId>("obstacles_id", 10);
-
       publisher_userdistance_ = this->create_publisher<interfaces::msg::Userdistance>("userdistance", 10);
 
       subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
        "us_data", 10, std::bind(&detection::usDataCallback, this, _1));
-
       subscription_lidar_ = this->create_subscription<sensor_msgs::msg::LaserScan>(
         "scan", 10, std::bind(&detection::lidarDataCallback, this, _1));
-
       subscription_tracking_pos_ = this->create_subscription<interfaces::msg::TrackingPosAngle>(
         "tracking_pos_angle", 10, std::bind(&detection::cameraDataCallback, this, _1));
+      subscription_motors_feedback_ = this->create_subscription<interfaces::msg::MotorsFeedback>(
+        "motors_feedback", 10, std::bind(&detection::motorsFeedbackCallback, this, _1));
+
 
       timer_ = this->create_wall_timer(PERIOD_UPDATE_CMD, std::bind(&detection::DetectCom, this));
+
+      timer2_ = this->create_wall_timer(100ms, std::bind(&detection::getUserDistance, this));
     
       RCLCPP_INFO(this->get_logger(), "detection_node READY");
     }
@@ -78,11 +81,17 @@ class detection: public rclcpp::Node {
     bool right_lidar =false;
     float right_min=100.0;
     float left_min=100.0;
+    float steer = 0;
 
 
     uint8_t us_front =0;
     uint8_t us_rear =0;
 
+
+
+    float a_min = 0;
+    float a_max = 0; 
+    bool person_detected = false;
 
     //Avoidance Obstacle Variable
     uint8_t us_front_left = 0; 
@@ -93,24 +102,21 @@ class detection: public rclcpp::Node {
 
 
     int print_list = 0;
+
     //Publisher
     rclcpp::Publisher<interfaces::msg::Obstacles>::SharedPtr publisher_obstacle_;
-
     rclcpp::Publisher<interfaces::msg::SideObstacles>::SharedPtr publisher_side_;
-
     rclcpp::Publisher<interfaces::msg::ObstaclesId>::SharedPtr publisher_id_;
-
     rclcpp::Publisher<interfaces::msg::Userdistance>::SharedPtr publisher_userdistance_;
 
     //Subscriber
     rclcpp::Subscription<interfaces::msg::Ultrasonic>::SharedPtr subscription_ultrasonic_sensor_;
-
-    //Subscriber
+    rclcpp::Subscription<interfaces::msg::MotorsFeedback>::SharedPtr subscription_motors_feedback_;
     rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr subscription_lidar_;
-
     rclcpp::Subscription<interfaces::msg::TrackingPosAngle>::SharedPtr subscription_tracking_pos_;
 
     rclcpp::TimerBase::SharedPtr timer_;
+    rclcpp::TimerBase::SharedPtr timer2_;
 
     void usDataCallback(const interfaces::msg::Ultrasonic & ultrasonic){
       
@@ -124,11 +130,11 @@ class detection: public rclcpp::Node {
         us_front = 1;
         } 
         // Message of obstacle if there is one in at the left of the car at less than 20 cm
-        else if((ultrasonic.front_left <= LIM_US)){
+        else if((ultrasonic.front_left <= LIM_US - steer * LIM_US_COTE)){
           us_front = 1;
         } 
         // Message of obstacle if there is one in at the right of the car at less than 20 cm
-        else if((ultrasonic.front_right <= LIM_US)){
+        else if((ultrasonic.front_right <= LIM_US + steer * LIM_US_COTE)){
           us_front = 1; 
         }
         // No message of obstacle if none of those cases
@@ -221,6 +227,7 @@ class detection: public rclcpp::Node {
         float left_distance =0.0;
         float left_count =0.0;
         float right_count = 0.0;
+
         /* if (!print_list)
         {
           for (int i = 0; i < size; i++)
@@ -317,44 +324,46 @@ class detection: public rclcpp::Node {
 
     }
 
-
-    
     void cameraDataCallback(const interfaces::msg::TrackingPosAngle & angle_msg){
+        a_min = angle_msg.min_angle; 
+        a_max = angle_msg.max_angle;
+        person_detected = angle_msg.person_detected;
+    }
+    
+    void getUserDistance(){
         auto Userdist = interfaces::msg::Userdistance();
         std::vector<float> lidar_data2(lidar_data);
         int size = lidar_data2.size();
         std::vector<float> aux;
-        float a_min = angle_msg.min_angle; 
-        float a_max = angle_msg.max_angle;
-        //int count =0;
-        int size2 =0;
-        //int Sum=0;
-        //int moyenne = 0;
-        aux.clear();
-        float mid=0.0;
-        if(a_min>=-360 && a_max<=360 && a_min<= 360 && a_max>=-360){
-          for (int i=(int)a_min; i<(int)a_max ; i++){
-            if (lidar_data[2]>0.9 && lidar_data2[i]<3.5){
-                aux.push_back(lidar_data2[i]);
-              }
-              //count+=1;
-            }
-          }
-          size2=aux.size();
-          if (size2>0){
-            std::sort(aux.begin(), aux.end());
-            //Renvoie de la médiane
-            if (size2 % 2 != 0) {
-              Userdist.distance_tracking= aux[size2 / 2];
-            }
-            else{
-              Userdist.distance_tracking = (aux[(size2-1)/2] + aux[size2/2])/2;
-            }
 
-            //moyenne=Sum/count;
-            //distance.distance_tracking=moyenne;
-            publisher_userdistance_->publish(Userdist);
+        if (person_detected) { 
+          int size2 =0;
+          aux.clear();
+          float mid=0.0;
+          if(a_min>=-360 && a_max<=360 && a_min<= 360 && a_max>=-360){
+            for (int i=(int)a_min; i<(int)a_max ; i++){
+              if (lidar_data[2]>0.9 && lidar_data2[i]<3.75){
+                  aux.push_back(lidar_data2[i]);
+                }
+                //count+=1;
+              }
+            }
+            size2=aux.size();
+            if (size2>0){
+              std::sort(aux.begin(), aux.end());
+              //Renvoie de la médiane
+              if (size2 % 2 != 0) {
+                Userdist.distance_tracking= aux[size2 / 2];
+              }
+              else{
+                Userdist.distance_tracking = (aux[(size2-1)/2] + aux[size2/2])/2;
+              }
+
+              //moyenne=Sum/count;
+              //distance.distance_tracking=moyenne;
+              publisher_userdistance_->publish(Userdist);
           }
+        }
     }    
 
       // Changing last value of lidar_front_detect and publishing message of obstacle
@@ -393,6 +402,10 @@ class detection: public rclcpp::Node {
       publisher_obstacle_->publish(obstacleMsg);
       publisher_side_->publish(sideMsg);
       publisher_id_->publish(obstacleId);
+    }
+
+    void motorsFeedbackCallback(const interfaces::msg::MotorsFeedback & motorsFeedback){
+        steer = motorsFeedback.steering_angle;
     }
   
 };

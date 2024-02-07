@@ -7,6 +7,8 @@
 #include <stdint.h>
 #include <string.h>
 #include <map>
+#include <vector>
+#include <string>
 
 // #include "state_machne/srv/StateMemory.hpp"
 #include "sensor_msgs/msg/joy.hpp"
@@ -18,6 +20,8 @@
 #include "interfaces/msg/web_mode.hpp" 
 #include "interfaces/msg/motors_order.hpp"
 #include "interfaces/msg/user_lost.hpp"
+#include "interfaces/msg/vocal.hpp"
+#include "interfaces/msg/mute.hpp"
 
 #define DEADZONE_LT_RT 0.15     // %
 #define DEADZONE_LS_X_LEFT 0.4  // %
@@ -26,26 +30,50 @@
 #define STOP 0
 #define CENTER 0
 
+const std::string vocal_mode_names[6] = {"IDLE_return_to_home.mp3", "manual_mode.mp3", "autonomous_mode.mp3", "tracking_mode.mp3", "security_mode.mp3", "emergency_mode.mp3"};
 const std::string state_names[6] = {"idle", "Manual", "Autonomous", "Tracking", "Security", "Emergency"};
-const std::string obstacle_detect[2] = {"No obstacle", "Obstacle on the way"};
+std::vector<bool> conditions;
+const std::vector<std::string> reasons = {
+        "Sensor dead",
+        "Sensor dead + Human lost",
+        "Nothing",
+        "Human lost ",
+        "Obstacle detected and sensor dead",
+        "Obstacle detected and sensor dead and Human lost",
+        "Obstacle detected",
+        "Obstacle detected and Human Lost"
+};
+const std::vector<std::string> vocal_reasons = {"sensor_failure.mp3","sensor_failure.mp3","Nothing","user_lost.mp3","sensor_failure.mp3","sensor_failure.mp3","obstacle_detected.mp3","user_lost.mp3"};
 
 int dir_av = 0;
 int dir_ar = 0;
-int obstacle_av = 0;
-int obstacle_ar = 0;
+bool obstacle_av = false;
+bool obstacle_ar = false;
 int unavoidable = 0;
 int emergency_btn = 1;
 int connexion = 0;
-int sensor = 0;
-//int tab[1] = {0};
+bool sensor = false;
 
 
 int previous_state = -1;
 int stock_previous_state = -1;
 int current_state = 0;
 
-int obstacle = 0;
+bool obstacle = false;
 bool human_lost = false;
+
+int message_index = 0;
+
+//System check
+bool comm_jetson = false;
+bool comm_l476 = false;  
+bool comm_f103 = false;   
+bool battery = false;      
+bool ultrasonics = false;
+bool gps = false ;
+bool imu = false;
+bool lidar = false;
+bool camera = false;
 
 using namespace std;
 using placeholders::_1;
@@ -61,6 +89,7 @@ public:
     publisher_state_ = this->create_publisher<interfaces::msg::State>("state", 10);
     publisher_system_check_ = this->create_publisher<interfaces::msg::SystemCheck>("system_check", 10);
     publisher_joystick_order_ = this->create_publisher<interfaces::msg::JoystickOrder>("joystick_order", 10);
+    publisher_vocal_ = this->create_publisher<interfaces::msg::Vocal>("vocal", 10);
 
     subscription_joy_ = this->create_subscription<sensor_msgs::msg::Joy>(
         "joy", 10, std::bind(&state_machine::joyCallback, this, _1));
@@ -74,6 +103,10 @@ public:
         "user_lost", 10, std::bind(&state_machine::userLostCallback, this, _1));
     client_count_sub = this->create_subscription<std_msgs::msg::Int32>(
         "client_count", 10, std::bind(&state_machine::clientCountCallback, this, _1));
+    subscription_system_check_ = this->create_subscription<interfaces::msg::SystemCheck>(
+        "system_check", 10, std::bind(&state_machine::systemCheckCallback, this, _1));
+    subscription_mute_button_ = this->create_subscription<interfaces::msg::Mute>(
+        "mute", 10, std::bind(&state_machine::muteCallback, this, _1));   
 
     timer_ = this->create_wall_timer(1ms, std::bind(&state_machine::stateChanger, this));
     //disconnect_timer = this->create_wall_timer(std::chrono::seconds(1), std::bind(&state_machine::changeModeCallback, this));
@@ -117,15 +150,18 @@ private:
   rclcpp::Publisher<interfaces::msg::State>::SharedPtr publisher_state_;
   rclcpp::Publisher<interfaces::msg::SystemCheck>::SharedPtr publisher_system_check_;
   rclcpp::Publisher<interfaces::msg::JoystickOrder>::SharedPtr publisher_joystick_order_;
+  rclcpp::Publisher<interfaces::msg::Vocal>::SharedPtr publisher_vocal_;
 
   // Subscriber
   rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr subscription_joy_;
   rclcpp::Subscription<interfaces::msg::Obstacles>::SharedPtr subscription_obstacles_;
   rclcpp::Subscription<interfaces::msg::WebMode>::SharedPtr subscription_web_mode_;
   rclcpp::Subscription<interfaces::msg::MotorsOrder>::SharedPtr subscription_motors_order_;
-  rclcpp::Subscription<interfaces::msg::UserLost>::SharedPtr subscription_user_lost_;
+  rclcpp::Subscription<interfaces::msg::SystemCheck>::SharedPtr subscription_system_check_;
+  rclcpp::Subscription<interfaces::msg::Mute>::SharedPtr subscription_mute_button_;
   // Timer
   rclcpp::TimerBase::SharedPtr timer_;
+  rclcpp::Subscription<interfaces::msg::UserLost>::SharedPtr subscription_user_lost_;
 
   // Joystick variables
   map<string, int> axisMap;
@@ -144,6 +180,7 @@ private:
   bool reverse;
   float webSteering, webThrottle;
   bool webReverse;
+  bool webMute = false;
 
   // std::ofstream file_stream_;
 
@@ -207,7 +244,7 @@ private:
       dir_ar = 0;
     } */
     
-
+    auto vocalMsg = interfaces::msg::Vocal();
     auto stateMsg = interfaces::msg::State();
     // emergency stop
     // emergency btn is inversed in case of a shutdown
@@ -260,7 +297,7 @@ private:
         }
 
         // -> security
-        else if ((dir_av && obstacle_av) || (dir_ar && obstacle_ar))
+        else if ((dir_av && obstacle_av) || (dir_ar && obstacle_ar) || !(sensor) )
         {
           current_state = 4;
           RCLCPP_INFO(this->get_logger(), ("manual->security"));
@@ -315,8 +352,8 @@ private:
           current_state = 0;
           RCLCPP_INFO(this->get_logger(), ("tracking->idle"));
         }
-
-        else if ((dir_av && obstacle_av) || (dir_ar && obstacle_ar) || (human_lost))
+        // -> security
+        else if ((dir_av && obstacle_av) || (dir_ar && obstacle_ar) || (human_lost) || !(sensor))
         {
           current_state = 4;
           RCLCPP_INFO(this->get_logger(), ("tracking->security"));
@@ -338,11 +375,11 @@ private:
       // security -> manual
       else if (current_state == 4)
       {
-        if (((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar) || (dir_av && !obstacle_av)) && connexion && (stock_previous_state==1)) {
+        if (((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar) || (dir_av && !obstacle_av)) && connexion && (stock_previous_state==1) && sensor) {
           current_state = 1;
           RCLCPP_INFO(this->get_logger(), ("sec->man"));
         }
-        else if (((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar) || (dir_av && !obstacle_av)) && connexion &&  (stock_previous_state==3) && !(human_lost)) {
+        else if (((!obstacle_av && !obstacle_ar) || (dir_ar && !obstacle_ar) || (dir_av && !obstacle_av)) && connexion &&  (stock_previous_state==3) && !(human_lost) && sensor) {
           current_state = 3;
           RCLCPP_INFO(this->get_logger(), ("sec->track"));
         }
@@ -363,14 +400,33 @@ private:
 
       stateMsg.current_state = current_state;
       stateMsg.previous_state = previous_state;
-      stock_previous_state = previous_state;
       stateMsg.state_name = state_names[current_state];
-      stateMsg.obstacle_detect = obstacle_detect[obstacle];
-      publisher_state_->publish(stateMsg);
+      stock_previous_state = previous_state;
+      obstacle = (dir_av && obstacle_av) || (dir_ar && obstacle_ar);
       RCLCPP_INFO(this->get_logger(), ("From : " + state_names[previous_state] + "Switching to another state : " + state_names[current_state]).data());
-      RCLCPP_INFO(this->get_logger(), ("change because obstacle ? " + obstacle_detect[obstacle]).data());
+      vocalMsg.vocal_feedback_message =  vocal_mode_names[current_state];
+      if (current_state == 4) {
+        if (previous_state == 3) {
+          conditions = {obstacle, sensor, human_lost};
+        }
+        else {
+          conditions = {obstacle, sensor, 0};
+        }
+        
+        message_index = 0;
+        for (size_t i = 0; i < conditions.size(); ++i) {
+            message_index = 2 * message_index + (conditions[i] ? 1 : 0);
+        }
+        RCLCPP_INFO(this->get_logger(), ("change because ? " + reasons[message_index]).data());
+        vocalMsg.vocal_feedback_message = vocal_reasons[message_index];
+      }
+      stateMsg.message_index = message_index;
+      publisher_state_->publish(stateMsg);
       previous_state = current_state;
-
+      if (!webMute) {
+        publisher_vocal_->publish(vocalMsg);
+      }
+      
       // Save file
       // file_stream_ << "\n\nMode: " << state_names[current_state] << ", Obstacle: " << obstacle_detect[obstacle] << "\n\n" << std::endl;
     }
@@ -408,7 +464,6 @@ private:
     if (obstacle_msg.front)
     {
       obstacle_av = 1;
-      obstacle = 1;
     }
     else
     {
@@ -417,13 +472,11 @@ private:
     if (obstacle_msg.rear)
     {
       obstacle_ar = 1;
-      obstacle = 1;
     }
     else
     {
       obstacle_ar = 0;
     }
-    //RCLCPP_INFO(this->get_logger(), "Publishing: %d", obstacle_ar);
   }
 
   // Update requestedThrottle, requestedAngle and reverse from the joystick
@@ -534,7 +587,35 @@ private:
   //  connexion=0;
   //  disconnect_timer->cancel();
   //}
+
+  void systemCheckCallback(const interfaces::msg::SystemCheck &systemCheck){
+  
+    if (systemCheck.report){
+      comm_jetson = (systemCheck.comm_jetson == "OK") ? true : false;
+      comm_l476 = (systemCheck.comm_l476 == "OK") ? true : false;
+      comm_f103 = (systemCheck.comm_f103 == "OK") ? true : false;
+      battery = (systemCheck.battery == "OK") ? true : false; 
+      ultrasonics = true;
+      for (int i = 0; i < 6; ++i) {
+            if (systemCheck.ultrasonics[i] != "OK") {
+                ultrasonics = false;
+                break; 
+            }
+      }
+      gps = (systemCheck.gps != "No Fix") ? true : false; 
+      imu = (systemCheck.imu == "OK") ? true : false; 
+      lidar = (systemCheck.lidar == "OK") ? true : false; 
+      camera = (systemCheck.camera == "OK") ? true : false; 
+      sensor = ultrasonics ;//&& lidar && camera;  
+    }
+  }
+
+  void muteCallback(const interfaces::msg::Mute &muteButton)
+  {
+    webMute = muteButton.mute;
+  } 
 };
+
 
 int main(int argc, char *argv[])
 {

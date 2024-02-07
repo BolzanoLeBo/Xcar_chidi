@@ -12,13 +12,11 @@ void recurrence_equation(double Error, double& Error_last, double& PWM_order, do
     
     // Error that corresponds to the command - the distance from the car to the target
     Error=DISTANCE_COMMAND-Distance_to_target;  //centimeters
+    // Si error > 0 then trop pres donc il faut reculer
+    // Si error < 0 then trop loin donc il faut avancer
     Error = Error/100;
-    
-    // A QUOI CA SERT ??
-    ///Error=Error*0.9;
 
     // Corrected PWM 
-
     PWM_order = 100*Error;
     //PWM_order = PWM_order_last + 100*Error - 99.95*Error_last;
 
